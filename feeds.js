@@ -1,3 +1,16 @@
+$(document).ready(function() {
+    $('.feed > a').each(function(i, a){
+        var feedUrl = encodeURIComponent(a.href);
+        var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
+        $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a.parentNode);});
+    });
+    $('.flickrFeed > a').each(function(i, a){
+        var ajaxUrl = a.href + "&format=json&jsoncallback=?";
+        $.getJSON(ajaxUrl, function(doc){jsonLoadFlickrInto(doc, a.parentNode);});
+    });
+})
+
+
 function jsonLoadFlickrInto(doc, div) {
   lst = doc.items;
   var newHtml = '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
