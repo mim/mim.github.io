@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>Widget test</title>
+<script type="text/javascript" src="http://ejohn.org/files/pretty.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+function jsonLoadFlickrInto(doc, id) {
+  lst = doc.items;
+  c = document.getElementById(id);
+  c.innerHTML += '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
+  c.innerHTML += '<ul>';
+  for (var i=0, post; i < 20; i++) {
+    post = lst[i];
+    c.innerHTML += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
+  }
+  c.innerHTML += '</ul>';
+}
+function jsonLoadFlickrIntoFlickr1(doc) {
+  jsonLoadFlickrInto(doc, "flickr1");
+}
+function jsonLoadFlickrIntoFlickr2(doc) {
+  jsonLoadFlickrInto(doc, "flickr2");
+}
+
+function jsonLoadGoogleFeedInto(doc, id) {
+  feed = doc.responseData.feed;
+  c = document.getElementById(id);
+  c.innerHTML += '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
+  c.innerHTML += '<ul>';
+  for (var i=0, entry; i < 20; i++) {
+    entry = feed.entries[i];
+    c.innerHTML += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
+  }
+  c.innerHTML += '</ul>';
+}
+function jsonLoadGoogleFeedIntoFeed1(doc) {
+  jsonLoadGoogleFeedInto(doc, "feed1");
+}
+function jsonLoadGoogleFeedIntoFeed2(doc) {
+  jsonLoadGoogleFeedInto(doc, "feed2");
+}
+</script>
+</head>
+<body>
+
+<div id="delicious" class="feed">
+<a href="http://www.delicious.com/v2/rss/asterix77"> delicious</a>
+</div>
+
+<div id="lastfm" class="feed">
+<a href="http://ws.audioscrobbler.com/1.0/user/mimasterix/recenttracks.rss"> last.fm</a>
+</div>
+
+<div id="blog" class="feed">
+<a href="http://feeds.feedburner.com/MimsBlog"> mim's blog</a>
+</div>
+
+<div id="tumblr" class="feed">
+<a href="http://asterix77.tumblr.com/rss"> tumblr</a>
+</div>
+
+<div id="libraryThing" class="feed">
+<a href="http://www.librarything.com/rss/recent/asterix77"> library thing</a>
+</div>
+
+<div id="pocketRead" class="feed">
+<a href="http://getpocket.com/users/asterix77/feed/read"> Pocket: Read</a>
+</div>
+
+<div id="pocketUnread" class="feed">
+<a href="http://getpocket.com/users/asterix77/feed/unread"> Pocket: Unread</a>
+</div>
+
+<div id="twitter" class="feed">
+<a href="http://api.twitter.com/1/statuses/user_timeline/8943862.rss"> Twitter</a>
+</div>
+
+<div id="concertPhotos" class="flickrFeed">
+<a href="http://api.flickr.com/services/feeds/photoset.gne?set=72157604522889991&amp;nsid=48241739@N00"> concert photos</a>
+</div>
+
+<div id="phonePhotos" class="flickrFeed">
+<a href="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00"> phone photos</a>
+</div>
+
+<div id="feed3" class="feed">
+<script type="text/javascript">
+$.getJSON("https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Fread&v=1.0&num=15&callback=?", function(doc){jsonLoadGoogleFeedInto(doc, "feed3");});
+</script>
+</div>
+
+<div id="feed1" class="feed">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Fread&v=1.0&num=15&callback=jsonLoadGoogleFeedIntoFeed1"></script>
+</div>
+
+<div id="feed2" class="feed">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Funread&v=1.0&num=15&callback=jsonLoadGoogleFeedIntoFeed2"></script>
+</div>
+
+<div id="flickr1" class="flickr">
+<script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604522889991&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr1"></script>
+</div>
+
+<div id="flickr2" class="flickr">
+<script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr2"></script>
+</div>
+
+
+<a class="twitter-timeline" width="300" height="350" href="https://twitter.com/asterix77" data-widget-id="283322540351422465">@asterix77</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</body>
+</html>
