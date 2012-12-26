@@ -22,9 +22,8 @@ function jsonLoadFlickrIntoFlickr2(doc) {
   jsonLoadFlickrInto(doc, "flickr2");
 }
 
-function jsonLoadGoogleFeedInto(doc, id) {
+function jsonLoadGoogleFeedInto(doc, c) {
   feed = doc.responseData.feed;
-  c = document.getElementById(id);
   c.innerHTML += '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
   c.innerHTML += '<ul>';
   for (var i=0, entry; i < 20; i++) {
@@ -32,12 +31,6 @@ function jsonLoadGoogleFeedInto(doc, id) {
     c.innerHTML += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
   c.innerHTML += '</ul>';
-}
-function jsonLoadGoogleFeedIntoFeed1(doc) {
-  jsonLoadGoogleFeedInto(doc, "feed1");
-}
-function jsonLoadGoogleFeedIntoFeed2(doc) {
-  jsonLoadGoogleFeedInto(doc, "feed2");
 }
 </script>
 </head>
@@ -89,14 +82,6 @@ $.getJSON("https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2
 </script>
 </div>
 
-<div id="feed1" class="feed">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Fread&v=1.0&num=15&callback=jsonLoadGoogleFeedIntoFeed1"></script>
-</div>
-
-<div id="feed2" class="feed">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Funread&v=1.0&num=15&callback=jsonLoadGoogleFeedIntoFeed2"></script>
-</div>
-
 <div id="flickr1" class="flickr">
 <script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604522889991&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr1"></script>
 </div>
@@ -105,9 +90,12 @@ $.getJSON("https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2
 <script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr2"></script>
 </div>
 
-
-<a class="twitter-timeline" width="300" height="350" href="https://twitter.com/asterix77" data-widget-id="283322540351422465">@asterix77</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+<script type="text/javascript">
+$('.feed > a').each(function(i, a){
+var feedUrl = encodeURIComponent(a.href);
+var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
+$.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a.parentNode);});
+});
+</script>
 </body>
 </html>
