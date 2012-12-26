@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 function jsonLoadFlickrInto(doc, a) {
   lst = doc.items;
-  var newHtml = '<a href="' + doc.link + '">' + doc.title + '</a>';
+  var newHtml = '<span class="header"><a href="' + doc.link + '">' + doc.title + '</a></span>';
   newHtml += '<ul>';
   for (var i=0, post; i < 21, i < lst.length; i++) {
     post = lst[i];
@@ -31,7 +31,7 @@ function jsonLoadFlickrInto(doc, a) {
 
 function jsonLoadGoogleFeedInto(doc, a) {
   feed = doc.responseData.feed;
-  var newHtml = '<a href="' + feed.link + '">' + feed.title + '</a>';
+  var newHtml = '<span class="header"><a href="' + feed.link + '">' + feed.title + '</a></span>';
   newHtml += '<ul>';
   for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
@@ -45,7 +45,7 @@ function jsonLoadGoogleFeedInto(doc, a) {
 
 function jsonLoadTwitterInto(doc, a) {
     entries = doc;
-    var newHtml = '<a href="http://twitter.com/asterix77">Twitter</a>';
+    var newHtml = '<span class="header"><a href="http://twitter.com/asterix77">Twitter</a></span>';
     newHtml += '<ul>';
     for (var i=0, entry; i < 20, i < entries.length; i++) {
         entry = entries[i];

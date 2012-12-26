@@ -9,4 +9,6 @@ section {padding-top: 30px;}
 .flickrFeed ul { margin: 0px; text-align: center; }
 .flickrFeed li { display: inline }
 
+.feed .header, .flickrFeed .header { font-weight: bold; }
+
 body { background: url('/inc/paisleyDiagTileSmall.png'); }
