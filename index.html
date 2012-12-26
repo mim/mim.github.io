@@ -4,9 +4,8 @@
 <script type="text/javascript" src="http://ejohn.org/files/pretty.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-function jsonLoadFlickrInto(doc, id) {
+function jsonLoadFlickrInto(doc, c) {
   lst = doc.items;
-  c = document.getElementById(id);
   c.innerHTML += '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
   c.innerHTML += '<ul>';
   for (var i=0, post; i < 20; i++) {
@@ -77,25 +76,15 @@ function jsonLoadGoogleFeedInto(doc, div) {
 <a href="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00"> phone photos</a>
 </div>
 
-<div id="feed3" class="feed">
-<script type="text/javascript">
-$.getJSON("https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http%3A%2F%2Fgetpocket.com%2Fusers%2Fasterix77%2Ffeed%2Fread&v=1.0&num=15&callback=?", function(doc){jsonLoadGoogleFeedInto(doc, "feed3");});
-</script>
-</div>
-
-<div id="flickr1" class="flickr">
-<script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604522889991&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr1"></script>
-</div>
-
-<div id="flickr2" class="flickr">
-<script type="text/javascript" src="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00&amp;format=json&amp;jsoncallback=jsonLoadFlickrIntoFlickr2"></script>
-</div>
-
 <script type="text/javascript">
 $('.feed > a').each(function(i, a){
 var feedUrl = encodeURIComponent(a.href);
 var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
 $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a.parentNode);});
+});
+$('.flickrFeed > a').each(function(i, a){
+var ajaxUrl = a.href + "&format=json&jsoncallback=?";
+$.getJSON(ajaxUrl, function(doc){jsonLoadFlickrInto(doc, a.parentNode);});
 });
 </script>
 </body>
