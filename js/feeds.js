@@ -2,53 +2,59 @@ $(document).ready(function() {
     $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
         var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
-        $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a.parentNode);});
+        $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a);});
     });
     $('.flickrFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&format=json&jsoncallback=?";
-        $.getJSON(ajaxUrl, function(doc){jsonLoadFlickrInto(doc, a.parentNode);});
+        $.getJSON(ajaxUrl, function(doc){jsonLoadFlickrInto(doc, a);});
     });
     $('.twitterFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&callback=?";
-        $.getJSON(ajaxUrl, function(doc){jsonLoadTwitterInto(doc, a.parentNode);});
+        $.getJSON(ajaxUrl, function(doc){jsonLoadTwitterInto(doc, a);});
     });
 })
 
 
-function jsonLoadFlickrInto(doc, div) {
+function jsonLoadFlickrInto(doc, a) {
   lst = doc.items;
-  var newHtml = '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
+  var newHtml = '<a href="' + doc.link + '">' + doc.title + '</a>';
   newHtml += '<ul>';
   for (var i=0, post; i < 21, i < lst.length; i++) {
     post = lst[i];
     newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
   }
   newHtml += '</ul>';
-  div.innerHTML = newHtml;
+  div = a.parentNode;
+  div.removeChild(a);
+  div.innerHTML += newHtml;
 }
 
-function jsonLoadGoogleFeedInto(doc, div) {
+function jsonLoadGoogleFeedInto(doc, a) {
   feed = doc.responseData.feed;
-  var newHtml = '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
+  var newHtml = '<a href="' + feed.link + '">' + feed.title + '</a>';
   newHtml += '<ul>';
   for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
     newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
   newHtml += '</ul>';
-  div.innerHTML = newHtml;
+  div = a.parentNode;
+  div.removeChild(a);
+  div.innerHTML += newHtml;
 }
 
-function jsonLoadTwitterInto(doc, div) {
+function jsonLoadTwitterInto(doc, a) {
     entries = doc;
-    var newHtml = '<h4><a href="http://twitter.com/asterix77">Twitter</a></h4>';
+    var newHtml = '<a href="http://twitter.com/asterix77">Twitter</a>';
     newHtml += '<ul>';
     for (var i=0, entry; i < 20, i < entries.length; i++) {
         entry = entries[i];
         newHtml += '<li><a href="http://twitter.com/asterix77/status/' + entry.id_str + '">' + entry.text + '</a> ' + prettyDate(entry.created_at) + '</li>';
     }
     newHtml += '</ul>';
-    div.innerHTML = newHtml;
+    div = a.parentNode;
+    div.removeChild(a);
+    div.innerHTML += newHtml;
 }
 
 /*
