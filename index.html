@@ -26,7 +26,7 @@ function jsonLoadGoogleFeedInto(doc, c) {
   feed = doc.responseData.feed;
   c.innerHTML += '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
   c.innerHTML += '<ul>';
-  for (var i=0, entry; i < 20; i++) {
+  for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
     c.innerHTML += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
