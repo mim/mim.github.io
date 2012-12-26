@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
-        var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
+        var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=12&callback=?";
         $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a);});
     });
     $('.flickrFeed > a').each(function(i, a){
