@@ -4,21 +4,16 @@
 <script type="text/javascript" src="http://ejohn.org/files/pretty.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-function jsonLoadFlickrInto(doc, c) {
+function jsonLoadFlickrInto(doc, div) {
   lst = doc.items;
-  c.innerHTML += '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
-  c.innerHTML += '<ul>';
-  for (var i=0, post; i < 20; i++) {
+  var newHtml = '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
+  newHtml += '<ul>';
+  for (var i=0, post; i < 20, i < lst.length; i++) {
     post = lst[i];
-    c.innerHTML += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
+    newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
   }
-  c.innerHTML += '</ul>';
-}
-function jsonLoadFlickrIntoFlickr1(doc) {
-  jsonLoadFlickrInto(doc, "flickr1");
-}
-function jsonLoadFlickrIntoFlickr2(doc) {
-  jsonLoadFlickrInto(doc, "flickr2");
+  newHtml += '</ul>';
+  div.innerHTML = newHtml;
 }
 
 function jsonLoadGoogleFeedInto(doc, div) {
