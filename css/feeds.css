@@ -1,11 +1,13 @@
 section {padding-top: 30px;}
 
-.feed { background: white; padding: 0px 5px 5px; border-radius: 5px; margin-bottom: 10px; }
 .feed ul { list-style: none; margin: 0px; font-size: 80%; color: gray; }
 .feed li { line-height: 125%; }
 
-.flickrFeed { background: white; padding: 0px 5px 5px; border-radius: 5px; margin-bottom: 10px; }
+.feed, .flickrFeed, .page-header h1 { background: white; padding: 0px 5px 5px; border-radius: 5px; border: 1pt solid #aaa; }
+.feed, .flickrFeed { margin-bottom: 10px; }
+
 .flickrFeed ul { margin: 0px; text-align: center; }
 .flickrFeed li { display: inline }
 
 body { background: url('/inc/paisleyDiagTileSmall.png'); }
+/* .container { background: rgba(255,255,255,0.6); padding: 1em; } */
