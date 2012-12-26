@@ -1,33 +1,8 @@
 <html>
 <head>
 <title>Widget test</title>
-<script type="text/javascript" src="http://ejohn.org/files/pretty.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
-function jsonLoadFlickrInto(doc, div) {
-  lst = doc.items;
-  var newHtml = '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
-  newHtml += '<ul>';
-  for (var i=0, post; i < 20, i < lst.length; i++) {
-    post = lst[i];
-    newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
-  }
-  newHtml += '</ul>';
-  div.innerHTML = newHtml;
-}
-
-function jsonLoadGoogleFeedInto(doc, div) {
-  feed = doc.responseData.feed;
-  var newHtml = '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
-  newHtml += '<ul>';
-  for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
-    entry = feed.entries[i];
-    newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
-  }
-  newHtml += '</ul>';
-  div.innerHTML = newHtml;
-}
-</script>
+<script type="text/javascript" src="feeds.js"></script>
 </head>
 <body>
 
