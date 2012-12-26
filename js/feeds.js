@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.feed > a').each(function(i, a){
+    $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
         var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=15&callback=?";
         $.getJSON(ajaxUrl, function(doc){jsonLoadGoogleFeedInto(doc, a.parentNode);});
@@ -8,6 +8,10 @@ $(document).ready(function() {
         var ajaxUrl = a.href + "&format=json&jsoncallback=?";
         $.getJSON(ajaxUrl, function(doc){jsonLoadFlickrInto(doc, a.parentNode);});
     });
+    $('.twitterFeed > a').each(function(i, a){
+        var ajaxUrl = a.href + "&callback=?";
+        $.getJSON(ajaxUrl, function(doc){jsonLoadTwitterInto(doc, a.parentNode);});
+    });
 })
 
 
@@ -15,7 +19,7 @@ function jsonLoadFlickrInto(doc, div) {
   lst = doc.items;
   var newHtml = '<h4><a href="' + doc.link + '">' + doc.title + '</a></h4>';
   newHtml += '<ul>';
-  for (var i=0, post; i < 20, i < lst.length; i++) {
+  for (var i=0, post; i < 21, i < lst.length; i++) {
     post = lst[i];
     newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
   }
@@ -35,6 +39,17 @@ function jsonLoadGoogleFeedInto(doc, div) {
   div.innerHTML = newHtml;
 }
 
+function jsonLoadTwitterInto(doc, div) {
+    entries = doc;
+    var newHtml = '<h4><a href="http://twitter.com/asterix77">Twitter</a></h4>';
+    newHtml += '<ul>';
+    for (var i=0, entry; i < 20, i < entries.length; i++) {
+        entry = entries[i];
+        newHtml += '<li><a href="http://twitter.com/asterix77/status/' + entry.id_str + '">' + entry.text + '</a> ' + prettyDate(entry.created_at) + '</li>';
+    }
+    newHtml += '</ul>';
+    div.innerHTML = newHtml;
+}
 
 /*
  * JavaScript Pretty Date
