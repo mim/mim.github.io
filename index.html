@@ -22,15 +22,16 @@ function jsonLoadFlickrIntoFlickr2(doc) {
   jsonLoadFlickrInto(doc, "flickr2");
 }
 
-function jsonLoadGoogleFeedInto(doc, c) {
+function jsonLoadGoogleFeedInto(doc, div) {
   feed = doc.responseData.feed;
-  c.innerHTML += '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
-  c.innerHTML += '<ul>';
+  var newHtml = '<h4><a href="' + feed.link + '">' + feed.title + '</a></h4>';
+  newHtml += '<ul>';
   for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
-    c.innerHTML += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
+    newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
-  c.innerHTML += '</ul>';
+  newHtml += '</ul>';
+  div.innerHTML = newHtml;
 }
 </script>
 </head>
