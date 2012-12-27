@@ -11,7 +11,7 @@ AUXDIR=~/doc/cv
 ALLHTML=pubs.html
 ALLBIBHTML=pubs_bib.html
 ALLABSHTML=pubs_abs.html
-HTMLDIR=~/html/widgets
+HTMLDIR=~/html
 
 for file in $ALLHTML $ALLABSHTML ; do
     cat > $file <<EOF
