@@ -17,3 +17,5 @@ body { background: url('/inc/paisleyDiagTileSmall.png'); }
 body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 25px; }
 h1, h2, h3, h4, .header { font-family: 'Droid Serif', Georgia, Times, serif; }
 h1 { font-size: 49px; line-height: 65px; }
+
+#mimPic { padding-left: 15px; }

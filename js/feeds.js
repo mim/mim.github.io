@@ -21,7 +21,7 @@ function jsonLoadFlickrInto(doc, a) {
   newHtml += '<ul>';
   for (var i=0, post; i < 21, i < lst.length; i++) {
     post = lst[i];
-    newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '"/></a></li>';
+    newHtml += '<li><a href="' + post.link + '"><img src="' + post.media.m.replace("_m", "_s") + '" title="' + post.title + '" class="img-polaroid"/></a></li>';
   }
   newHtml += '</ul>';
   div = a.parentNode;
