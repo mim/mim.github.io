@@ -13,3 +13,7 @@ section {padding-top: 30px;}
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
 
 body { background: url('/inc/paisleyDiagTileSmall.png'); }
+
+body { font-family: 'Vollkorn', Georgia, Times, serif; font-size: 16px; line-height: 25px; }
+h1, h2, h3, h4, .header { font-family: 'Ubuntu', Helvetica, Arial, sans-serif; }
+h1 { font-size: 50px; line-height: 65px; }
