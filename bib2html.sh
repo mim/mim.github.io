@@ -40,6 +40,9 @@ for file in $ALLHTML $ALLABSHTML ; do
       <li><a href="research.html">Research</a></li>
       <li class="active"><a href="pubs.html">Publications</a></li>
     </ul>
+    <ul class="nav pull-right">
+      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
+    </ul>
   </div>
 </div>
 
@@ -77,6 +80,9 @@ cat > $ALLBIBHTML <<EOF
       <li><a href="http://mr-pc.org/cv.pdf">CV</a></li>
       <li><a href="research.html">Research</a></li>
       <li class="active"><a href="pubs.html">Publications</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
     </ul>
   </div>
 </div>
