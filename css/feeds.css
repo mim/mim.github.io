@@ -14,6 +14,6 @@ section {padding-top: 30px;}
 
 body { background: url('/inc/paisleyDiagTileSmall.png'); }
 
-body { font-family: 'Vollkorn', Georgia, Times, serif; font-size: 16px; line-height: 25px; }
-h1, h2, h3, h4, .header { font-family: 'Ubuntu', Helvetica, Arial, sans-serif; }
-h1 { font-size: 50px; line-height: 65px; }
+body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 25px; }
+h1, h2, h3, h4, .header { font-family: 'Droid Serif', Georgia, Times, serif; }
+h1 { font-size: 49px; line-height: 65px; }
