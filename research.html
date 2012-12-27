@@ -1,19 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Work</title>
-  <style type="text/css" media="all">@import "/inc/bluerobot.css";</style>
-  <link rel="shortcut icon" href="/favicon.ico" />
+<meta charset="utf-8">
+<title>Michael I Mandel's Research</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/feeds.css" rel="stylesheet" media="screen">
+<link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
 </head>
+<body>
 
-<h1 id="Header">Work</h1>
+<div class="container">
 
-<div class="Content">
+<div class="row">
+<div class="span12">
+<div class="box">
 
-<h3>My full list of <a href="pubs.html">publications</a></h3>
+<div class="navbar overview">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="http://mr-pc.org/cv.pdf">CV</a></li>
+      <li class="active"><a href="research.html">Research</a></li>
+      <li><a href="pubs.html">Publications</a></li>
+    </ul>
+  </div>
+</div>
 
-<h2>Graduate Research</h2>
+<div class="row">
+<div class="span10 offset1">
 
-<h3>Dissertation: Binaural Model-Based Source Separation and Localization</h3>
+<section id="Dissertation">
+<div class="page-header">
+<h1>Dissertation</h1>
+<p class="lead">Binaural Model-Based Source Separation &amp; Localization</p>
+</div>
 
 <p>When listening in noisy and reverberant environments, human listeners
 are able to focus on a particular sound of interest while ignoring
@@ -76,21 +96,15 @@ systems.</p>
 </li>
 <li>Get the <a href="http://github.com/mim/messl"> matlab code on github</a></li>
 </ul>
+</section>
 
-<h3>Research Interests</h3>
-<p>
-<ul>
-<li>Music, speech, and audio processing and recognition</li>
-<li>Machine learning, especially Bayesian methods and deep architectures</li>
-<li>Computational auditory scene analysis and source separation</li>
-<li>Music recommendation and similarity, music information retrieval</li>
-<li>Computational music analysis</li>
-</ul>
-</p>
+<section id="localization">
+<div class="page-header">
+<h1>MESSL</h1>
+<p class="lead">Model-based EM Source Separation &amp; Localization</p>
+</div>
 
-<h3>Binaural source localization</h3> 
-
-<p> I have been working on the problem of sound source localization.
+<p> I have been working on the problem of sound source localization and separation.
 I take as my starting point binaural (two-microphone), reverberant
 recordings of one, two, or three simultaneous speakers.  From these
 recordings, my system determines the direction from which the sounds
@@ -99,6 +113,22 @@ can.</p>
 
 <p> Related stuff:
 <ul>
+
+<li>The <a href="taslp10.pdf">paper</a> in IEEE Transactions of
+  Audio, Speech, and Language Processing 2010 describing the whole
+  system.</li>
+
+<li>The <a href="waspaa07.pdf">paper</a> describing the addition of
+interaural level difference cues to the model from <a
+href="http://www.kecl.ntt.co.jp/icl/signal/waspaa2007/"> WASPAA
+2007</a>.</li>
+
+<li>The <a href="nips06.pdf">paper</a> describing our system from
+<a href="http://nips.cc/Conferences/2006/">NIPS 2006</a>.</li>
+
+<li>The <a href="nips06poster.pdf">poster</a> I presented at
+NIPS.</li>
+
 <li>The <a href="sapa06.pdf">paper</a> introducing the data and
 analyzing it for a single speaker from the <a
 href="http://www.sapa2006.org/">SAPA</a> workshop at <a
@@ -107,28 +137,41 @@ href="http://www.interspeech2006.org/">ICSLP 2006</a>.</li>
 <li>The <a href="sapa06slides.pdf">slides</a> I used in the
 talk at SAPA.</li>
 
-<li>The <a href="nips06.pdf">paper</a> describing our system from
-<a href="http://nips.cc/Conferences/2006/">NIPS 2006</a>.</li>
-
-<li>The <a href="nips06poster.pdf">poster</a> I presented at
-NIPS.</li>
-
-<li>A <a href="amap06poster.pdf">poster</a> describing future
-improvements to the system from the AMAP workshop at NIPS 2006.</li>
-
-<li>The <a href="waspaa07.pdf">paper</a> describing the addition of
-interaural level difference cues to the model from <a
-href="http://www.kecl.ntt.co.jp/icl/signal/waspaa2007/"> WASPAA
-2007</a>.</li>
-
-<li>The <a href="taslp10.pdf">paper</a> in IEEE Transactions of
-  Audio, Speech, and Language Processing describing the whole
-  system.</li>
-
 </ul>
 </p>
+</section>
 
-<h3>Music Similarity and Playlist Generation</h3>
+<section id="majorminer">
+<div class="page-header">
+<a href="http://majorminer.org"> <img src="http://majorminer.org/images/major.png" class="pull-right"></a>
+<h1>Major Miner</h1>
+<p class="lead">music labeling game</p>
+</div>
+
+<p>I built a human computation game
+called <a href="http://majorminer.org"> Major Miner's music labeling
+game</a>.  From the intro:
+<blockquote>
+The goal of the game, besides just listening to music, is to label
+songs with original, yet relevant words and phrases that other players
+agree with. We're going to use your descriptions to teach our computers
+to recommend music that sounds like the music you already like.
+</blockquote>
+</p>
+
+<p>Players are having a good time with it. You can see the top scorers
+on the <a href="http://majorminer.org/info/leaders"> leader
+board</a>, but don't let them intimidate you, it's pretty easy to
+score points once you get the hang of it. Check it out if you have
+some time to play.</p>
+</section>
+
+<section id="similarity">
+<div class="page-header">
+<h1>Music similarity</h1>
+<p class="lead">and playlist generation</p>
+</div>
+
 <p> Graham Poliner, Dan Ellis, and I have been working on the problem
 of playlist generation.  This work went into our two publications, the
 first in the ACM Multimedia Systems Journal and the second as ISMIR
@@ -159,36 +202,14 @@ that won MIREX 2005 Artist ID.</li>
 results</a> of MIREX 2005, including the extended abstracts for all of
 the competing systems.</li>
 </ul>
+</section>
 
-<h2>Major Miner's music labeling game</h2>
+<section id="igmm">
+<div class="page-header">
+<h1>IGMM</h1>
+<p class="lead">Implementation of the Infinite Gaussian Mixture Model</p>
+</div>
 
-<a href="http://majorminer.org"> <img
-src="http://majorminer.org/images/major.png"></a>
-
-<p>I built a human computation game
-called <a href="http://majorminer.org"> Major Miner's music labeling
-game</a>.  From the intro:
-<blockquote>
-The goal of the game, besides just listening to music, is to label
-songs with original, yet relevant words and phrases that other players
-agree with. We're going to use your descriptions to teach our computers
-to recommend music that sounds like the music you already like.
-</blockquote>
-</p>
-
-<p>Players are having a good time with it. You can see the top scorers
-on the <a href="http://majorminer.org/info/leaders"> leader
-board</a>, but don't let them intimidate you, it's pretty easy to
-score points once you get the hang of it. Check it out if you have
-some time to play.</p>
-
-<h2>Classes</h2>
-
-<p>Here are some final projects from classes I've taken here at
-Columbia.  Maybe you want to see the <a href="/classes.html">full
-list</a> of classes I've taken.</p>
-
-<h3>The Infinite Gaussian Mixture Model</h3>
 <p>For my final project in <a
 href="http://www.cs.columbia.edu/~jebara"> Tony Jebara</a>'s <a
 href="http://www.cs.columbia.edu/~jebara/4771"> Machine Learning</a>
@@ -230,95 +251,18 @@ Eisenstein</a>'s Dirichlet process mixture model, which adds some cool
 features to the infinite GMM.
 </ul>
 </p>
-
-<h3>Active SVM Learning for Music Retrieval</h3>
-
-<p>For Professor <a href="http://www.ee.columbia.edu/~sfchang">
-Shih-Fu Chang </a>'s <a
-href="http://www.ee.columbia.edu/~sfchang/course/svia"> course </a>,
-<a href="http://www.columbia.edu/~gep2101"> Graham Poliner </a> and I
-put together a music retrieval system.  It used active SVM learning (a
-form of relevance feedback) on Fisher kernel features to try to
-recommend similar songs to those the user has tagged as relevant,
-while avoiding those the user has tagged as irrelevant.  We're still
-planning on trying out different features, classifiers, song
-databases, and ground truth, i.e. "this work is just preliminary."</p>
-
-<p>Here's the abstract:</p>
-
-<p>In order to manage growing music collections, a personal music
-recommender could find new music, appropriate to the user's mood, that
-he or she would like to listen to.  This paper approaches these goals
-using the flexible search technique of active SVM learning that adapts
-to users' perceptions instead of vice versa.  In the best case, active
-SVM learning requires fewer than half the number of training examples
-a normal SVM classification would require to achieve the same
-precision and recall.  In addition to the idea of applying active SVM
-learning to the audio domain, the paper has contributed a collection
-of ground truth classification of popular songs and a preliminary
-software implementation of this recommender.</p>
-
-<p>"I'm going to update this any day now..." but you can download some
-related pieces here:
-<ul>
-<li>The <a href="activeSVM.ps">report</a> itself (1.7 MB)</li>
-<li>A <a href="activeSVM.zip">zip</a> of the matlab source and data
-files (3.1 MB)</li>
-<li>The song snippets the UI plays for the user</li>
-</ul>
-</p>
-
-<h3>Audio Fingerprinting</h3>
-
-<p>For <a href="http://www.ee.columbia.edu/~dpwe/"> Dan Ellis</a>' <a
-href="http://www.ee.columbia.edu/~dpwe/e4810/"> Digital Signal
-Processing </a> class, I did some work on audio fingerprinting, with
-an eye towards using it as a means for measuring the similarity of
-sounds.  I'm going to keep working on this, but maybe from a different
-angle.</p>
-
-<p>Here's the abstract:</p>
-
-<p>Shazam's audio features, consisting of pairs of spectral peaks with
-their associated difference in time, form a useful representation for
-identifying identical audio clips in the presence of noise and
-distortion.  This project implements a shazam feature extractor and
-attempts to generalize it from the very specific identity detector to
-a less specific auditory similarity measure.  This generalization
-unfortunately did not meet with much success, but we have created a
-number of reduced-data songs from the shazam representation that are
-still recognizeable even with no additional information from the
-original song.</p>
-
-<p>Some related pieces:
-<ul>
-<li>The <a href="shazam.ps">report</a> (1.5 MB)</li>
-<li>Some <a href="shazam">example sound files</a> from the paper</li>
-<li>The source code</li>
-</ul>
-</p>
+</section>
 
 <p>Note that any code posted here is released under the
 Gnu <a href="http://www.gnu.org/licenses/gpl-3.0.html"> General Public
 License</a> v3.  I may need to put something about that in the files
 themselves, but for now I trust you.</p>
 
-<h4>Don't forget to look at my <a href="undergrad.html">undergrad</a>
-work</h4>
-
 </div>
-
-<div class="Content">
-  <center>
-  <img src="/inc/addr3.png">
-  <img src="/inc/bullet.gif">
-  <a href="http://mr-pc.org">mr-pc.org</a>
-  <img src="/inc/bullet.gif">
-  <!--#config timefmt="%A %B %d, %Y" -->
-  <!--#config timefmt="%m.%d.%Y" -->
-  updated <!--#echo var="LAST_MODIFIED" --> <br />
-  Copyright &copy; 2004-11 Michael I Mandel
-  </center>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <script src="http://www.google-analytics.com/urchin.js"
