@@ -46,8 +46,7 @@ for file in $ALLHTML $ALLABSHTML ; do
   </div>
 </div>
 
-<div class="row">
-<div class="span10 offset1">
+<div class="textbox">
 
 <div class="page-header">
 <h1>Publications</h1>
@@ -87,8 +86,7 @@ cat > $ALLBIBHTML <<EOF
   </div>
 </div>
 
-<div class="row">
-<div class="span10 offset1">
+<div class="textbox">
 
 <div class="page-header">
 <h1>Publications</h1>
@@ -139,7 +137,6 @@ done
 for file in $ALLHTML $ALLABSHTML $ALLBIBHTML ; do
     cat >> $file <<EOF
 
-</div>
 </div>
 </div>
 </div>

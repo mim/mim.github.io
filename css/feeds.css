@@ -1,4 +1,5 @@
-section {padding-top: 30px;}
+section { padding-bottom: 30px; }
+.textbox { padding: 0px 20px; }
 
 .feed ul { list-style: none; margin: 0px; font-size: 80%; color: gray; }
 .feed li { line-height: 125%; }
@@ -12,7 +13,7 @@ section {padding-top: 30px;}
 .feed .header, .flickrFeed .header { font-weight: bold; }
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
 
-body { background: url('/inc/paisleyDiagTileSmall.png'); }
+body { background: url('img/paisleyDiagTileSmall.png'); }
 
 body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 25px; }
 h1, h2, h3, h4, .header { font-family: 'Droid Serif', Georgia, Times, serif; }
