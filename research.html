@@ -31,6 +31,58 @@
 
 <div class="textbox">
 
+<section id="autotagging">
+<div class="page-header">
+<h1>Autotagging</h1>
+<p class="lead">automatically describing music from its sound</p>
+</div>
+
+<img src="img/autotaggingOverview.png" alt="Autotagging overview"
+     title="Autotagging overview" class="pull-right figure">
+
+<p>
+With tens of millions of songs on iTunes and spotify, people need
+better ways to explore large music collections.  We propose using
+various machine learning algorithms to classify 10-second clips of
+songs according to a number of human-generated "tags", short textual
+descriptions like "male vocals", "acoustic", "guitar", and "folk".  We
+have performed many experiments in collecting such data, the
+properties of the data, modeling the data by itself as a language
+model, and modeling the data with various features extracted from the
+audio.
+</p>
+
+<p>
+We have found that people use more of the same tags when describing
+clips from "closer" together in time, meaning that clips from the same
+track share more tags than clips from the same album, which share more
+tracks that clips from the same artist, which share more tags than
+clips with nothing in common.  We have found that tag language models
+improve classification accuracy on the <em>raw data</em>.  And we have
+found that while support vector machines work well for classification,
+restricted Boltzmann machines and multi-layer perceptrons work better.
+</p>
+
+<ul>
+<li><a href="http://musicallyintelligent.com"> Demonstration
+    website</a> of our autotagging system on a collection of popular
+    music.</a>
+<li>The <a href="pubs_abs.html#larochelle12"> JMLR paper</a> describing the classification
+  restricted Boltzmann machine and results on autotagging data.</li>
+<li>The <a href="pubs_abs.html#mandel11b"> ToMCCAP 2010 paper</a> describing the use of various
+  tag language models to improve tag classification performance.</li>
+<li>The <a href="pubs_abs.html#mandel11a"> arXiv manuscript</a> describing our experiments
+  with conditioned restricted Boltzmann machines as tag language
+  models to improve autotagging performance.</li>
+<li>The <a href="pubs_abs.html#mandel10b"> ISMIR 2010 paper</a> describing our experiments
+  using Amazon Mechanical Turk for data collection and measuring tag
+  co-occurrence as a function of temporal "distance".</li>
+<li>The <a href="pubs_abs.html#mandel08b"> JNMR 2008 paper</a> introducing
+  our <a href="http://majorminer.org"> human computation game</a> for
+  data collect and our classification approach.</li>
+</ul>
+</section>
+
 <section id="dissertation">
 <div class="page-header">
 <h1>Dissertation</h1>
