@@ -13,7 +13,7 @@ section { padding-bottom: 30px; }
 .feed .header, .flickrFeed .header { font-weight: bold; }
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
 
-body { background: url('img/paisleyDiagTileSmall.png'); }
+body { background: url('/img/paisleyDiagTileSmall.png'); }
 
 body { font-family: 'Droid Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 25px; }
 h1, h2, h3, h4, .header { font-family: 'Droid Serif', Georgia, Times, serif; }
