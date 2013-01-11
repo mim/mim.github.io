@@ -46,6 +46,8 @@
 <dd>how do singers tune in various contexts?</a></dd>
 <dt><a href="#majorminer">Major Miner</dt> 
 <dd>music labeling game</a></dd>
+<dt><a href="#rlrs">RLRS</dt>
+<dd>the recti-linear room simulator</a></dd>
 <dt><a href="#similarity">Music similarity</dt> 
 <dd>and playlist generation</a></dd>
 <dt><a href="#igmm">IGMM</dt>
@@ -275,6 +277,52 @@ on the <a href="http://majorminer.org/info/leaders"> leader
 board</a>, but don't let them intimidate you, it's pretty easy to
 score points once you get the hang of it. Check it out if you have
 some time to play.</p>
+</section>
+
+<section id="rlrs" name="rlrs">
+<div class="page-header">
+<h1>RLRS</h1>
+<p class="lead">the recti-linear room simulator</p>
+</div>
+
+<img src="img/impulseResponse.png" alt="Simulated impulse response"
+     title="Simulated impulse response" class="pull-right figure">
+
+<p>
+This code will generate binaural impulse responses from a simulation
+of the acoustics of a rectilinear room using the image method. It has
+a number of features that improve the realism and speed of the
+simulation. It can generate a pair of 680 ms impulse responses sampled
+at 22050 Hz in 75 seconds on a 1.8 GHz Intel Xeon. It's easy to run
+from within scripts to generate a large set of impulse responses
+programmatically.
+</p>
+
+</p>
+To improve the realism, it applies anechoic head-related transfer
+functions to each incoming reflection, allows fractional delays,
+includes frequency-dependent absorption due to walls, includes
+frequency- and humidity-dependent absorption due to air, and varies
+the speed of sound with temperature. It also randomly perturbs sources
+in proportion to their distance to the listener to simulate
+imperfections in the alignment of the walls.
+</p>
+
+<p>
+To improve simulation speed, it performs all calculations in the
+frequency domain and the complex exponential generation code is
+written in C, it only calculates the Fourier transforms of anechoic
+HRTFs as it needs them, and then it caches them, and it culls sources
+that are beyond the desired impulse response length or are
+significantly quieter than the direct path. 
+</p>
+
+<p> Related stuff:
+<ul>
+<li>The <a href="http://github.com/mim/rlrs"> github
+    repository</a></li>
+<li>The <a href="http://blog.mr-pc.org/2008/05/18/recti-linear-room-simulator/"> blog post</a> I wrote introducing it</a>
+</ul>
 </section>
 
 <section id="similarity" name="similarity">
