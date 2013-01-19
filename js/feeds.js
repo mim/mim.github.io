@@ -19,7 +19,6 @@ function loadInto(newHtml, a) {
     div = a.parentNode;
     div.removeChild(a);
     div.innerHTML += newHtml;
-    $(div).find('a[data-title]').qtip({ content: { text: function(api) { return $(this).attr("data-title"); } }, hide: {fixed: true, delay: 100} });
 }
 
 function flickrJsonToList(json) {
@@ -40,8 +39,7 @@ function googleJsonToList(json) {
   var newHtml = '<ul>';
   for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
-    tooltipHtml = entry.content.length ? ' data-title="' + htmlEscape(entry.content) + '"' : '';
-    newHtml += '<li><a href="' + entry.link + '"' + tooltipHtml + '>' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
+    newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
   newHtml += '</ul>';
     return newHtml;
@@ -96,22 +94,3 @@ if ( typeof jQuery != "undefined" )
 				jQuery(this).text( date );
 		});
 	};
-
-function htmlEncode(value){
-  //create a in-memory div, set it's inner text(which jQuery automatically encodes)
-  //then grab the encoded contents back out.  The div never exists on the page.
-  return $('<div/>').text(value).html();
-}
-
-function htmlDecode(value){
-  return $('<div/>').html(value).text();
-}
-
-function htmlEscape(str) {
-    return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
-}

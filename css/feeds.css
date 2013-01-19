@@ -20,6 +20,3 @@ h1, h2, h3, h4 { font-family: 'Droid Serif', Georgia, Times, serif; }
 #mimPic { padding-left: 15px; }
 .figure { padding-left: 15px; }
 .centered { text-align: center; }
-.qtip blockquote p, .qtip li { font-size: 100%; line-height: 100%; }
-.qtip blockquote p { margin-bottom: 10px; }
-.qtip blockquote { margin-bottom: 0px; }
