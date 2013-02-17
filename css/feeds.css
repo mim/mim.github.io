@@ -8,9 +8,8 @@ section { padding-bottom: 30px; }
 .feed, .flickrFeed { margin-bottom: 10px; }
 
 .flickrFeed ul { margin: 0px; text-align: center; }
-.flickrFeed li { display: inline }
-#thisismyjam { text-align: center; }
-#thisismyjam h4 { text-align: left; }
+.flickrFeed li { display: inline; }
+.jam-medallion { text-align: center; }
 
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
 
