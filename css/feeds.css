@@ -9,6 +9,8 @@ section { padding-bottom: 30px; }
 
 .flickrFeed ul { margin: 0px; text-align: center; }
 .flickrFeed li { display: inline }
+#thisismyjam { text-align: center; }
+#thisismyjam h4 { text-align: left; }
 
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
 
