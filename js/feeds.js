@@ -80,9 +80,12 @@ function prettyDate(time){
 			diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
 		day_diff == 1 && "Yesterday" ||
 		day_diff < 7 && day_diff + " days ago" ||
-		day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago" ||
-                day_diff < 365 && Math.ceil( day_diff / 30 ) + " months ago" ||
-                Math.ceil( day_diff / 365 ) + " years ago";
+		day_diff < 31 && Math.round( day_diff / 7 )==1 && "1 week ago" ||
+		day_diff < 31 && Math.round( day_diff / 7 ) + " weeks ago" ||
+                day_diff < 365 && Math.round( day_diff / 30 )==1 && "1 month ago" ||
+                day_diff < 365 && Math.round( day_diff / 30 ) + " months ago" ||
+                Math.round( day_diff / 365 )==1 && "1 year ago" ||
+                Math.round( day_diff / 365 ) + " years ago";
 }
 
 // If jQuery is included in the page, adds a jQuery plugin to handle it as well
