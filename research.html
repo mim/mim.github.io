@@ -36,6 +36,10 @@
 <h1>Research</h1>
 </div>
 <dl class="dl-horizontal">
+<dt><a href="#bubbles">Auditory bubbles</dt>
+<dd>mapping the importance of "glimpses" of speech</a></dd>
+<dt><a href="#gesturedb">GestureDB</dt>
+<dd>a database for gesture-driven workloads</a></dd>
 <dt><a href="#autotagging">Autotagging</dt>
 <dd>automatically describing music from its sound</a></dd>
 <dt><a href="#dissertation">Dissertation</dt>
@@ -52,6 +56,65 @@
 <dd>and playlist generation</a></dd>
 <dt><a href="#igmm">IGMM</dt>
 <dd>implementation of the Infinite Gaussian Mixture Model</a></dd>
+</section>
+
+<section id="bubbles" name="bubbles">
+<div class="page-header">
+<h1>Auditory bubbles</h1>
+<p class="lead">mapping the importance of "glimpses" of speech</p>
+</div>
+
+<img src="img/bubblesExample.png" alt="Bubbles examples"
+     title="Bubbles examples" class="pull-right figure">
+
+<p> Predicting the intelligibility of noisy recordings is difficult
+and most current algorithms treat all speech energy as equally
+important to intelligibility.  We have developed a listening test
+paradigm and associated analysis techniques that show that energy in
+certain time-frequency regions is more important to intelligibility
+than others and can predict the intelligibility of a specific
+recording of a word in the presence of a specific noise instance.  The
+analysis learns a map of the importance of each point in the
+recording's spectrogram to the overall intelligibility of the word
+when glimpsed through ``bubbles'' in many noise instances. The
+important regions identified by the model from listening test data
+agreed with with the acoustic phonetics literature.
+</p>
+
+<ul>
+<li>The <a href="pubs_abs.html#mandel13">WASPAA 2013 paper</a> introducing the project</li>
+<li>The <a href="http://m.mr-pc.org/work/waspaa13poster.pdf">poster</a> I presented there
+</ul>
+</section>
+
+<section id="gesturedb" name="gesturedb">
+<div class="page-header">
+<h1>GestureDB</h1>
+<p class="lead">a database for gesture-driven workloads</p>
+</div>
+
+<img src="img/gestureDbMockup.png" alt="GestureDB interface mock-up"
+     title="GestureDB interface mock-up" class="pull-right figure">
+
+<p> I'm collaborating with <a href="http://arnab.org">Prof. Arnab
+    Nandi</a> on a gestural interface for querying databases.  Instead
+    of typing SQL commands, the user manipulates representations of
+    database objects, while the database provides immediate feedback.
+    This feedback allows the user to quickly explore the schema and
+    data in the database with fluid, multi-touch gestures.  I designed
+    the gesture classification system, which is able to take advantage
+    of the proximity of interface elements and compatibility of schema
+    and data objects.
+</p>
+
+<ul>
+<li>The <a href="http://gesturedb.org">GestureDB</a> website, including a demonstration
+  video</li>
+<li>The VLDB 2014 paper describing the system [coming soon!]</li>
+<li>The <a href="pubs_abs.html#nandi13">CHI 2013 Work-in-progress paper</a>
+  describing an iPad implementation</li>
+<li>The <a href="http://m.mr-pc.org/work/chiwip13poster.pdf">poster</a> associated with the CHI 2013 WIP paper</li>
+</ul>
 </section>
 
 <section id="autotagging" name="autotagging">
