@@ -36,6 +36,8 @@
 <h1>Research</h1>
 </div>
 <dl class="dl-horizontal">
+<dt><a href="#abs">Analysis-by-synthesis</dt>
+<dd>recognizing speech in noise by synthesizing it</a></dd>
 <dt><a href="#bubbles">Auditory bubbles</dt>
 <dd>mapping the importance of "glimpses" of speech</a></dd>
 <dt><a href="#gesturedb">GestureDB</dt>
@@ -56,6 +58,32 @@
 <dd>and playlist generation</a></dd>
 <dt><a href="#igmm">IGMM</dt>
 <dd>implementation of the Infinite Gaussian Mixture Model</a></dd>
+</section>
+
+<section id="abs" name="abs">
+<div class="page-header">
+<h1>Analysis-by-synthesis</h1>
+<p class="lead">recognizing speech in noise by synthesizing it</p>
+</div>
+
+<img src="img/absFlowchart.png" alt="Flowchart" title="Flowchart of
+ analysis-by-synthesis feature reconstruction">
+
+<p> Reconstructing damaged, obscured, or missing speech can improve
+  its intelligibility to humans and machines and its audio quality.
+  This project introduces the use of an unmodified large vocabulary
+  continuous speech recognizer as a prior model for speech
+  reconstruction.  By driving the recognizer to synthesize realistic
+  speech that is similar to the reliable regions of the noisy
+  observation, it can improve recognition and reconstruction
+  accuracy.</p>
+
+<ul>
+<li>The <a href="pubs_abs.html#mandel14a">ICASSP 2014 paper</a>
+  introducing the project</li>
+<li>The <a href="">poster</a> I presented there</li>
+</ul>
+
 </section>
 
 <section id="bubbles" name="bubbles">
