@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSE 5526: Neural Networks, Fall 2014</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/mim.css" rel="stylesheet" media="screen">
+</head>
+<body>
+
+<div class="container">
+
+<section id="generalInfo">
+<div class="page-header">
+<h1>CSE 5526: Neural Networks, Fall 2014</h1>
+</div>
+<p>This is the course material for CSE 5526: Neural Network at Ohio
+  State University, as taught by Michael Mandel in Fall 2014.</p>
+</section>
+
+<section id="weeks">
+<h1>Topics
+<small>(<a href="pdf/syllabus.pdf">syllabus</a>)</small></h1>
+<table class="table table-striped">
+<tr>
+<th>Date</th>
+<th>Subject</th>
+<th>Slides</th>
+<th>Reading</th>
+<th>Due</th>
+</tr>
+
+<tr>
+<td>2014/08/28</td>
+<td>Introduction &amp; McCulloch-Pitts networks</td>
+<td><a href="pdf/01a-intro.pdf">01a-intro</a></td>
+<td>Intro.1-6</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/02</td>
+<td>Perceptrons</td>
+<td><a href="pdf/01b-perceptron.pdf">01b-perceptron</a></td>
+<td>1.1-3, 1.5, 1.7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/04</td>
+<td>Perceptrons</td>
+<td><a href="pdf/01b-perceptron.pdf">01b-perceptron</a></td>
+<td>1.1-3, 1.5, 1.7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/09</td>
+<td>Regression &amp; Least Mean Square algorithm</td>
+<td><a href="pdf/02-regression.pdf">02-regression</a></td>
+<td>2.1-5,9; 3.1-5,10-14</td>
+<td><a href="pdf/hw1.pdf">hw1</a></td>
+</tr>
+
+<tr>
+<td>2014/09/11</td>
+<td>Regression &amp; Least Mean Square algorithm</td>
+<td><a href="pdf/02-regression.pdf">02-regression</a></td>
+<td>2.1-5,9; 3.1-5,10-14</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/16</td>
+<td>Multilayer perceptrons</td>
+<td><a href="pdf/03-mlp.pdf">03-mlp</a></td>
+<td>4.1-8</td>
+<td><a href="pdf/hw2.pdf">hw2</a></td>
+</tr>
+
+<tr>
+<td>2014/09/18</td>
+<td>Multilayer perceptrons</td>
+<td><a href="pdf/03-mlp.pdf">03-mlp</a></td>
+<td>4.1-8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/23</td>
+<td>Multilayer perceptrons</td>
+<td><a href="pdf/03b-trainTest.pdf">03b-trainTest</a></td>
+<td>4.11-13,17,20</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/25</td>
+<td>Multilayer perceptrons</td>
+<td><a href="pdf/03c-mlpTips.pdf">03c-mlpTips</a></td>
+<td>4.11-13,17,20</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/09/30</td>
+<td>Radial basis function networks</td>
+<td><a href="pdf/04-rbf.pdf">04-rbf</a></td>
+<td>2.7; 5.1-4</td>
+<td><a href="pdf/proj1.pdf">proj1</a></td>
+</tr>
+
+<tr>
+<td>2014/10/2</td>
+<td>Radial basis function networks</td>
+<td><a href="pdf/04-rbf.pdf">04-rbf</a></td>
+<td>2.7; 5.1-4</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/7</td>
+<td>Review so far</td>
+<td><a href="pdf/04b-review.pdf">04b-review</a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/09</td>
+<td>In-class practice test</td>
+<td><a href="pdf/midtermPractice.pdf">midtermPractice</a></td>
+<td></td>
+<td><a href="pdf/proj2.pdf">proj2</a></td>
+</tr>
+
+<tr>
+<td>2014/10/14</td>
+<td><em>Midterm</em></td>
+<td><a href="pdf/midterm.pdf">midterm</a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/16</td>
+<td>Support vector machines</td>
+<td><a href="pdf/05a-svm1.pdf">05a-svm1</a></td>
+<td>6.1-3</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/21</td>
+<td>Support vector machines</td>
+<td><a href="pdf/05b-svm2.pdf">05b-svm2</a></td>
+<td>6.4-7,11</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/23</td>
+<td>Support vector machines</td>
+<td><a href="pdf/05c-svmKernels.pdf">05c-svmKernels</a> 
+<a href="pdf/05d-svmNonsep.pdf">05d-svmNonsep</a></td>
+<td>6.1-3</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/10/28</td>
+<td>Unsupervised learning &amp; self-organization</td>
+<td><a href="pdf/06-unsupervised.pdf">06-unsupervised</a></td>
+<td>9.1-5,11</td>
+<td><a href="pdf/hw3.pdf">hw3</a></td>
+</tr>
+
+<tr>
+<td>2014/10/30</td>
+<td>In class exercises</td>
+<td><a href="pdf/06b-inClassProblems.pdf">06b-inClassProblems</a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/04</td>
+<td>Hopfield networks</td>
+<td><a href="pdf/07-hopfieldNet.pdf">07-hopfieldNet</a></td>
+<td>13.7-8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/06</td>
+<td>Guest lecture by Jihun Hamm on Optimization</td>
+<td><a href="pdf/07b-optimization.pdf">07b-optimization</a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/11</td>
+<td><em>Veterans day, no class</em></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/13</td>
+<td>Hopfield networks</td>
+<td><a href="pdf/07-hopfieldNet.pdf">07-hopfieldNet</a></td>
+<td></td>
+<td><a href="pdf/proj3.pdf">proj3</a> (<a href="pdf/proj3data.zip">data</a>)</td>
+</tr>
+
+<tr>
+<td>2014/11/18</td>
+<td>Stochastic methods &amp; Boltzmann machines</td>
+<td><a href="pdf/"></a></td>
+<td>11.1-2,5-7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/20</td>
+<td>Stochastic methods &amp; Boltzmann machines</td>
+<td><a href="pdf/"></a></td>
+<td>11.1-2,5-7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/25</td>
+<td>Deep networks</td>
+<td><a href="pdf/"></a></td>
+<td>11.8</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/11/27</td>
+<td><em>Thanksgiving, no class</em></td>
+<td><a href="pdf/"></a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/12/02</td>
+<td>Deep networks</td>
+<td><a href="pdf/"></a></td>
+<td>11.9</td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/12/04</td>
+<td>Catch up, review, current topics</td>
+<td><a href="pdf/"></a></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>2014/12/09</td>
+<td>Catch up, review, current topics</td>
+<td><a href="pdf/"></a></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+</section>
+
+</div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

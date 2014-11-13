@@ -20,8 +20,8 @@ for file in $ALLHTML $ALLABSHTML ; do
 <head>
 <meta charset="utf-8">
 <title>Michael I Mandel's Publications</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/feeds.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/feeds.css" rel="stylesheet" media="screen">
 <link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -35,10 +35,11 @@ for file in $ALLHTML $ALLABSHTML ; do
 <div class="navbar overview">
   <div class="navbar-inner">
     <ul class="nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="http://mr-pc.org/cv.pdf">CV</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li class="active"><a href="pubs.html">Publications</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/cv.pdf">CV</a></li>
+      <li><a href="/research.html">Research</a></li>
+      <li class="active"><a href="/pubs.html">Publications</a></li>
+      <li><a href="/teaching/">Teaching</a></li>
     </ul>
     <ul class="nav pull-right">
       <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
@@ -60,8 +61,8 @@ cat > $ALLBIBHTML <<EOF
 <head>
 <meta charset="utf-8">
 <title>BibTeX for Michael I Mandel's Publications</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/feeds.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/feeds.css" rel="stylesheet" media="screen">
 <link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -75,10 +76,11 @@ cat > $ALLBIBHTML <<EOF
 <div class="navbar overview">
   <div class="navbar-inner">
     <ul class="nav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="http://mr-pc.org/cv.pdf">CV</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li class="active"><a href="pubs.html">Publications</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/cv.pdf">CV</a></li>
+      <li><a href="/research.html">Research</a></li>
+      <li class="active"><a href="/pubs.html">Publications</a></li>
+      <li><a href="/teaching/">Teaching</a></li>
     </ul>
     <ul class="nav pull-right">
       <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
