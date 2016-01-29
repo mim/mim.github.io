@@ -39,7 +39,7 @@ for file in $ALLHTML $ALLABSHTML ; do
       <li><a href="/cv.pdf">CV</a></li>
       <li><a href="/research.html">Research</a></li>
       <li class="active"><a href="/pubs.html">Publications</a></li>
-      <li><a href="/teaching/">Teaching</a></li>
+      <li><a href="/t/">Teaching</a></li>
     </ul>
     <ul class="nav pull-right">
       <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
