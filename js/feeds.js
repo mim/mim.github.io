@@ -8,6 +8,10 @@ $(document).ready(function() {
         var ajaxUrl = a.href + "&format=json&jsoncallback=?";
         $.getJSON(ajaxUrl, function(json){loadInto(flickrJsonToList(json), a);});
     });
+    $('.lastfmFeed > a').each(function(i, a){
+        var ajaxUrl = a.href;
+        $.getJSON(ajaxUrl, function(json){loadInto(lastfmJsonToList(json), a);});
+    });
     $('.twitterFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&callback=?";
         $.getJSON(ajaxUrl, function(json){loadInto(twitterJsonToList(json), a);});
@@ -42,6 +46,17 @@ function googleJsonToList(json) {
     newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
   }
   newHtml += '</ul>';
+    return newHtml;
+}
+
+function lastfmJsonToList(json) {
+    var entries = json.recenttracks.track;
+    var newHtml = '<ul>';
+    for (var i=0, entry; i < 20 && i < entries.length; i++) {
+        entry = entries[i];
+        newHtml += '<li><a href="http://www.last.fm/user/mimasterix#' + entry.date.uts + '">' + entry.artist['#text'] + ' – ' + entry.name + '</a> ' + prettyDate(parseInt(entry.date.uts)*1000) + '</li>';
+    }
+    newHtml += '</ul>';
     return newHtml;
 }
 
