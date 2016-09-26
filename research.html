@@ -37,8 +37,10 @@
 <h1>Research</h1>
 </div>
 <dl class="dl-horizontal">
-<dt><a href="#abs">Analysis-by-synthesis</dt>
-<dd>recognizing speech in noise by synthesizing it</a></dd>
+<dt><a href="#cabs">Concatenative AbS</dt>
+<dd>recognizing speech in noise by synthesizing it non-parametrically</a></dd>
+<dt><a href="#pabs">Parametric AbS</dt>
+<dd>recognizing speech in noise by synthesizing it parametrically</a></dd>
 <dt><a href="#bubbles">Auditory bubbles</dt>
 <dd>mapping the importance of "glimpses" of speech</a></dd>
 <dt><a href="#gesturedb">GestureDB</dt>
@@ -61,10 +63,47 @@
 <dd>implementation of the Infinite Gaussian Mixture Model</a></dd>
 </section>
 
-<section id="abs" name="abs">
+<section id="cabs" name="cabs">
 <div class="page-header">
-<h1>Analysis-by-synthesis</h1>
-<p class="lead">recognizing speech in noise by synthesizing it</p>
+<h1>Concatenative analysis-by-synthesis</h1>
+<p class="lead">recognizing speech in noise by synthesizing it non-parametrically</p>
+</div>
+
+<a href="http://mr-pc.org/work/waspaa15/">
+<img src="img/concatResyn.png" alt="Concatenative resynthesis input and output"
+     title="Concatenative resynthesis input and output">
+</a>
+
+<p> Current approaches to source separation and speech enhancement
+  typically attempt to modify the noisy signal in order to make it
+  more like the original, leading to distortions in target speech and
+  residual noise. In contrast, this project uses the innovative
+  approach of driving a speech synthesizer using information extracted
+  from the noisy signal to create a brand new, high quality,
+  noise-free version of the original sentence.  This project aims to
+  produce a high quality speech resynthesis system by modifying a
+  concatenative speech synthesizer to use a unit-selection function
+  based on a novel deep neural network (DNN) architecture.
+</p>
+
+<ul>
+<li>The <a href="pubs_abs.html#mandel14c">IEEE GlobalSIP 2014 paper</a>
+  introducing the project for noise suppression (<a href="work/globalsip14/">Demo</a>)</li>
+<li>The <a href="pubs_abs.html#mandel15d"> WASPAA 2015 paper</a> using it for bandwidth
+  enhancement and recovery from coding artifacts
+  (<a href="work/waspaa15/">Demo</a>)</li>
+<li>This work is supported by
+  a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1618061&HistoricalAwards=false">
+    grant from the National Science Foundation</a> and by
+  a <a href="https://research.googleblog.com/2013/08/google-research-awards-summer-2013.html"> 2013 Google Faculty Research Award</a></li>
+</ul>
+
+</section>
+
+<section id="pabs" name="pabs">
+<div class="page-header">
+<h1>Parametric analysis-by-synthesis</h1>
+<p class="lead">recognizing speech in noise by synthesizing it parametrically</p>
 </div>
 
 <img src="img/absFlowchart.png" alt="Flowchart" title="Flowchart of
@@ -73,7 +112,7 @@
 <p> Reconstructing damaged, obscured, or missing speech can improve
   its intelligibility to humans and machines and its audio quality.
   This project introduces the use of an unmodified large vocabulary
-  continuous speech recognizer as a prior model for speech
+  continuous speech recognizer as a parametric prior model for speech
   reconstruction.  By driving the recognizer to synthesize realistic
   speech that is similar to the reliable regions of the noisy
   observation, it can improve recognition and reconstruction
@@ -82,9 +121,55 @@
 <ul>
 <li>The <a href="pubs_abs.html#mandel14a">ICASSP 2014 paper</a>
   introducing the project</li>
-<li>The <a href="http://m.mr-pc.org/work/icassp14poster.pdf">poster</a> I presented there</li>
+<li>The <a href="http://m.mr-pc.org/work/icassp14poster.pdf">poster</a>
+  I presented there</li>
+<li>This work is supported by
+  a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1409431&HistoricalAwards=false">
+    grant from the National Science Foundation</a></li>
 </ul>
 
+</section>
+
+<section id="messl" name="messl">
+<div class="page-header">
+<h1>MESSL</h1>
+<p class="lead">Model-based EM Source Separation &amp; Localization</p>
+</div>
+
+<div class="centered">
+<img src="img/messl.png" alt="MESSL" title="MESSL">
+</div>
+
+<p>
+MESSL performs multichannel spatial clustering to separate and
+localize sources in underdetermined, reverberant mixtures.  Its output
+is an estimate of the regions of the spectrogram that each source
+dominates and estimates of the interaural parameters (interaural time,
+phase, and level differences) for each source at each pair of
+microphones.  It makes no assumptions about the sources themselves or
+the geometry of the microphones or room.
+</p>
+
+<ul>
+
+<li><a href="http://github.com/mim/messl">Code</a> for binaural and
+  multichannel MESSL on GitHub</li>
+
+<li>The <a href="pubs_abs.html#mandel09a">paper</a> in IEEE Transactions of
+  Audio, Speech, and Language Processing 2010 describing the original MESSL.</li>
+
+<li><a href="pubs_abs.html#mandel15c">EUSIPCO 2015 paper</a> using MESSL in a Markov random
+  field to smooth its mask estimates</li>
+
+<li><a href="pubs_abs.html#bagchi15">ASRU 2015 paper</a> introducing multichannel MESSL</li>
+
+<li><a href="pubs_abs.html#mandel16b">Interspeech 2016 paper</a> on using multichannel MESSL
+  to drive minimum variance distortionless response beamforming</li>
+
+<li>This work is supported by a <a href="https://research.googleblog.com/2016/02/google-research-awards-fall-2015.html">2015 Google Faculty Research Award</a></li>
+
+</ul>
+</p>
 </section>
 
 <section id="bubbles" name="bubbles">
@@ -119,6 +204,11 @@ agreed with the acoustic phonetics literature.
   (presented <a href="http://m.mr-pc.org/work/interspeech14poster.pdf">poster</a>)</li>
 <li><a href="pubs_abs.html#mandel14d">CogMIR talk</a> on applying
   this technique to musical timbre understanding</li>
+<li><a href="pubs_abs.html#mandel16">Interspeech 2016 paper</a> on using this technique to
+  compare human and ASR listeners directly on recognizing GRID sentences</li>
+<li>This work is supported by
+  a <a href="https://www.rfcuny.org/rfwebsite/research/AwardedPersons.aspx?programID=TRADB&sequence=47&desc=Computer%20Science%20%26%20Library">
+    2015 PSC-CUNY grant</a></li>
 </ul>
 </section>
 
@@ -271,51 +361,6 @@ systems.</p>
 </li>
 <li>Get the <a href="http://github.com/mim/messl"> matlab code on github</a></li>
 </ul>
-</section>
-
-<section id="messl" name="messl">
-<div class="page-header">
-<h1>MESSL</h1>
-<p class="lead">Model-based EM Source Separation &amp; Localization</p>
-</div>
-
-<div class="centered">
-<img src="img/messl.png" alt="MESSL" title="MESSL">
-</div>
-
-<p>
-MESSL is the source separation and localization system at the core of
-my dissertation. Its imput is binaural (two-microphone), reverberant
-recordings of one, two, or three simultaneous speakers.  Its output is
-an estimate of the regions of the spectrogram that each source
-dominates and estimates of the interaural parameters (interaural time,
-phase, and level differences) for each source.  It makes no
-assumptions about the sources themselves or the geometry of the
-microphones or room.
-</p>
-
-<p> Related stuff:
-<ul>
-
-<li>The <a href="pubs_abs.html#mandel09a">paper</a> in IEEE Transactions of
-  Audio, Speech, and Language Processing 2010 describing the whole
-  system.</li>
-
-<li>The <a href="pubs_abs.html#mandel07c">paper</a> describing the addition of
-interaural level difference cues to the model from <a
-href="http://www.kecl.ntt.co.jp/icl/signal/waspaa2007/"> WASPAA
-2007</a>.</li>
-
-<li>The <a href="pubs_abs.html#mandel07a">paper</a> describing our system from
-<a href="http://nips.cc/Conferences/2006/">NIPS 2006</a>.</li>
-
-<li>The <a href="pubs_abs.html#mandel06a">paper</a> introducing the data and
-analyzing it for a single speaker from the <a
-href="http://www.sapa2006.org/">SAPA</a> workshop at <a
-href="http://www.interspeech2006.org/">ICSLP 2006</a>.</li>
-
-</ul>
-</p>
 </section>
 
 <section id="intonation" name="intonation">
