@@ -106,7 +106,7 @@ for n in `seq ${#AUXS[@]}` ; do
     ABSHTML="mandel_${FILE}_abstracts.html"
 
     ( cd $AUXDIR ; aux2bib bu$AUX.aux | grep -v \@comment ) > $BIB
-    bibtex2html --both -nf poster Poster -nf slides Slides -nf http Demo $BIB
+    bibtex2html --both -nf poster Poster -nf slides Slides -nf http Demo -nf code Code $BIB
 
     # Strip off headers and footers
     for file in $HTML $ABSHTML ; do
