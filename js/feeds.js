@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
-        var ajaxUrl = "https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=" + feedUrl + "&v=1.0&num=12&callback=?";
-        $.getJSON(ajaxUrl, function(json){loadInto(googleJsonToList(json), a);});
+        var ajaxUrl = "https://push.superfeedr.com/?hub.mode=retrieve&hub.topic=" + feedUrl + "&count=20&format=json&authorization=bWltOmYyZmNmYTJiNDk3ZDU3MjBkODI5NDZmYjg1ZDQzNjEx&"
+        $.getJSON(ajaxUrl, function(json){loadInto(superfeedrJsonToList(json), a);});
     });
     $('.flickrFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&format=json&jsoncallback=?";
@@ -44,6 +44,18 @@ function googleJsonToList(json) {
   for (var i=0, entry; i < 20, i < feed.entries.length; i++) {
     entry = feed.entries[i];
     newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.publishedDate) + '</li>';
+  }
+  newHtml += '</ul>';
+    return newHtml;
+}
+
+function superfeedrJsonToList(json) {
+  var feed = json;
+  // var newHtml = '<span class="header"><a href="' + feed.link + '">' + feed.title + '</a></span>';
+  var newHtml = '<ul>';
+  for (var i=0, entry; i < 20, i < feed.items.length; i++) {
+    entry = feed.items[i];
+    newHtml += '<li><a href="' + entry.permalinkUrl + '">' + entry.title + '</a> ' + prettyDate(entry.published*1000) + '</li>';
   }
   newHtml += '</ul>';
     return newHtml;
