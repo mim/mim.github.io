@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
-        var ajaxUrl = "https://push.superfeedr.com/?hub.mode=retrieve&hub.topic=" + feedUrl + "&count=20&format=json&authorization=bWltOmYyZmNmYTJiNDk3ZDU3MjBkODI5NDZmYjg1ZDQzNjEx&"
-        $.getJSON(ajaxUrl, function(json){loadInto(superfeedrJsonToList(json), a);});
+        var ajaxUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'" + feedUrl + "'%0A&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+        $.getJSON(ajaxUrl, function(json){loadInto(yqlRssJsonToList(json), a);});
     });
     $('.flickrFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&format=json&jsoncallback=?";
@@ -56,6 +56,18 @@ function superfeedrJsonToList(json) {
   for (var i=0, entry; i < 20, i < feed.items.length; i++) {
     entry = feed.items[i];
     newHtml += '<li><a href="' + entry.permalinkUrl + '">' + entry.title + '</a> ' + prettyDate(entry.published*1000) + '</li>';
+  }
+  newHtml += '</ul>';
+    return newHtml;
+}
+
+function yqlRssJsonToList(json) {
+  var feed = json.query.results;
+  // var newHtml = '<span class="header"><a href="' + feed.link + '">' + feed.title + '</a></span>';
+  var newHtml = '<ul>';
+  for (var i=0, entry; i < 15 && i < feed.item.length; i++) {
+    entry = feed.item[i];
+    newHtml += '<li><a href="' + entry.link + '">' + entry.title + '</a> ' + prettyDate(entry.pubDate) + '</li>';
   }
   newHtml += '</ul>';
     return newHtml;
