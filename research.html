@@ -1,44 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Michael I Mandel's Research</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/css/feeds.css" rel="stylesheet" media="screen">
-<link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<div class="container">
-
-<div class="row">
-<div class="span12">
-<div class="box">
-
-<div class="navbar overview">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/cv.pdf">CV</a></li>
-      <li class="active"><a href="/research.html">Research</a></li>
-      <li><a href="/pubs.html">Publications</a></li>
-      <li><a href="/teaching/">Teaching</a></li>
-    </ul>
-    <ul class="nav pull-right">
-      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="textbox">
+---
+layout: default
+---
 
 <section id="header">
-<div class="jumbotron">
-<h1>Research</h1>
-</div>
-<dl class="dl-horizontal">
-<dt><a href="#cabs">Concatenative AbS</dt>
-<dd>recognizing speech in noise by synthesizing it non-parametrically</a></dd>
+  <div class="jumbotron">
+    <h1>Research</h1>
+  </div>
+  <dl class="dl-horizontal">
+    <dt><a href="#cabs">Concatenative AbS</dt>
+    <dd>recognizing speech in noise by synthesizing it non-parametrically</a></dd>
 <dt><a href="#pabs">Parametric AbS</dt>
 <dd>recognizing speech in noise by synthesizing it parametrically</a></dd>
 <dt><a href="#bubbles">Auditory bubbles</dt>
@@ -64,165 +34,165 @@
 </section>
 
 <section id="cabs" name="cabs">
-<div class="page-header">
-<h1>Concatenative analysis-by-synthesis</h1>
-<p class="lead">recognizing speech in noise by synthesizing it non-parametrically</p>
-</div>
+  <div class="page-header">
+    <h1>Concatenative analysis-by-synthesis</h1>
+    <p class="lead">recognizing speech in noise by synthesizing it non-parametrically</p>
+  </div>
 
-<a href="http://mr-pc.org/work/waspaa15/">
-<img src="img/concatResyn.png" alt="Concatenative resynthesis input and output"
-     title="Concatenative resynthesis input and output">
-</a>
+  <a href="http://mr-pc.org/work/waspaa15/">
+    <img src="img/concatResyn.png" alt="Concatenative resynthesis input and output"
+         title="Concatenative resynthesis input and output">
+  </a>
 
-<p> Current approaches to source separation and speech enhancement
-  typically attempt to modify the noisy signal in order to make it
-  more like the original, leading to distortions in target speech and
-  residual noise. In contrast, this project uses the innovative
-  approach of driving a speech synthesizer using information extracted
-  from the noisy signal to create a brand new, high quality,
-  noise-free version of the original sentence.  This project aims to
-  produce a high quality speech resynthesis system by modifying a
-  concatenative speech synthesizer to use a unit-selection function
-  based on a novel deep neural network (DNN) architecture.
-</p>
+  <p> Current approaches to source separation and speech enhancement
+    typically attempt to modify the noisy signal in order to make it
+    more like the original, leading to distortions in target speech and
+    residual noise. In contrast, this project uses the innovative
+    approach of driving a speech synthesizer using information extracted
+    from the noisy signal to create a brand new, high quality,
+    noise-free version of the original sentence.  This project aims to
+    produce a high quality speech resynthesis system by modifying a
+    concatenative speech synthesizer to use a unit-selection function
+    based on a novel deep neural network (DNN) architecture.
+  </p>
 
-<ul>
-<li>The <a href="pubs_abs.html#mandel14c">IEEE GlobalSIP 2014 paper</a>
-  introducing the project for noise suppression (<a href="work/globalsip14/">Demo</a>)</li>
-<li>The <a href="pubs_abs.html#mandel15d"> WASPAA 2015 paper</a> using it for bandwidth
-  enhancement and recovery from coding artifacts
-  (<a href="work/waspaa15/">Demo</a>)</li>
-<li>This work is supported by
-  a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1618061&HistoricalAwards=false">
-    grant from the National Science Foundation</a> and by
-  a <a href="https://research.googleblog.com/2013/08/google-research-awards-summer-2013.html"> 2013 Google Faculty Research Award</a></li>
-</ul>
+  <ul>
+    <li>The <a href="pubs_abs.html#mandel14c">IEEE GlobalSIP 2014 paper</a>
+      introducing the project for noise suppression (<a href="work/globalsip14/">Demo</a>)</li>
+    <li>The <a href="pubs_abs.html#mandel15d"> WASPAA 2015 paper</a> using it for bandwidth
+      enhancement and recovery from coding artifacts
+      (<a href="work/waspaa15/">Demo</a>)</li>
+    <li>This work is supported by
+      a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1618061&HistoricalAwards=false">
+        grant from the National Science Foundation</a> and by
+      a <a href="https://research.googleblog.com/2013/08/google-research-awards-summer-2013.html"> 2013 Google Faculty Research Award</a></li>
+  </ul>
 
 </section>
 
 <section id="pabs" name="pabs">
-<div class="page-header">
-<h1>Parametric analysis-by-synthesis</h1>
-<p class="lead">recognizing speech in noise by synthesizing it parametrically</p>
-</div>
+  <div class="page-header">
+    <h1>Parametric analysis-by-synthesis</h1>
+    <p class="lead">recognizing speech in noise by synthesizing it parametrically</p>
+  </div>
 
-<img src="img/absFlowchart.png" alt="Flowchart" title="Flowchart of
- analysis-by-synthesis feature reconstruction">
+  <img src="img/absFlowchart.png" alt="Flowchart" title="Flowchart of
+                                                         analysis-by-synthesis feature reconstruction">
 
-<p> Reconstructing damaged, obscured, or missing speech can improve
-  its intelligibility to humans and machines and its audio quality.
-  This project introduces the use of an unmodified large vocabulary
-  continuous speech recognizer as a parametric prior model for speech
-  reconstruction.  By driving the recognizer to synthesize realistic
-  speech that is similar to the reliable regions of the noisy
-  observation, it can improve recognition and reconstruction
-  accuracy.</p>
+  <p> Reconstructing damaged, obscured, or missing speech can improve
+    its intelligibility to humans and machines and its audio quality.
+    This project introduces the use of an unmodified large vocabulary
+    continuous speech recognizer as a parametric prior model for speech
+    reconstruction.  By driving the recognizer to synthesize realistic
+    speech that is similar to the reliable regions of the noisy
+    observation, it can improve recognition and reconstruction
+    accuracy.</p>
 
-<ul>
-<li>The <a href="pubs_abs.html#mandel14a">ICASSP 2014 paper</a>
-  introducing the project</li>
-<li>The <a href="http://m.mr-pc.org/work/icassp14poster.pdf">poster</a>
-  I presented there</li>
-<li>This work is supported by
-  a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1409431&HistoricalAwards=false">
-    grant from the National Science Foundation</a></li>
-</ul>
+  <ul>
+    <li>The <a href="pubs_abs.html#mandel14a">ICASSP 2014 paper</a>
+      introducing the project</li>
+    <li>The <a href="http://m.mr-pc.org/work/icassp14poster.pdf">poster</a>
+      I presented there</li>
+    <li>This work is supported by
+      a <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1409431&HistoricalAwards=false">
+        grant from the National Science Foundation</a></li>
+  </ul>
 
 </section>
 
 <section id="messl" name="messl">
-<div class="page-header">
-<h1>MESSL</h1>
-<p class="lead">Model-based EM Source Separation &amp; Localization</p>
-</div>
+  <div class="page-header">
+    <h1>MESSL</h1>
+    <p class="lead">Model-based EM Source Separation &amp; Localization</p>
+  </div>
 
-<div class="centered">
-<img src="img/messl.png" alt="MESSL" title="MESSL">
-</div>
+  <div class="centered">
+    <img src="img/messl.png" alt="MESSL" title="MESSL">
+  </div>
 
-<p>
-MESSL performs multichannel spatial clustering to separate and
-localize sources in underdetermined, reverberant mixtures.  Its output
-is an estimate of the regions of the spectrogram that each source
-dominates and estimates of the interaural parameters (interaural time,
-phase, and level differences) for each source at each pair of
-microphones.  It makes no assumptions about the sources themselves or
-the geometry of the microphones or room.
-</p>
+  <p>
+    MESSL performs multichannel spatial clustering to separate and
+    localize sources in underdetermined, reverberant mixtures.  Its output
+    is an estimate of the regions of the spectrogram that each source
+    dominates and estimates of the interaural parameters (interaural time,
+    phase, and level differences) for each source at each pair of
+    microphones.  It makes no assumptions about the sources themselves or
+    the geometry of the microphones or room.
+  </p>
 
-<ul>
+  <ul>
 
-<li><a href="http://github.com/mim/messl">Code</a> for binaural and
-  multichannel MESSL on GitHub</li>
+    <li><a href="http://github.com/mim/messl">Code</a> for binaural and
+      multichannel MESSL on GitHub</li>
 
-<li>The <a href="pubs_abs.html#mandel09a">paper</a> in IEEE Transactions of
-  Audio, Speech, and Language Processing 2010 describing the original MESSL.</li>
+    <li>The <a href="pubs_abs.html#mandel09a">paper</a> in IEEE Transactions of
+      Audio, Speech, and Language Processing 2010 describing the original MESSL.</li>
 
-<li><a href="pubs_abs.html#mandel15c">EUSIPCO 2015 paper</a> using MESSL in a Markov random
-  field to smooth its mask estimates</li>
+    <li><a href="pubs_abs.html#mandel15c">EUSIPCO 2015 paper</a> using MESSL in a Markov random
+      field to smooth its mask estimates</li>
 
-<li><a href="pubs_abs.html#bagchi15">ASRU 2015 paper</a> introducing multichannel MESSL</li>
+    <li><a href="pubs_abs.html#bagchi15">ASRU 2015 paper</a> introducing multichannel MESSL</li>
 
-<li><a href="pubs_abs.html#mandel16b">Interspeech 2016 paper</a> on using multichannel MESSL
-  to drive minimum variance distortionless response beamforming</li>
+    <li><a href="pubs_abs.html#mandel16b">Interspeech 2016 paper</a> on using multichannel MESSL
+      to drive minimum variance distortionless response beamforming</li>
 
-<li>This work is supported by a <a href="https://research.googleblog.com/2016/02/google-research-awards-fall-2015.html">2015 Google Faculty Research Award</a></li>
+    <li>This work is supported by a <a href="https://research.googleblog.com/2016/02/google-research-awards-fall-2015.html">2015 Google Faculty Research Award</a></li>
 
-</ul>
+  </ul>
 </p>
 </section>
 
 <section id="bubbles" name="bubbles">
-<div class="page-header">
-<h1>Auditory bubbles</h1>
-<p class="lead">mapping the importance of "glimpses" of speech</p>
-</div>
+  <div class="page-header">
+    <h1>Auditory bubbles</h1>
+    <p class="lead">mapping the importance of "glimpses" of speech</p>
+  </div>
 
-<img src="img/bubblesExample.png" alt="Bubbles examples"
-     title="Bubbles examples" class="pull-right figure">
+  <img src="img/bubblesExample.png" alt="Bubbles examples"
+       title="Bubbles examples" class="pull-right figure">
 
-<p> Predicting the intelligibility of noisy recordings is difficult
-and most current algorithms treat all speech energy as equally
-important to intelligibility.  We have developed a listening test
-paradigm and associated analysis techniques that show that energy in
-certain time-frequency regions is more important to intelligibility
-than others and can predict the intelligibility of a specific
-recording of a word in the presence of a specific noise instance.  The
-analysis learns a map of the importance of each point in the
-recording's spectrogram to the overall intelligibility of the word
-when glimpsed through ``bubbles'' in many noise instances. The
-important regions identified by the model from listening test data
-agreed with the acoustic phonetics literature.
-</p>
+  <p> Predicting the intelligibility of noisy recordings is difficult
+    and most current algorithms treat all speech energy as equally
+    important to intelligibility.  We have developed a listening test
+    paradigm and associated analysis techniques that show that energy in
+    certain time-frequency regions is more important to intelligibility
+    than others and can predict the intelligibility of a specific
+    recording of a word in the presence of a specific noise instance.  The
+    analysis learns a map of the importance of each point in the
+    recording's spectrogram to the overall intelligibility of the word
+    when glimpsed through ``bubbles'' in many noise instances. The
+    important regions identified by the model from listening test data
+    agreed with the acoustic phonetics literature.
+  </p>
 
-<ul>
-<li><a href="pubs_abs.html#mandel13">WASPAA 2013 paper</a>
-  introducing the project
-  (presented <a href="http://m.mr-pc.org/work/waspaa13poster.pdf">poster</a>)</li>
-<li><a href="pubs_abs.html#mandel14b">INTERSPEECH 2014 paper</a>
-  exploring generalization to new mixtures
-  (presented <a href="http://m.mr-pc.org/work/interspeech14poster.pdf">poster</a>)</li>
-<li><a href="pubs_abs.html#mandel14d">CogMIR talk</a> on applying
-  this technique to musical timbre understanding</li>
-<li><a href="pubs_abs.html#mandel16">Interspeech 2016 paper</a> on using this technique to
-  compare human and ASR listeners directly on recognizing GRID sentences</li>
-<li>This work is supported by
-  a <a href="https://www.rfcuny.org/rfwebsite/research/AwardedPersons.aspx?programID=TRADB&sequence=47&desc=Computer%20Science%20%26%20Library">
-    2015 PSC-CUNY grant</a></li>
-</ul>
+  <ul>
+    <li><a href="pubs_abs.html#mandel13">WASPAA 2013 paper</a>
+      introducing the project
+      (presented <a href="http://m.mr-pc.org/work/waspaa13poster.pdf">poster</a>)</li>
+    <li><a href="pubs_abs.html#mandel14b">INTERSPEECH 2014 paper</a>
+      exploring generalization to new mixtures
+      (presented <a href="http://m.mr-pc.org/work/interspeech14poster.pdf">poster</a>)</li>
+    <li><a href="pubs_abs.html#mandel14d">CogMIR talk</a> on applying
+      this technique to musical timbre understanding</li>
+    <li><a href="pubs_abs.html#mandel16">Interspeech 2016 paper</a> on using this technique to
+      compare human and ASR listeners directly on recognizing GRID sentences</li>
+    <li>This work is supported by
+      a <a href="https://www.rfcuny.org/rfwebsite/research/AwardedPersons.aspx?programID=TRADB&sequence=47&desc=Computer%20Science%20%26%20Library">
+        2015 PSC-CUNY grant</a></li>
+  </ul>
 </section>
 
 <section id="gesturedb" name="gesturedb">
-<div class="page-header">
-<h1>GestureDB</h1>
-<p class="lead">a database for gesture-driven workloads</p>
-</div>
+  <div class="page-header">
+    <h1>GestureDB</h1>
+    <p class="lead">a database for gesture-driven workloads</p>
+  </div>
 
-<img src="img/gestureDbMockup.png" alt="GestureDB interface mock-up"
-     title="GestureDB interface mock-up" class="pull-right figure">
+  <img src="img/gestureDbMockup.png" alt="GestureDB interface mock-up"
+       title="GestureDB interface mock-up" class="pull-right figure">
 
-<p> I'm collaborating with <a href="http://arnab.org">Prof. Arnab
-    Nandi</a> on a gestural interface for querying databases.  Instead
+  <p> I'm collaborating with <a href="http://arnab.org">Prof. Arnab
+      Nandi</a> on a gestural interface for querying databases.  Instead
     of typing SQL commands, the user manipulates representations of
     database objects, while the database provides immediate feedback.
     This feedback allows the user to quickly explore the schema and
@@ -230,54 +200,54 @@ agreed with the acoustic phonetics literature.
     the gesture classification system, which is able to take advantage
     of the proximity of interface elements and compatibility of schema
     and data objects.
-</p>
+  </p>
 
-<ul>
-<li>The <a href="http://gesturedb.org">GestureDB</a> website, including a demonstration
-  video</li>
-<li>The VLDB 2014 paper describing the system [coming soon!]</li>
-<li>The <a href="pubs_abs.html#nandi13">CHI 2013 Work-in-progress paper</a>
-  describing an iPad implementation</li>
-<li>The <a href="http://m.mr-pc.org/work/chiwip13poster.pdf">poster</a> associated with the CHI 2013 WIP paper</li>
-</ul>
+  <ul>
+    <li>The <a href="http://gesturedb.org">GestureDB</a> website, including a demonstration
+      video</li>
+    <li>The VLDB 2014 paper describing the system [coming soon!]</li>
+    <li>The <a href="pubs_abs.html#nandi13">CHI 2013 Work-in-progress paper</a>
+      describing an iPad implementation</li>
+    <li>The <a href="http://m.mr-pc.org/work/chiwip13poster.pdf">poster</a> associated with the CHI 2013 WIP paper</li>
+  </ul>
 </section>
 
 <section id="autotagging" name="autotagging">
-<div class="page-header">
-<h1>Autotagging</h1>
-<p class="lead">automatically describing music from its sound</p>
-</div>
+  <div class="page-header">
+    <h1>Autotagging</h1>
+    <p class="lead">automatically describing music from its sound</p>
+  </div>
 
-<img src="img/autotaggingOverview.png" alt="Autotagging overview"
-     title="Autotagging overview" class="pull-right figure">
+  <img src="img/autotaggingOverview.png" alt="Autotagging overview"
+       title="Autotagging overview" class="pull-right figure">
 
-<p>
-With tens of millions of songs on iTunes and spotify, people need
-better ways to explore large music collections.  We propose using
-various machine learning algorithms to classify 10-second clips of
-songs according to a number of human-generated "tags", short textual
-descriptions like "male vocals", "acoustic", "guitar", and "folk".  We
-have performed many experiments in collecting such data, the
-properties of the data, modeling the data by itself as a language
-model, and modeling the data with various features extracted from the
-audio.
-</p>
+  <p>
+    With tens of millions of songs on iTunes and spotify, people need
+    better ways to explore large music collections.  We propose using
+    various machine learning algorithms to classify 10-second clips of
+    songs according to a number of human-generated "tags", short textual
+    descriptions like "male vocals", "acoustic", "guitar", and "folk".  We
+    have performed many experiments in collecting such data, the
+    properties of the data, modeling the data by itself as a language
+    model, and modeling the data with various features extracted from the
+    audio.
+  </p>
 
-<p>
-We have found that people use more of the same tags when describing
-clips from "closer" together in time, meaning that clips from the same
-track share more tags than clips from the same album, which share more
-tracks that clips from the same artist, which share more tags than
-clips with nothing in common.  We have found that tag language models
-improve classification accuracy on the <em>raw data</em>.  And we have
-found that while support vector machines work well for classification,
-restricted Boltzmann machines and multi-layer perceptrons work better.
-</p>
+  <p>
+    We have found that people use more of the same tags when describing
+    clips from "closer" together in time, meaning that clips from the same
+    track share more tags than clips from the same album, which share more
+    tracks that clips from the same artist, which share more tags than
+    clips with nothing in common.  We have found that tag language models
+    improve classification accuracy on the <em>raw data</em>.  And we have
+    found that while support vector machines work well for classification,
+    restricted Boltzmann machines and multi-layer perceptrons work better.
+  </p>
 
-<ul>
-<li><a href="http://musicallyintelligent.com"> Demonstration
-    website</a> of our autotagging system on a collection of popular
-    music.</a>
+  <ul>
+    <li><a href="http://musicallyintelligent.com"> Demonstration
+        website</a> of our autotagging system on a collection of popular
+      music.</a>
 <li>The <a href="pubs_abs.html#larochelle12"> JMLR paper</a> describing the classification
   restricted Boltzmann machine and results on autotagging data.</li>
 <li>The <a href="pubs_abs.html#mandel11b"> ToMCCAP 2010 paper</a> describing the use of various
@@ -295,151 +265,151 @@ restricted Boltzmann machines and multi-layer perceptrons work better.
 </section>
 
 <section id="dissertation" name="dissertation">
-<div class="page-header">
-<h1>Dissertation</h1>
-<p class="lead">Binaural Model-Based Source Separation &amp; Localization</p>
-</div>
+  <div class="page-header">
+    <h1>Dissertation</h1>
+    <p class="lead">Binaural Model-Based Source Separation &amp; Localization</p>
+  </div>
 
-<p>When listening in noisy and reverberant environments, human listeners
-are able to focus on a particular sound of interest while ignoring
-interfering sounds.  Computer listeners, however, can only perform
-highly constrained versions of this task.  While automatic speech
-recognition systems and hearing aids work well in quiet conditions,
-source separation is necessary for them to be able to function in
-these challenging situations.</p>
+  <p>When listening in noisy and reverberant environments, human listeners
+    are able to focus on a particular sound of interest while ignoring
+    interfering sounds.  Computer listeners, however, can only perform
+    highly constrained versions of this task.  While automatic speech
+    recognition systems and hearing aids work well in quiet conditions,
+    source separation is necessary for them to be able to function in
+    these challenging situations.</p>
 
-<p>This dissertation introduces a system that separates more than two
-sound sources from reverberant, binaural mixtures based on the
-sources' locations.  Each source is modelled probabilistically using
-information about its interaural time and level differences at every
-frequency, with parameters learned using an expectation maximization
-(EM) algorithm.  The system is therefore called Model-based EM Source
-Separation and Localization (MESSL).  This EM algorithm alternates
-between refining its estimates of the model parameters (location) for
-each source and refining its estimates of the regions of the
-spectrogram dominated by each source.  In addition to successfully
-separating sources, the algorithm estimates model parameters from a
-mixture that have direct psychoacoustic relevance and can usually only
-be measured for isolated sources.  One of the key features enabling
-this separation is a novel probabilistic localization model that can
-be evaluated at individual time-frequency points and over
-arbitrarily-shaped regions of the spectrogram.</p>
+  <p>This dissertation introduces a system that separates more than two
+    sound sources from reverberant, binaural mixtures based on the
+    sources' locations.  Each source is modelled probabilistically using
+    information about its interaural time and level differences at every
+    frequency, with parameters learned using an expectation maximization
+    (EM) algorithm.  The system is therefore called Model-based EM Source
+    Separation and Localization (MESSL).  This EM algorithm alternates
+    between refining its estimates of the model parameters (location) for
+    each source and refining its estimates of the regions of the
+    spectrogram dominated by each source.  In addition to successfully
+    separating sources, the algorithm estimates model parameters from a
+    mixture that have direct psychoacoustic relevance and can usually only
+    be measured for isolated sources.  One of the key features enabling
+    this separation is a novel probabilistic localization model that can
+    be evaluated at individual time-frequency points and over
+    arbitrarily-shaped regions of the spectrogram.</p>
 
-<p>The localization performance of the systems introduced here is
-comparable to that of humans in both anechoic and reverberant
-conditions, with a 40% lower mean absolute error than four comparable
-algorithms.  When target and masker sources are mixed at similar
-levels, MESSL's separations have signal-to-distortion ratios 2.0 dB
-higher than four comparable separation algorithms and estimated speech
-quality 0.19 mean opinion score units higher.  When target and masker
-sources are mixed anechoically at very different levels, MESSL's
-performance is comparable to humans', but in similar reverberant
-mixtures it only achieves 20&ndash;25% of human performance.  While
-MESSL successfully rejects enough of the direct-path portion of the
-masking source in reverberant mixtures to improve energy-based
-signal-to-noise ratio results, it has difficulty rejecting enough
-reverberation to improve automatic speech recognition results
-significantly.  This problem is shared by other comparable separation
-systems.</p>
+  <p>The localization performance of the systems introduced here is
+    comparable to that of humans in both anechoic and reverberant
+    conditions, with a 40% lower mean absolute error than four comparable
+    algorithms.  When target and masker sources are mixed at similar
+    levels, MESSL's separations have signal-to-distortion ratios 2.0 dB
+    higher than four comparable separation algorithms and estimated speech
+    quality 0.19 mean opinion score units higher.  When target and masker
+    sources are mixed anechoically at very different levels, MESSL's
+    performance is comparable to humans', but in similar reverberant
+    mixtures it only achieves 20&ndash;25% of human performance.  While
+    MESSL successfully rejects enough of the direct-path portion of the
+    masking source in reverberant mixtures to improve energy-based
+    signal-to-noise ratio results, it has difficulty rejecting enough
+    reverberation to improve automatic speech recognition results
+    significantly.  This problem is shared by other comparable separation
+    systems.</p>
 
-<ul>
-<li>Download it as <a href="http://m.mr-pc.org/work/dissertation.pdf"> a single pdf</a> (7.6 MB)</li>
-<li>Download separate chapters as pdfs (some of the internal links don't work):
-<ul>
-<li><a href="http://m.mr-pc.org/work/dissertation_frontmatter.pdf"> Front matter</a> (142 KB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch1.pdf"> Chapter 1: Introduction</a> (450 KB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch2.pdf"> Chapter 2: Literature review</a>
-  (979 KB)</li> 
-<li><a href="http://m.mr-pc.org/work/dissertation_ch3.pdf"> Chapter 3: Statistics of
-    interaural parameters</a> (2.5 MB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch4.pdf"> Chapter 4: Localization</a> (1.8 MB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch5.pdf"> Chapter 5: Separation</a> (1.9 MB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch6.pdf"> Chapter 6: Evaluation</a> (335 KB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_ch7.pdf"> Chapter 7: Conclusion</a> (74 KB)</li>
-<li><a href="http://m.mr-pc.org/work/dissertation_bibliography.pdf"> Bibliography</a> (210 KB)</li>
-</ul>
-</li>
-<li>Get the <a href="http://github.com/mim/messl"> matlab code on github</a></li>
-</ul>
+  <ul>
+    <li>Download it as <a href="http://m.mr-pc.org/work/dissertation.pdf"> a single pdf</a> (7.6 MB)</li>
+    <li>Download separate chapters as pdfs (some of the internal links don't work):
+      <ul>
+        <li><a href="http://m.mr-pc.org/work/dissertation_frontmatter.pdf"> Front matter</a> (142 KB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch1.pdf"> Chapter 1: Introduction</a> (450 KB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch2.pdf"> Chapter 2: Literature review</a>
+          (979 KB)</li> 
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch3.pdf"> Chapter 3: Statistics of
+            interaural parameters</a> (2.5 MB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch4.pdf"> Chapter 4: Localization</a> (1.8 MB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch5.pdf"> Chapter 5: Separation</a> (1.9 MB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch6.pdf"> Chapter 6: Evaluation</a> (335 KB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_ch7.pdf"> Chapter 7: Conclusion</a> (74 KB)</li>
+        <li><a href="http://m.mr-pc.org/work/dissertation_bibliography.pdf"> Bibliography</a> (210 KB)</li>
+      </ul>
+    </li>
+    <li>Get the <a href="http://github.com/mim/messl"> matlab code on github</a></li>
+  </ul>
 </section>
 
 <section id="intonation" name="intonation">
-<div class="page-header">
-<h1>Intonation</h1>
-<p class="lead">how do singers tune in various contexts?</p>
-</div>
-<a href="img/noteModel.png"><img src="img/noteModelSmall.png" alt="Note model" title="Note model" class="pull-right"></a>
+  <div class="page-header">
+    <h1>Intonation</h1>
+    <p class="lead">how do singers tune in various contexts?</p>
+  </div>
+  <a href="img/noteModel.png"><img src="img/noteModelSmall.png" alt="Note model" title="Note model" class="pull-right"></a>
 
-<p>
-I've collaborated with <a href="http://devaney.ca"> Prof. Johanna Devaney</a> on
-her work studying the effect of context on singers' intonation.  We're
-looking at how singers change their tuning based on the harmonic
-context of other singers, based on the presence of accompaniment, and
-based on the melodic context of individual lines.  We do this by
-analyzing recordings of the singers using automated and semi-automated
-tools we have developed.  These tools have been
-released as the Automatic Music Performance and Analysis Toolkit
-(AMPACT) on github. 
-</p>
+  <p>
+    I've collaborated with <a href="http://devaney.ca"> Prof. Johanna Devaney</a> on
+    her work studying the effect of context on singers' intonation.  We're
+    looking at how singers change their tuning based on the harmonic
+    context of other singers, based on the presence of accompaniment, and
+    based on the melodic context of individual lines.  We do this by
+    analyzing recordings of the singers using automated and semi-automated
+    tools we have developed.  These tools have been
+    released as the Automatic Music Performance and Analysis Toolkit
+    (AMPACT) on github. 
+  </p>
 
-<ul>
-<li>The <a href="https://github.com/jcdevaney/AMPACT"> AMPACT code on
-    Github.</li>
-<li>The <a href="pubs_abs.html#devaney12b"> ISMIR 2012 paper</a> describing the AMPACT
-  toolkit and its use to analyze a set of choral recordings. </li>
-<li>The <a href="pubs_abs.html#devaney12a"> Psychomusicology journal paper</a>
-  providing an overview of this work and some example analyses.</li>
-<li>The <a href="pubs_abs.html#devaney11"> WASPAA 2011 paper</a>
-  describing our characterization of note slope and curvature using
-  discrete cosine transform coefficients.</li>
-<li>The <a href="pubs_abs.html#devaney09"> WASPAA 2009 paper</a>
-  describing our technique for improving MIDI-audio alignments.</li>
-</ul>
+  <ul>
+    <li>The <a href="https://github.com/jcdevaney/AMPACT"> AMPACT code on
+        Github.</li>
+    <li>The <a href="pubs_abs.html#devaney12b"> ISMIR 2012 paper</a> describing the AMPACT
+      toolkit and its use to analyze a set of choral recordings. </li>
+    <li>The <a href="pubs_abs.html#devaney12a"> Psychomusicology journal paper</a>
+      providing an overview of this work and some example analyses.</li>
+    <li>The <a href="pubs_abs.html#devaney11"> WASPAA 2011 paper</a>
+      describing our characterization of note slope and curvature using
+      discrete cosine transform coefficients.</li>
+    <li>The <a href="pubs_abs.html#devaney09"> WASPAA 2009 paper</a>
+      describing our technique for improving MIDI-audio alignments.</li>
+  </ul>
 </section>
 
 <section id="majorminer" name="majorminer">
-<div class="page-header">
-<a href="http://majorminer.org"> <img src="http://majorminer.org/images/major.png" class="pull-right"></a>
-<h1>Major Miner</h1>
-<p class="lead">music labeling game</p>
-</div>
+  <div class="page-header">
+    <a href="http://majorminer.org"> <img src="http://majorminer.org/images/major.png" class="pull-right"></a>
+    <h1>Major Miner</h1>
+    <p class="lead">music labeling game</p>
+  </div>
 
-<p>I built a human computation game
-called <a href="http://majorminer.org"> Major Miner's music labeling
-game</a>.  From the intro:
-<blockquote>
-The goal of the game, besides just listening to music, is to label
-songs with original, yet relevant words and phrases that other players
-agree with. We're going to use your descriptions to teach our computers
-to recommend music that sounds like the music you already like.
-</blockquote>
-</p>
+  <p>I built a human computation game
+    called <a href="http://majorminer.org"> Major Miner's music labeling
+      game</a>.  From the intro:
+    <blockquote>
+      The goal of the game, besides just listening to music, is to label
+      songs with original, yet relevant words and phrases that other players
+      agree with. We're going to use your descriptions to teach our computers
+      to recommend music that sounds like the music you already like.
+    </blockquote>
+  </p>
 
-<p>Players are having a good time with it. You can see the top scorers
-on the <a href="http://majorminer.org/info/leaders"> leader
-board</a>, but don't let them intimidate you, it's pretty easy to
-score points once you get the hang of it. Check it out if you have
-some time to play.</p>
+  <p>Players are having a good time with it. You can see the top scorers
+    on the <a href="http://majorminer.org/info/leaders"> leader
+      board</a>, but don't let them intimidate you, it's pretty easy to
+    score points once you get the hang of it. Check it out if you have
+    some time to play.</p>
 </section>
 
 <section id="rlrs" name="rlrs">
-<div class="page-header">
-<h1>RLRS</h1>
-<p class="lead">the recti-linear room simulator</p>
-</div>
+  <div class="page-header">
+    <h1>RLRS</h1>
+    <p class="lead">the recti-linear room simulator</p>
+  </div>
 
-<img src="img/impulseResponse.png" alt="Simulated impulse response"
-     title="Simulated impulse response" class="pull-right figure">
+  <img src="img/impulseResponse.png" alt="Simulated impulse response"
+       title="Simulated impulse response" class="pull-right figure">
 
-<p>
-This code will generate binaural impulse responses from a simulation
-of the acoustics of a rectilinear room using the image method. It has
-a number of features that improve the realism and speed of the
-simulation. It can generate a pair of 680 ms impulse responses sampled
-at 22050 Hz in 75 seconds on a 1.8 GHz Intel Xeon. It's easy to run
-from within scripts to generate a large set of impulse responses
-programmatically.
-</p>
+  <p>
+    This code will generate binaural impulse responses from a simulation
+    of the acoustics of a rectilinear room using the image method. It has
+    a number of features that improve the realism and speed of the
+    simulation. It can generate a pair of 680 ms impulse responses sampled
+    at 22050 Hz in 75 seconds on a 1.8 GHz Intel Xeon. It's easy to run
+    from within scripts to generate a large set of impulse responses
+    programmatically.
+  </p>
 
 </p>
 To improve the realism, it applies anechoic head-related transfer
@@ -452,113 +422,97 @@ imperfections in the alignment of the walls.
 </p>
 
 <p>
-To improve simulation speed, it performs all calculations in the
-frequency domain and the complex exponential generation code is
-written in C, it only calculates the Fourier transforms of anechoic
-HRTFs as it needs them, and then it caches them, and it culls sources
-that are beyond the desired impulse response length or are
-significantly quieter than the direct path. 
+  To improve simulation speed, it performs all calculations in the
+  frequency domain and the complex exponential generation code is
+  written in C, it only calculates the Fourier transforms of anechoic
+  HRTFs as it needs them, and then it caches them, and it culls sources
+  that are beyond the desired impulse response length or are
+  significantly quieter than the direct path. 
 </p>
 
 <p> Related stuff:
-<ul>
-<li>The <a href="http://github.com/mim/rlrs"> github
-    repository</a></li>
-<li>The <a href="http://blog.mr-pc.org/2008/05/18/recti-linear-room-simulator/"> blog post</a> I wrote introducing it</a>
+  <ul>
+    <li>The <a href="http://github.com/mim/rlrs"> github
+        repository</a></li>
+    <li>The <a href="http://blog.mr-pc.org/2008/05/18/recti-linear-room-simulator/"> blog post</a> I wrote introducing it</a>
 </ul>
 </section>
 
 <section id="similarity" name="similarity">
-<div class="page-header">
-<h1>Music similarity</h1>
-<p class="lead">and playlist generation</p>
-</div>
+  <div class="page-header">
+    <h1>Music similarity</h1>
+    <p class="lead">and playlist generation</p>
+  </div>
 
-<p> Graham Poliner, Dan Ellis, and I built a system to automatically
-  generate playlists based on acoustic similarity of songs.  This work
-  went into our two publications, the 
-first in the ACM Multimedia Systems Journal and the second as ISMIR
-2005.  The systems use SVM active learning to try to determine what
-you want to listen to.  Take a look at the <a
-href="http://labrosa.ee.columbia.edu/projects/playlistgen/"> demo</a>
-I put together for it.</p>
+  <p> Graham Poliner, Dan Ellis, and I built a system to automatically
+    generate playlists based on acoustic similarity of songs.  This work
+    went into our two publications, the 
+    first in the ACM Multimedia Systems Journal and the second as ISMIR
+    2005.  The systems use SVM active learning to try to determine what
+    you want to listen to.  Take a look at the <a
+                                                  href="http://labrosa.ee.columbia.edu/projects/playlistgen/"> demo</a>
+    I put together for it.</p>
 
-<p>In addition to the papers, a system based on this idea came in
-first place in the <a href="http://www.music-ir.org/evaluation/">MIREX
-2005</a> <a
-href="http://www.music-ir.org/evaluation/mirex-results/audio-artist/">
-Artist identification competition</a> at ISMIR and second place in the
-<a
-href="http://www.music-ir.org/evaluation/mirex-results/audio-genre/">
-Genre identification competition</a>.</p>
+  <p>In addition to the papers, a system based on this idea came in
+    first place in the <a href="http://www.music-ir.org/evaluation/">MIREX
+      2005</a> <a
+                  href="http://www.music-ir.org/evaluation/mirex-results/audio-artist/">
+      Artist identification competition</a> at ISMIR and second place in the
+    <a
+       href="http://www.music-ir.org/evaluation/mirex-results/audio-genre/">
+      Genre identification competition</a>.</p>
 
-<p> Related stuff:
-<ul>
-<li> LabROSA <a href="http://labrosa.ee.columbia.edu/projects/playlistgen/">
-demo</a> page</li>
-<li> The <a href="pubs_abs.html#mandel06b">paper</a> we published in
-  the ACM Multimedia Systems Journal, May 2006.</li>
-<li> The <a href="pubs_abs.html#mandel05">paper</a> we published at
-  ISMIR 2005.</li> 
-<li> The <a href="http://m.mr-pc.org/work/mirex05.pdf"> extended abstract</a> about the system
-that won MIREX 2005 Artist ID.</li>
-<li> The <a href="http://www.music-ir.org/evaluation/mirex-results/">
-results</a> of MIREX 2005, including the extended abstracts for all of
-the competing systems.</li>
-</ul>
+  <p> Related stuff:
+    <ul>
+      <li> LabROSA <a href="http://labrosa.ee.columbia.edu/projects/playlistgen/">
+          demo</a> page</li>
+      <li> The <a href="pubs_abs.html#mandel06b">paper</a> we published in
+        the ACM Multimedia Systems Journal, May 2006.</li>
+      <li> The <a href="pubs_abs.html#mandel05">paper</a> we published at
+        ISMIR 2005.</li> 
+      <li> The <a href="http://m.mr-pc.org/work/mirex05.pdf"> extended abstract</a> about the system
+        that won MIREX 2005 Artist ID.</li>
+      <li> The <a href="http://www.music-ir.org/evaluation/mirex-results/">
+          results</a> of MIREX 2005, including the extended abstracts for all of
+        the competing systems.</li>
+    </ul>
 </section>
 
 <section id="igmm" name="igmm">
-<div class="page-header">
-<h1>IGMM</h1>
-<p class="lead">implementation of the Infinite Gaussian Mixture Model</p>
-</div>
+  <div class="page-header">
+    <h1>IGMM</h1>
+    <p class="lead">implementation of the Infinite Gaussian Mixture Model</p>
+  </div>
 
-<a href="img/spiral.png"> <img class="pull-right" src="img/spiral_small.png"></a>
+  <a href="img/spiral.png"> <img class="pull-right" src="img/spiral_small.png"></a>
 
-<p>For my final project in <a
-href="http://www.cs.columbia.edu/~jebara"> Tony Jebara</a>'s <a
-href="http://www.cs.columbia.edu/~jebara/4771"> Machine Learning</a>
-course, cs4771, I implemented <a
-href="http://www.kyb.tuebingen.mpg.de/~carl"> Carl Rasmussen</a>'s <a
-href="http://www.kyb.mpg.de/publication.html?publ=2299"> Infinite
-Gaussian Mixture Model</a>.  I got it working for both univariate and
-multivariate data.  I'd like to see what it does when presented with
-MFCC frames from music and audio.  There were some tricky parts of
-implementing it, I wrote them up in a short paper describing my
-implementation.  Since I've gotten the multivariate case working, I'll
-trust you to ignore all statements to the contrary in the paper.  The
-IGMM requires <a
-href="http://links.jstor.org/sici?sici=0035-9254%281992%2941%3A2%3C337%3AARSFGS%3E2.0.CO%3B2-T">
-Adaptive Rejection Sampling</a> to sample the posteriors of some of
-its parameters, so I implemented that as well.  Thanks to 
-<a href="http://www.cs.cmu.edu/~sgopal1/"> Siddharth Gopal</a>
-for a bugfix.</p> 
+  <p>For my final project in <a
+                                href="http://www.cs.columbia.edu/~jebara"> Tony Jebara</a>'s <a
+                                                                                                href="http://www.cs.columbia.edu/~jebara/4771"> Machine Learning</a>
+    course, cs4771, I implemented <a
+                                     href="http://www.kyb.tuebingen.mpg.de/~carl"> Carl Rasmussen</a>'s <a
+                                                                                                           href="http://www.kyb.mpg.de/publication.html?publ=2299"> Infinite
+      Gaussian Mixture Model</a>.  I got it working for both univariate and
+    multivariate data.  I'd like to see what it does when presented with
+    MFCC frames from music and audio.  There were some tricky parts of
+    implementing it, I wrote them up in a short paper describing my
+    implementation.  Since I've gotten the multivariate case working, I'll
+    trust you to ignore all statements to the contrary in the paper.  The
+    IGMM requires <a
+                     href="http://links.jstor.org/sici?sici=0035-9254%281992%2941%3A2%3C337%3AARSFGS%3E2.0.CO%3B2-T">
+      Adaptive Rejection Sampling</a> to sample the posteriors of some of
+    its parameters, so I implemented that as well.  Thanks to 
+    <a href="http://www.cs.cmu.edu/~sgopal1/"> Siddharth Gopal</a>
+    for a bugfix.</p> 
 
-<p>Download related pieces:
-<ul>
-<li> The <a href="http://m.mr-pc.org/work/cs4771igmm.pdf">paper</a> I wrote about implementing
-it. </li>
-<li> The  <a href="https://github.com/mim/igmm"> github repository</a></li>
-<li> <a href="http://people.csail.mit.edu/jacobe/software.html"> Jacob
-Eisenstein</a>'s Dirichlet process mixture model, which adds some cool
-features to the infinite GMM.
-</ul>
-</p>
+  <p>Download related pieces:
+    <ul>
+      <li> The <a href="http://m.mr-pc.org/work/cs4771igmm.pdf">paper</a> I wrote about implementing
+        it. </li>
+      <li> The  <a href="https://github.com/mim/igmm"> github repository</a></li>
+      <li> <a href="http://people.csail.mit.edu/jacobe/software.html"> Jacob
+          Eisenstein</a>'s Dirichlet process mixture model, which adds some cool
+        features to the infinite GMM.
+    </ul>
+  </p>
 </section>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<script src="http://www.google-analytics.com/urchin.js"
-  type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-2220648-1";
-urchinTracker();
-</script>
-</body>
-</html>

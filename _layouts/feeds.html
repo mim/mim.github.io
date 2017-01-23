@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+    
+    <div class="container">
+
+      <div class="row">
+        <div class="span12">
+          <div class="box">
+
+            {% include header.html %}
+
+            <div class="textbox">
+              {{ content }}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <br />
+      {% include feeds.html %}
+      
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

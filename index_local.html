@@ -1,42 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Michael I Mandel</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/css/feeds.css" rel="stylesheet" media="screen">
-<link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/feeds.js"></script>
-</head>
-<body>
-
-<div class="container">
-
-<div class="row">
-<div class="span12">
-<div class="box">
-
-<div class="navbar overview">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li class="active"><a href="/index.html">Home</a></li>
-      <li><a href="/cv.pdf">CV</a></li>
-      <li><a href="/research.html">Research</a></li>
-      <li><a href="/pubs.html">Publications</a></li>
-      <li><a href="/t/">Teaching</a></li>
-    </ul>
-    <ul class="nav pull-right">
-      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="textbox">
+---
+layout: feeds
+---
 
 <div class="page-header">
-<img src="img/through_the_lens_cropped.jpg" class="pull-right" id="mimPic">
-<h1>Michael I Mandel</h1>
+  <img src="img/through_the_lens_cropped.jpg" class="pull-right" id="mimPic">
+  <h1>Michael I Mandel</h1>
 </div>
 
 <p class="lead">I analyze sound with machine learning and signal
@@ -44,107 +12,16 @@
   remarkable ability of humans to recognize speech in noise.</p>
 
 <p class="lead">I am an assistant professor of Computer and
-Information Science at Brooklyn College (CUNY).  Before that, I was a
-research scientist at The Ohio State University, collaborating with
-the <a href="http://web.cse.ohio-state.edu/slate/"> Speech and
-Language
-Technologies</a>, <a href="http://web.cse.ohio-state.edu/pnl/">
-Perception and Neurodynamics</a>,
-and <a href="http://interact.osu.edu/"> Interactive Data Systems</a>
-labs.  Before that, I was an Algorithm Developer
-at <a href="http://audience.com"> Audience, Inc</a>, a postdoc in
-the <a href="http://www.iro.umontreal.ca/rubrique.php3?id_rubrique=27">
-LISA lab</a> at the Université de Montréal, a PhD student
-in <a href="http://labrosa.ee.columbia.edu/"> LabROSA</a> at Columbia
-University, and an undergrad in CS at MIT.</p>
-</div>
-
-</div>
-</div>
-</div>
-
-<br />
-
-<div class="row">
-<div class="span4">
-
-<div id="pocketRead" class="googleFeed feed">
-<h4><img src="img/pocket.png" alt="Pocket">
-<a href="https://getpocket.com/users/asterix77/feed/read"> Articles I've read</a></h4>
-<a href="https://getpocket.com/users/asterix77/feed/read"> Pocket: read</a>
-</div>
-
-<div id="pocketUnread" class="googleFeed feed">
-<h4><img src="img/pocket.png" alt="Pocket">
-<a href="https://getpocket.com/users/asterix77/feed/unread"> Articles I will read</a></h4>
-<a href="https://getpocket.com/users/asterix77/feed/unread"> Pocket: unread</a>
-</div>
-
-<div id="mendeley" class="googleFeed feed">
-<h4><img src="img/mendeley.png" alt="Mendeley">
-<a href="https://www.mendeley.com/groups/6805101/michael-i-mandel-s-bibliography/feed/rss/"> Papers I've cited</a></h4>
-<a href="https://www.mendeley.com/groups/6805101/michael-i-mandel-s-bibliography/feed/rss/">
-  Mendeley</a>
-</div>
-
-<div id="libraryThing" class="googleFeed feed">
-<h4><img src="img/librarything.png" alt="Library Thing">
-<a href="http://www.librarything.com/catalog/asterix77"> Books I've read</a></h4>
-<a href="http://www.librarything.com/rss/recent/asterix77"> Library thing</a>
-</div>
-
-</div>
-
-
-<div class="span4">
-
-<div id="delicious" class="googleFeed feed">
-<h4><img src="img/delicious-0.png" alt="Delicious">
-<a href="http://del.icio.us/asterix77"> Bookmarked webpages</a></h4>
-<a href="http://del.icio.us/v2/rss/asterix77"> Delicious</a>
-</div>
-
-<div id="tumblr" class="googleFeed feed">
-<h4><img src="img/tumblr.png" alt="Tumblr">
-<a href="http://asterix77.tumblr.com/"> Tumblr posts</a></h4>
-<a href="http://asterix77.tumblr.com/rss"> Tumblr</a>
-</div>
-
-<div id="lastfm" class="lastfmFeed feed">
-<h4><img src="img/lastfm.png" alt="Last.fm">
-<a href="http://www.last.fm/user/mimasterix"> Songs I've heard</a></h4>
-<a href="http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=mimasterix&api_key=84482b4e0a9ea0f0c31074b3dd3926da&format=json"> Last.fm</a>
-</div>
-
-<iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='http://www.strava.com/athletes/152967/latest-rides/f31bec4ff6d1d1be5b0df5aec77e048716de3ec0'></iframe>
-
-</div>
-
-
-<div class="span4">
-<div id="concertPhotos" class="flickrFeed">
-<h4><img src="img/flickr-9.png" alt="Flickr">
-<a href="http://www.flickr.com/photos/48241739@N00/sets/72157604522889991/"> Concert photos</a></h4>
-<a href="http://api.flickr.com/services/feeds/photoset.gne?set=72157604522889991&amp;nsid=48241739@N00"> Concert photos</a>
-</div>
-
-<div id="phonePhotos" class="flickrFeed">
-<h4><img src="img/flickr-9.png" alt="Flickr">
-<a href="http://www.flickr.com/photos/48241739@N00/sets/72157604518319708/"> Phone photos</a></h4>
-<a href="http://api.flickr.com/services/feeds/photoset.gne?set=72157604518319708&amp;nsid=48241739@N00"> Phone photos</a>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-2220648-1";
-urchinTracker();
-</script>
-
-</body>
-</html>
+  Information Science at Brooklyn College (CUNY).  Before that, I was a
+  research scientist at The Ohio State University, collaborating with
+  the <a href="http://web.cse.ohio-state.edu/slate/"> Speech and
+    Language
+    Technologies</a>, <a href="http://web.cse.ohio-state.edu/pnl/">
+    Perception and Neurodynamics</a>,
+  and <a href="http://interact.osu.edu/"> Interactive Data Systems</a>
+  labs.  Before that, I was an Algorithm Developer
+  at <a href="http://audience.com"> Audience, Inc</a>, a postdoc in
+  the <a href="http://www.iro.umontreal.ca/rubrique.php3?id_rubrique=27">
+    LISA lab</a> at the Université de Montréal, a PhD student
+  in <a href="http://labrosa.ee.columbia.edu/"> LabROSA</a> at Columbia
+  University, and an undergrad in CS at MIT.</p>

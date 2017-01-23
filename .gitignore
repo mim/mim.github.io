@@ -3,3 +3,6 @@
 # pubs_abs.html
 # pubs_bib.html
 serveFiles.py
+_site/
+.sass-cache/
+.jekyll-metadata
