@@ -15,40 +15,10 @@ HTMLDIR=~/code/www/
 
 for file in $ALLHTML $ALLABSHTML ; do
     cat > $file <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Michael I Mandel's Publications</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/css/feeds.css" rel="stylesheet" media="screen">
-<link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<div class="container">
-
-<div class="row">
-<div class="span12">
-<div class="box">
-
-<div class="navbar overview">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/cv.pdf">CV</a></li>
-      <li><a href="/research.html">Research</a></li>
-      <li class="active"><a href="/pubs.html">Publications</a></li>
-      <li><a href="/t/">Teaching</a></li>
-    </ul>
-    <ul class="nav pull-right">
-      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="textbox">
-
+---
+layout: default
+title: Publications -- Michael I Mandel
+---
 <div class="page-header">
 <h1>Publications</h1>
 </div>
@@ -56,40 +26,10 @@ EOF
 done
 
 cat > $ALLBIBHTML <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>BibTeX for Michael I Mandel's Publications</title>
-<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/css/feeds.css" rel="stylesheet" media="screen">
-<link href="http://fonts.googleapis.com/css?family=Droid+Serif|Droid+Sans" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<div class="container">
-
-<div class="row">
-<div class="span12">
-<div class="box">
-
-<div class="navbar overview">
-  <div class="navbar-inner">
-    <ul class="nav">
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/cv.pdf">CV</a></li>
-      <li><a href="/research.html">Research</a></li>
-      <li class="active"><a href="/pubs.html">Publications</a></li>
-      <li><a href="/teaching/">Teaching</a></li>
-    </ul>
-    <ul class="nav pull-right">
-      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
-    </ul>
-  </div>
-</div>
-
-<div class="textbox">
-
+---
+layout: default
+title: BibTeX for Publications -- Michael I Mandel
+---
 <div class="page-header">
 <h1>Publications</h1>
 </div>
@@ -134,27 +74,6 @@ for n in `seq ${#AUXS[@]}` ; do
     rm $HTML
     rm $BIBHTML
     rm $ABSHTML
-done
-
-for file in $ALLHTML $ALLABSHTML $ALLBIBHTML ; do
-    cat >> $file <<EOF
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<script src="http://www.google-analytics.com/urchin.js"
-  type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-2220648-1";
-urchinTracker();
-</script>
-</body>
-</html>
-EOF
 done
 
 mv $ALLHTML $ALLBIBHTML $ALLABSHTML $HTMLDIR
