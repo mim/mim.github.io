@@ -1,16 +1,27 @@
-<div class="navbar overview">
-  <div class="navbar-inner">
-    <ul class="nav">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
       {% for menuPage in site.data.menu %}
         {% if page.url == menuPage.url %}
-      <li class="active"><a href="{{ menuPage.url }}">{{ menuPage.title }}</a></li>
+        <li class="active"><a href="{{ menuPage.url }}">{{ menuPage.title }}  <span class="sr-only">(current)</span></a></li>
         {% else %}
-      <li><a href="{{ menuPage.url }}">{{ menuPage.title }}</a></li>
+        <li><a href="{{ menuPage.url }}">{{ menuPage.title }}</a></li>
         {% endif %}
       {% endfor %}
-    </ul>
-    <ul class="nav pull-right">
-      <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
-    </ul>
-  </div>
-</div>
+      </ul>
+      <ul class="nav navbar-nav navbar-right visible-md-block visible-lg-block">
+        <li><a href="mailto:mim@mr-pc.org">mim@mr-pc.org</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
