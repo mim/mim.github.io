@@ -12,7 +12,7 @@ section { padding-bottom: 30px; }
 .jam-medallion { text-align: center; }
 
 .overview { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
-.navbar { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; }
+.navbar { font-size: 150%; line-height: 110%; padding: 10px; margin-bottom: 20px; border-radius: 0px; }
 
 body { background: url('/img/paisleyDiagTileSmall.png'); }
 
