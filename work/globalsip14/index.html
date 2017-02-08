@@ -1,0 +1,189 @@
+---
+layout: default
+title: GlobalSIP 2014 Example audio files
+---
+
+<h1>GlobalSIP 2014 Example Audio Files</h1>
+<h2>Learning a concatenative resynthesis system for noise suppression [<a href="http://m.mr-pc.org/work/globalsip14.pdf">PDF</a>]</h2>
+<h3>Michael I Mandel, Young Suk Cho, and Yuxuan Wang</h3>
+<blockquote>Abstract: This paper introduces a new approach to dictionary-based source separation employing a learned non-linear metric.  In contrast to existing parametric source separation systems, this model is able to utilize a rich dictionary of speech signals.  In contrast to previous dictionary-based source separation systems, the system can utilize perceptually relevant non-linear features of the noisy and clean audio.  This approach utilizes a deep neural network (DNN) to predict whether a noisy chunk of audio contains a given clean chunk. Speaker-dependent experiments on the CHiME2-GRID corpus show  that this model is able to accurately resynthesize clean speech from noisy observations.  Preliminary listening tests show that the system's output has much higher audio quality than existing parametric systems trained on the same data, achieving noise suppression levels close to those of the original clean speech.</blockquote>
+<h2>Audio files</h2>
+<p>Wav files from the CHiME2-GRID devel corpus evaluated in intelligibility and MUltiple Stimuli with Hidden Reference and Anchor(MUSHRA) listening tests.</p>
+<p>Compares four systems:</p>
+<ul>
+<li><b>Concat</b>: the proposed concatenative resynthesis system</li>
+<li><b>Concat No-trans</b>: the proposed system using only the learned metric with no transition probabilities</li>
+<li><b>Ideal ratio mask NN</b>: a deep neural network trained to predict the ideal ratio mask from the noise input</li>
+<li><b>Noise-to-clean NN</b>: a deep neural network trained to predict the clean signal from the noise signal</li>
+</ul>
+<table><th>File</th><th>SNR</th>
+<th>Clean</th><th>Noisy</th><th>Concat</th><th>Concat No-trans</th><th>Ideal ratio mask NN</th><th>Noisy-to-clean NN</th>
+<tr><td>bbafzn</td><td>0dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/0dB/bbafzn.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/bbafzn.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/0dB/bbafzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/0dB/bbafzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/bbafzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/0dB/bbafzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>brbm4n</td><td>6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/6dB/brbm4n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/brbm4n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/6dB/brbm4n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/6dB/brbm4n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/brbm4n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/6dB/brbm4n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>bwam8p</td><td>m6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m6dB/bwam8p.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/bwam8p.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m6dB/bwam8p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m6dB/bwam8p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/bwam8p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m6dB/bwam8p.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lbwk6n</td><td>m3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m3dB/lbwk6n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/lbwk6n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m3dB/lbwk6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m3dB/lbwk6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/lbwk6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m3dB/lbwk6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>pbwc7s</td><td>m6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m6dB/pbwc7s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/pbwc7s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m6dB/pbwc7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m6dB/pbwc7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/pbwc7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m6dB/pbwc7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>sgwdzp</td><td>m6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m6dB/sgwdzp.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/sgwdzp.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m6dB/sgwdzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m6dB/sgwdzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/sgwdzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m6dB/sgwdzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>bbizzp</td><td>m3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m3dB/bbizzp.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bbizzp.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m3dB/bbizzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m3dB/bbizzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bbizzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m3dB/bbizzp.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>brbs8n</td><td>0dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/0dB/brbs8n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/brbs8n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/0dB/brbs8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/0dB/brbs8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/brbs8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/0dB/brbs8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>bwis6n</td><td>0dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/0dB/bwis6n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/bwis6n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/0dB/bwis6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/0dB/bwis6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/bwis6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/0dB/bwis6n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lbwr3a</td><td>3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/3dB/lbwr3a.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/3dB/lbwr3a.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/3dB/lbwr3a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/3dB/lbwr3a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/3dB/lbwr3a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/3dB/lbwr3a.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>pgwe7a</td><td>0dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/0dB/pgwe7a.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/pgwe7a.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/0dB/pgwe7a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/0dB/pgwe7a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/pgwe7a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/0dB/pgwe7a.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>srbo2p</td><td>6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/6dB/srbo2p.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/srbo2p.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/6dB/srbo2p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/6dB/srbo2p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/srbo2p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/6dB/srbo2p.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>bgwb5a</td><td>m3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m3dB/bgwb5a.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bgwb5a.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m3dB/bgwb5a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m3dB/bgwb5a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bgwb5a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m3dB/bgwb5a.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>briz6p</td><td>9dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/9dB/briz6p.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/9dB/briz6p.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/9dB/briz6p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/9dB/briz6p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/9dB/briz6p.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/9dB/briz6p.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lbaq2n</td><td>m6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m6dB/lbaq2n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/lbaq2n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m6dB/lbaq2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m6dB/lbaq2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/lbaq2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m6dB/lbaq2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lrwe8n</td><td>6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/6dB/lrwe8n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/lrwe8n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/6dB/lrwe8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/6dB/lrwe8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/lrwe8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/6dB/lrwe8n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>prbc9s</td><td>0dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/0dB/prbc9s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/prbc9s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/0dB/prbc9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/0dB/prbc9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/0dB/prbc9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/0dB/prbc9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>srin2n</td><td>3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/3dB/srin2n.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/3dB/srin2n.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/3dB/srin2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/3dB/srin2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/3dB/srin2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/3dB/srin2n.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>brbg1s</td><td>m6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m6dB/brbg1s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/brbg1s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m6dB/brbg1s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m6dB/brbg1s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m6dB/brbg1s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m6dB/brbg1s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>bwam7s</td><td>m3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m3dB/bwam7s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bwam7s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m3dB/bwam7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m3dB/bwam7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/bwam7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m3dB/bwam7s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lbip9s</td><td>6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/6dB/lbip9s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/lbip9s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/6dB/lbip9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/6dB/lbip9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/lbip9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/6dB/lbip9s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>lwik9a</td><td>9dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/9dB/lwik9a.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/9dB/lwik9a.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/9dB/lwik9a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/9dB/lwik9a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/9dB/lwik9a.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/9dB/lwik9a.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>prbxzn</td><td>m3dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/m3dB/prbxzn.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/prbxzn.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/m3dB/prbxzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/m3dB/prbxzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/m3dB/prbxzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/m3dB/prbxzn.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+<tr><td>swih5s</td><td>6dB</td><td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/clean/6dB/swih5s.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/swih5s.wav/noisy_mono.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/ranking500/6dB/swih5s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/rankingOnly/6dB/swih5s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/irm/6dB/swih5s.wav/proc.wav" type="audio/wav">Error</audio></td>
+<td><audio controls preload="none"><source src="http://m.mr-pc.org/work/gs14audio/nc/6dB/swih5s.wav/proc.wav" type="audio/wav">Error</audio></td>
+</tr>
+</table>
