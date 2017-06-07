@@ -304,7 +304,25 @@ The localization performance of the systems introduced here is comparable to tha
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="syed17">1</a>]
+[<a name="MaitiAndMandel2017">1</a>]
+</td>
+<td class="bibtexitem">
+Soumi Maiti and Michael Mandel.
+ Concatenative resynthesis using twin networks.
+ In <em>Proceedings of Interspeech</em>, 2017.
+ To appear.
+[&nbsp;<a href="pubs_bib.html#MaitiAndMandel2017">bib</a>&nbsp;]
+<blockquote><font size="-1">
+Traditional noise reduction systems modify a noisy signal to make it more like the original clean signal. For speech, these methods suffer from two main problems: under-suppression of noise and over-suppression of target speech. Instead, synthesizing clean speech based on the noisy signal could produce outputs that are both noise-free and high quality.  Our previous work introduced such a system using concatenative synthesis, but it required processing the clean speech at run time, which was slow and not scalable. In order to make such a system scalable, we propose here learning a similarity metric using two separate networks, one network processing the clean segments offline and another processing the noisy segments at run time. This system incorporates a ranking loss to optimize for the retrieval of appropriate clean speech segments. This model is compared against our original on the CHiME2-GRID corpus, measuring ranking performance and subjective listening tests of resyntheses.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="syed17">2</a>]
 </td>
 <td class="bibtexitem">
 Ali Syed, Andrew Rosenberg, and Michael&nbsp;I Mandel.
@@ -312,7 +330,6 @@ Ali Syed, Andrew Rosenberg, and Michael&nbsp;I Mandel.
   selection size and language modeling data.
  In <em>Proceedings of the IEEE International Conference on
   Acoustics, Speech, and Signal Processing</em>, 2017.
- To appear.
 [&nbsp;<a href="pubs_bib.html#syed17">bib</a>&nbsp;| 
 <a href="http://m.mr-pc.org/work/syed17.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
@@ -325,7 +342,7 @@ Active learning aims to reduce the time and cost of developing speech recognitio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney17">2</a>]
+[<a name="devaney17">3</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney and Michael&nbsp;I Mandel.
@@ -333,7 +350,6 @@ Johanna Devaney and Michael&nbsp;I Mandel.
   frequency and power from polyphonic audio.
  In <em>Proceedings of the IEEE International Conference on
   Acoustics, Speech, and Signal Processing</em>, 2017.
- To appear.
 [&nbsp;<a href="pubs_bib.html#devaney17">bib</a>&nbsp;| 
 <a href="http://m.mr-pc.org/work/devaney17.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
@@ -347,7 +363,7 @@ Robust extraction of performance data from polyphonic musical performances requi
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16b">3</a>]
+[<a name="mandel16b">4</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Jon&nbsp;P Barker.
@@ -368,7 +384,7 @@ Recent automatic speech recognition (ASR) results are quite good when the traini
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16">4</a>]
+[<a name="mandel16">5</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel.
@@ -388,7 +404,7 @@ In a given noisy environment, human listeners can more accurately identify spoke
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="erdogan16">5</a>]
+[<a name="erdogan16">6</a>]
 </td>
 <td class="bibtexitem">
 Hakan Erdogan, John Hershey, Shinji Watanabe, Michael Mandel, and Jonathan&nbsp;Le
@@ -427,7 +443,7 @@ rates in a mismatched training condition.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="xiao16">6</a>]
+[<a name="xiao16">7</a>]
 </td>
 <td class="bibtexitem">
 Xiong Xiao, Shinji Watanabe, Hakan Erdogan, Liang Lu, John Hershey, Michael&nbsp;L
@@ -448,7 +464,7 @@ Keywords: AMI meeting corpus,Acoustics,Array signal processing,Feature extractio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bagchi15">7</a>]
+[<a name="bagchi15">8</a>]
 </td>
 <td class="bibtexitem">
 Deblin Bagchi, Michael&nbsp;I Mandel, Zhongqiu Wang, Yanzhang He, Andrew Plummer,
@@ -456,8 +472,9 @@ Deblin Bagchi, Michael&nbsp;I Mandel, Zhongqiu Wang, Yanzhang He, Andrew Plummer
  Combining spectral feature mapping and multi-channel model-based
   source separation for noise-robust automatic speech recognition.
  In <em>Proceedings of the IEEE Workshop on Automatic Speech
-  Recognition and Understanding</em>, 2015.
+  Recognition and Understanding</em>, pages 496--503, 2015.
 [&nbsp;<a href="pubs_bib.html#bagchi15">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/ASRU.2015.7404836">DOI</a>&nbsp;| 
 <a href="http://m.mr-pc.org/work/asru15.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 Automatic Speech Recognition systems suffer from severe performance degradation in the presence of myriad complicating factors such as noise, reverberation, multiple speech sources, multiple recording devices, etc.  Previous challenges have sparked much innovation when it comes to designing systems capable of handling these complications.  In this spirit, the CHiME-3 challenge presents system builders with the task of recognizing speech in a real-world noisy setting wherein speakers talk to an array of 6 microphones in a tablet.  In order to address these issues, we explore the effectiveness of first applying a model-based source separation mask  to the output of a beamformer that combines the source signals recorded by each microphone, followed by a DNN-based front end spectral mapper that predicts clean filterbank features.  The source separation algorithm MESSL (Model-based EM Source Separation and Localization) has been extended from two channels to multiple channels in order to meet the demands of the challenge.  We report on interactions between the two systems, cross-cut by the use of a robust beamforming algorithm called BeamformIt.   Evaluations of different system settings reveal that combining MESSL and the spectral mapper together on the baseline beamformer algorithm boosts the performance substantially.
@@ -470,7 +487,7 @@ Automatic Speech Recognition systems suffer from severe performance degradation 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tirumala15">8</a>]
+[<a name="tirumala15">9</a>]
 </td>
 <td class="bibtexitem">
 Sreyas&nbsp;Srimath Tirumala and Michael&nbsp;I Mandel.
@@ -490,7 +507,7 @@ Spectral masking techniques are prevalent for noise suppression but they damage 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15d">9</a>]
+[<a name="mandel15d">10</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
@@ -527,12 +544,12 @@ Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15c">10</a>]
+[<a name="mandel15c">11</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Nicoleta Roman.
  Enforcing consistency in spectral masks using markov random fields.
- In <em>Proceedings of EUSIPCO</em>, 2015.
+ In <em>Proceedings of EUSIPCO</em>, pages 2028--2032, 2015.
 [&nbsp;<a href="pubs_bib.html#mandel15c">bib</a>&nbsp;| 
 <a href="http://m.mr-pc.org/work/eusipco15.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
@@ -566,7 +583,7 @@ Localization-based multichannel source separation
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14c">11</a>]
+[<a name="mandel14c">12</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Young-Suk Cho, and Yuxuan Wang.
@@ -599,7 +616,7 @@ This paper introduces a new approach to dictionary-based source
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14b">12</a>]
+[<a name="mandel14b">13</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
@@ -619,7 +636,7 @@ Listeners can reliably identify speech in noisy conditions, although it is gener
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14a">13</a>]
+[<a name="mandel14a">14</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Arun Narayanan.
@@ -640,7 +657,7 @@ Spectral masking is a promising method for noise suppression in which regions of
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="nandi14">14</a>]
+[<a name="nandi14">15</a>]
 </td>
 <td class="bibtexitem">
 Arnab Nandi, Lilong Jiang, and Michael Mandel.
@@ -673,7 +690,7 @@ existing systems.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel13">15</a>]
+[<a name="mandel13">16</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel.
@@ -692,7 +709,7 @@ Predicting the intelligibility of noisy recordings is difficult and most current
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="roman13">16</a>]
+[<a name="roman13">17</a>]
 </td>
 <td class="bibtexitem">
 Nicoleta Roman and Micheal Mandel.
@@ -709,7 +726,7 @@ Reverberation has a detrimental effect on speech perception both in terms of qua
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney12b">17</a>]
+[<a name="devaney12b">18</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -729,7 +746,7 @@ This paper introduces the Automatic Music Performance Analysis and Comparison To
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney11">18</a>]
+[<a name="devaney11">19</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -749,7 +766,7 @@ This paper evaluates the utility of the Discrete Cosine Transform (DCT) for char
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel10b">19</a>]
+[<a name="mandel10b">20</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Douglas Eck, and Yoshua Bengio.
@@ -778,7 +795,7 @@ This paper examines the relationship between human generated tags
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bergstra10">20</a>]
+[<a name="bergstra10">21</a>]
 </td>
 <td class="bibtexitem">
 James Bergstra, Michael&nbsp;I. Mandel, and Douglas Eck.
@@ -797,7 +814,7 @@ Cepstral analysis is effective in separating source from filter in vocal and mon
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel09b">21</a>]
+[<a name="mandel09b">22</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -819,7 +836,7 @@ We introduce the Ideal Interaural Parameter Mask as an upper bound on the perfor
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney09">22</a>]
+[<a name="devaney09">23</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -839,7 +856,7 @@ This paper describes a technique to improve the accuracy of dynamic time warping
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="law09">23</a>]
+[<a name="law09">24</a>]
 </td>
 <td class="bibtexitem">
 Edith Law, Kris West, Michael Mandel, Mert Bay, and J.&nbsp;Stephen Downie.
@@ -858,7 +875,7 @@ Search by keyword is an extremely popular method for retrieving music. To suppor
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="weiss08">24</a>]
+[<a name="weiss08">25</a>]
 </td>
 <td class="bibtexitem">
 Ron&nbsp;J. Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -878,7 +895,7 @@ We describe a system for separating multiple sources from a two-channel recordin
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel08a">25</a>]
+[<a name="mandel08a">26</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -898,7 +915,7 @@ Multiple-instance learning algorithms train classifiers from lightly supervised 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="ellis08">26</a>]
+[<a name="ellis08">27</a>]
 </td>
 <td class="bibtexitem">
 Daniel P.&nbsp;W. Ellis, Courtenay&nbsp;V. Cotton, and Michael&nbsp;I. Mandel.
@@ -919,7 +936,7 @@ Systems to predict human judgments of music similarity directly from the audio h
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07c">27</a>]
+[<a name="mandel07c">28</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -941,7 +958,7 @@ We describe a system for localizing and separating multiple sound sources from a
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07b">28</a>]
+[<a name="mandel07b">29</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -962,7 +979,7 @@ We have designed a web-based game to make collecting descriptions of musical exc
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07a">29</a>]
+[<a name="mandel07a">30</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Tony Jebara.
@@ -984,7 +1001,7 @@ We present a method for localizing and separating sound sources in stereo record
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel05">30</a>]
+[<a name="mandel05">31</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1006,7 +1023,7 @@ Searching and organizing growing digital music collections requires automatic cl
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="sudderth05">31</a>]
+[<a name="sudderth05">32</a>]
 </td>
 <td class="bibtexitem">
 Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan&nbsp;S. Willsky.

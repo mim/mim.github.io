@@ -236,14 +236,24 @@ The localization performance of the systems introduced here is comparable to tha
 }
 </pre>
 
-<h1>Conference</h1><a name="syed17"></a><pre>
+<h1>Conference</h1><a name="MaitiAndMandel2017"></a><pre>
+@inproceedings{<a href="mandel_conference.html#MaitiAndMandel2017">MaitiAndMandel2017</a>,
+  author = {Soumi Maiti and Michael Mandel},
+  title = {Concatenative resynthesis using twin networks},
+  booktitle = {Proceedings of Interspeech},
+  note = {To appear},
+  year = 2017,
+  abstract = {Traditional noise reduction systems modify a noisy signal to make it more like the original clean signal. For speech, these methods suffer from two main problems: under-suppression of noise and over-suppression of target speech. Instead, synthesizing clean speech based on the noisy signal could produce outputs that are both noise-free and high quality.  Our previous work introduced such a system using concatenative synthesis, but it required processing the clean speech at run time, which was slow and not scalable. In order to make such a system scalable, we propose here learning a similarity metric using two separate networks, one network processing the clean segments offline and another processing the noisy segments at run time. This system incorporates a ranking loss to optimize for the retrieval of appropriate clean speech segments. This model is compared against our original on the CHiME2-GRID corpus, measuring ranking performance and subjective listening tests of resyntheses.}
+}
+</pre>
+
+<a name="syed17"></a><pre>
 @inproceedings{<a href="mandel_conference.html#syed17">syed17</a>,
   author = {Ali Syed and Andrew Rosenberg and Michael I Mandel},
   title = {Active Learning for Low-Resource Speech Recognition: Impact of Selection Size and Language Modeling Data},
   booktitle = {Proceedings of the {IEEE} International Conference on Acoustics, Speech, and Signal Processing},
   year = {2017},
   url = {<a href="http://m.mr-pc.org/work/syed17.pdf">http://m.mr-pc.org/work/syed17.pdf</a>},
-  note = {To appear},
   abstract = {Active learning aims to reduce the time and cost of developing speech recognition systems by selecting for transcription highly informative subsets from large pools of audio data.  Previous evaluations at OpenKWS and IARPA BABEL have investigated data selection for low-resource languages in very constrained scenarios with 2-hour data selections given a 1-hour seed set.  We expand on this to investigate what happens with larger selections and fewer constraints on language modeling data.  Our results, on four languages from the final BABEL OP3 period, show that active learning is helpful at larger selections with consistent gains up to 14 hours. We also find that the impact of additional language model data is orthogonal to the impact of the active learning selection criteria.}
 }
 </pre>
@@ -256,8 +266,7 @@ The localization performance of the systems introduced here is comparable to tha
   booktitle = {Proceedings of the {IEEE} International Conference on Acoustics, Speech, and Signal Processing},
   url = {<a href="http://m.mr-pc.org/work/devaney17.pdf">http://m.mr-pc.org/work/devaney17.pdf</a>},
   abstract = {Robust extraction of performance data from polyphonic musical performances requires precise frame-level estimation of fundamental frequency (f0) and power. This paper evaluates a new score-guided approach to f0 and power estimation in polyphonic audio and compares the use of four different input features: the central bin frequencies of the spectrogram, the instantaneous frequency, and two variants of a high resolution spectral analysis. These four features were evaluated on four-part multi-track ensemble recordings, consisting of either four vocalists or bassoon, clarinet, saxophone, and violin (the Bach10 data set) created from polyphonic mixes of the monophonic tracks both with and without artificial reverberation. Score information was used to identify time-frequency regions of interest in the polyphonic mixes for each note in a corresponding aligned score, from which f0 and power estimates were made. The approach was able to recover ground truth f0 within 20 cents on average in reverberation and power within 5\,dB for anechoic mixtures, but only within 10\,dB for reverberant.
-},
-  note = {To appear}
+}
 }
 </pre>
 
@@ -344,6 +353,8 @@ rates in a mismatched training condition.}
   author = {Deblin Bagchi and Michael I Mandel and Zhongqiu Wang and Yanzhang He and Andrew Plummer and Eric Fosler-Lussier},
   title = {Combining spectral feature mapping and multi-channel model-based source separation for noise-robust automatic speech recognition},
   booktitle = {Proceedings of the {IEEE} Workshop on Automatic Speech Recognition and Understanding},
+  pages = {496--503},
+  doi = {10.1109/ASRU.2015.7404836},
   year = {2015},
   url = {<a href="http://m.mr-pc.org/work/asru15.pdf">http://m.mr-pc.org/work/asru15.pdf</a>},
   abstract = {Automatic Speech Recognition systems suffer from severe performance degradation in the presence of myriad complicating factors such as noise, reverberation, multiple speech sources, multiple recording devices, etc.  Previous challenges have sparked much innovation when it comes to designing systems capable of handling these complications.  In this spirit, the CHiME-3 challenge presents system builders with the task of recognizing speech in a real-world noisy setting wherein speakers talk to an array of 6 microphones in a tablet.  In order to address these issues, we explore the effectiveness of first applying a model-based source separation mask  to the output of a beamformer that combines the source signals recorded by each microphone, followed by a DNN-based front end spectral mapper that predicts clean filterbank features.  The source separation algorithm MESSL (Model-based EM Source Separation and Localization) has been extended from two channels to multiple channels in order to meet the demands of the challenge.  We report on interactions between the two systems, cross-cut by the use of a robust beamforming algorithm called BeamformIt.   Evaluations of different system settings reveal that combining MESSL and the spectral mapper together on the baseline beamformer algorithm boosts the performance substantially.
@@ -398,6 +409,7 @@ rates in a mismatched training condition.}
   title = {Enforcing consistency in spectral masks using Markov random fields},
   year = {2015},
   booktitle = {Proceedings of {EUSIPCO}},
+  pages = {2028--2032},
   abstract = {Localization-based multichannel source separation
                   algorithms typically operate by clustering or
                   classifying individual time-frequency points based
