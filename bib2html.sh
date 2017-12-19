@@ -4,8 +4,8 @@
 # sectioned html page.
 
 AUXS=(1 2 3 4)
-FILES=(journal chapter conference workshop)
-NAMES=("Journal" "Theses, Chapters" "Conference" "Other")
+FILES=(chapter journal conference workshop)
+NAMES=("Theses, Chapters" "Journal" "Conference" "Other")
 
 AUXDIR=~/doc/cv
 ALLHTML=pubs.html
