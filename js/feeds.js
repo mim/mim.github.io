@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('.googleFeed > a').each(function(i, a){
         var feedUrl = encodeURIComponent(a.href);
         var ajaxUrl = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%20%3D%20'" + feedUrl + "'%0A&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+        console.log(ajaxUrl)
         $.getJSON(ajaxUrl, function(json){loadInto(yqlRssJsonToList(json), a);});
     });
     $('.flickrFeed > a').each(function(i, a){
@@ -15,6 +16,10 @@ $(document).ready(function() {
     $('.twitterFeed > a').each(function(i, a){
         var ajaxUrl = a.href + "&callback=?";
         $.getJSON(ajaxUrl, function(json){loadInto(twitterJsonToList(json), a);});
+    });
+    $('.zoteroFeed > a').each(function(i, a){
+        var ajaxUrl = a.href;
+        $.getJSON(ajaxUrl, function(json){loadInto(zoteroJsonToList(json), a);});
     });
 })
 
@@ -90,6 +95,20 @@ function twitterJsonToList(entries) {
     for (var i=0, entry; i < 20, i < entries.length; i++) {
         entry = entries[i];
         newHtml += '<li><a href="http://twitter.com/asterix77/status/' + entry.id_str + '">' + entry.text + '</a> ' + prettyDate(entry.created_at) + '</li>';
+    }
+    newHtml += '</ul>';
+    return newHtml;
+}
+
+function zoteroJsonToList(entries) {
+    var newHtml = '<ul>';
+    for (var i=0, entry; i < 20, i < entries.length; i++) {
+        entry = entries[i];
+        newHtml += '<li><a href="' + entry.links.alternate.href + '">'
+            + entry.meta.creatorSummary
+            + ' (' + entry.meta.parsedDate + '). '
+            + '"' + entry.data.title + '"</a> '
+            + prettyDate(entry.data.dateAdded) + '</li>';
     }
     newHtml += '</ul>';
     return newHtml;
