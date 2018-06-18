@@ -357,13 +357,72 @@ Searching and organizing growing digital music collections requires a computatio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiAndMandel2017">1</a>]
+[<a name="TrinhEtAl2018">1</a>]
+</td>
+<td class="bibtexitem">
+Viet&nbsp;Anh Trinh, Brian McFee, and Michael&nbsp;I Mandel.
+ Bubble cooperative networks for identifying important speech cues.
+ In <em>Proceedings of Interspeech</em>, 2018.
+ To appear.
+[&nbsp;<a href="pubs_bib.html#TrinhEtAl2018">bib</a>&nbsp;| 
+<a href="http://m.mr-pc.org/work/interspeech18trinh.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Predicting the intelligibility of noisy recordings is difficult and most current algorithms treat all speech energy as equally important to intelligibility. Our previous work on human perception used a listening test paradigm and correlational analysis to show that some energy is more important to intelligibility than other energy. In this paper, we propose a system called the Bubble Cooperative Network (BCN), which aims to predict important areas of individual utterances directly from clean speech. Given such a prediction, noise is added to the utterance in unimportant regions and then presented to a recognizer.  The  BCN is trained with a loss that encourages it to add as much noise as possible while preserving recognition performance, encouraging it to identify important regions precisely and place the noise everywhere else.  Empirical evaluation shows that the BCN can obscure 97.7% of the spectrogram with noise while maintaining recognition accuracy for a simple speech recognizer that compares a noisy test utterance with a clean reference utterance.  The masks predicted by a single BCN on several utterances show patterns that are similar to analyses derived from human listening tests that analyze each utterance separately, while exhibiting better generalization and less context-dependence than previous approaches.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="SyedEtAl2018">2</a>]
+</td>
+<td class="bibtexitem">
+Ali&nbsp;Raza Syed, Viet&nbsp;Anh Trinh, and Michael&nbsp;I. Mandel.
+ Concatenative resynthesis with improved training signals for speech
+  enhancement.
+ In <em>Proceedings of Interspeech</em>, 2018.
+ To appear.
+[&nbsp;<a href="pubs_bib.html#SyedEtAl2018">bib</a>&nbsp;| 
+<a href="http://m.mr-pc.org/work/interspeech18syed.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Noise reduction in speech signals remains an important area of research with potential for high impact in speech processing domains such as voice communication and hearing prostheses.  We extend and demonstrate significant improvements to our previous work in synthesis-based speech enhancement, which performs concatenative resynthesis of speech signals for the production of noiseless, high quality speech.  Concatenative resynthesis methods perform unit selection through learned non-linear similarity functions between short chunks of clean and noisy signals.  These mappings are learned using deep neural networks (DNN) trained to predict high similarity for the exact chunk of speech that is contained within a chunk of noisy speech, and low similarity for all other pairings.  We find here that more robust mappings can be learned with a more efficient use of the available data by selecting pairings that are not exact matches, but contain similar clean speech that matches the original in terms of acoustic, phonetic, and prosodic content.  The resulting output is evaluated on the small vocabulary CHiME2-GRID corpus and outperforms our original baseline system in terms of intelligibility by combining phonetic similarity with similarity of acoustic intensity, fundamental frequency, and periodicity.
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="MaitiEtAl2018">3</a>]
+</td>
+<td class="bibtexitem">
+Soumi Maiti, Joey Ching, and Michael&nbsp;I. Mandel.
+ Large vocabulary concatenative resynthesis.
+ In <em>Proceedings of Interspeech</em>, 2018.
+ To appear.
+[&nbsp;<a href="pubs_bib.html#MaitiEtAl2018">bib</a>&nbsp;| 
+<a href="http://m.mr-pc.org/work/interspeech18maiti.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Traditional speech enhancement systems reduce noise by modifying the noisy signal, which suffer from two problems: under-suppression of noise and over-suppression of speech. As an alternative, in this paper, we use the recently introduced concatenative resynthesis approach where we replace the noisy speech with its clean resynthesis. The output of such a system can produce speech that is both noise-free and high quality. This paper generalizes our previous small-vocabulary system to large vocabulary.  To do so, we employ efficient decoding techniques using fast approximate nearest neighbor (ANN) algorithms. Firstly, we  apply ANN techniques on the original small vocabulary task and get 5&#215; speedup.  We then apply the techniques to the construction of a large vocabulary concatenative resynthesis system and scale the system up to 12 &#215; larger dictionary. We perform listening tests with five participants to measure subjective quality and intelligibility of the output speech. 
+</font></blockquote>
+<p>
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="MaitiAndMandel2017">4</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti and Michael&nbsp;I Mandel.
  Concatenative resynthesis using twin networks.
- In <em>Proceedings of Interspeech</em>, 2017.
+ In <em>Proceedings of Interspeech</em>, pages 3647--3651, 2017.
 [&nbsp;<a href="pubs_bib.html#MaitiAndMandel2017">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.21437/Interspeech.2017-1653">DOI</a>&nbsp;| 
 <a href="http://m.mr-pc.org/work/interspeech17.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 Traditional noise reduction systems modify a noisy signal to make it more like the original clean signal. For speech, these methods suffer from two main problems: under-suppression of noise and over-suppression of target speech. Instead, synthesizing clean speech based on the noisy signal could produce outputs that are both noise-free and high quality.  Our previous work introduced such a system using concatenative synthesis, but it required processing the clean speech at run time, which was slow and not scalable. In order to make such a system scalable, we propose here learning a similarity metric using two separate networks, one network processing the clean segments offline and another processing the noisy segments at run time. This system incorporates a ranking loss to optimize for the retrieval of appropriate clean speech segments. This model is compared against our original on the CHiME2-GRID corpus, measuring ranking performance and subjective listening tests of resyntheses.
@@ -375,7 +434,7 @@ Traditional noise reduction systems modify a noisy signal to make it more like t
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="syed17">2</a>]
+[<a name="syed17">5</a>]
 </td>
 <td class="bibtexitem">
 Ali Syed, Andrew Rosenberg, and Michael&nbsp;I Mandel.
@@ -395,7 +454,7 @@ Active learning aims to reduce the time and cost of developing speech recognitio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney17">3</a>]
+[<a name="devaney17">6</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney and Michael&nbsp;I Mandel.
@@ -416,7 +475,7 @@ Robust extraction of performance data from polyphonic musical performances requi
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16b">4</a>]
+[<a name="mandel16b">7</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Jon&nbsp;P Barker.
@@ -437,7 +496,7 @@ Recent automatic speech recognition (ASR) results are quite good when the traini
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16">5</a>]
+[<a name="mandel16">8</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel.
@@ -457,7 +516,7 @@ In a given noisy environment, human listeners can more accurately identify spoke
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="erdogan16">6</a>]
+[<a name="erdogan16">9</a>]
 </td>
 <td class="bibtexitem">
 Hakan Erdogan, John Hershey, Shinji Watanabe, Michael&nbsp;I Mandel, and Jonathan&nbsp;Le
@@ -496,7 +555,7 @@ rates in a mismatched training condition.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="xiao16">7</a>]
+[<a name="xiao16">10</a>]
 </td>
 <td class="bibtexitem">
 Xiong Xiao, Shinji Watanabe, Hakan Erdogan, Liang Lu, John Hershey, Michael&nbsp;L
@@ -520,7 +579,7 @@ Keywords: AMI meeting corpus,Acoustics,Array signal processing,Feature extractio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bagchi15">8</a>]
+[<a name="bagchi15">11</a>]
 </td>
 <td class="bibtexitem">
 Deblin Bagchi, Michael&nbsp;I Mandel, Zhongqiu Wang, Yanzhang He, Andrew Plummer,
@@ -543,7 +602,7 @@ Automatic Speech Recognition systems suffer from severe performance degradation 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tirumala15">9</a>]
+[<a name="tirumala15">12</a>]
 </td>
 <td class="bibtexitem">
 Sreyas&nbsp;Srimath Tirumala and Michael&nbsp;I Mandel.
@@ -563,7 +622,7 @@ Spectral masking techniques are prevalent for noise suppression but they damage 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15d">10</a>]
+[<a name="mandel15d">13</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
@@ -600,7 +659,7 @@ Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15c">11</a>]
+[<a name="mandel15c">14</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Nicoleta Roman.
@@ -639,7 +698,7 @@ Localization-based multichannel source separation
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14c">12</a>]
+[<a name="mandel14c">15</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Young-Suk Cho, and Yuxuan Wang.
@@ -672,7 +731,7 @@ This paper introduces a new approach to dictionary-based source
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14b">13</a>]
+[<a name="mandel14b">16</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
@@ -692,7 +751,7 @@ Listeners can reliably identify speech in noisy conditions, although it is gener
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14a">14</a>]
+[<a name="mandel14a">17</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Arun Narayanan.
@@ -713,7 +772,7 @@ Spectral masking is a promising method for noise suppression in which regions of
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="nandi14">15</a>]
+[<a name="nandi14">18</a>]
 </td>
 <td class="bibtexitem">
 Arnab Nandi, Lilong Jiang, and Michael&nbsp;I Mandel.
@@ -746,7 +805,7 @@ existing systems.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel13">16</a>]
+[<a name="mandel13">19</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel.
@@ -765,7 +824,7 @@ Predicting the intelligibility of noisy recordings is difficult and most current
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="roman13">17</a>]
+[<a name="roman13">20</a>]
 </td>
 <td class="bibtexitem">
 Nicoleta Roman and Micheal Mandel.
@@ -782,7 +841,7 @@ Reverberation has a detrimental effect on speech perception both in terms of qua
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney12b">18</a>]
+[<a name="devaney12b">21</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -802,7 +861,7 @@ This paper introduces the Automatic Music Performance Analysis and Comparison To
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney11">19</a>]
+[<a name="devaney11">22</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -822,7 +881,7 @@ This paper evaluates the utility of the Discrete Cosine Transform (DCT) for char
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel10b">20</a>]
+[<a name="mandel10b">23</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Douglas Eck, and Yoshua Bengio.
@@ -851,7 +910,7 @@ This paper examines the relationship between human generated tags
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bergstra10">21</a>]
+[<a name="bergstra10">24</a>]
 </td>
 <td class="bibtexitem">
 James Bergstra, Michael&nbsp;I. Mandel, and Douglas Eck.
@@ -870,7 +929,7 @@ Cepstral analysis is effective in separating source from filter in vocal and mon
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel09b">22</a>]
+[<a name="mandel09b">25</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -892,7 +951,7 @@ We introduce the Ideal Interaural Parameter Mask as an upper bound on the perfor
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney09">23</a>]
+[<a name="devaney09">26</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -912,7 +971,7 @@ This paper describes a technique to improve the accuracy of dynamic time warping
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="law09">24</a>]
+[<a name="law09">27</a>]
 </td>
 <td class="bibtexitem">
 Edith Law, Kris West, Michael&nbsp;I Mandel, Mert Bay, and J.&nbsp;Stephen Downie.
@@ -931,7 +990,7 @@ Search by keyword is an extremely popular method for retrieving music. To suppor
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="weiss08">25</a>]
+[<a name="weiss08">28</a>]
 </td>
 <td class="bibtexitem">
 Ron&nbsp;J. Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -951,7 +1010,7 @@ We describe a system for separating multiple sources from a two-channel recordin
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel08a">26</a>]
+[<a name="mandel08a">29</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -971,7 +1030,7 @@ Multiple-instance learning algorithms train classifiers from lightly supervised 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="ellis08">27</a>]
+[<a name="ellis08">30</a>]
 </td>
 <td class="bibtexitem">
 Daniel P.&nbsp;W. Ellis, Courtenay&nbsp;V. Cotton, and Michael&nbsp;I. Mandel.
@@ -992,7 +1051,7 @@ Systems to predict human judgments of music similarity directly from the audio h
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07c">28</a>]
+[<a name="mandel07c">31</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1014,7 +1073,7 @@ We describe a system for localizing and separating multiple sound sources from a
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07b">29</a>]
+[<a name="mandel07b">32</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1035,7 +1094,7 @@ We have designed a web-based game to make collecting descriptions of musical exc
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07a">30</a>]
+[<a name="mandel07a">33</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Tony Jebara.
@@ -1057,7 +1116,7 @@ We present a method for localizing and separating sound sources in stereo record
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel05">31</a>]
+[<a name="mandel05">34</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1079,7 +1138,7 @@ Searching and organizing growing digital music collections requires automatic cl
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="sudderth05">32</a>]
+[<a name="sudderth05">35</a>]
 </td>
 <td class="bibtexitem">
 Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan&nbsp;S. Willsky.

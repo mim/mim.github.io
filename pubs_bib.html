@@ -277,13 +277,51 @@ disappointing ASR performance.}
 }
 </pre>
 
-<h1>Conference</h1><a name="MaitiAndMandel2017"></a><pre>
+<h1>Conference</h1><a name="TrinhEtAl2018"></a><pre>
+@inproceedings{<a href="mandel_conference.html#TrinhEtAl2018">TrinhEtAl2018</a>,
+  title = {Bubble cooperative networks for identifying important speech cues},
+  author = {Viet~Anh Trinh and Brian McFee and Michael I Mandel},
+  year = 2018,
+  booktitle = {Proceedings of Interspeech},
+  url = {<a href="http://m.mr-pc.org/work/interspeech18trinh.pdf">http://m.mr-pc.org/work/interspeech18trinh.pdf</a>},
+  note = {To appear},
+  abstract = {Predicting the intelligibility of noisy recordings is difficult and most current algorithms treat all speech energy as equally important to intelligibility. Our previous work on human perception used a listening test paradigm and correlational analysis to show that some energy is more important to intelligibility than other energy. In this paper, we propose a system called the Bubble Cooperative Network (BCN), which aims to predict important areas of individual utterances directly from clean speech. Given such a prediction, noise is added to the utterance in unimportant regions and then presented to a recognizer.  The  BCN is trained with a loss that encourages it to add as much noise as possible while preserving recognition performance, encouraging it to identify important regions precisely and place the noise everywhere else.  Empirical evaluation shows that the BCN can obscure 97.7\% of the spectrogram with noise while maintaining recognition accuracy for a simple speech recognizer that compares a noisy test utterance with a clean reference utterance.  The masks predicted by a single BCN on several utterances show patterns that are similar to analyses derived from human listening tests that analyze each utterance separately, while exhibiting better generalization and less context-dependence than previous approaches.}
+}
+</pre>
+
+<a name="SyedEtAl2018"></a><pre>
+@inproceedings{<a href="mandel_conference.html#SyedEtAl2018">SyedEtAl2018</a>,
+  author = {Ali Raza Syed and Viet~Anh Trinh and Michael I.~Mandel},
+  title = {Concatenative resynthesis with improved training signals for speech enhancement},
+  booktitle = {Proceedings of Interspeech},
+  year = 2018,
+  url = {<a href="http://m.mr-pc.org/work/interspeech18syed.pdf">http://m.mr-pc.org/work/interspeech18syed.pdf</a>},
+  note = {To appear},
+  abstract = {Noise reduction in speech signals remains an important area of research with potential for high impact in speech processing domains such as voice communication and hearing prostheses.  We extend and demonstrate significant improvements to our previous work in synthesis-based speech enhancement, which performs concatenative resynthesis of speech signals for the production of noiseless, high quality speech.  Concatenative resynthesis methods perform unit selection through learned non-linear similarity functions between short chunks of clean and noisy signals.  These mappings are learned using deep neural networks (DNN) trained to predict high similarity for the exact chunk of speech that is contained within a chunk of noisy speech, and low similarity for all other pairings.  We find here that more robust mappings can be learned with a more efficient use of the available data by selecting pairings that are not exact matches, but contain similar clean speech that matches the original in terms of acoustic, phonetic, and prosodic content.  The resulting output is evaluated on the small vocabulary CHiME2-GRID corpus and outperforms our original baseline system in terms of intelligibility by combining phonetic similarity with similarity of acoustic intensity, fundamental frequency, and periodicity.}
+}
+</pre>
+
+<a name="MaitiEtAl2018"></a><pre>
+@inproceedings{<a href="mandel_conference.html#MaitiEtAl2018">MaitiEtAl2018</a>,
+  author = {Soumi Maiti and Joey Ching and Michael I.~Mandel},
+  title = {Large vocabulary concatenative resynthesis},
+  booktitle = {Proceedings of Interspeech},
+  year = 2018,
+  url = {<a href="http://m.mr-pc.org/work/interspeech18maiti.pdf">http://m.mr-pc.org/work/interspeech18maiti.pdf</a>},
+  note = {To appear},
+  abstract = {Traditional speech enhancement systems reduce noise by modifying the noisy signal, which suffer from two problems: under-suppression of noise and over-suppression of speech. As an alternative, in this paper, we use the recently introduced concatenative resynthesis approach where we replace the noisy speech with its clean resynthesis. The output of such a system can produce speech that is both noise-free and high quality. This paper generalizes our previous small-vocabulary system to large vocabulary.  To do so, we employ efficient decoding techniques using fast approximate nearest neighbor (ANN) algorithms. Firstly, we  apply ANN techniques on the original small vocabulary task and get $5\times$ speedup.  We then apply the techniques to the construction of a large vocabulary concatenative resynthesis system and scale the system up to $12 \times$ larger dictionary. We perform listening tests with five participants to measure subjective quality and intelligibility of the output speech. }
+}
+</pre>
+
+<a name="MaitiAndMandel2017"></a><pre>
 @inproceedings{<a href="mandel_conference.html#MaitiAndMandel2017">MaitiAndMandel2017</a>,
   author = {Soumi Maiti and Michael I Mandel},
   title = {Concatenative resynthesis using twin networks},
   booktitle = {Proceedings of Interspeech},
   url = {<a href="http://m.mr-pc.org/work/interspeech17.pdf">http://m.mr-pc.org/work/interspeech17.pdf</a>},
   year = 2017,
+  pages = {3647--3651},
+  doi = {10.21437/Interspeech.2017-1653},
   abstract = {Traditional noise reduction systems modify a noisy signal to make it more like the original clean signal. For speech, these methods suffer from two main problems: under-suppression of noise and over-suppression of target speech. Instead, synthesizing clean speech based on the noisy signal could produce outputs that are both noise-free and high quality.  Our previous work introduced such a system using concatenative synthesis, but it required processing the clean speech at run time, which was slow and not scalable. In order to make such a system scalable, we propose here learning a similarity metric using two separate networks, one network processing the clean segments offline and another processing the noisy segments at run time. This system incorporates a ranking loss to optimize for the retrieval of appropriate clean speech segments. This model is compared against our original on the CHiME2-GRID corpus, measuring ranking performance and subjective listening tests of resyntheses.}
 }
 </pre>
