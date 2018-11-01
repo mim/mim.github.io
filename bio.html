@@ -1,0 +1,50 @@
+---
+layout: default
+title: Bio -- Michael I Mandel
+images:
+  - image_path: /img/mim/123.jpg
+    thumb: /img/mim/thumbs/123.jpg
+  - image_path: /img/mim/125.jpg
+    thumb: /img/mim/thumbs/125.jpg
+  - image_path: /img/mim/133.jpg
+    thumb: /img/mim/thumbs/133.jpg
+  - image_path: /img/mim/138.jpg
+    thumb: /img/mim/thumbs/138.jpg
+  - image_path: /img/mim/143.jpg
+    thumb: /img/mim/thumbs/143.jpg
+  - image_path: /img/mim/145.jpg
+    thumb: /img/mim/thumbs/145.jpg
+  - image_path: /img/mim/146.jpg
+    thumb: /img/mim/thumbs/146.jpg
+
+# for jpg in *.jpg ; do convert "$jpg" -resize "300^>" -gravity center -crop 300x300+0+0 -strip "thumbs/$jpg" ; done
+---
+<div class="page-header">
+<h1>Official bio</h1>
+</div>
+
+<p class="lead">
+Michael I Mandel is an Associate Professor of Computer and Information Science at Brooklyn College and the CUNY Graduate Center working at the intersection of machine learning, signal processing, and psychoacoustics.  He earned his BSc in Computer Science from the Massachusetts Institute of Technology and his MS and PhD with distinction in Electrical Engineering from Columbia University as a Fu Foundation Presidential Scholar. He was an FQRNT Postdoctoral Research Fellow in the Machine Learning laboratory (LISA/MILA) at the Université de Montréal, an Algorithm Developer at Audience Inc, a company that has shipped over 500 million noise suppression chips for cell phones, and a Research Scientist in Computer Science and Engineering at the Ohio State University. His work is supported by the National Science Foundation, including via a CAREER award, the Alfred P. Sloan Foundation, and Google, Inc.
+</p>
+
+<div class="page-header">
+<h1><a href="/cv.pdf">Curriculum vitae</a></h1>
+</div>
+
+<p class="lead"><a href="/cv.pdf">Download</a></p>
+
+
+<div class="page-header">
+<h1>Photos</h1>
+</div>
+<style>
+    .image-gallery {overflow: auto; margin-left: -1%!important;}
+    .image-gallery a {float: left; display: block; margin: 0 0 1% 1%; width: 19%; text-align: center; text-decoration: none!important;}
+    .image-gallery a span {display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding: 3px 0;}
+    .image-gallery a img {width: 100%; display: block;}
+</style>
+<p class="image-gallery">
+  {% for image in page.images %}
+    <a href="{{ image.image_path }}"><img src="{{ image.thumb }}"/></a></li>
+  {% endfor %}
+</p>
