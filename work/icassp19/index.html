@@ -1,0 +1,183 @@
+---
+layout: default
+title: Parametric resynthesis ICASSP 2019 results
+---
+<h1>ICASSP 2019 results</h1>
+<h2>Speech denoising by parametric resynthesis [pdf]</h2>
+<h3>Soumi Maiti and Michael Mandel</h3>
+
+<quote>
+This work proposes the use of clean speech vocoder parameters as the target for a neural network performing speech enhancement. These parameters have been designed for text-to-speech synthesis so that they both produce high-quality resyntheses and also are straightforward to model with neural networks, but have not been utilized in speech enhancement until now.  In comparison to a matched text-to-speech system that is given the ground truth transcripts of the noisy speech, our model is able to produce more natural speech because it has access to the true prosody in the noisy speech. In comparison to two denoising systems, the oracle Wiener mask and a DNN-based mask predictor, our model equals the oracle Wiener mask in subjective quality and intelligibility and surpasses the realistic system.  A vocoder-based upper bound shows that there is still room for improvement with this approach beyond the oracle Wiener mask. We test speaker-dependence with two speakers and show that a single model can be used for multiple speakers.
+</quote>
+
+<h2>Audio files</h2>
+<p>Wav files from the CMU Arctic corpus mixed with noise from the CHiME-3 noise recordings</p>
+
+<h3>Real systems</h3>
+<table>
+<tr><th>File</th><th>Noisy speech</th><th>Parametric resynthesis</th><th>DNN-predicted IRM</th><th>Text-to-speech</th><th>Original clean speech</th></tr>
+<tr><td>b0481</td>
+<td><audio controls preload="none" style="width:160px" src="b0481_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0487</td>
+<td><audio controls preload="none" style="width:160px" src="b0487_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0489</td>
+<td><audio controls preload="none" style="width:160px" src="b0489_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0490</td>
+<td><audio controls preload="none" style="width:160px" src="b0490_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0496</td>
+<td><audio controls preload="none" style="width:160px" src="b0496_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0498</td>
+<td><audio controls preload="none" style="width:160px" src="b0498_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0499</td>
+<td><audio controls preload="none" style="width:160px" src="b0499_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0505</td>
+<td><audio controls preload="none" style="width:160px" src="b0505_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0508</td>
+<td><audio controls preload="none" style="width:160px" src="b0508_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0509</td>
+<td><audio controls preload="none" style="width:160px" src="b0509_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0511</td>
+<td><audio controls preload="none" style="width:160px" src="b0511_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_clean.wav">Error</audio></td>
+</tr>
+<tr><td>b0517</td>
+<td><audio controls preload="none" style="width:160px" src="b0517_noisy.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_PR.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_IRM.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_TTS.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_clean.wav">Error</audio></td>
+</tr>
+</table>
+
+
+<h3>Oracle systems</h3>
+<table>
+<tr><th>File</th><th>Original clean speech</th><th>Vocoder encode-decode</th><th>PR from clean</th><th>Oracle Wiener mask</th></tr>
+<tr><td>b0481</td>
+<td><audio controls preload="none" style="width:160px" src="b0481_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0481_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0487</td>
+<td><audio controls preload="none" style="width:160px" src="b0487_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0487_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0489</td>
+<td><audio controls preload="none" style="width:160px" src="b0489_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0489_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0490</td>
+<td><audio controls preload="none" style="width:160px" src="b0490_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0490_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0496</td>
+<td><audio controls preload="none" style="width:160px" src="b0496_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0496_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0498</td>
+<td><audio controls preload="none" style="width:160px" src="b0498_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0498_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0499</td>
+<td><audio controls preload="none" style="width:160px" src="b0499_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0499_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0505</td>
+<td><audio controls preload="none" style="width:160px" src="b0505_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0505_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0508</td>
+<td><audio controls preload="none" style="width:160px" src="b0508_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0508_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0509</td>
+<td><audio controls preload="none" style="width:160px" src="b0509_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0509_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0511</td>
+<td><audio controls preload="none" style="width:160px" src="b0511_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0511_wiener.wav">Error</audio></td>
+</tr>
+<tr><td>b0517</td>
+<td><audio controls preload="none" style="width:160px" src="b0517_clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_PR_Clean.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_VEC.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="b0517_wiener.wav">Error</audio></td>
+</tr>
+</table>
+
+
