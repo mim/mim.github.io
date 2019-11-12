@@ -1,0 +1,279 @@
+---
+layout: default
+title: Speaker independence of neural vocoders and their effect on parametric resynthesis speech enhancement
+---
+<h1>ICASSP 2020 results</h1>
+<h2>Speaker independence of neural vocoders and their effect on parametric resynthesis speech enhancement [pdf]</h2>
+<h3>Soumi Maiti and Michael Mandel</h3>
+
+<quote>
+Traditional speech enhancement systems produce speech with compromised quality.  Here we propose to use the high quality speech generation capability of neural vocoders for better quality speech enhancement. We term this <em>parametric resynthesis</em> (PR). In previous work, we showed that PR systems generate high quality speech for a single speaker using two neural vocoders, WaveNet and WaveGlow. Both these vocoders are traditionally speaker dependent. Here we first show that when trained on data from enough speakers, these vocoders can generate speech from unseen speakers, both male and female, with similar quality as seen speakers in training. Next using these two vocoders and a new vocoder LPCNet, we evaluate the noise reduction quality of PR on unseen speakers and show that objective signal and overall quality is higher than the state-of-the-art speech enhancement systems Wave-U-Net, Wavenet-denoise, and SEGAN.  Moreover, in subjective quality, multiple-speaker PR out-performs the oracle Wiener mask.
+</quote>
+
+<h2>Audio files</h2>
+<p>Wav files from the <a href="https://doi.org/10.7488/ds/1994">VCTK corpus</a> <a href="https://datashare.is.ed.ac.uk/handle/10283/2791">mixed with noise</a> [1] from the <a href="https://zenodo.org/record/1227121">DEMAND dataset</a> [2], as used in several previous papers [3-5].</p>
+
+<h3>References</h3>
+
+<p>[1] Cassia Valentini-Botinhao et al.,  "Noisy speech database for training speech enhancement algorithms and TTS models," University of Edinburgh. School of Informatics. Centre for Speech Technology Research (CSTR), 2017.</p>
+
+<p>[2] Joachim Thiemann, Nobutaka Ito, and Emmanuel Vincent, "The diverse environments multi-channel acoustic noise database (DEMAND):  A database of multichannel environmental noise recordings," in Proceedings of Meetings on Acoustics ICA2013. ASA, 2013, vol. 19, p. 035081.</p>
+
+<p>[3] Santiago Pascual, Antonio Bonafonte, and Joan Serra, "SEGAN: Speech enhancement generative adversarial network," arXiv preprint arXiv:<a href="https://arxiv.org/abs/1703.09452">1703.09452</a>, 2017.</p>
+
+<p>[4] Dario Rethage, Jordi Pons, and Xavier Serra,  "A wavenet forspeech denoising,"  in Proceedings of the IEEE International Conference on Acoustics, Speech, and Signal Processing, 2018, pp. 5069–5073.</p>
+
+<p>[5] Craig  Macartney  and  Tillman  Weyde, "Improved  speechenhancement   with   the   wave-u-net," arXiv  preprint arXiv:<a href="https://arxiv.org/abs/1811.11307">1811.11307</a>, 2018.</p>
+
+<h3>Neural parametric resynthesis systems</h3>
+<table>
+<tr><th>File</th><th>Noisy</th><th>PR-World</th><th>PR-NVWaveNet</th><th>PR-WaveGlow</th><th>PR-LPCNet</th><th>Clean</th></tr>
+<tr><td>p232_013</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_013.wav">Error</audio></td>
+</tr>
+<tr><td>p232_054</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_054.wav">Error</audio></td>
+</tr>
+<tr><td>p232_092</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_092.wav">Error</audio></td>
+</tr>
+<tr><td>p232_104</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_104.wav">Error</audio></td>
+</tr>
+<tr><td>p232_128</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_128.wav">Error</audio></td>
+</tr>
+<tr><td>p232_169</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_169.wav">Error</audio></td>
+</tr>
+<tr><td>p232_202</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_202.wav">Error</audio></td>
+</tr>
+<tr><td>p232_302</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_302.wav">Error</audio></td>
+</tr>
+<tr><td>p232_410</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_410.wav">Error</audio></td>
+</tr>
+<tr><td>p257_011</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_011.wav">Error</audio></td>
+</tr>
+<tr><td>p257_101</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_101.wav">Error</audio></td>
+</tr>
+<tr><td>p257_157</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_157.wav">Error</audio></td>
+</tr>
+<tr><td>p257_243</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_243.wav">Error</audio></td>
+</tr>
+<tr><td>p257_365</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_365.wav">Error</audio></td>
+</tr>
+<tr><td>p257_395</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-World/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-NVWaveNet/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-WaveGlow/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/PR-LPCNet/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_395.wav">Error</audio></td>
+</tr>
+</table>
+
+
+<h3>Baseline systems (from their released demos)</h3>
+<table>
+<tr><th>File</th><th>Noisy</th><th>SEGAN [3]</th><th>Rethage et al [4]</th><th>Wave-U-Net [5]</th><th>Oracle Wiener</th><th>Clean</th></tr>
+<tr><td>p232_013</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_013.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_013.wav">Error</audio></td>
+</tr>
+<tr><td>p232_054</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_054.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_054.wav">Error</audio></td>
+</tr>
+<tr><td>p232_092</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_092.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_092.wav">Error</audio></td>
+</tr>
+<tr><td>p232_104</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_104.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_104.wav">Error</audio></td>
+</tr>
+<tr><td>p232_128</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_128.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_128.wav">Error</audio></td>
+</tr>
+<tr><td>p232_169</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_169.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_169.wav">Error</audio></td>
+</tr>
+<tr><td>p232_202</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_202.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_202.wav">Error</audio></td>
+</tr>
+<tr><td>p232_302</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_302.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_302.wav">Error</audio></td>
+</tr>
+<tr><td>p232_410</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p232_410.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p232_410.wav">Error</audio></td>
+</tr>
+<tr><td>p257_011</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_011.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_011.wav">Error</audio></td>
+</tr>
+<tr><td>p257_101</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_101.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_101.wav">Error</audio></td>
+</tr>
+<tr><td>p257_157</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_157.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_157.wav">Error</audio></td>
+</tr>
+<tr><td>p257_243</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_243.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_243.wav">Error</audio></td>
+</tr>
+<tr><td>p257_365</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_365.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_365.wav">Error</audio></td>
+</tr>
+<tr><td>p257_395</td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Noisy/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/segan/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wavenet-speech-denoise/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wave_u_net/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/wiener/p257_395.wav">Error</audio></td>
+<td><audio controls preload="none" style="width:160px" src="http://m.mr-pc.org/work/icassp20audio/Clean/p257_395.wav">Error</audio></td>
+</tr>
+</table>
+
+
