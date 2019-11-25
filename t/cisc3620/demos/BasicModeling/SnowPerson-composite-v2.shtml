@@ -11,7 +11,7 @@ Date: August 27, 2014
       body {margin: 0px}
       canvas { width: 100%; height: 100% }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="../../307.css">
     <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
     <script src="../libs/three.min.js"></script>
     <script src="../libs/tw.js"></script>

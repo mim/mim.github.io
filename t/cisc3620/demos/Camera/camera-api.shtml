@@ -8,7 +8,7 @@
 <html>
   <head>
     <title>Camera API</title>
-    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="../../307.css">
     <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
     <style>
       body { margin: 10px; min-width: 820px; }
