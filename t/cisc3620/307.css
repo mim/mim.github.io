@@ -1,0 +1,249 @@
+/* This is a CSS file, not an HTML file, so it has a very different
+syntax.  It even has different comment syntax.  Comments begin with
+slash-star and end with star-slash.
+
+Summer 2005  Implemented by Scott D. Anderson
+Fall 2006  Added width constraint for body, but only for screen media.
+
+*/
+
+/* The following font attributes will apply to the whole document, unless
+overridden. */
+
+@media screen {
+BODY {
+   font-family: Verdana, Arial, sans-serif;
+   font-size:  medium;
+   width: auto;
+   max-width: 55em;
+   }
+}
+
+@media print {
+BODY {
+   font-family: "Times New Roman", "Times", serif;
+   font-size:  10pt;
+   width: auto;
+   }
+}
+
+/* The following means that all the header tags will share these
+properties. */
+
+H1, H2, H3, H4, H5, H6 {
+    font-family: Verdana, Arial, sans-serif;
+    color: teal;
+    }
+
+/* The following apply to particular header tags.  */
+
+H1 { font-size: xx-large; }
+
+H2 { font-size: x-large; font-weight: bold; border-bottom: 1px solid teal }
+
+H3 { font-size: large; font-weight: bold }
+
+H4 { font-size: large; font-style: italic }
+
+H5 { font-size: medium; font-weight: bold }
+
+H6 { font-size: medium; font-style: italic }
+     
+/* Modify the LI tag so that there's a little bit of space after each list
+item, except when the list is "class=compact." No, don't do this, because
+it messes up the code line-numbering. */
+
+/*
+OL LI, UL LI { margin-top: 5pt }
+*/
+
+OL.compact LI, UL.compact LI { margin-top: 0pt }
+
+/* This is also for exercises, but it clears, indents and draws a red box.
+ The matching SPAN is for formatting the title of the exercise.  */
+
+DIV.ex {
+       border: 1px solid red;
+       padding-left: 5px;
+       padding-right: 5px;
+       clear: left;
+       margin-top: 0.2in;
+       margin-left: 5em;
+       margin-right: 5em;
+}
+
+SPAN.ex { font-size: 16pt; color: red; background: white }    
+
+div.demo div { display: inline-block; width: 90%; margin: 0px auto; border: 3px solid teal; }
+div.demo > p { text-align: center; }
+
+/* The following is useful when we want to switch back to the "normal"
+body text within some other environment. */
+
+.body {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 12pt;
+}
+
+/* This is for meta-comments in the text */
+
+P.note {
+      color: maroon;
+      background: white
+}      
+
+pre {
+    font-size: 120%;
+    }
+/* This was used for longish code examples, putting them in a nice box.
+   Now I use various syntax highlighters.  Currently Google Pretify
+
+pre {
+       font-size: 120%;
+       font-weight: bold;
+       border-style: double;
+       border-width: 3px;
+       border-color: gray;
+       padding-left: 5px;
+       padding-right: 5px;
+       clear: left;
+}
+
+*/
+
+code {
+       font-size: 120%;
+       /* font-weight: bold; */
+       }
+
+
+TD {
+   vertical-align: top }
+
+/* For use in calendars and such */
+
+TD.break {
+   background: yellow;
+   color: black;
+   }
+
+TD.due {
+   background: red;
+   color: black;
+   }
+   
+
+/* We tried to use this for baseline alignment in tables used for layout
+and the ATTACK AT DAWN tables, but it didn't work.  Had to modify the TD
+tag. */
+
+TR.b { vertical-align: baseline; }
+TD.b { vertical-align: baseline; }
+
+/* We use this for courier font in the ASCII table */
+
+TD.c {
+    font-family: courier, monospace;
+    text-align: center;
+    vertical-align: baseline
+    }
+
+/* When we want left-aligned courier */
+
+TD.cl {
+    font-family: courier, monospace;
+    text-align: left;
+    vertical-align: baseline
+    }
+
+/* For the list of icons for copyright, standards compliance and so forth
+*/
+
+#iconlist {
+   display:  block;
+   padding-top: 20px;
+   padding-left: 0px;
+   margin-left: 0px;
+   border-left: 0px;
+   border-top: 2px solid gray;
+   margin-top: 3ex;
+   width: 100%;
+}
+
+#iconlist LI {
+   display: inline;
+   list-style-type: none;
+   padding-left:   0px;
+   padding-right: 10px;
+}
+
+/* ================================================================ */
+
+  div.exercise { border: 1px solid red; margin: 1em; padding: 1em; }
+  div.exercise h2 { border-bottom: 1px solid red; }
+  div#insert_TOC_here { font-size: small; color: gray; }
+
+/*
+  pre, pre.sh_sourceCode { border-style: none; background-color: #EEF; }
+*/
+
+  .code_solution { border: 1px solid teal; padding: 1em 0em; }
+/*
+  .code_solution pre { display: none; }
+  */
+
+  .matrix4x4 td { width: 25%; }
+
+/* divides the reading from the class material */
+
+h2.stop {
+    padding: 3ex;
+    border: 3px solid blue;
+    background: yellow;
+    }
+
+h2.stop:after {
+    content: " You may stop reading here. The rest of this material is to be used in class."
+}
+
+/* divides the main reading from extra, "above and beyond" material */
+
+h2.extra {
+    padding: 3ex;
+    border: 3px solid blue;
+    background: yellow;
+    }
+
+h2.extra:after {
+    content: " You may stop reading here. The rest of this material is not required by this class, but is here for the interested reader."
+}
+
+iframe.webgl {
+    display: block;
+    width: 100%;
+}
+
+/* For surrounding a link to a demo, so it stands out. */
+
+.demo {
+    border: 3px solid teal;
+    background-color: #66FFFF;
+    padding: 3ex 3em;
+}
+.demo a { color: red; }
+
+.notyet { color: gray; }
+
+/* this rule always messes up 2D canvases.
+   
+  canvas { width: 100%; }
+  */
+
+canvas.2d { width: 300px; height: 150px; }
+
+aside {
+    margin: 10px 3em;
+    border: 1px solid teal;
+    padding: 1em 2em;
+    background-color: #eff;
+}
