@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>Plane Flags</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane Flags</h1>
+
+<p>This demo shows a texture-mapping of a computed texture onto a
+simple <code>THREE.PlaneGeometry</code>.  The one on the left
+uses <code>NearestFilter</code> and the one on the right
+uses <code>LinearFilter</code>
+
+<script id="plane-image-texture">
+var planeHalfWidth = 4;
+
+function makeFlag(name) {
+    var flagTexture = TW.makeFlagTexture(name);
+    var flagGeom = new THREE.PlaneGeometry( 2*planeHalfWidth, 4);
+    var flagMat = new THREE.MeshBasicMaterial(
+        {
+            color: THREE.ColorKeywords.white,
+            map: flagTexture,
+        });
+    var flagMesh = new THREE.Mesh( flagGeom, flagMat );
+    return flagMesh;
+}
+
+</script>
+
+<script>
+// ================================================================
+
+var guiParams = {
+    flag: "nascar",
+    sMin: 0,
+    sMax: 1,
+    tMin: 0,
+    tMax: 1,
+    lastParam: null
+}
+
+function changeFilters(obj, filter) {
+    var tex = obj.material.map;
+    tex.minFilter = filter;
+    tex.magFilter = filter;
+    tex.needsUpdate = true;
+}
+
+var scene = new THREE.Scene();
+
+var flagNearest, flagLinear;
+
+function redoScene() {
+    scene.remove(flagNearest);
+    scene.remove(flagLinear);
+
+    flagNearest = makeFlag(guiParams.flag);
+    flagNearest.position.set(-planeHalfWidth-1,0,0);
+    changeFilters(flagNearest, THREE.NearestFilter);
+    scene.add(flagNearest);
+
+    flagLinear = makeFlag(guiParams.flag);
+    flagLinear.position.set(+planeHalfWidth+1,0,0);
+    changeFilters(flagLinear, THREE.LinearFilter);
+    scene.add(flagLinear);
+    TW.render();
+}
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -4, maxx: 4,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+redoScene();
+
+var gui = new dat.GUI();
+gui.add(guiParams,"flag",["nascar","checks","US-Gray","US-RWB"]).onChange(redoScene);
+
+</script>
+
+
+</body>
+</html>

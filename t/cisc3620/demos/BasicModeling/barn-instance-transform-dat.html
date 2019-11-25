@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <title>Barn Instance Transform</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline-block;
+          margin: 10px 20px;
+          width: 80%;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Barn Instance Transform</h1>
+
+<script>
+    var barnValues = {
+        barnX: 0,
+        barnY: 0,
+        barnZ: 0,
+        barnRotationX: 0,
+        barnRotationY: 0,
+        barnRotationZ: 0,
+        barnScaleX: 1,
+        barnScaleY: 1,
+        barnScaleZ: 1 };
+</script>
+
+<script>
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var barnWidth = 50;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barn1geom = TW.createBarn( barnWidth, barnHeight, barnDepth );
+var barn1mesh = TW.createMesh(barn1geom);
+
+// Proceed as usual
+
+scene.add(barn1mesh);
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer, scene, {minx: 0, maxx: barnWidth,
+                                 miny: 0, maxy: barnHeight+0.5*barnWidth,
+                                 minz: -barnDepth, maxz: 0});
+TW.toggleAxes("show");
+</script>
+
+<script id="updateGraphics">
+function updateGraphics() {
+    // the position is an absolute thing
+    barn1mesh.position.set( barnValues.barnX,
+                            barnValues.barnY,
+                            barnValues.barnZ );
+    // the rotation is an absolute thing
+    barn1mesh.rotation.set( barnValues.barnRotationX,
+                            barnValues.barnRotationY,
+                            barnValues.barnRotationZ,
+                            'XYZ');
+    // the scaling is an absolute thing
+    barn1mesh.scale.set( barnValues.barnScaleX,
+                         barnValues.barnScaleY,
+                         barnValues.barnScaleZ);
+}
+
+function redraw() {
+    updateGraphics();
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(barnValues,'barnX',-100,100).onChange(redraw);
+gui.add(barnValues,'barnY',-100,100).onChange(redraw);
+gui.add(barnValues,'barnZ',-100,100).onChange(redraw);
+gui.add(barnValues,'barnRotationX',0,2*Math.PI).onChange(redraw);
+gui.add(barnValues,'barnRotationY',0,2*Math.PI).onChange(redraw);
+gui.add(barnValues,'barnRotationZ',0,2*Math.PI).onChange(redraw);
+gui.add(barnValues,'barnScaleX',-2,2).onChange(redraw);
+gui.add(barnValues,'barnScaleY',-2,2).onChange(redraw);
+gui.add(barnValues,'barnScaleZ',-2,2).onChange(redraw);
+
+</script>
+
+<pre id="code">
+</pre>
+
+
+</body>
+</html>

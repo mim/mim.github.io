@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Camera Example</title>
+    <script src="../libs/three.min.js"></script>
+    <!-- omit dat.gui and OrbitControls if you unwanted -->
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Simple Camera Example</h1>
+
+<p>This file shows a wireframe barn using a fixed perspective camera, just
+  to demonstrate the THREE.js Camera API.
+
+<canvas id="canvas1" style="display: block; width: 800px; height: 500px; margin: 10px auto;">
+
+<script>
+var scene = new THREE.Scene();
+var canvasElt = document.getElementById("canvas1");
+var renderer = new THREE.WebGLRenderer({canvas: canvasElt});
+renderer.setSize(canvasElt.clientWidth,canvasElt.clientHeight);
+renderer.setClearColor( 0xdddddd, 1);
+
+// ====================================================================
+// Camera setup. See last line of example as well
+
+var camera = new THREE.PerspectiveCamera( 45,      // fovy in degrees
+                                          800/500, // aspect ratio: our canvas is 800/500 pixels
+                                          1,       // near
+                                          100      // far
+                                        );
+
+camera.position.set(10,5,30);   // so that the barn is roughly centered
+camera.up.set(0,1,0);           // this is actually the default
+
+// this location is roughly in the center of the front of the barn
+var barnFront = new THREE.Vector3(10,5,0); 
+
+camera.lookAt( barnFront );
+
+// This will render the current scene using the current camera
+// Invoked at the end of this code.
+function render() {
+    renderer.render( scene, camera );
+}
+
+// ====================================================================
+
+/* Next, we create objects in our scene. Here, one wire barn. */
+
+var wirebarn = TW.createWireBarn(20,10,40);
+scene.add(wirebarn);
+
+// ================================================================
+// Gotta do this! Render the scene using the current camera.
+
+render();
+
+</script>
+
+</body>
+</html>

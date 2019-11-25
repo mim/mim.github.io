@@ -1,0 +1,215 @@
+<html>
+  <head>
+    <title>Plane Texture Tutor</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane w/ Texture</h1>
+
+<p>This demo shows a texture-mapping of the following image
+  (<span id='imagePath'></span>) onto a
+  simple <code>THREE.PlaneGeometry</code>.
+
+
+<p>
+    <img style="width:40%" id="flat" alt="plain flat image">
+
+<p>Note that <code>THREE.Texture.flipY</code> is <code id="flipY"></code>
+    <p>Remember, in the plane below:
+      <ul>
+        <li>s goes left to right
+        <li>t goes
+          <ul>
+            <li id="flipYtrue">bottom to top if flipY is true
+            <li id="flipYfalse">top to bottom if flipY is false
+          </ul>
+      </ul>
+
+<script>
+var imagePath = "../../r67/examples/textures/UV_Grid_Sm.jpg";
+document.querySelector("#flat").src = imagePath;
+document.querySelector("#imagePath").innerHTML = imagePath;
+</script>
+
+<script>
+guiParams = {
+    sMin: 0.0,
+    sMax: 1.0,
+    tMin: 0.0,
+    tMax: 1.0,
+    wrapS: "repeat",
+    wrapT: "repeat",
+    lastParam: null
+}
+
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+TW.isPowerOf2 = function(x) {
+    // Clever way to check if an integer is a power of two. If it's not a
+    // positive integer; you're out of luck, so check for that before
+    // using this. For our application (image dimensions), it works fine.
+    // when we subtract 1 from an power of two, we get something that
+    // shares no bits with it, so the bitwise and is false.  If it's not a
+    // power of two, the borrow doesn't affect the larger power of two, so
+    // the bitwise and is true.  See
+    // https://www.exploringbinary.com/ten-ways-to-check-if-an-integer-is-a-power-of-two-in-c/
+    return ((x != 0) && !(x & (x-1)));
+}
+
+TW.createStripesTexture = function (colors) {
+    // returns an array containing a texel for each color in colors, which
+    // must be an array whose length is a power of two.
+    if( ! TW.isPowerOf2(colors.length) )
+        throw "Length not a power of two: "+colors;
+    var width = colors.length;
+    var height = 1;
+    var i, j, n = 0, len = width * height * 3;
+    var data = new Uint8Array( len );
+    data.width = width;
+    data.height = height;
+    for(i = 0; i < width; i++ ) {
+        var c = colors[i];
+        if( typeof c == 'number' ) {
+            TW.rowMajorAsetRGB(data,0,i, 0xFF&(c>>16), 0xFF&(c>>8), 0xFF&(c));
+        } else if( c instanceof THREE.Color ) {
+            TW.rowMajorAsetRGB(data,0,i, c.r, c.g, c.b);
+        } else {
+            throw "dunno how to handle color: " + c;
+        }
+    }
+    return data;
+};
+
+TW.createIrishDataTexture = function () {
+    var data = TW.createStripesTexture( [TW.ORANGE, TW.WHITE, TW.GREEN, TW.WHITE,
+                                         TW.ORANGE, TW.WHITE, TW.GREEN, TW.WHITE ] );
+    var obj = new THREE.DataTexture( data, 8, 1, THREE.RGBFormat);
+    obj.minFilter = THREE.NearestFilter;
+    obj.magFilter = THREE.NearestFilter;
+    obj.needsUpdate = true;
+    return obj;
+};                                         
+
+
+// ================================================================
+var planeGeom = new THREE.PlaneGeometry( 4, 4);
+
+function printTextureParams(quad) {
+    var elt = quad.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    console.log("face0: "+JSON.stringify(elt[0]));
+    console.log("face1: "+JSON.stringify(elt[1]));
+}
+    
+
+function updateTextureParams(quad, sMin, sMax, tMin, tMax) {
+    var elt = quad.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    var face0 = elt[0];
+    face0[0] = new THREE.Vector2(sMin,tMax);
+    face0[1] = new THREE.Vector2(sMin,tMin);
+    face0[2] = new THREE.Vector2(sMax,tMax);
+    var face1 = elt[1];
+    face1[0] = new THREE.Vector2(sMin,tMin);
+    face1[1] = new THREE.Vector2(sMax,tMin);
+    face1[2] = new THREE.Vector2(sMax,tMax);
+    printTextureParams(quad);
+    quad.uvsNeedUpdate = true;
+}
+ 
+function updateTextureParamsFromGUI() {
+    updateTextureParams( planeGeom,
+                         guiParams.sMin,
+                         guiParams.sMax,
+                         guiParams.tMin,
+                         guiParams.tMax);
+    TW.render();
+}
+
+function updateTextureSettings(wrapS, wrapT) {
+    var abbrev = {clamp:  THREE.ClampToEdgeWrapping,
+                  repeat: THREE.RepeatWrapping,
+                  mirror: THREE.MirroredRepeatWrapping};
+    imageTexture.wrapS = abbrev[wrapS];
+    imageTexture.wrapT = abbrev[wrapT];
+    imageTexture.needsUpdate = true;
+}    
+
+function updateTextureSettingsFromGUI() {
+    updateTextureSettings( guiParams.wrapS, guiParams.wrapT );
+    TW.render();
+}
+
+
+var imageLoaded = false;
+var imageTexture = TW.createIrishDataTexture();
+
+document.querySelector("#flipY").innerHTML = imageTexture.flipY;
+if( imageTexture.flipY ) {
+    document.querySelector("#flipYtrue").style.fontWeight = "bold";
+    document.querySelector("#flipYfalse").style.fontWeight = "normal";
+} else {
+    document.querySelector("#flipYtrue").style.fontWeight = "normal";
+    document.querySelector("#flipYfalse").style.fontWeight = "bold";
+}
+
+var imageMat = new THREE.MeshBasicMaterial(
+    {color: THREE.ColorKeywords.white,
+     map: imageTexture});
+
+var imageMesh = new THREE.Mesh( planeGeom, imageMat );
+scene.add(imageMesh);
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+// We always need to init TW
+TW.mainInit(renderer,scene);
+
+/* We almost always need a camera; here we'll use a default orbiting
+camera.  The third argument are the ranges for the coordinates, to help
+with setting up the placement of the camera. They need not be perfectly
+accurate, but if they are way off, your camera might not see anything, and
+you'll get a blank canvas. The camera setup returns a state object which
+stores various values specific to this canvas, including a render()
+function. */
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+updateTextureSettingsFromGUI();
+
+var gui = new dat.GUI();
+gui.add(guiParams, "sMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "sMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "wrapS", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+gui.add(guiParams, "wrapT", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+
+</script>
+
+
+</body>
+</html>

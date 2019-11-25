@@ -1,0 +1,99 @@
+<!-- 
+Scott D. Anderson
+November 2014
+CS 307
+
+Creates two partially transparent planes that intersect
+ -->
+<html>
+  <head>
+    <title>Intersecting Planes</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Intersecting Planes</h1>
+
+<p>The red plane is first to be added to the scene; the green second. It
+    seems they are drawn/rendered in that order.
+
+<script id="prog">
+
+var sceneParams = {
+    redPlaneOpacity: 0.5,
+    redDepthWrite: true,
+    redDepthTest: true,
+    greenPlaneOpacity: 0.5,
+    greenDepthWrite: true,
+    greenDepthTest: true,
+    lastParam: null
+};
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer();
+        
+TW.clearColor = 0x000000;
+TW.mainInit(renderer,scene);
+        
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -5, maxx: 5,
+                miny: -5, maxy: 5,
+                minz: 0, maxz: 0});
+        
+var plane1, plane2;
+
+function redrawPlanes() {
+    scene.remove(plane1);
+    scene.remove(plane2);
+    var planeG = new THREE.PlaneGeometry(10,10);
+    var plane1M = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.red,
+                                               side: THREE.DoubleSide,
+                                               transparent: true,
+                                               opacity: sceneParams.redPlaneOpacity,
+                                               depthWrite: sceneParams.redDepthWrite,
+                                               depthTest: sceneParams.redDepthTest
+                                              }); 
+    plane1 = new THREE.Mesh(planeG,plane1M);
+    plane1.rotateY( THREE.Math.degToRad(-30) );
+    scene.add(plane1);
+    
+    var plane2G = new THREE.PlaneGeometry(10,10);
+    var plane2M = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.green,
+                                               side: THREE.DoubleSide,
+                                               transparent: true,
+                                               opacity: sceneParams.greenPlaneOpacity,
+                                               depthWrite: sceneParams.greenDepthWrite,
+                                               depthTest: sceneParams.greenDepthTest
+                                              });
+    plane2 = new THREE.Mesh(plane2G,plane2M);
+    plane2.rotateY( THREE.Math.degToRad(+30) );
+    scene.add(plane2);
+    TW.render();
+}
+        
+redrawPlanes();
+
+var gui = new dat.GUI();
+gui.add(sceneParams,"redPlaneOpacity",0,1).onChange(redrawPlanes);
+gui.add(sceneParams,"redDepthWrite").onChange(redrawPlanes);
+gui.add(sceneParams,"redDepthTest").onChange(redrawPlanes);
+gui.add(sceneParams,"greenPlaneOpacity",0,1).onChange(redrawPlanes);
+gui.add(sceneParams,"greenDepthWrite").onChange(redrawPlanes);
+gui.add(sceneParams,"greenDepthTest").onChange(redrawPlanes);
+
+</script>
+
+</body>
+</html>

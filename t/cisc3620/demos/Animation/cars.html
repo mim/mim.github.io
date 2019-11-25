@@ -1,0 +1,206 @@
+<!-- 
+Scott D. Anderson
+Nov. 2015
+CS 307
+
+One car moves through the scene, and stops at the traffic light. The
+second starts up and drives off.
+
+ -->
+<!doctype html>
+<html>
+  <head>
+    <title>Cars</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<p id="time"></p>
+
+<script>
+var halfSize = 50;
+
+var guiParams = {
+    deltaT: 1,              // time between steps, in arbitrary time units
+    allDone: 30,
+    lightTurnsGreen: 15,
+    lastparam: null
+};
+
+// ================================================================
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer(); 
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene,{minx: -halfSize, maxx: +halfSize,
+                               miny: -halfSize, maxy: +halfSize,
+                               minz: 0, maxz: 2});
+
+var stoplight;
+var orangeCar;
+var blueCar;
+
+function makeCar(color, where, velocity, stopped) {
+    var m = new THREE.Mesh( new THREE.BoxGeometry( 2, 3, 1 ),
+                           new THREE.MeshBasicMaterial( { color: color } ));
+    m.initialPosition = where;
+    m.position.copy(where);
+    m.velocity = velocity;
+    m.initialStopped = stopped;
+    m.stopped = stopped;
+    return m;
+}
+
+function makeScene() {
+        
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(2*halfSize,2*halfSize),
+                                new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.darkgreen}));
+        
+    scene.add(ground);
+
+    // use the global variables, since these will change
+
+    stoplight = new THREE.Mesh(new THREE.SphereGeometry(1,8,8),
+                               new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.red}));
+    stoplight.position.set(0,0,0);
+    scene.add(stoplight);
+    
+    orangeCar = makeCar(THREE.ColorKeywords.orange,
+                        // near the center, waiting for the light
+                        new THREE.Vector3(0,-4,0),
+                        new THREE.Vector3(0,1,0),
+                        true);
+
+    blueCar = makeCar(THREE.ColorKeywords.blue,
+                      // at the extreme left, facing to the right
+                      new THREE.Vector3(-halfSize,0,0),
+                      new THREE.Vector3(1,0,0), false);
+    blueCar.rotateZ( Math.PI/2 );
+
+    scene.add(orangeCar);
+    scene.add(blueCar);
+
+}
+
+makeScene();
+
+// State variables of the animation
+var animationState;
+
+function resetAnimationState() {
+    animationState = {
+        time: 0,
+        lightTurnsGreen: 30,
+        allDone: 60,
+        lastParam: null
+    };
+}
+
+resetAnimationState();
+
+function firstState() {
+    resetAnimationState();
+    resetCar(orangeCar);
+    resetCar(blueCar);
+    resetLight();
+    document.getElementById("time").innerHTML = "0";
+    TW.render();
+}
+
+function updateState() {
+    // changes the time and everything in the state that depends on it
+    var dt = guiParams.deltaT;
+    animationState.time += dt;
+    document.getElementById("time").innerHTML = animationState.time;
+    if( animationState.time > guiParams.allDone ) {
+        stopAnimation();
+        return;
+    }
+    if( animationState.time > guiParams.lightTurnsGreen ) {
+        changeLight(THREE.ColorKeywords.green);
+        // this will actually set them multiple times, but no harm
+        orangeCar.stopped = false;
+        blueCar.stopped = true;
+    }
+    // Ideally, define an Object and have methods to advance its state.
+    moveCar(orangeCar);
+    moveCar(blueCar);
+}
+                
+function moveCar(car) {
+    if( ! car.stopped ) {
+        car.position.add( car.velocity );
+    }
+}
+
+function resetCar(car) {
+    car.stopped = car.initialStopped;
+    car.position.copy(car.initialPosition);
+}
+
+function changeLight(color) {
+    stoplight.material.color = new THREE.Color(color);
+}
+
+function resetLight() {
+    changeLight(THREE.ColorKeywords.red);
+}
+
+function oneStep() {
+    updateState();
+    TW.render();
+}
+    
+
+var stopRequested = false;    // set to true to have the animation stop itself
+var animationId = null;       // so we can cancel the animation if we want
+
+function animate() {
+    oneStep();
+    if( ! stopRequested ) {
+        animationId = requestAnimationFrame(animate);
+    }
+}
+
+function startAnimation() {
+    stopRequested = false;
+    if( animationId == null ) {
+        animate();
+    }
+}
+
+function stopAnimation() {
+    if( animationId != null ) {
+        cancelAnimationFrame(animationId);
+        stopRequested = true;
+        animationId = null;
+    }
+}
+
+TW.setKeyboardCallback("0",firstState,"reset animation");
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",startAnimation,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+var gui = new dat.GUI();
+gui.add(guiParams,"deltaT",0.1,2.0).step(0.1);
+gui.add(guiParams,"allDone",10,100).step(0.5);
+gui.add(guiParams,"lightTurnsGreen",5,50).step(0.5);
+
+firstState();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!-- 
+Scott D. Anderson
+Nov. 2014
+CS 307
+
+UFO.  The UFO drifts through the scene, until a certain time, when it
+changes velocity and zooms off.
+ -->
+<!doctype html>
+<html>
+  <head>
+    <title>UFO</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<script>
+    TW.randomBell = function(center,range) {
+        // sample from an approximately bell-shaped distribution
+        var i, sum = 0;
+        for( i=0 ; i < range; i++ ) {
+            sum += 2*Math.random()-1;
+        }
+        return center + sum;
+    };
+</script>
+
+<p id="time"></p>
+
+<script>
+var halfSize = 50;
+
+var guiParams = {
+    ufoSize: 1,                 // scaling only; really 10x5x10
+    gunLength: 20,
+    torpedoVelocity: 100,
+    initX: -48,
+    initY: 80,                  // doesn't change
+    initZ: -25,
+    initVx: 1.2,
+    initVz: -0.3,
+    later: 20,                  // a time
+    laterVx: 2.1,
+    laterVz: 1,
+    deltaT: 0.05,              // time between steps, in arbitrary time units
+    lastparam: null
+};
+
+// ================================================================
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer(); 
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene,{minx: -halfSize, maxx: +halfSize,
+                               miny: 0, maxy: 100,
+                               minz: -halfSize, maxz: +halfSize});
+
+var ufoObj;       // a container for the UFO (flattened sphere) and the gun.
+var gun;          // a Line; just two vertices
+var photonTorpedo;  // a sphere.
+
+// Changes the "to" vertex of the line. dx and dy are changes to the gun's aim.
+
+function aimGun(gun,dx,dz) {
+    var geom = gun.geometry;
+    var v1 = geom.vertices[1];
+    v1.set(dx,-1*guiParams.gunLength,dz);
+    geom.verticesNeedUpdate = true;
+}
+
+// Create a Line mesh.
+
+function line(from,to,color) {
+    var geom = new THREE.Geometry();
+    geom.vertices = [ from, to ];
+    var mat = new THREE.LineBasicMaterial( { color: color || 0xFF0000, linewidth: 2 } );
+    var line = new THREE.Line(geom,mat);
+    return line;
+}
+
+function makeScene() {
+    //create a barn, fence and ground
+    var barn = new TW.createMesh(TW.createBarn(30,40,50));
+    scene.add(barn);
+        
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(2*halfSize,2*halfSize),
+                                new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.darkgreen}));
+    ground.rotation.x = -Math.PI/2;
+        
+    scene.add(ground);
+
+    var ufo = new THREE.Mesh(new THREE.SphereGeometry(guiParams.ufoSize),
+                             new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.purple}));
+    ufo.scale.set(10,5,10);  // here's the real size
+
+    gun = line(new THREE.Vector3(0,0,0),
+               new THREE.Vector3(0,-1*guiParams.gunLength,0),
+               THREE.ColorKeywords.purple);
+    ufoObj = new THREE.Object3D();
+    // ufoObj.add(new THREE.AxisHelper(5));
+    ufoObj.add(ufo);
+    ufoObj.add(gun);
+    ufoObj.position.set(guiParams.initX,guiParams.initY,guiParams.initZ);
+    scene.add(ufoObj);
+
+    photonTorpedo = new THREE.Mesh(new THREE.SphereGeometry(1),
+                                   new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.yellow}));
+    photonTorpedo.visible = false;
+    scene.add(photonTorpedo);
+}
+makeScene();
+
+// State variables of the animation
+var animationState;
+
+function resetAnimationState() {
+    animationState = {
+        time: 0,
+        x: guiParams.initX,
+        z: guiParams.initZ,
+        vx: guiParams.initVx,
+        vz: guiParams.initVz,
+        lastParam: null
+    };
+    ufoObj.position.x = animationState.x;
+    ufoObj.position.z = animationState.z;
+    document.getElementById('time').innerHTML = animationState.time;
+}
+
+resetAnimationState();
+
+function firstState() {
+    resetAnimationState();
+    TW.render();
+}
+
+function updateState() {
+    // changes the time and everything in the state that depends on it
+    var dt = guiParams.deltaT;
+    animationState.time += dt;
+    document.getElementById('time').innerHTML = (animationState.time).toFixed(3);
+    // change velocity after this time
+    if( animationState.time > guiParams.later ) {
+        // this will actually set them multiple times, but no harm
+        animationState.vx = guiParams.laterVx;
+        animationState.vz = guiParams.laterVz;
+    }
+    // change location.
+    animationState.x += animationState.vx * dt;
+    animationState.z += animationState.vz * dt;
+    ufoObj.position.x = animationState.x;
+    ufoObj.position.z = animationState.z;
+    if( animationState.x < -halfSize || animationState.x > +halfSize ||
+        animationState.z < -halfSize || animationState.z > +halfSize ) {
+        console.log("Stop because out of bounds");
+        stopAnimation();
+    }
+    var time = animationState.time;
+    if( Math.floor(time) <= time && time <= Math.floor(time)+dt ) {
+        // reaim and fire a new photon torpedo every second. The code
+        // above tests for the beginning (first animation frame) of a
+        // second. However, there's an implicit assumption that dt < 1.
+        var torpedoDir = new THREE.Vector3(0,-1*guiParams.gunLength,0);
+        torpedoDir.x = TW.randomBell(0,guiParams.gunLength);
+        torpedoDir.z = TW.randomBell(0,guiParams.gunLength);
+        // update where the gun is aiming
+        
+        aimGun(gun,torpedoDir.x,torpedoDir.z);
+        animationState.photonSequence = 0;
+        var start = new THREE.Vector3();
+        start.copy(ufoObj.position);
+        animationState.torpedoStart = start;
+        animationState.torpedoStartTime = time;
+        animationState.torpedoDir = torpedoDir;
+    } else {
+        // draw a photon torpedo in the scene
+        animationState.photonSequence++;
+        var P = animationState.torpedoStart;
+        // absolute time
+        var sinceStart = time - animationState.torpedoStartTime;
+        var Q = new THREE.Vector3();
+        var V = new THREE.Vector3();
+        V.copy(animationState.torpedoDir);
+        V.normalize();
+        V.multiplyScalar(guiParams.torpedoVelocity*sinceStart);
+        Q.addVectors(P,V);
+        // console.log("PVQ:",P,V,Q);
+        photonTorpedo.position.copy(Q);
+        photonTorpedo.visible = true;
+    }
+}
+                
+function oneStep() {
+    updateState();
+    TW.render();
+}
+    
+
+var stopRequested = false;    // set to true to have the animation stop itself
+var animationId = null;       // so we can cancel the animation if we want
+
+function animate() {
+    oneStep();
+    if( ! stopRequested ) {
+        animationId = requestAnimationFrame(animate);
+    }
+}
+
+function startAnimation() {
+    stopRequested = false;
+    if( animationId == null ) {
+        animate();
+    }
+}
+
+function stopAnimation() {
+    if( animationId != null ) {
+        cancelAnimationFrame(animationId);
+        stopRequested = true;
+        animationId = null;
+    }
+}
+
+TW.setKeyboardCallback("0",firstState,"reset animation");
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",startAnimation,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+var gui = new dat.GUI();
+gui.add(guiParams,"deltaT",0.01,0.99).step(0.01).listen();
+gui.add(guiParams,"later",1,40).step(0.1).listen();
+gui.add(guiParams,"torpedoVelocity",50,200).step(1).listen();
+gui.add(guiParams,"initVx",1,10).step(0.1).listen();
+gui.add(guiParams,"laterVx",1,10).step(0.1).listen();
+
+
+firstState();
+
+</script>
+</body>
+</html>

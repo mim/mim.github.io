@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Plane Harry</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane Harry</h1>
+
+<p>This demo shows an attempt at texture-mapping of the following image
+  (from <a href="https://harrypotter.wikia.com/">harrypotter.wikia.com</a>)
+  onto a simple <code>THREE.PlaneGeometry</code>.
+
+<p>
+    <img id="texture" src="" alt="Harry">
+
+<p>However, it <em>should fail</em>, due to the Same-Origin Security
+  Policy.  It does fail on all the browsers I tested it on.
+
+<script id="loadHarry">
+var harryURL = "https://img2.wikia.nocookie.net/__cb20060726180434/harrypotter/images/8/86/Sorcerer%27s_stone_cover.jpg";
+
+document.getElementById('texture').src = harryURL;
+
+function loadPlaneHarry() {
+    TW.loadTexture( harryURL,
+                    function () {
+                        var planeGeom = new THREE.PlaneGeometry( 4, 4);
+                        var harryMat = new THREE.MeshBasicMaterial(
+                            {color: 0xffffff,
+                             map: harryTexture});
+                        var harryMesh = new THREE.Mesh( planeGeom, harryMat );
+                        scene.add(harryMesh);
+                        TW.render();
+                    });
+}
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+loadPlaneHarry();
+
+// ================================================================
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+</script>
+
+
+</body>
+</html>

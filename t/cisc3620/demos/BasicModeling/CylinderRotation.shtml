@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <title>Cylinder Rotation</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Cylinder Rotation</h1>
+
+<script>
+function makeCylinderScene(scene,parameters) {
+    var rt = parameters.radiusTop;
+    var rb = parameters.radiusBottom;
+    var height = parameters.height;
+    // using globals for these objects, to allow updates from GUI.
+    inner = TW.createMesh(new THREE.CylinderGeometry(rt, rb, height));
+    inner.name = "inner";
+    inner.position.y = parameters.positionOffset;
+    inner.rotation.z = parameters.innerRotation;
+
+    outer = new THREE.Object3D();
+    outer.name = "outer";
+    outer.add(inner);
+    outer.rotation.z = parameters.outerRotation;
+    scene.add(outer);
+}
+</script>
+
+<script>
+var parameters = {
+    radiusTop: 0,
+    radiusBottom: 3,
+    height: 10,
+    positionOffset: 0.0,
+    innerRotation: 0.01,
+    outerRotation: 0.01
+};
+
+var scene = new THREE.Scene();
+
+makeCylinderScene(scene,parameters);
+
+var renderer = new THREE.WebGLRenderer();
+
+var width = Math.max( parameters.radiusTop, parameters.radiusBottom );
+var height = parameters.height;
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+               scene,
+               {minx: -width, maxx: width,
+                miny: -height, maxy: height,
+                minz: -width, maxz: width});
+TW.toggleAxes("show");
+
+function redraw() {
+    var outer = scene.getObjectByName("outer",false);
+    var inner = scene.getObjectByName("inner",true);
+    inner.position.y = parameters.positionOffset;
+    inner.rotation.z = parameters.innerRotation;
+    outer.rotation.z = parameters.outerRotation;
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(parameters,'innerRotation',-Math.PI,Math.PI).step(0.01).onChange(redraw);
+gui.add(parameters,'outerRotation',-Math.PI,Math.PI).step(0.01).onChange(redraw);
+gui.add(parameters,'positionOffset',-height,0).step(1).onChange(redraw);
+/*
+gui.add(parameters,'innerRotation',-Math.PI,Math.PI);
+gui.add(parameters,'outerRotation',-Math.PI,Math.PI);
+gui.add(parameters,'positionOffset',-height,0);
+*/
+
+</script>
+
+<p>Here is the code that makes that scene:
+
+<pre data-code-jsfunction="makeCylinderScene" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

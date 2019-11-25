@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plane Texture Tutor</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane w/ Texture</h1>
+
+<p>This demo shows a texture-mapping of the following image
+  (<span id='imagePath'></span>) onto a
+  simple <code>THREE.PlaneGeometry</code>.
+
+
+<p>
+    <img style="width:20%" id="flat" alt="plain flat image">
+    <span id="canvasHere"></span>
+</p>
+
+<p>Note that <code>THREE.Texture.flipY</code> is <code id="flipY"></code>
+    <p>Remember, in the plane:
+      <ul>
+        <li>s goes left to right
+        <li>t goes
+          <ul>
+            <li id="flipYtrue">bottom to top if flipY is true
+            <li id="flipYfalse">top to bottom if flipY is false
+          </ul>
+      </ul>
+
+<script>
+var imagePath = "../../r67/examples/textures/UV_Grid_Sm.jpg";
+document.querySelector("#flat").src = imagePath;
+document.querySelector("#imagePath").innerHTML = imagePath;
+</script>
+
+<script>
+guiParams = {
+    sMin: 0.01,
+    sMax: 0.99,
+    tMin: 0.01,
+    tMax: 0.99,
+    flipY: true,
+    wrapS: "repeat",
+    wrapT: "repeat",
+    lastParam: null
+}
+
+var scene = new THREE.Scene();
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene,{parentID: 'canvasHere'});
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+// ====================================================================
+
+function printTextureParams(mesh) {
+    var geom=mesh.geometry;
+    var elt = geom.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    console.log("face0: "+JSON.stringify(elt[0]));
+    console.log("face1: "+JSON.stringify(elt[1]));
+}
+    
+
+function updateTextureParams(mesh, sMin, sMax, tMin, tMax) {
+    var geom=mesh.geometry;
+    var elt = geom.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    var face0 = elt[0];
+    face0[0] = new THREE.Vector2(sMin,tMax);
+    face0[1] = new THREE.Vector2(sMin,tMin);
+    face0[2] = new THREE.Vector2(sMax,tMax);
+    var face1 = elt[1];
+    face1[0] = new THREE.Vector2(sMin,tMin);
+    face1[1] = new THREE.Vector2(sMax,tMin);
+    face1[2] = new THREE.Vector2(sMax,tMax);
+    printTextureParams(mesh);
+    geom.uvsNeedUpdate = true;
+}
+ 
+function updateDocument(flipY) {
+    document.querySelector("#flipY").innerHTML = flipY ? "true" : "false";
+    if( flipY ) {
+        document.querySelector("#flipYtrue").style.fontWeight = "bold";
+        document.querySelector("#flipYfalse").style.fontWeight = "normal";
+    } else {
+        document.querySelector("#flipYtrue").style.fontWeight = "normal";
+        document.querySelector("#flipYfalse").style.fontWeight = "bold";
+    }
+}
+
+
+function updateTextureSettings(mesh, wrapS, wrapT) {
+    var imageTexture = mesh.material.map;
+    if(!imageTexture) 
+       throw "couldn't find texture map in mess";
+    var abbrev = {clamp:  THREE.ClampToEdgeWrapping,
+                  repeat: THREE.RepeatWrapping,
+                  mirror: THREE.MirroredRepeatWrapping};
+    imageTexture.wrapS = abbrev[wrapS];
+    imageTexture.wrapT = abbrev[wrapT];
+    imageTexture.needsUpdate = true;
+}    
+
+// ================================================================
+
+var planeMesh;
+var planeTexture;
+
+var loader = new THREE.TextureLoader();
+
+function redo() {
+    scene.remove(planeMesh);
+    planeTexture.flipY = guiParams.flipY;
+    planeMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry( 4, 4),
+        new THREE.MeshBasicMaterial(
+            {color: THREE.ColorKeywords.white,
+             map: planeTexture}));
+    updateDocument(planeTexture.flipY);
+    updateTextureSettingsFromGUI();
+    updateTextureParamsFromGUI();
+    scene.add(planeMesh);
+    TW.render();
+}
+
+loader.load(imagePath,
+            function (texture) {
+                planeTexture = texture;
+                redo();
+            });
+
+// ================================================================
+
+
+function updateTextureSettingsFromGUI() {
+    updateTextureSettings( planeMesh, guiParams.wrapS, guiParams.wrapT );
+    TW.render();
+}
+
+function updateTextureParamsFromGUI() {
+    updateTextureParams( planeMesh,
+                         guiParams.sMin,
+                         guiParams.sMax,
+                         guiParams.tMin,
+                         guiParams.tMax);
+    TW.render();
+}
+
+var gui = new dat.GUI();
+/*
+gui.add(guiParams, "sMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "sMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "wrapS", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+gui.add(guiParams, "wrapT", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+*/
+
+gui.add(guiParams, "sMin", 0.0, 3.0).onChange(redo);
+gui.add(guiParams, "sMax", 0.0, 3.0).onChange(redo);
+gui.add(guiParams, "tMin", 0.0, 3.0).onChange(redo);
+gui.add(guiParams, "tMax", 0.0, 3.0).onChange(redo);
+gui.add(guiParams, "flipY").onChange(redo);
+gui.add(guiParams, "wrapS", ["clamp","repeat","mirror"]).onChange(redo);
+gui.add(guiParams, "wrapT", ["clamp","repeat","mirror"]).onChange(redo);
+
+</script>
+
+
+</body>
+</html>

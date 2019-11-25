@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plane Flags</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas { width: 800px; height: 500px; }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane Flags</h1>
+
+<p>This demo shows a texture-mapping of a computed texture onto a
+simple <code>THREE.PlaneGeometry</code>.
+
+<script id="plane-image-texture">
+function makeFlagTexture(nickname) {
+    var size, array, width, height, format;
+    switch (nickname) {
+    case 'nascar':
+        size = 3;
+        array = TW.createCheckerboardGray(size);
+        width = height = TW.power2(size);
+        format = THREE.LuminanceFormat;
+        break;
+    case 'checks':
+        size = 3;
+        array = TW.createCheckerboardRedWhite(size);
+        width = height = TW.power2(size);
+        format = THREE.RGBFormat;
+        break;
+    case 'US-Gray':
+        size = 4;
+        array = TW.createUSFlagGray(size);
+        height = TW.power2(size);
+        width = 2*height;
+        format = THREE.LuminanceFormat;
+        break;
+    case 'US-RWB':
+        size = 4;
+        array = TW.createUSFlagRedWhiteBlue(size);
+        height = TW.power2(size);
+        width = 2*height;
+        format = THREE.RGBFormat;
+        break;
+    default:
+        throw "don't know this flag nickname: "+nickname;
+    }
+    // console.log("flag stuff: ",array, width, height, format);
+    var obj = new THREE.DataTexture( array, width, height, format);
+    obj.flipY = true;
+    // we'll explain these filters next time
+    obj.minFilter = THREE.NearestFilter;
+    obj.magFilter = THREE.NearestFilter;
+    obj.needsUpdate = true;
+    return obj;
+}
+
+
+function makeFlag(name) {
+    var flagTexture = makeFlagTexture(name);
+    var flagGeom = new THREE.PlaneGeometry( 8, 4);
+    var flagMat = new THREE.MeshBasicMaterial(
+        {
+            color: THREE.ColorKeywords.white,
+            map: flagTexture,
+        });
+    var flagMesh = new THREE.Mesh( flagGeom, flagMat );
+    return flagMesh;
+}
+
+</script>
+
+<script>
+// ================================================================
+var guiParams = {
+    flag: "US-RWB",
+    sMin: 0,
+    sMax: 1,
+    tMin: 0,
+    tMax: 1,
+    lastParam: null
+}
+
+var scene = new THREE.Scene();
+var flag = makeFlag(guiParams.flag);
+scene.add(flag);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -4, maxx: 4,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+
+function redoScene() {
+    scene.remove(flag);
+    flag = makeFlag(guiParams.flag);
+    scene.add(flag);
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(guiParams,"flag",["nascar","checks","US-Gray","US-RWB"]).onChange(redoScene);
+
+</script>
+
+
+</body>
+</html>

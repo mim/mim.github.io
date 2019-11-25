@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 
+Kelsey Reiman
+11/16/14 
+CS 307
+sameDepth.html
+
+Creates two planes at the same z location 
+ -->
+<html>
+  <head>
+    <title>Same Depth</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Same Depth</h1>
+<p>This has two planes that partially occupy the same locations in
+    3D. Thus, certain pixels are colored by the same projections of the
+    same locations and are ambiguous in what color they should be.
+<p>Rotate the viewpoint to see the ambiguity in action.
+<p>Turn off the depth test to remove the ambiguity. The green plane
+    (plane2) will always win.
+
+<script id="prog">
+
+var sceneParams = {
+    plane1Opacity: 0.5,
+    plane2Opacity: 0.5,
+    plane3Opacity: 0.5,
+    depthTestOn: true,
+    lastParam: null
+};
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer();
+    
+TW.clearColor = 0x000000;
+TW.mainInit(renderer,scene);
+    
+TW.cameraSetup(renderer,
+           scene,
+           {minx: -5, maxx: 5,
+        miny: -5, maxy: 5,
+        minz: 0, maxz: 0});
+    
+var plane1, plane2;
+
+function redrawPlanes() {
+    scene.remove(plane1);
+    scene.remove(plane2);
+    var planeG = new THREE.PlaneGeometry(10,10);
+    var plane1M = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.red,
+                                               depthTest: sceneParams.depthTestOn}); 
+    plane1 = new THREE.Mesh(planeG,plane1M);
+    plane1.translateX(-3);
+    scene.add(plane1);
+    
+    var plane2G = new THREE.PlaneGeometry(10,10);
+    var plane2M = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.green,
+                                               depthTest: sceneParams.depthTestOn}); 
+    plane2 = new THREE.Mesh(plane2G,plane2M);
+    plane2.translateX(+3);
+    scene.add(plane2);
+    TW.render();
+}
+    
+redrawPlanes();
+
+var gui = new dat.GUI();
+gui.add(sceneParams,"depthTestOn").onChange(function () {
+    // changing the renderer seems to be unnecessary. Perhaps it is set from the material.
+    // renderer.setDepthTest( sceneParams.depthTestOn );
+    redrawPlanes();
+    TW.render();
+});
+
+</script>
+</body>
+</html>

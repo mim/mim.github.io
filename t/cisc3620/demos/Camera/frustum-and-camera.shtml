@@ -1,0 +1,318 @@
+<!--Frustum and CameraHelper Demo for CS307
+    Author: Scott D. Anderson
+    Date: August 28, 2014
+
+-->
+
+<html>
+  <head>
+    <title>Frustum</title>
+    <style>
+      body { margin: 0px; min-width: 820px; }
+      canvas { margin: 10px auto; display: block; width: 80%; }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <script src="CameraHelper.js"></script>
+  </head>
+<body>
+
+<script id="cameraSetup">
+// the "camera" that determines the frustum
+
+var cameraParams = {
+    near: 1,
+    far: 30,
+    fov: 90,                    // degrees!!
+    aspectRatio: 400/300,       // usually from the dimensions of the canvas
+    atX: 0,
+    atY: 0,
+    atZ: -10,
+    eyeX: 0,
+    eyeY: 0,
+    eyeZ: 1,
+    upX: 0,
+    upY: 1,
+    upZ: 0
+};
+    
+// globals, modified from the above
+var at  = new THREE.Vector3();
+var eye = new THREE.Vector3();
+var up  = new THREE.Vector3();
+
+function setCameraView() {
+    at.set( cameraParams.atX, cameraParams.atY, cameraParams.atZ );
+    eye.set( cameraParams.eyeX, cameraParams.eyeY, cameraParams.eyeZ );
+    up.set( cameraParams.upX, cameraParams.upY, cameraParams.upZ );
+}
+setCameraView();
+
+// global, so we can modify it from the GUI
+var frustumCamera = new THREE.PerspectiveCamera();
+
+function adjustCamera() {
+    // the following are for the frustumCamera shape
+    frustumCamera.fov    = cameraParams.fov;
+    frustumCamera.aspect = cameraParams.aspectRatio;
+    frustumCamera.near   = cameraParams.near;
+    frustumCamera.far    = cameraParams.far;
+    // to account for the settings above
+    frustumCamera.updateProjectionMatrix();
+    setCameraView();
+    // change frustumCamera location
+    frustumCamera.position.copy(eye);
+    // Cameras inherit an "up" vector from Object3D.
+    frustumCamera.up.copy(up);
+    // The lookAt method computes the camera direction and orientation
+    // from its position, up and the 'at' argument
+    frustumCamera.lookAt(at);
+}
+
+adjustCamera();
+
+</script>
+
+<script>
+function createFrustum(left,right,top,bottom,near,far) {
+    /* returns a THREE.Line object representing a frustum, like a
+     * camera. Position is at the origin, and args are just like in
+     * OpenGL's glFrustum(). */
+    console.log("frustum: "+left+","+right+","+top+","+bottom+","+near+","+far);
+
+    var verts = [];
+    // near plane, CCW from lower left
+    verts[0] = new THREE.Vector3(left,bottom,near);
+    verts[1] = new THREE.Vector3(right,bottom,near);
+    verts[2] = new THREE.Vector3(right,top,near);
+    verts[3] = new THREE.Vector3(left,top,near);
+    // far plane, just like the near, except expanded by ratio of far/near
+    var ratio = far/near;
+    verts[4] = new THREE.Vector3(left*ratio, bottom*ratio,far);
+    verts[5] = new THREE.Vector3(right*ratio,bottom*ratio,far);
+    verts[6] = new THREE.Vector3(right*ratio,top*ratio   ,far);
+    verts[7] = new THREE.Vector3(left*ratio ,top*ratio,far);
+
+    // Now, the lines, using a list of indices. Some lines will be drawn
+    // twice, because it's just easier.
+    var geom = new THREE.Geometry();
+    var list = [0,1,2,3,0,4,5,6,7,4,5,1,2,6,7,3];
+    for( var i = 0; i < list.length; ++i ) {
+        geom.vertices.push(verts[list[i]]);
+    }
+    var mat = new THREE.LineBasicMaterial({color: TW.YELLOW});
+    var frustum = new THREE.Line(geom, mat);
+    frustum.type = THREE.LineStrip;
+    return frustum;
+}
+
+function createFrustumFOV(fov,aspectRatio,near,far) {
+    var top = near * Math.tan(TW.degrees2radians(fov)/2);
+    var bottom = -top;
+    var right = aspectRatio * top;
+    var left = -right;
+    console.log("camera:",fov,aspectRatio,near,far);
+    console.log("frustum:",right,left,top,bottom,near,far);
+    return createFrustum(right,left,top,bottom,near,far);
+}
+
+function createFrustumParams() {
+    var f = createFrustumFOV( cameraParams.fov,
+                              cameraParams.aspectRatio,
+                              cameraParams.near,
+                              cameraParams.far );
+    setCameraView();
+    f.position.copy(eye);
+    f.up.copy(up);
+    f.lookAt(at);
+    f.name = "frustum";
+    return f;
+}
+</script>
+
+
+<script>
+// Canvas, showing both camera and frustum
+
+var renderer2 = new THREE.WebGLRenderer();
+var scene2 = new THREE.Scene();
+TW.mainInit(renderer2,scene2);
+
+var cameraHelper;
+
+function addCameraHelper() {
+    cameraHelper = new THREE.CameraHelper(frustumCamera);
+    scene2.add(cameraHelper);
+}
+addCameraHelper();
+
+function updateCameraHelper() {
+    cameraHelper.update();      // updates shape
+}
+updateCameraHelper();
+
+var upHelper = null;
+
+function addUpHelper() {
+    if(!upHelper) {
+        scene2.remove(upHelper);
+    }
+    upHelper = new ArrowHelper(up, eye, 20, TW.LIME );
+
+    scene2.add(upHelper);
+}
+
+var frustum = null;
+
+function recreateFrustum() {
+    if( frustum != null ) {
+        scene2.remove(frustum);
+    }
+    frustum = createFrustumParams();
+    scene2.add(frustum);
+}
+recreateFrustum();
+
+TW.cameraSetup(renderer2,scene2,
+               {minx: -10, maxx: 10,
+                miny: -10, maxy: 10,
+                minz: -10, maxz: 10});
+TW.toggleAxes("show");
+TW.viewFromAboveFrontSide();
+</script>
+
+
+
+<script>
+function addAllPropertiesToGUI(gui,obj,onchange) {
+    for( p in obj ) {
+        var val = obj[p];
+        if( val == 0 ) {
+            var min = -3;
+            var max = +3;
+        } else {
+            var min = val*0.1;
+            var max = val*10;
+        }
+        gui.add(obj,p,min,max).onChange(onchange);
+    }
+}
+
+function redo() {
+    adjustCamera();
+    cameraHelper.update();      // updates shape
+    recreateFrustum();
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(cameraParams,'fov',1,179).onChange(redo);
+gui.add(cameraParams,'aspectRatio',0.1,10).onChange(redo);
+gui.add(cameraParams,'near',1,50).onChange(redo);
+gui.add(cameraParams,'far',1,50).onChange(redo);
+gui.add(cameraParams,'atX',-10,10).onChange(redo);
+gui.add(cameraParams,'atY',-10,10).onChange(redo);
+gui.add(cameraParams,'atZ',-30,10).onChange(redo);
+gui.add(cameraParams,'eyeX',-10,10).onChange(redo);
+gui.add(cameraParams,'eyeY',-10,10).onChange(redo);
+gui.add(cameraParams,'eyeZ',-30,30).onChange(redo);
+gui.add(cameraParams,'upX',-10,10).onChange(redo);
+gui.add(cameraParams,'upY',-10,10).onChange(redo);
+gui.add(cameraParams,'upZ',-10,10).onChange(redo);
+</script>
+
+<h1>Frustum Demo</h1>
+
+<p>This demo shows a <code>THREE.CameraHelper()</code> object based on a
+  <code>THREE.PerspectiveCamera()</code> object.  Note that the camera is
+  not used for rendering the scene; it's what we're looking <em>at</em>,
+  not <em>with</em>.  Its shape is a frustum, so I stored it in a variable
+  called <code>frustumCamera</code>, just for clarity. The camera helper
+  draws the frustumCamera using brown lines.
+
+<p>This demo also shows a frustum drawn using yellow lines. This is one
+  where my code calculates the exact geometry.
+
+<p>The two frustums match exactly if the camera viewpoints match, namely
+  the AT and EYE positions and the UP vector.
+
+<p>It seems that this cameraHelper object always renders as if the
+  viewpoint is the same, which is useful for this demo, but not the
+  behavior in camera-api, so that's puzzling. <em>TODO</em>
+
+
+<p>Here is the function that sets up this camera:
+
+<pre data-code-jsfunction="setupCamera" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

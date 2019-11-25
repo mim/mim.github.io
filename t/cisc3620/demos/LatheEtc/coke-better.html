@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title>Draw Points</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      body { margin: 0px; padding: 0px }
+
+      canvas {
+          display: block;
+          width: 100%;
+          height: 100%;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<script>
+
+var scene = new THREE.Scene();
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+// Upper curve, from diameter of 0.75in at height 5in to diameter of 1.5in
+// at height 2.5in. 
+
+var upper_cp = [[0.5/2, 5.0, 0.0],
+                [0.5/2, 4.0, 0.0],
+                [1.5/2, 3.0, 0.0],
+                [1.5/2, 2.5, 0.0]]
+
+// Middle curve, from upper bulge [see previous] to dent with diameter of
+// 1.25in at height of 1.25in. */
+
+middle_cp = [[1.5/2,  2.5,  0.0],
+             [1.5/2,  2.0,  0.0],
+             [1.25/2, 1.75, 0.0],
+             [1.25/2, 1.25, 0.0]]
+                          
+// Lower curve, from dent to base, with a radius the same as the bulge. 
+
+lower_cp = [[1.25/2, 1.25, 0.0],
+            [1.25/2, 0.75, 0.0],
+            [1.5/2,  0.50, 0.0],
+            [1.5/2,  0.00, 0.0]]
+
+var cokePoints = Array.prototype.concat(upper_cp, middle_cp, lower_cp);
+
+function printPoints(points) {
+    var i;
+    console.log("[");
+    for( i=0; i < points.length; i++) {
+        p = points[i];
+        console.log("["+p.x+","+p.y+","+p.z+"],");
+    }
+    console.log("]");
+}
+
+function makeVertex(p) {
+    return new THREE.Vector3(p[0],p[1],p[2]);
+}
+
+function makeVertices(points) {
+    var i;
+    var pts = [];
+    for( i=0; i < points.length; i++) {
+        var p = points[i];
+        pts.push(new THREE.Vector3(p[0], p[1], p[2]));
+    }
+    return pts;
+}
+    
+var splineObj;
+
+function remakeSplineObj() {
+    scene.remove(splineObj);
+    var mat = new THREE.MeshBasicMaterial({color: 0x00FF00, opacity: 1});
+     curve1 = new THREE.CubicBezierCurve3(makeVertex(upper_cp[0]),
+                                          makeVertex(upper_cp[1]),
+                                          makeVertex(upper_cp[2]),
+                                          makeVertex(upper_cp[3]));
+     curve2 = new THREE.CubicBezierCurve3(makeVertex(middle_cp[0]),
+                                          makeVertex(middle_cp[1]),
+                                          makeVertex(middle_cp[2]),
+                                          makeVertex(middle_cp[3]));
+     curve3 = new THREE.CubicBezierCurve3(makeVertex(lower_cp[0]),
+                                          makeVertex(lower_cp[1]),
+                                          makeVertex(lower_cp[2]),
+                                          makeVertex(lower_cp[3]));
+    var geom = new THREE.Geometry();
+    geom.vertices = Array.prototype.concat( curve1.getPoints(10),
+                                            curve2.getPoints(10),
+                                            curve3.getPoints(10) );
+    splineObj = new THREE.Line( geom, new THREE.LineBasicMaterial( { linewidth: 3, color: 0xff }) );
+    splineObj.translateX(0.1);
+    splineObj.name = "spline";
+    scene.add(splineObj);
+}
+remakeSplineObj();
+
+var latheObj;
+
+function remakeLatheObj() {
+    scene.remove(latheObj);
+    // New code here:                           
+    var geom = new THREE.LatheGeometry( splineObj.geometry.vertices );
+    var mat1 = new THREE.MeshBasicMaterial({color: 0xFF0000, opacity: 0.6, wireframe: true});
+    var mat2 = new THREE.MeshBasicMaterial({color: 0xFF00000});
+    latheObj = new THREE.Mesh (geom, mat1);
+    latheObj.name = "lathe";
+    scene.add(latheObj);
+}
+remakeLatheObj();
+
+
+function addSphereAt(pt) {
+    var sph = new THREE.Mesh( new THREE.SphereGeometry(0.5),
+                              new THREE.MeshNormalMaterial());
+    sph.position.copy(pt);
+    scene.add(sph);
+    return sph;
+}
+
+function addAllCP(points) {
+    for( var i=0; i < points.length; i++ ) {
+        addSphereAt(points[i]);
+    }
+}
+addAllCP(cokePoints);
+
+var cameraFOVY = 75;
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -1, maxx: 1,
+                            miny: 0, maxy: 5,
+                            minz: -1, maxz: 1},
+                           cameraFOVY);
+
+TW.render();
+
+</script>
+
+
+</body>
+</html>

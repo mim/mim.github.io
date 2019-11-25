@@ -1,0 +1,84 @@
+<!-- 
+Scott D. Anderson
+Nov. 2015
+CS 307
+
+One car moves through the scene, and stops at the traffic light. The
+second starts up and drives off.
+
+This re-design of the cars simulation shows how we can define an API for
+our simulation objects, so that the behavior can be defined with the
+object, rather than centralized in a couple of global functions.
+
+The API is very simple. There are two methods:
+
+   1) .initialize() -- resets the object to its initial state (time 0)
+   2) .update(dt)   -- advances the object by dt time units
+
+One could imagine many other names these methods could have. I chose these
+because they are also used by PlayCanvas.  If you want to rename them,
+it's easy to do so.
+
+ -->
+<!doctype html>
+<html>
+  <head>
+    <title>Cars</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa16.js"></script>
+    <script src="progressbar.js"></script>
+    <script src="stoplight.js"></script>
+    <script src="cars.js"></script>
+    <script src="scene.js"></script>
+    <script src="animation.js"></script>
+  </head>
+<body>
+
+
+<script>
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer(); 
+
+TW.mainInit(renderer,scene);
+
+var halfSize = 50; 
+
+var guiParams = {
+    deltaT: 0.5,
+    allDone: 30,
+    lastparam: null
+};
+
+TW.cameraSetup(renderer,scene,{minx: -halfSize, maxx: +halfSize,
+                               miny: -halfSize, maxy: +halfSize,
+                               minz: 0, maxz: 2});
+buildScene(scene);
+
+var gui = new dat.GUI();
+gui.add(guiParams,"deltaT",0.01,2.0).step(0.1).onChange(function () { globalDeltaT = guiParams.deltaT; } );
+gui.add(guiParams,"allDone",25,60).step(1);
+
+var stopper = new THREE.Object3D();
+stopper.update = function (dt) { if(globalTime > guiParams.allDone) stopAnimation(); };
+scene.add(stopper);
+
+initialize();  // initialize the state of the simulation
+
+TW.setKeyboardCallback("0",initialize,"reset animation");
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",startAnimation,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+</script>
+</body>
+</html>

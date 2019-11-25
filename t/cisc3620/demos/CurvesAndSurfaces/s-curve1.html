@@ -1,0 +1,56 @@
+<!-- 
+Kelsey Reiman and Scott D. Anderson
+11/1/14 
+CS 307
+
+Creates a cubic bezier curve that roughly S-shaped.
+
+I learned how to make bezier curves in three.js from: 
+https://www.lab4games.net/zz85/blog/2014/09/08/rendering-lines-and-bezier-curves-in-three-js-and-webgl/
+ -->
+<html>
+  <head>
+    <title>S Curve</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script id="prog">
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene(); 
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene, {minx:-2,maxx:2,miny:0,maxy:3,minz:0,maxz:0});
+        
+var controlPoints = [ [0,0,0],
+                      [2,2,0],
+                      [-2,1,0],
+                      [0,3,0] ];
+var curveGeom = TW.createBezierCurve(controlPoints,20);
+var curveMat = new THREE.LineBasicMaterial( { color: THREE.ColorKeywords.blue,
+                                              linewidth: 3 } );
+var curve = new THREE.Line( curveGeom, curveMat );
+scene.add(curve);
+
+function showCP(cpList) {
+    for( var i=0; i < cpList.length; i++ ) {
+        scene.add(TW.createPoint(cpList[i]));
+    }
+};
+
+showCP(controlPoints);          // optional, for debugging.
+TW.viewFromFront();        
+</script>
+</body>
+</html>

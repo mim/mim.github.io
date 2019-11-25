@@ -1,0 +1,352 @@
+!-- TW.cameraSetup demo
+     Author: Scott D. Anderson
+     Date: October 6, 2014
+
+-->
+
+<html>
+  <head>
+    <title>TW Camera</title>
+    <style>
+      body { margin: 0px; min-width: 820px; }
+      canvas { margin: 10px auto; display: block; width: 800px; height: 300px; }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-tmp-v1.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>TW's Camera Setup</h1> <!-- ' -->
+
+<p>This page illustrates how TW sets up a camera given only the scene
+  bounding box and the desired FOVY.
+
+<p><form>
+    <p><label>FoVY: <input type="range" min="1" max="179" value="75" id="fovy" name="fovy"></label><span id="fovyVal"></span>
+  </form>
+
+<script>
+TW.cameraSetupParams = function (sceneBoundingBox, fovy) {
+    // Return an object with a bunch of properties useful
+    // for setting up a camera that can orbit around a scene
+    // without cutting through it.  The essential values are
+    // cameraRadius, near, and far
+    var sbb = sceneBoundingBox;
+    var xSize = sbb.maxx - sbb.minx;
+    var ySize = sbb.maxy - sbb.miny;
+    var zSize = sbb.maxz - sbb.minz;
+    var diameter = Math.sqrt(xSize*xSize+
+                             ySize*ySize+
+                             zSize*zSize);
+    var sr = diameter/2;          // scene radius
+    var fovyRadians = TW.degrees2radians(fovy);
+    var cr = sr/Math.sin(fovyRadians/2); // camera radius
+    var result = {xSize: xSize,
+                  ySize: ySize,
+                  zSize: zSize,
+                  fovyRadians: fovyRadians,
+                  sceneDiameter: diameter,
+                  sceneRadius: sr,
+                  cameraRadius: cr,
+                  near: cr-sr,
+                  far: cr+sr};
+    return result;
+};
+</script>
+
+    
+<canvas width="800" height="300" id="diagram"></canvas>
+
+<script id="given">
+   // Some functions you might want
+
+   function clearCanvas(ctx) {
+       /* because the GUI will re-draw the canvas, we need to be able to clear
+          it before drawing things another time. This function clears the
+          canvas to white by finding out how big it is and drawing a white
+          rectangle. */
+       var canvas = ctx.canvas;
+       var w = canvas.clientWidth;
+       var h = canvas.clientHeight;
+       ctx.clearRect(0,0,w,h);
+   }
+
+   // f moves the origin and flips the Y axis, so the coordinate system
+   // is more familiar
+
+   function flipY(ctx) {
+       var canvas = ctx.canvas;
+       var w = canvas.clientWidth;
+       var h = canvas.clientHeight;
+       ctx.translate(0,h);
+       ctx.scale(1,-1);
+   }   
+</script>
+
+<script>
+function drawRect(ctx, width, height) {
+    ctx.beginPath();
+    ctx.rect(0,0,width,height);
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawRectAt(ctx, x, y, width, height) {
+    ctx.save();
+    ctx.translate(x,y);
+    drawRect(ctx, width, height);
+    ctx.restore();
+    console.log("rect: "+height+" x "+width);
+}
+
+function drawCircleAt(ctx, x, y, radius) {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+    console.log("circle");
+}
+
+function drawTriangle(ctx, ax, ay, bx, by, cx, cy) {
+    ctx.beginPath();
+    ctx.moveTo(ax,ay);
+    ctx.lineTo(bx,by);
+    ctx.lineTo(cx,cy);
+    ctx.lineTo(ax,ay);
+    ctx.stroke();
+    ctx.closePath();
+}
+
+</script>
+
+<script>
+    var sceneBoundingBox = {minx: -75, maxx: 75,
+                            miny: -100, maxy: 100,
+                            minz: 0, maxz: 0};
+
+var slider = document.getElementById('fovy');
+var fovy = parseInt(slider.value);
+
+function redrawDiagram() {
+    var ctx = document.getElementById('diagram').getContext('2d');
+    clearCanvas(ctx);
+    ctx.save();
+    flipY(ctx);
+    var cam = TW.cameraSetupParams(sceneBoundingBox,fovy);
+    console.log(cam);
+    ctx.translate(200,150);
+    // from now on, use that origin
+    ctx.fillStyle = "#6060FF";
+    drawRectAt(ctx,
+               sceneBoundingBox.minx,
+               sceneBoundingBox.miny,
+               cam.xSize,
+               cam.ySize);
+    ctx.strokeStyle = "#80FF80";
+    drawCircleAt(ctx,0,0,cam.sceneRadius);
+
+    // draw the red triangle
+    var theta = Math.PI/2 - cam.fovyRadians/2;
+    console.log("theta: "+TW.radians2degrees(theta));
+    var Tx = Math.cos(theta) * cam.sceneRadius;
+    var Ty = Math.sin(theta) * cam.sceneRadius;
+    ctx.strokeStyle = "#FF0000";
+    drawTriangle(ctx, 0, 0, cam.cameraRadius, 0, Tx, Ty);
+    
+
+    ctx.restore();
+}
+
+redrawDiagram();
+
+slider.onchange = function () {
+    fovy = Math.round(parseInt(slider.value));
+    document.getElementById('fovyVal').innerHTML=fovy;
+    redrawDiagram();
+}
+
+</script>
+
+
+
+
+<script>
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene();
+TW.mainInit(renderer,scene);
+
+TW.debug = true;
+
+var box = TW.createMesh( new THREE.BoxGeometry(2,2,2) );
+scene.add(box);
+
+var mat = new THREE.MeshBasicMaterial({color:0x00FF00});
+mat.wireframe = true;
+var sphere = new THREE.Mesh( new THREE.SphereGeometry(Math.sqrt(3),130,130), mat );
+scene.add(sphere);
+</script>
+
+<script id="cameraSetup">
+// the "camera" that determines the frustum
+
+var cameraParams = {
+    nearDelta: 0,
+    fov: 90,                    // degrees!!
+    eyeDelta: 0,
+};
+    
+var bb = {minx: -1, maxx: +1,
+          miny: -1, maxy: +1,
+          minz: -1, maxz: +1};
+
+// global, so we can modify it from the GUI
+var cam = new THREE.PerspectiveCamera();
+scene.add(cam);
+var camBad = cam;
+camBad.name = "camBad";
+
+var render = function () { renderer.render(scene,cam); };
+var renderBad = function () { renderer.render(scene,camBad); };
+
+function adjustCamera() {
+    // the following are for the frustumCamera shape
+    cam.fov    = cameraParams.fov;
+
+    scenebox = new THREE.Box3( new THREE.Vector3(bb.minx,bb.miny,bb.minz),
+                               new THREE.Vector3(bb.maxx,bb.maxy,bb.maxz));
+    sphere = scenebox.getBoundingSphere();
+
+    fov2 = cam.fov/2;
+    sceneRadius = sphere.radius;
+    camRadius = sceneRadius/Math.sin(TW.degrees2radians(fov2));
+    near = camRadius - sceneRadius;
+    far  = camRadius + sceneRadius;
+    canvas = TW.lastClickTarget;
+    aspectRatio = canvas.clientWidth/canvas.clientHeight;
+
+    console.log(" sceneRadius: " + sceneRadius +
+                " camRadius: " + camRadius +
+                " near: " + near +
+                " aspectRatio: " + aspectRatio);
+
+    cam.aspect = aspectRatio;
+    cam.near = near + cameraParams.nearDelta;
+    cam.far = far;
+    
+    cam.position.set(0,0,camRadius+cameraParams.eyeDelta);
+    cam.up.set(0,1,0);
+    var center = new THREE.Vector3(0,0,0);
+    cam.lookAt(center);
+    cam.updateProjectionMatrix(); // this is necessary!
+    renderBad();
+};
+
+var state = TW.cameraSetup(renderer,scene,bb,{fov:90});
+var camGood = state.cameraObject;
+camGood.name = "camGood";
+
+adjustCamera();
+
+</script>
+
+
+<script>
+function redo() {
+    adjustCamera();
+    render();
+}
+
+function switchCam(cam) {
+    currCam = cam;
+    render = function () { renderer.render(scene,cam); }
+}
+
+TW.setKeyboardCallback("1",function () { renderer.render(scene,camBad);},"bad cam");
+TW.setKeyboardCallback("2",function () { renderer.render(scene,camGood);},"good cam");
+
+var gui = new dat.GUI();
+gui.add(cameraParams,'fov',1,179).step(1).onChange(redo);
+gui.add(cameraParams,'nearDelta',-10,10).onChange(redo);
+gui.add(cameraParams,'eyeDelta',-10,10).onChange(redo);
+</script>
+
+<h1>Camera Setup Demo</h1>
+
+<p>This demo shows a <code>TW.camera</code> object based on a
+  <code>THREE.PerspectiveCamera()</code> object.  
+
+<p>Here is the function that sets up this camera:
+
+<pre data-code-jsfunction="adjustCamera" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

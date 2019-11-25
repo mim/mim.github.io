@@ -1,0 +1,219 @@
+<!-- SnowPerson Demo for CS307
+Author: Scott D. Anderson
+Date: August 27, 2014
+
+-->
+
+<html>
+  <head>
+    <title>The Snow Person</title>
+    <style>
+      body {margin: 0px}
+      canvas { width: 100%; height: 100% }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script>
+function createSnowPerson (wireframe, radiusBottom, radiusMiddle, radiusTop) {
+    /* Returns a three-sphere snowperson. The args are the radii of the
+    spheres, starting from the bottom. The snowperson sits on the origin,
+    and the spheres are stacked along the y axis. */
+
+    // these could also be parameters
+    var bodyColor = 0xFFFFFF;
+    var bodyMaterial = new THREE.MeshBasicMaterial({color: bodyColor});
+    bodyMaterial.wireframe = wireframe;
+    var sphereDetail = 10;
+
+    // here is our container
+    var frosty = new THREE.Object3D();
+
+    // function to add one snowball to frosty.  
+    // height is distance of origin to sphere center along y.
+    function addSphere(radius,height) {
+        var sg = new THREE.SphereGeometry(radius,sphereDetail,sphereDetail);
+        var s = new THREE.Mesh(sg, bodyMaterial);
+        console.log("adding sphere: " + radius + " at " + height);
+        s.position.y = height;   // specify where along Y to add it
+        frosty.add(s);
+    }
+
+    // ================================================================
+    // main code of function
+    
+    var y = radiusBottom;  // center of bottom sphere
+    addSphere(radiusBottom,y);
+    y += radiusBottom + radiusMiddle;  // center of middle sphere
+    addSphere(radiusMiddle,y);
+    y += radiusMiddle + radiusTop;  // center of top sphere
+    addSphere(radiusTop,y);
+    
+    return frosty;
+}
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene();
+                        
+var guiParameters = {
+    radiusBottom: 3,
+    radiusMiddle: 2,
+    radiusTop: 1,
+    X: 0,
+    Y: 0,
+    Z: 0,
+    wireframe: true
+}
+
+function addSnowPersonGUI(scene) {
+    var sp = createSnowPerson( guiParameters.wireframe,
+                               guiParameters.radiusBottom,
+                               guiParameters.radiusMiddle,
+                               guiParameters.radiusTop);
+    // instance transform to place it in the scene.
+    sp.position.set( guiParameters.X,
+                     guiParameters.Y,
+                     guiParameters.Z );
+    // don't forget this!
+    scene.add(sp);
+    return sp;
+}
+
+var snowperson = addSnowPersonGUI(scene);
+
+TW.cameraSetup(renderer,
+               scene,
+               // maybe a worst-case scenario?
+               {minx: -10, maxx: +10,
+                miny: 0, maxy: 30,
+                minz: -10, maxz: +10});
+TW.toggleAxes("show");
+
+TW.setKeyboardCallback("w",
+                       function () {
+                           guiParameters.wireframe = !guiParameters.wireframe;
+                           console.log("wireframe is "+(guiParameters.wireframe?"on":"off"));
+                           redraw();
+                       },
+                       "toggle wireframe");
+
+function redraw() {
+    // since all three spheres share exactly the same object for the material,
+    // we can just set any one of the three children's material to wireframe.
+    /*
+    snowperson.children[0].material.wireframe = 
+        snowperson.children[1].material.wireframe = 
+        snowperson.children[2].material.wireframe = guiParameters.wireframe;
+        */
+    snowperson.children[0].material.wireframe = guiParameters.wireframe;
+
+    snowperson.position.x = guiParameters.X;
+    snowperson.position.y = guiParameters.Y;
+    snowperson.position.z = guiParameters.Z;
+    TW.render();
+}
+
+function rebuildAndRedraw() {
+    scene.remove(snowperson);
+    snowperson = addSnowPersonGUI(scene);
+    redraw();
+}
+
+var gui = new dat.GUI();
+gui.add(guiParameters,'wireframe').onChange(redraw);
+gui.add(guiParameters,'X', -3, +3).onChange(redraw);
+gui.add(guiParameters,'Y', -3, +3).onChange(redraw);
+gui.add(guiParameters,'Z', -3, +3).onChange(redraw);
+gui.add(guiParameters,'radiusTop', 0.1, 5).step(0.1).onChange(rebuildAndRedraw);
+gui.add(guiParameters,'radiusMiddle', 0.1, 5).step(0.1).onChange(rebuildAndRedraw);
+gui.add(guiParameters,'radiusBottom', 0.1, 5).step(0.1).onChange(rebuildAndRedraw);
+
+</script>
+
+<p>Here is the function that makes that snowperson:
+
+<pre data-code-jsfunction="createSnowPerson" class="prettyprint lang-js linenums">
+</pre>
+
+<p>Here is the function that adds that snowperson to the scene. As you can see
+
+<pre data-code-jsfunction="addSnowPersonGUI" class="prettyprint lang-js linenums">
+</pre>
+
+<p>
+
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

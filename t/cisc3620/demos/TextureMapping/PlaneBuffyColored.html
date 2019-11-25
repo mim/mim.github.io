@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Plane Buffy</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Buffy Plane</h1>
+
+<p>This demo shows a texture-mapping of the following image onto a
+simple <code>THREE.PlaneGeometry</code>, but with an underlying
+  color. Use the GUI at the above left to change the color.
+
+<p>
+    <img src="../../images/buffy.gif" alt="Buffy">
+    <span id="color" style="width:300px;height:220px;display:inline-block;background-color:#6fca74"></span>
+</p>
+
+<script id="loadBuffy">
+var guiParams = {
+    color: 0x6fca74,
+    last: null
+};
+
+var buffy;
+
+function makeBuffyPlane() {
+    TW.loadTexture(
+        '../../images/buffy.gif',
+        function (texture) {
+            var planeGeom = new THREE.PlaneGeometry( 4, 4);
+            var buffyMat = new THREE.MeshBasicMaterial(
+                {color: guiParams.color,
+                 map: texture});
+            scene.remove(buffy);
+            buffy = new THREE.Mesh( planeGeom, buffyMat );
+            scene.add(buffy);
+            TW.render();
+        });
+}
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+makeBuffyPlane();
+
+// ================================================================
+// 
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+var gui = new dat.GUI();
+gui.addColor(guiParams, "color").onChange(function () {
+    document.getElementById("color").style.backgroundColor = "#"+guiParams.color.toString(16);
+    makeBuffyPlane();
+    TW.render();
+});
+
+</script>
+
+
+</body>
+</html>

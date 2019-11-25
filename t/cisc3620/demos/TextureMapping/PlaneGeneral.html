@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Plane Harry</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      .texture {
+          width: 30%;
+      }
+
+      .texture img {
+          width: 100%;
+      }
+
+      canvas {
+          display: inline;
+          width: 50%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane General</h1>
+
+<form>
+  <p>Url: <input type="text" name="url" size="100"
+                 value="https://upload.wikimedia.org/wikipedia/commons/0/06/Kitten_in_Rizal_Park%2C_Manila.jpg">
+    <button type="button" onclick="renderAll()">submit</button>
+</form>
+
+<p class="texture">
+    <img id="texture" src="" alt="texture">
+
+<script>
+var url;                // the URL we load
+
+function renderAll() {
+    url = document.querySelector('[name=url]').value;
+    console.log(url);
+    document.getElementById('texture').src = url;
+    loadTexture(url);
+}
+
+var image;              // the texture (image) we load
+var planeGeom = new THREE.PlaneGeometry( 4, 4);
+var planeMat = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.white});
+var planeMesh = new THREE.Mesh( planeGeom, planeMat );
+
+function loadTexture(url) {
+    var imageLoaded = false;
+    image = new THREE.ImageUtils.loadTexture(
+        url,
+        new THREE.UVMapping(),
+        // onload event handler
+        function () {
+            console.log("image is loaded.");
+            imageLoaded = true;
+            planeMat = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.white,
+                                                    map: image});
+            TW.render();
+        });
+}
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+scene.add(planeMesh);
+
+// ================================================================
+// 
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+</script>
+
+
+</body>
+</html>

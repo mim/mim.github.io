@@ -1,0 +1,218 @@
+<!-- 
+Scott D. Anderson
+Nov. 2014
+CS 307
+
+UFO.  The UFO drifts through the scene, until a certain time, when it
+changes velocity and zooms off.
+ -->
+<!doctype html>
+<html>
+  <head>
+    <title>UFO</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+  </head>
+<body>
+
+<script>
+    TW.randomBell = function(center,range) {
+        // sample from an approximately bell-shaped distribution
+        var i, sum = 0;
+        for( i=0 ; i < range; i++ ) {
+            sum += 2*Math.random()-1;
+        }
+        return center + sum;
+    };
+</script>
+
+
+<script>
+var halfSize = 50;
+
+var guiParams = {
+    ufoSize: 1,                 // scaling only; really 10x5x10
+    gunLength: 20,
+    torpedoVelocity: 50,
+    initX: 75,
+    initY: 80,                  // doesn't change
+    initZ: -25,
+    initVx: -0.2,
+    initVz: -0.3,
+    later: 30,                  // a time
+    laterVx: -1.5,
+    laterVz: 1,
+    deltaT: 0.1,              // time between steps, in arbitrary time units
+    lastparam: null
+};
+
+// ================================================================
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer(); 
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene,{minx: -halfSize, maxx: +halfSize,
+                               miny: 0, maxy: 100,
+                               minz: -halfSize, maxz: +halfSize});
+
+var ufoObj;
+var gunHolder;
+var photonTorpedo;
+
+function aimGun(gunHolder,dx,dz) {
+    console.log("dx: "+dx+" "+Math.atan(dx));
+    console.log("dz: "+dz+" "+Math.atan(dz));
+    gunHolder.rotation.set(0,0,0);
+    gunHolder.rotateX(-Math.atan(dz));
+    gunHolder.rotateZ(Math.atan(dx));
+}
+
+function makeScene() {
+    //create a barn, fence and ground
+    var barn = new TW.createMesh(TW.createBarn(30,40,50));
+    scene.add(barn);
+        
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(2*halfSize,2*halfSize),
+                                new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.darkgreen}));
+    ground.rotation.x = -Math.PI/2;
+        
+    scene.add(ground);
+
+    var ufo = new THREE.Mesh(new THREE.SphereGeometry(guiParams.ufoSize),
+                             new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.purple}));
+    ufo.scale.set(10,5,10);  // here's the real size
+
+    var gun = new THREE.Mesh(new THREE.CylinderGeometry(1,1,guiParams.gunLength),
+                             new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.purple}));
+    gun.position.y = -5;
+
+    gunHolder = new THREE.Object3D();
+    gunHolder.add(gun);
+    ufoObj = new THREE.Object3D();
+    // ufoObj.add(new THREE.AxisHelper(5));
+    ufoObj.add(ufo);
+    ufoObj.add(gunHolder);
+    ufoObj.position.set(guiParams.initX,guiParams.initY,guiParams.initZ);
+    scene.add(ufoObj);
+
+    photonTorpedo = new THREE.Mesh(new THREE.SphereGeometry(1),
+                                   new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.yellow}));
+    photonTorpedo.visible = false;
+    scene.add(photonTorpedo);
+}
+makeScene();
+
+// State variables of the animation
+var animationState;
+
+function resetAnimationState() {
+    animationState = {
+        time: 0,
+        x: guiParams.initX,
+        z: guiParams.initZ,
+        lastParam: null
+    };
+    ufoObj.position.x = animationState.x;
+    ufoObj.position.z = animationState.z;
+}
+
+resetAnimationState();
+
+function firstState() {
+    resetAnimationState();
+    TW.render();
+}
+
+function updateState() {
+    // changes the time and everything in the state that depends on it
+    animationState.time += guiParams.deltaT;
+    if( animationState.time < guiParams.later ) {
+        animationState.x += guiParams.initVx;
+        animationState.z += guiParams.initVz;
+    } else {
+        animationState.x += guiParams.laterVx;
+        animationState.z += guiParams.laterVz;
+    }
+    ufoObj.position.x = animationState.x;
+    ufoObj.position.z = animationState.z;
+    if( animationState.x < 0 ||
+        animationState.z < -100 ) {
+        console.log("Stop because out of bounds");
+        stopAnimation();
+    }
+    var time = animationState.time;
+    var dt = guiParams.deltaT;
+    if( Math.floor(time) <= time && time <= Math.floor(time)+dt ) {
+        // reaim and fire a new photon torpedo every second
+        // The code above tests for the beginning of a second.
+        var torpedoDir = new THREE.Vector3(0,-1,0);
+        torpedoDir.x = TW.randomBell(0,5);
+        torpedoDir.z = TW.randomBell(0,5);
+        // update where the gun is aiming
+        aimGun(gunHolder,torpedoDir.x,torpedoDir.z);
+        animationState.photonSequence = 0;
+        var start = new THREE.Vector3();
+        start.copy(ufoObj.position);
+        animationState.torpedoStart = start;
+        animationState.torpedoStartTime = time;
+        animationState.torpedoDir = torpedoDir;
+    } else {
+        // draw a photon torpedo in the scene
+        animationState.photonSequence++;
+        var P = animationState.torpedoStart;
+        var sinceStart = time - animationState.torpedoStartTime;
+        var Q = new THREE.Vector3();
+        var V = new THREE.Vector3();
+        V.copy(animationState.torpedoDir);
+        V.normalize();
+        V.multiplyScalar(guiParams.torpedoVelocity*sinceStart);
+        Q.addVectors(P,V);
+        console.log("PVQ:",P,V,Q);
+        photonTorpedo.position.copy(Q);
+        photonTorpedo.visible = true;
+    }
+}
+                
+function oneStep() {
+    updateState();
+    TW.render();
+}
+    
+
+var animationId = null;                // so we can cancel the animation if we want
+
+function animate(timestamp) {
+    oneStep();
+    animationId = requestAnimationFrame(animate);
+}
+
+function stopAnimation() {
+    if( animationId != null ) {
+        cancelAnimationFrame(animationId);
+    }
+}
+
+TW.setKeyboardCallback("0",firstState,"reset animation");
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",animate,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+var gui = new dat.GUI();
+gui.add(guiParams,"deltaT",0.01,3.0).step(0.01);
+
+firstState();
+
+</script>
+</body>
+</html>

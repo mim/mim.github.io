@@ -1,0 +1,247 @@
+<!-- 
+Demo to show how to rotate a cube.
+Scott D. Anderson
+November 2014
+
+ -->
+<!doctype html>
+<html> 
+  <head> 
+    <title>Cube</title> 
+    
+    <style> canvas { width: 100%; height: 500px }
+      span { font-size: bigger; font-weight: bold; color: red; }
+    </style> 
+
+  </head> 
+        
+  <body>
+        
+<h1>Cube with Controls</h1>
+
+<ul>
+  <li>[0-8]:  focus on that cube.
+    <li>x,y,z:  rotate by 10 degrees around that axis.
+    <li>b: switch to bad rotation
+    <li>g:  switch to good rotation
+</ul>
+
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+
+<p>Current rotation method is <span id="rotation-method"></span></p>
+<p>Current cube is <span id="current-cube">0</span></p>
+<p>Current axis is <span id="current-axis">x</span></p>
+
+<script>
+// Probably add this to TW soon.
+
+TW.linearMap = function(x,minx,maxx,miny,maxy) {
+    //Transforms x from [minx,maxx] to y in [miny,maxy]
+    //t is in [0,1]
+    t = (x-minx)/(maxx-minx);
+    y = t*(maxy-miny)+miny;
+    return y;
+};
+
+// Parameters of the scene and animation:
+var guiParams = {
+    cubeSize: 1,
+    xVelocity: TW.degrees2radians(10),
+    yVelocity: TW.degrees2radians(20),
+    zVelocity: TW.degrees2radians(40),
+    deltaT: 0.01,        // time between steps, in arbitrary time units
+    lastparam: null
+};
+
+// State variables of the animation
+var animationState;
+
+function resetAnimationState() {
+    animationState = {
+        xRotation: 0,
+        yRotation: 0,
+        zRotation: 0,
+        time: 0,
+        lastParam: null
+    };
+}
+
+resetAnimationState();
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene();
+TW.mainInit(renderer,scene);
+var size = 6;
+TW.cameraSetup(renderer,scene, {minx: 0, maxx: size,
+                                miny: 0, maxy: size,
+                                minz: -1, maxz: 1});
+
+TW.createCubeRGB = function(size) {
+    var geom = new THREE.BoxGeometry(size,size,size);
+    var red   = new THREE.MeshBasicMaterial({color:0xFF0000});
+    var green = new THREE.MeshBasicMaterial({color:0x00FF00});
+    var blue  = new THREE.MeshBasicMaterial({color:0x0000FF});
+    var mats = [red,red,green,green,blue,blue];
+    var mesh = new THREE.Mesh(geom,new THREE.MeshFaceMaterial(mats));
+    var obj = new THREE.Object3D();
+    obj.add(mesh);
+    obj.add(new THREE.AxisHelper(2*size));
+    return obj;
+};
+
+TW.createCubeColors = function(size) {
+    var cube = new THREE.Object3D();
+    var innerCube = TW.createColorCube();
+    cube.add(innerCube);
+    innerCube.position.set(-0.5,-0.5,-0.5);
+    var debugCube = new THREE.Mesh(new THREE.BoxGeometry(1.1,1.1,1.1), new THREE.MeshBasicMaterial({color:0}));
+    debugCube.material.wireframe = true;
+    cube.add(debugCube);
+    var axes = new THREE.AxisHelper(size*2);
+    cube.add(axes);
+    return cube;
+}
+
+function normalCube () {
+    var cube = new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshNormalMaterial());
+    var obj = new THREE.Object3D();
+    obj.add(cube);
+    obj.add(new THREE.AxisHelper(2));
+    return obj;
+}
+
+var cubes = [];         // needs to be a global so we can update rotations
+var curr = 0;
+var axis = "z";
+
+function makeScene() {
+    for(var i=0; i<3; i++) {
+        j=0;
+        var cube = TW.createCubeRGB(1);
+        cube.position.x = i*3;
+        cube.position.y = j*3;
+        cubes.push(cube);
+        scene.add(cube);
+        j=1;
+        var cube = TW.createCubeColors(1);
+        cube.position.x = i*3;
+        cube.position.y = j*3;
+        cubes.push(cube);
+        scene.add(cube);
+        j=2;
+        var cube = normalCube();
+        cube.position.x = i*3;
+        cube.position.y = j*3;
+        cubes.push(cube);
+        scene.add(cube);
+    }
+}
+makeScene();
+                
+var rotationMethod = "bad";
+
+function degrees(rotation) {
+    // enables angles to be printed in degrees
+    var degs = rotation.clone();
+    degs.x = TW.radians2degrees(degs.x);
+    degs.y = TW.radians2degrees(degs.y);
+    degs.z = TW.radians2degrees(degs.z);
+    return degs;
+}
+
+function setCubeRotation(time) {
+    var degs = degrees(cubes[curr].rotation);
+    console.log("before: "+JSON.stringify(degs));
+    if( rotationMethod == "bad" ) {
+        switch(axis) {
+        case "x": cubes[curr].rotation.x += TW.degrees2radians(10); break;
+        case "y": cubes[curr].rotation.y += TW.degrees2radians(10); break;
+        case "z": cubes[curr].rotation.z += TW.degrees2radians(10); break;
+        default: throw "no such axis";
+        }
+    } else if ( rotationMethod == "good" ) {
+        switch(axis) {
+        case "x": cubes[curr].rotateX( TW.degrees2radians(10) ); break;
+        case "y": cubes[curr].rotateY( TW.degrees2radians(10) ); break;
+        case "z": cubes[curr].rotateZ( TW.degrees2radians(10) ); break;
+        default: throw "no such axis";
+        }
+    }
+    var degs = degrees(cubes[curr].rotation);
+    console.log("after: "+JSON.stringify(degs));
+}
+
+function firstState() {
+    resetAnimationState();
+    TW.render();
+}
+
+function updateState() {
+    // changes the time and everything in the state that depends on it
+    animationState.time += guiParams.deltaT;
+    var time = animationState.time;
+    setCubeRotation(time);
+}
+                
+function oneStep() {
+    updateState();
+    TW.render();
+}
+
+var animationId = null;                // so we can cancel the animation if we want
+
+function animate(timestamp) {
+    oneStep();
+    animationId = requestAnimationFrame(animate);
+}
+
+function stopAnimation() {
+    if( animationId != null ) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+}
+
+function setCurr(evt) {
+    curr = evt.keyCode - 48;
+    document.getElementById("current-cube").innerHTML = curr;
+}
+
+function setAxis(evt) {
+    scott = evt;
+    axis = String.fromCharCode(evt.charCode);
+    document.getElementById("current-axis").innerHTML = axis;
+    setCubeRotation();
+    TW.render();
+}
+
+TW.setKeyboardCallback("0",setCurr,"cube 0");
+TW.setKeyboardCallback("1",setCurr,"cube 1");
+TW.setKeyboardCallback("2",setCurr,"cube 2");
+TW.setKeyboardCallback("3",setCurr,"cube 3");
+TW.setKeyboardCallback("4",setCurr,"cube 4");
+TW.setKeyboardCallback("5",setCurr,"cube 5");
+TW.setKeyboardCallback("6",setCurr,"cube 6");
+TW.setKeyboardCallback("7",setCurr,"cube 7");
+TW.setKeyboardCallback("8",setCurr,"cube 8");
+
+TW.setKeyboardCallback("x",setAxis,"rotate around x");
+TW.setKeyboardCallback("y",setAxis,"rotate around y");
+TW.setKeyboardCallback("z",setAxis,"rotate around z");
+
+function setRotationMethod(way) {
+    rotationMethod = way;
+    document.getElementById('rotation-method').innerHTML = way;
+}
+
+TW.setKeyboardCallback("g",function() { setRotationMethod("good"); },"good rotation method");
+TW.setKeyboardCallback("b",function() { setRotationMethod("bad"); },"bad rotation method");
+
+setRotationMethod("bad");
+firstState();
+</script> 
+</body> 
+</html>

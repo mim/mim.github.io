@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Click</title>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <style>
+      canvas {
+          width: 800px;
+          height: 500px;
+      }
+      #info {
+          height: 3ex;
+      }
+    </style>
+  </head>
+<body>
+
+<p>When you click the mouse <em>while holding down the SHIFT key</em>,
+  this application draws a line from the front of the frustum to the back
+  of the frustum.  You won't see the line (since it projects to a point),
+  until you move the camera, which you can do in the usual way.
+
+<div id="info"></div>
+
+<script src="tree.js"></script>
+<script src="snowperson.js"></script>
+<script src="town.js"></script>
+
+<script src="shared.js"></script>
+<script src="click-v2.js"></script>
+
+</body>
+</html>

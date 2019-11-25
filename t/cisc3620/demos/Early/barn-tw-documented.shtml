@@ -1,0 +1,194 @@
+<html>
+  <head>
+    <title>Barn Demo Documented</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <!-- for everything else -->
+    <link rel="stylesheet" type="text/css" href="../../../307.css">
+    <link rel="stylesheet" type="text/css" href="../../../js/google-code-prettify/prettify-sda.css">
+  </head>
+<body>
+
+<h1>Barn Demo</h1>
+
+<p>This file has the minimal code to create a working Three.js
+  application, using the TW object to set up the camera for us.
+  Because the canvas does not take the entire window, there is space for
+  some ordinary HTML like this.
+
+<script id="prog">
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+/* Next, we create objects in our scene. Here, the <q>classic</q>
+barn. The front left bottom vertex of the barn is the origin, so, for
+example, the x coordinates go from 0 to 20. */
+
+var barnWidth = 20;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barnGeometry = TW.createBarn( barnWidth, barnHeight, barnDepth );
+
+// the createMesh function adds a "demo" material to the geometry
+
+var barnMesh = TW.createMesh( barnGeometry );
+
+// the scene is the set of things to render, so add the barn.
+
+scene.add(barnMesh);
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+/* We always need a camera; here we'll use a default orbiting camera.  The
+third argument are the ranges for the coordinates, to help with setting up
+the placement of the camera. They need not be perfectly accurate, but if
+they are way off, your camera might not see anything, and you'll get a
+blank canvas. */
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: 20,
+                miny: 0, maxy: 30, // a bit low
+                minz: -40, maxz: 0});
+</script>
+
+<h2>Code</h2>
+
+<p>Here is the code that produced the program above:
+
+<pre class="prettyprint linenums" data-codefrom="prog"></pre>
+
+<p>As you can see, it's very short. The <code>TW.cameraSetup()</code>
+  function does the work of setting up a useful default camera for you, so
+  that you can look at your scene from all sides. All you have to do is
+  give it a general idea of where your scene is, using the <code>{}</code>
+  object with properties like <code>minx</code>.
+
+<h2>Barn Code</h2>
+
+<p>Now, we need to understand the barn, at least a little. Here is the
+  code for <code>TW.createBarn()</code>:
+
+<pre class="prettyprint lang-js linenums" data-code-jsfunction="TW.createBarn"></pre>
+  
+<p>The code creates a generic <code>THREE.Geometry</code> object, which is a
+  collection of <em>vertices</em> and <em>faces</em>. Two attributes defined for 
+  every <code>THREE.Geometry</code> object are arrays named <code>vertices</code> 
+  and <code>faces</code>. The <code>vertices</code> array stores
+  <code>THREE.Vector3</code> objects that each hold the <code>(x,y,z)</code> coordinates
+  for a single vertex. Each call to the <code>push()</code> method adds a new
+  vertex onto the end of the array. You can think of the indices of the array
+  as the numerical labels of the vertices. The <code>faces</code> array stores 
+  <code>THREE.Face3</code> objects that represent a <em>triangle</em>
+  built from three vertices, using the corresponding indices of the 
+  <code>vertices</code> array to specify which vertices to use. Each call 
+  to the <code>push()</code> method adds a new face onto the end of the 
+  <code>faces</code> array. 
+
+<p>Each face, of course, has two sides, just like a coin.  One of these is
+  the <em>front</em> and the other is the <em>back</em>. The (default)
+  technical definition of the front is the side where the vertices are
+  in <em>counter-clockwise</em> order.  Here, each face is defined from the 
+  front, and we use the convention that the front of each face corresponds
+  to the <em>outside</em> of the barn.
+
+<p>Each face also has an associated vector that is <em>perpendicular</em>
+to the face, which mathematicians and computer graphics people call
+the <em>normal</em> vector.  We'll learn that these are crucial in
+lighting computations.
+
+<p>Each vertex also has an associated vector which is the average of the
+  normal vectors of all the faces that contain the vertex. These can also be 
+  used in lighting computations.
+
+<p>The last two lines of this function, one of which is commented out, compute 
+these sets of vectors.
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+</body>
+</html>

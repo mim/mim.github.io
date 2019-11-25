@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Shadows</title>
+    <script src="http://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <script src="http://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="http://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls.js"></script>
+    
+</head>
+<body>
+
+<script>
+var scene = new THREE.Scene();
+var renderer = new THREE.WebGLRenderer();
+renderer.shadowMapEnabled = true;
+
+// mark origin
+scene.add(new THREE.Mesh(new THREE.SphereGeometry(0.5), new THREE.MeshBasicMaterial({color:0xFF0000})));
+
+var wall = new THREE.Mesh( new THREE.PlaneGeometry(20,20),
+                           new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.lightblue}));
+wall.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), Math.PI/4 );
+                           
+wall.receiveShadow  = true;
+scene.add(wall);
+
+function pierceSphere(geom, numFacesToRemove) {
+    var i, faces = geom.faces;
+    for( i = 0 ; i < faces.length; i++ ) {
+        var randIndex = Math.floor( faces.length * Math.random() );
+        faces.splice( randIndex, 1 );
+    }
+}
+
+var lanternGeom = new THREE.SphereGeometry(3,20,20);
+// pierceSphere(lanternGeom, 40);  // 1 in 10, I think
+var lanternMat = new THREE.MeshPhongMaterial({color: 0xc7911d,
+                                              ambient: 0x543907,
+                                              specular: 0xfdf038,
+                                              shininess: 28,
+                                              side: THREE.DoubleSide});
+var lantern = new THREE.Mesh( lanternGeom, lanternMat );
+lantern.position.set( 5, 4, 5 );
+lantern.castShadow = true;
+scene.add(lantern);
+
+// add spotlight for the shadows
+var spotLight = new THREE.SpotLight( 0xffffff );
+spotLight.position.set( 40, 0, 10 );
+// target is the origin
+spotLight.castShadow = true;
+scene.add( spotLight );
+
+var helper = new THREE.SpotLightHelper( spotLight, 1 );
+scene.add( helper );
+
+var camera = new THREE.PerspectiveCamera(45, 800/500, 0.1, 1000);
+camera.position.set(-3,4,20);
+camera.lookAt(scene.position);
+
+var cameraControls = new THREE.OrbitControls(camera, renderer.domElement);
+cameraControls.addEventListener('change',function () { renderer.render(scene,camera); });
+cameraControls.target.copy( scene.position );
+cameraControls.update();
+
+
+document.body.appendChild(renderer.domElement);
+renderer.setSize(800,500);
+renderer.setClearColor(0xEEEEEE, 1.0);
+
+renderer.render(scene, camera);
+
+</script>
+
+</body>
+</html>

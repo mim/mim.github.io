@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Box Flag</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+
+<h1>Box Flag</h1>
+
+<p>This demo shows a texture-mapping of a flag onto a <code>THREE.BoxGeometry</code>.  
+
+<div style="display: inline-block; width: 38%"><pre id="geom"></pre></div>
+
+<script>
+
+// half-dimensions of the object
+var width2 = 4;
+var height2 = 2;
+var depth2 = 1;
+
+var flagTexture = TW.makeFlagTexture('US-RWB');
+flagTexture.wrapS = THREE.RepeatWrapping;
+flagTexture.wrapT = THREE.RepeatWrapping;
+var flagGeom = new THREE.BoxGeometry( 2*width2, 2*height2, 2*depth2);
+
+var faces = flagGeom.faces;
+var UVs = flagGeom.faceVertexUvs[0];
+for( var i = 0; i < faces.length; i++ ) {
+    var face = faces[i];
+    // modify (s,t) parameters to give 2x3 pattern on front face (4)
+    if( face.materialIndex == 4 ) {
+        var faceUV = UVs[i];
+        // for all three vertices
+        for( j = 0; j < 3; j++ ) {
+            var UV = faceUV[j];
+            UV.x = 2*UV.x;
+            UV.y = 3*(1-UV.y);
+        }
+    }
+}
+
+
+document.getElementById('geom').innerHTML = TW.stringifyGeometry(flagGeom);
+var flagMat = new THREE.MeshBasicMaterial(
+    {
+        color: THREE.ColorKeywords.white,
+        map: flagTexture,
+    });
+
+var flagMesh = new THREE.Mesh(flagGeom, flagMat);
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+scene.add(flagMesh);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -width2, maxx: width2,
+                            miny: -height2, maxy: height2,
+                            minz: -depth2, maxz: depth2});
+
+</script>
+
+
+</body>
+</html>

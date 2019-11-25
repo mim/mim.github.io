@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <title>Material Parameters</title>
+    <style>
+      body { margin: 10px; }
+      canvas { width: 100%; height: 100% }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+        
+<h1>Material Parameters</h1>
+    
+<p>See how the material parameters affect both the sphere and the
+  cube. Both objects are using the same material. Move the eye around to
+  see specular reflection on the cube. See the code below.
+
+<p>This differs
+  from <a href="MaterialParameters.shtml">MaterialParameters.shtml</a>
+  because it just supplies all the params to each constructor, allowing
+  each to pick out the params it cares about. That makes the code more
+  concise, but less tutorial.
+
+<script>
+                        
+var renderer = new THREE.WebGLRenderer();
+
+var scene = new THREE.Scene();
+
+TW.mainInit(renderer,scene);
+                        
+var params = {
+    lightX: -90,
+    lightY: 175,
+    lightZ: 125,
+    materialType: "Phong",
+    color: '#ff0000',
+    specular: '#ffffff',
+    emissive: '#000000',
+    matShininess: 30,
+    last_param:  null
+};
+
+// Global used by both geometries. This is just a dummy value, updated later.
+var sharedMaterial = new THREE.MeshBasicMaterial();
+
+// The two objects in the scene
+var sphere = new THREE.Mesh(new THREE.SphereGeometry(60, 100, 100), sharedMaterial);
+var cube = new THREE.Mesh(new THREE.BoxGeometry(100,100,100), sharedMaterial);
+
+function updateMaterialFromParams() {
+    // extra params are ignored, so this simplifies the code
+    switch (params.materialType) {
+    case "Basic":
+        // uses color
+        sharedMaterial = new THREE.MeshBasicMaterial( params );
+        break;
+        
+    case 'Lambert':
+        // uses color (as diffuse), ambient and emissive
+        sharedMaterial = new THREE.MeshLambertMaterial( params );
+        break;
+        
+    case 'Phong':
+        // uses color (as diffuse), ambient, specular and emissive
+        sharedMaterial = new THREE.MeshPhongMaterial( params );
+        break;
+    }
+    sphere.material = sharedMaterial;
+    cube.material = sharedMaterial;
+}
+
+updateMaterialFromParams();
+   
+cube.position.set(100,50,0);
+sphere.position.set(-80,60,0);
+
+scene.add(sphere);
+scene.add(cube);
+                        
+// ================================================================
+// There are two lights, one ambient and one point light controllable by GUI                        
+
+var ambientLight = new THREE.AmbientLight(0x333333);
+scene.add(ambientLight);
+
+var pointLight = new THREE.PointLight(0xffffff);
+scene.add(pointLight)
+
+// This is so we can see the point light
+
+var lightbulbGeometry = new THREE.SphereGeometry(10,16,8);
+var lightbulbMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending});
+                                
+var lightbulb = new THREE.Mesh(lightbulbGeometry,lightbulbMaterial);
+scene.add(lightbulb);
+
+function updateLightFromParams() {
+    pointLight.position.set(params.lightX, params.lightY, params.lightZ);
+    lightbulb.position.set(params.lightX, params.lightY, params.lightZ);
+}
+updateLightFromParams();
+
+// ================================================================
+// Final steps. Set up the camera before loading the floor texture, so that
+// the render() function will work.
+
+var state = TW.cameraSetup(renderer,
+               scene,
+               {minx: -300, maxx: 300,
+                miny: -10, maxy: 50,
+                minz: -300, maxz: 300});
+TW.viewFromAboveFrontSide();
+
+// ================================================================
+// create the ground plane
+
+var planeGeometry = new THREE.PlaneGeometry(800,800);
+var floorTexture = new THREE.ImageUtils.loadTexture( 'floor.jpg',
+                                                     THREE.UVMapping,
+                                                     function () { console.log("onLoad");
+                                                                   TW.render()}
+                                                   );
+var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
+var plane = new THREE.Mesh(planeGeometry,floorMaterial);
+        
+// rotate and position the plane
+plane.rotation.x=-0.5*Math.PI;
+plane.position.set(5,-2,0);
+scene.add(plane);
+
+</script>
+<script>
+function redo() {
+    // this function is overkill for most changes since it updates
+    // everything, but simplifies the code
+    updateMaterialFromParams();
+    updateLightFromParams();
+    TW.render();
+}
+
+// GUI setup
+var gui = new dat.GUI();
+gui.add(params,'lightX',-200,+200).step(1).onChange(redo);
+gui.add(params,'lightY',-200,+200).step(1).onChange(redo);
+gui.add(params,'lightZ',-200,+200).step(1).onChange(redo);
+gui.add(params,'materialType',[ "Basic", "Lambert", "Phong", "Wireframe" ]).onChange(redo);
+gui.addColor(params,'color').onChange(redo);
+gui.addColor(params,'specular').onChange(redo);
+gui.addColor(params,'emissive').onChange(redo);
+
+</script>
+
+<p>Here's the code that sets up the material
+<pre data-code-jsfunction="updateMaterialFromParams" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

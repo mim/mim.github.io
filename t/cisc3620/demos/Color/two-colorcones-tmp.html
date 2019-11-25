@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>CS307 Color Cones</title>
+    <style>
+      body { margin: 0px; width: 100%; }
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 40%;
+      }
+      .col {
+          display: inline-block;
+          width: 49%;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<div class="col">
+   <canvas id="c1"></canvas>
+</div>
+<div class="col">
+   <canvas id="c2"></canvas>
+</div>
+
+<script>
+var c1 = document.getElementById('c1');
+var gl1 = c1.getContext("2d");
+gl1.beginPath();
+gl1.arc(95,50,40,0,2*Math.PI);
+gl1.stroke();
+
+var c2 = document.getElementById('c2');
+var gl2 = c2.getContext("2d");
+gl2.fillStyle = "#FF0000";
+gl2.fillRect(0,0,150,75);
+</script>
+
+
+
+
+</body>
+</html>

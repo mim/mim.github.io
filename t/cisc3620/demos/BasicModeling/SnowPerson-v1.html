@@ -1,0 +1,106 @@
+<!-- SnowPerson Demo for CS307
+Author: Scott D. Anderson
+Date: August 11, 2014
+
+-->
+
+<html>
+  <head>
+    <title>The Snow Person</title>
+    <style>
+      body {margin: 0px}
+      canvas { width: 100%; height: 100% }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<script>
+// when true, objects are drawn in wireframe
+var wireframe = true;
+
+/* The snow person uses these two materials, defined globablly so that we
+ * can toggle the wire-frame property. */
+
+var bodyColor = 0xFFFFFF;
+var noseColor = 0xED9121;  // carrot orange
+var bodyMaterial = new THREE.MeshBasicMaterial({color: bodyColor});
+var noseMaterial = new THREE.MeshBasicMaterial({color: noseColor});
+
+bodyMaterial.wireframe = wireframe;
+noseMaterial.wireframe = wireframe;
+</script>
+
+<script id="snowperson">
+/* Adds a three-sphere, one-cone snowperson to the scene. r1, r2, and r3
+    are the radii of the spheres, counting from the bottom. The snowperson
+    sits on the origin, and the spheres are stacked along the y axis. The
+    axis of the cone is parallel with the z axis. */
+    
+function createSnowPerson(scene,r1,r2,r3) {
+    var sphereDetail = 10;
+    var cylinderDetail = 10;
+    var sd = sphereDetail;
+    var cd = cylinderDetail;
+
+    // height is distance of origin to sphere center along y.
+    function addSphere(scene,radius,height) {
+        var sg = new THREE.SphereGeometry(radius,sd,sd);
+        var s = new THREE.Mesh(sg, bodyMaterial);
+        console.log("adding sphere: "+radius+" at "+height);
+        s.position.y = height;
+        scene.add(s);
+    }
+
+    // ================================================================
+    
+    var y = r1;
+    addSphere(scene,r1,y);
+    y += r1 + r2;
+    addSphere(scene,r2,y);
+    y += r2 + r3;
+    addSphere(scene,r3,y);
+    
+    var noseLength = r3*0.5;
+    var noseGeometry = new THREE.CylinderGeometry(r3*0.2,0,noseLength,cd);
+    var nose = new THREE.Mesh(noseGeometry, noseMaterial);
+    nose.position.y = y;
+    nose.position.z = r3 + 0.5*noseLength; // radius of head plus half length of nose
+    nose.rotateX(-0.5*Math.PI);
+    scene.add(nose);
+}
+</script>
+
+
+<script>
+var renderer = new THREE.WebGLRenderer();
+
+var scene = new THREE.Scene();
+                        
+var r1 = 3;
+var r2 = 2;
+var r3 = 1;
+
+createSnowPerson(scene,r1,r2,r3);
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -r1, maxx: +r1,
+                miny: 0, maxy: 2*(r1+r2+r3),
+                minz: -r1, maxz: +r1});
+
+TW.setKeyboardCallback("w",
+                       function () {
+                           wireframe = !wireframe;
+                           console.log("wireframe is "+(wireframe?"on":"off"));
+                           bodyMaterial.wireframe = wireframe;
+                           noseMaterial.wireframe = wireframe;
+                           TW.render();
+                       },
+                       "toggle wireframe");
+
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!-- 
+Kelsey Reiman
+October 2014
+
+Creates an animation of a bouncing ball. This code is adapted from BouncingBlueBall.py
+ -->
+
+<html> 
+	<head> 
+		<title>Apple</title> 
+		
+	    <style> canvas { width: 100%; height: 100% }</style> 
+	</head> 
+	
+	<body>
+	
+	<script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+	
+	<script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight, 0.1,1000);
+		var renderer = new THREE.WebGLRenderer();
+	
+		
+		renderer.setClearColor( 0xffffff );
+		renderer.setSize(window.innerWidth,window.innerHeight);
+		
+		document.body.appendChild(renderer.domElement);
+		
+		ballRadius = 1;
+		ballHeight = 8 ;                 // of the center
+		ballBouncePeriod = 3;            //in whatever units Time is measured in
+		maxBallHeight = 8;               // of the center
+
+		time = 0;
+		deltaT = 0.035;
+
+		var ballMat = new THREE.MeshNormalMaterial();
+		var ballG =  new THREE.SphereGeometry(ballRadius,30,30);
+		
+		var ball = new THREE.Mesh(ballG,ballMat);
+		
+		function linearMap(x,minx,maxx,miny,maxy){
+			//Transforms x from [minx,maxx] to y in [miny,maxy]
+			//t is in [0,1]
+			t = (x-minx)/(maxx-minx);
+			y = t*(maxy-miny)+miny;
+			return y
+    	}
+
+		function updatePosition(){
+			time += deltaT;
+			//rescale the Time dimension so that P, the period of bouncing, maps to pi
+			angle = time * Math.PI / ballBouncePeriod; 
+			abs_cos = Math.abs(Math.cos(angle));
+			ballHeight = linearMap(abs_cos,0,1,ballRadius,maxBallHeight);
+			return ballHeight;
+		}
+		
+		scene.add(ball);
+		
+	
+		camera.position.z = 30;
+		
+		var controls = new THREE.OrbitControls( camera, renderer.domElement );
+		
+		function render(){
+			console.log(updatePosition());
+			ball.position.y = updatePosition();
+			requestAnimationFrame(render);
+			renderer.render(scene,camera);
+			}
+			
+		render();					
+	
+	</script> 
+	</body> 
+
+</html>

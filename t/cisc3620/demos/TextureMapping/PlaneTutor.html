@@ -1,0 +1,173 @@
+<html>
+  <head>
+    <title>Plane Texture Tutor</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane w/ Texture</h1>
+
+<p>This demo shows a texture-mapping of the following image
+  (<span id='imagePath'></span>) onto a
+  simple <code>THREE.PlaneGeometry</code>.
+
+
+<p>
+    <img style="width:40%" id="flat" alt="plain flat image">
+
+<p>Note that <code>THREE.Texture.flipY</code> is <code id="flipY"></code>
+    <p>Remember, in the plane below:
+      <ul>
+        <li>s goes left to right
+        <li>t goes
+          <ul>
+            <li id="flipYtrue">bottom to top if flipY is true
+            <li id="flipYfalse">top to bottom if flipY is false
+          </ul>
+      </ul>
+
+<script>
+var imagePath = "../../r67/examples/textures/UV_Grid_Sm.jpg";
+document.querySelector("#flat").src = imagePath;
+document.querySelector("#imagePath").innerHTML = imagePath;
+</script>
+
+<script>
+guiParams = {
+    sMin: 0.0,
+    sMax: 1.0,
+    tMin: 0.0,
+    tMax: 1.0,
+    wrapS: "repeat",
+    wrapT: "repeat",
+    lastParam: null
+}
+
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var planeGeom = new THREE.PlaneGeometry( 4, 4);
+
+function printTextureParams(quad) {
+    var elt = quad.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    console.log("face0: "+JSON.stringify(elt[0]));
+    console.log("face1: "+JSON.stringify(elt[1]));
+}
+    
+
+function updateTextureParams(quad, sMin, sMax, tMin, tMax) {
+    var elt = quad.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    var face0 = elt[0];
+    face0[0] = new THREE.Vector2(sMin,tMax);
+    face0[1] = new THREE.Vector2(sMin,tMin);
+    face0[2] = new THREE.Vector2(sMax,tMax);
+    var face1 = elt[1];
+    face1[0] = new THREE.Vector2(sMin,tMin);
+    face1[1] = new THREE.Vector2(sMax,tMin);
+    face1[2] = new THREE.Vector2(sMax,tMax);
+    printTextureParams(quad);
+    quad.uvsNeedUpdate = true;
+}
+ 
+function updateTextureParamsFromGUI() {
+    updateTextureParams( planeGeom,
+                         guiParams.sMin,
+                         guiParams.sMax,
+                         guiParams.tMin,
+                         guiParams.tMax);
+    TW.render();
+}
+
+function updateTextureSettings(wrapS, wrapT) {
+    var abbrev = {clamp:  THREE.ClampToEdgeWrapping,
+                  repeat: THREE.RepeatWrapping,
+                  mirror: THREE.MirroredRepeatWrapping};
+    imageTexture.wrapS = abbrev[wrapS];
+    imageTexture.wrapT = abbrev[wrapT];
+    imageTexture.needsUpdate = true;
+}    
+
+function updateTextureSettingsFromGUI() {
+    updateTextureSettings( guiParams.wrapS, guiParams.wrapT );
+    TW.render();
+}
+
+
+var imageLoaded = false;
+var imageTexture = new THREE.ImageUtils.loadTexture( imagePath,
+                                                     THREE.UVMapping,
+                                                     function () {
+                                                         console.log("image is loaded.");
+                                                         imageLoaded = true;
+                                                         TW.render();
+                                                     });
+
+document.querySelector("#flipY").innerHTML = imageTexture.flipY;
+if( imageTexture.flipY ) {
+    document.querySelector("#flipYtrue").style.fontWeight = "bold";
+    document.querySelector("#flipYfalse").style.fontWeight = "normal";
+} else {
+    document.querySelector("#flipYtrue").style.fontWeight = "normal";
+    document.querySelector("#flipYfalse").style.fontWeight = "bold";
+}
+
+var imageMat = new THREE.MeshBasicMaterial(
+    {color: THREE.ColorKeywords.white,
+     map: imageTexture});
+
+var imageMesh = new THREE.Mesh( planeGeom, imageMat );
+scene.add(imageMesh);
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+// We always need to init TW
+TW.mainInit(renderer,scene);
+
+/* We almost always need a camera; here we'll use a default orbiting
+camera.  The third argument are the ranges for the coordinates, to help
+with setting up the placement of the camera. They need not be perfectly
+accurate, but if they are way off, your camera might not see anything, and
+you'll get a blank canvas. The camera setup returns a state object which
+stores various values specific to this canvas, including a render()
+function. */
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+updateTextureSettingsFromGUI();
+
+var gui = new dat.GUI();
+gui.add(guiParams, "sMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "sMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMin", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "tMax", 0.0, 3.0).onChange(updateTextureParamsFromGUI);
+gui.add(guiParams, "wrapS", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+gui.add(guiParams, "wrapT", ["clamp","repeat","mirror"]).onChange(updateTextureSettingsFromGUI);
+
+</script>
+
+
+</body>
+</html>

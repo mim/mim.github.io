@@ -1,0 +1,66 @@
+<!-- 
+Kelsey Reiman
+11/16/14 
+CS 307
+cubeSphere.html
+
+Creates a cube inside a red translucent sphere
+ -->
+<html>
+  <head>
+    <title>Cube & Sphere</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script>
+
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer();
+renderer.sortObjects = false;
+        
+TW.clearColor = THREE.ColorKeywords.white;
+
+TW.mainInit(renderer,scene);
+        
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -10, maxx: 10,
+                miny: -10, maxy: 10,
+                minz: -10, maxz: 10}
+              );
+        
+var sceneParams = { plane1Opacity: .5,
+                    plane2Opacity: .5,
+                    plane3Opacity: .5};
+        
+var sphereG = new THREE.SphereGeometry(10,30,30,
+                                       0, Math.PI);
+var sphereM = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.red,
+                                           transparent: true,
+                                           opacity: 0.6});      
+var sphere = new THREE.Mesh(sphereG,sphereM);
+
+var cubeG = new THREE.BoxGeometry(10,10,10);
+var cubeM = new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.cyan});
+var cube = new THREE.Mesh(cubeG,cubeM);
+
+scene.add(sphere);
+scene.add(cube);
+        
+TW.render();
+        
+</script>
+</body>
+</html>

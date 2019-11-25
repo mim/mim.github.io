@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Plane Buffy</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane Buffy</h1>
+
+<p>This demo shows a texture-mapping of the following image onto a
+simple <code>THREE.PlaneGeometry</code>.  This version uses an absolute
+URL.
+
+<p>
+    <img id="img" alt="Buffy">
+
+<script id="loadBuffy">
+var url = "https://cs.wellesley.edu/~cs307/threejs/images/buffy.gif";
+document.getElementById('img').src = url;
+
+function loadPlaneBuffy() {
+    var planeGeom = new THREE.PlaneGeometry( 4, 4);
+    var imageLoaded = false;
+    var buffyTexture = new THREE.ImageUtils.loadTexture( url,
+                                                         new THREE.UVMapping(),
+                                                         // onload event handler
+                                                         function () {
+                                                             console.log("image is loaded.");
+                                                             imageLoaded = true;
+                                                             TW.render();
+                                                         });
+    var buffyMat = new THREE.MeshBasicMaterial(
+        {color: THREE.ColorKeywords.white,
+         map: buffyTexture});
+    
+    var buffyMesh = new THREE.Mesh( planeGeom, buffyMat );
+    return buffyMesh;
+}
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+var buffy = loadPlaneBuffy();
+
+scene.add(buffy);
+
+// ================================================================
+// 
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+</script>
+
+
+</body>
+</html>

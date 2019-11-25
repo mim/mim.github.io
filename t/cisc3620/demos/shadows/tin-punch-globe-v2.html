@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Shadows</title>
+    <script src="http://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <style>
+        body{
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="WebGL-output"></div>
+
+<script>
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+var renderer = new THREE.WebGLRenderer();
+renderer.setClearColor(0xEEEEEE, 1.0);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMapEnabled = true;
+
+var room = new THREE.Mesh( new THREE.PlaneGeometry(60,20),
+                           new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.white}));
+room.receiveShadow  = true;
+room.rotation.x = -0.5 * Math.PI;
+scene.add(room);
+
+var lanternGeom = new THREE.SphereGeometry(4,20,20);
+// pierceSphere(lanternGeom, 40);  // 1 in 10, I think
+var lanternMat = new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.yellow});
+var lantern = new THREE.Mesh( lanternGeom, lanternMat );
+lantern.position.set( 5, 4, 5 );
+lantern.castShadow = true;
+
+function pierceSphere(geom, numFacesToRemove) {
+    var i, faces = geom.faces;
+    for( i = 0 ; i < faces.length; i++ ) {
+        var randIndex = Math.floor( faces.length * Math.random() );
+        faces.splice( randIndex, 1 );
+    }
+}
+
+scene.add(lantern);
+
+camera.position.set(-3,4,20);
+camera.lookAt(scene.position);
+
+// add spotlight for the shadows
+var spotLight = new THREE.SpotLight( 0xffffff );
+spotLight.position.set( -40, 60, -10 );
+// target is the origin
+spotLight.castShadow = true;
+scene.add( spotLight );
+
+document.getElementById('WebGL-output').appendChild(renderer.domElement);
+
+renderer.render(scene, camera);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!-- 
+Scott D. Anderson
+11/6/14 
+CS 307
+
+Creates a cubic bezier surface for a flag
+
+ -->
+<html>
+  <head>
+    <title>Flag Surface</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script>
+var guiParams = {
+    widthSegments: 10,
+    heightSegments: 10,
+    flipY: true,
+    pngFile: false,
+    flag: true,
+    wire: false,
+    lastParam: null
+};
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene(); 
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene, {minx:0,maxx:10,miny:0,maxy:10,minz:0,maxz:1});
+        
+scene.add( new THREE.AmbientLight( 0x404040 ));
+var dirLight = new THREE.DirectionalLight( 0xFFFFFF );
+dirLight.position.set( 2, 5, 3 );
+scene.add( dirLight );
+
+// ================================================================
+
+var topToBottom = [
+    [ [0,10,0],  [2,9,1],  [7,9,0],  [9,9,-1] ],
+    [ [1,8,0], [2,8,1],  [7,8,-1],  [8,8,0] ],
+    [ [1,2,0], [2,2,2],  [8,2,-1],  [8,8,0] ],
+    [ [0,0,0],  [2,1,2], [8,2,-2], [9,3,0] ]
+];
+
+var surfGeom, flagTex, flagMat, surfMesh;
+
+function makeSurf() {
+    scene.remove(surfMesh);
+    // if we use .reverse(), then flipY has no effect. Weird!
+    surfGeom = new THREE.BezierSurfaceGeometry( topToBottom,
+                                                Math.ceil(guiParams.widthSegments),
+                                                Math.ceil(guiParams.heightSegments) );
+    if( ! guiParams.pngFile ) {
+        flagTex = TW.makeFlagTexture('US-RWB');
+        flagTex.flipY = guiParams.flipY;
+        flagTex.needsUpdate = true;
+        flagMat = new THREE.MeshPhongMaterial({map: flagTex, side: THREE.DoubleSide});
+        flagMat.wireframe = guiParams.wire;
+        scene.remove(surfMesh);
+        surfMesh = new THREE.Mesh( surfGeom, flagMat );
+        surfMesh.name = "flag";
+        scene.add(surfMesh);
+        // showCP(topToBottom);
+        TW.render();
+    } else {
+        TW.loadTexture('../../images/USflag-2048.png',
+            function (tex) {
+            flagTex = tex;
+            flagMat = new THREE.MeshPhongMaterial({map: flagTex, side: THREE.DoubleSide});
+            flagMat.wireframe = guiParams.wire;
+            flagTex.flipY = guiParams.flipY;
+            flagTex.needsUpdate = true;
+            scene.remove(surfMesh);
+            surfMesh = new THREE.Mesh( surfGeom, flagMat );
+            surfMesh.name = "flag";
+            scene.add(surfMesh);
+            TW.render();
+        });
+    }
+}
+makeSurf();
+
+function showCP(cpList) {
+    for( var j=0; j < cpList.length; j++ ) {
+        var subList = cpList[j];                      
+        for( var i=0; i < subList.length; i++ ) {
+            scene.add(TW.createPoint(subList[i]));
+        }
+    }
+};
+
+// TW.viewFromFront();        
+
+function redo() {
+    makeSurf();
+}
+
+var gui = new dat.GUI();
+gui.add(guiParams, 'widthSegments', 1,20).step(1).onChange(redo);
+gui.add(guiParams, 'heightSegments', 1,20).step(1).onChange(redo);
+gui.add(guiParams, 'flipY').onChange(redo);
+gui.add(guiParams, 'pngFile').onChange(redo);
+gui.add(guiParams, 'wire').onChange(redo);
+
+
+</script>
+</body>
+</html>

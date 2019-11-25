@@ -1,0 +1,97 @@
+<!-- 
+Scott D. Anderson
+November 2014
+CS 307
+
+A demo of anti-aliasing.
+ -->
+<html>
+  <head>
+    <title>Anti-Aliasing</title>
+    <style>      
+      canvas {
+          display: block;
+          float: right;
+          margin: 100px 10px 10px 10px;
+          width: 300px;
+          height: 300px;
+          border: 2px solid teal;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<p>The red scene uses anti-aliasing; the black one does not.
+
+<script>
+    function makeThreeCanvas (canvasAntialias, objColor) {
+
+        var sceneParams = {
+            obj: 'cube',
+            wire: true,
+            lastParam: null
+        };
+
+        var scene = new THREE.Scene(); 
+        var renderer = new THREE.WebGLRenderer({ antialias: canvasAntialias});
+
+        TW.clearColor = THREE.ColorKeywords.white;
+        TW.mainInit(renderer,scene);
+        
+        var state = TW.cameraSetup(renderer,
+                                   scene,
+                                   {minx: -1, maxx: 1,
+                                    miny: -1, maxy: 1,
+                                    minz: -1, maxz: 1});
+        var camera = state.cameraObject;
+
+        // The thing we are drawing.
+        var obj;
+
+        function redoScene() {
+            console.log("redo" + scene.id);
+            scene.remove(obj);
+            switch(sceneParams.obj) {
+            case 'cube':
+                var boxG = new THREE.BoxGeometry(1,1,1);
+                var boxM = new THREE.MeshBasicMaterial({color: objColor});
+                var box = new THREE.Mesh(boxG,boxM);
+                obj = box;
+                break;
+            case 'sphere':
+                var sphG = new THREE.SphereGeometry(1,4,4);
+                var sphM = new THREE.MeshBasicMaterial({color: objColor});
+                var sph = new THREE.Mesh(sphG,sphM);
+                obj = sph;
+                break;
+            }
+            obj.material.wireframe = sceneParams.wire;
+            scene.add(obj);
+            // can't use TW.render(), because it isn't distinguishing between the two canvases
+            renderer.render(scene, camera);
+        }
+        
+        redoScene();
+
+        var gui = new dat.GUI();
+        gui.add(sceneParams,'obj',['cube','sphere']).onChange(redoScene);
+        gui.add(sceneParams,'wire').onChange(redoScene);
+    };
+</script>
+
+<script>
+    makeThreeCanvas(true, THREE.ColorKeywords.red);    // does anti-aliasing (the default)
+</script>
+
+<script>
+    makeThreeCanvas(false, THREE.ColorKeywords.black);    // does anti-aliasing (the default)
+</script>
+
+
+
+</body>
+</html>

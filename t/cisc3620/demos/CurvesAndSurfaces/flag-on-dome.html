@@ -1,0 +1,78 @@
+<!-- 
+Scott D. Anderson
+11/6/14 
+CS 307
+
+Creates a cubic bezier surface for a flag
+
+ -->
+<html>
+  <head>
+    <title>Flag Surface</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script>
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene(); 
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene, {minx:0,maxx:10,miny:0,maxy:10,minz:0,maxz:1});
+        
+var topToBottom = [
+    [ [0,10,0],  [2,9,1],  [7,9,0],  [9,9,-1] ],
+    [ [1,8,0], [2,8,1],  [7,8,-1],  [8,8,0] ],
+    [ [1,2,0], [2,2,2],  [8,2,-1],  [8,8,0] ],
+    [ [0,0,0],  [2,1,2], [8,2,-2], [9,3,0] ]
+];
+
+var surfGeom = new THREE.BezierSurfaceGeometry( topToBottom.reverse(), 10, 10);
+var surf;
+
+if( false ) {
+    var flag = TW.makeFlagTexture('US-RWB');
+    flag.flipY = false;
+    flag.needsUpdate = true;
+    var flagMat = new THREE.MeshPhongMaterial({map: flag, side: THREE.DoubleSide});
+} else {
+    TW.loadTexture('../../images/USflag-2048.png',
+        function (tex) {
+            var mat = new THREE.MeshPhongMaterial();
+            mat.map = tex;
+            mat.flipY = true;
+            mat.side = THREE.DoubleSide;
+            mat.map.needsUpdate = true;
+            scene.remove(surf);
+            surf = new THREE.Mesh( surfGeom, mat );
+            scene.add(surf);
+            TW.render();
+        });            
+}
+
+scene.add( new THREE.AmbientLight( 0x404040 ));
+var dirLight = new THREE.DirectionalLight( 0xFFFFFF );
+dirLight.position.set( 2, 5, 3 );
+scene.add( dirLight );
+
+function showCP(cpList) {
+    for( var i=0; i < cpList.length; i++ ) {
+        scene.add(TW.createPoint(cpList[i]));
+    }
+};
+
+// TW.viewFromFront();        
+</script>
+</body>
+</html>

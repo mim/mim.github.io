@@ -1,0 +1,185 @@
+<!-- 
+Scott D. Anderson
+November 2014
+
+Creates an animation of a mass-spring system. This code is adapted from MassSpring.py
+
+ -->
+<!doctype html>
+<html> 
+  <head> 
+    <title>Mass-Spring</title> 
+    
+    <style> canvas { width: 500px; height: 300px }</style> 
+  </head> 
+        
+  <body>
+        
+<h1>Mass-Spring System with Controls</h1>
+
+<ul>
+  <li>0:  reset animation to initial state
+  <li>1:  take one step
+  <li>g:  "go" &mdash; start the animation <q>loop</q>
+  <li>SPC:  stop the animation
+</ul>
+
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+        
+<script>
+
+// Probably add this to TW soon.
+
+TW.linearMap = function(x,minx,maxx,miny,maxy) {
+    //Transforms x from [minx,maxx] to y in [miny,maxy]
+    //t is in [0,1]
+    t = (x-minx)/(maxx-minx);
+    y = t*(maxy-miny)+miny;
+    return y;
+};
+
+// Parameters of the scene and animation:
+var guiParams = {
+    sceneWidth: 100,
+    wallWidth: 10,          // thickness of left wall
+    wallSize: 50,           // height and depth of left wall
+    tableHeight: 10,
+    massSize: 20,
+    massInitialX: 40,
+    mass: 1200,                 // in Kg?
+    originSize: 1,
+    springK: 3,
+    deltaT: 1,              // time between steps, in arbitrary time units
+    lastparam: null
+};
+
+// State variables of the animation
+var animationState;
+
+function resetAnimationState() {
+    animationState = {
+        time: 0,
+        massX: guiParams.massInitialX,
+        massV: 0,
+        massA: 0,
+        lastParam: null
+    };
+}
+
+resetAnimationState();
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene();
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene, {minx: -guiParams.sceneWidth/2, maxx: guiParams.sceneWidth/2,
+                                miny: 0, maxy: guiParams.wallSize,
+                                minz: -guiParams.wallSize/2, maxz: guiParams.wallSize/2});
+
+// need to be a global so we can update positions, etc.
+var massObj;
+var springObj;
+
+function line(from,to,color) {
+    var geom = new THREE.Geometry();
+    geom.vertices = [ from, to ];
+    var mat = new THREE.LineBasicMaterial( { color: color || 0xFF0000, linewidth: 2 } );
+    var line = new THREE.Line(geom,mat);
+    return line;
+}
+
+function makeScene() {
+    scene.remove(massObj);
+    var wall = new THREE.Mesh(new THREE.BoxGeometry(guiParams.wallWidth,guiParams.wallSize,guiParams.wallSize),
+                              new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.yellow}));
+    wall.position.x = -0.5*(guiParams.sceneWidth + guiParams.wallWidth);
+    scene.add(wall);
+
+    var table = new THREE.Mesh(new THREE.BoxGeometry(guiParams.sceneWidth,guiParams.tableHeight,guiParams.wallSize),
+                               new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.brown}));
+    // the following makes the surface of the table at y=0;
+    table.position.y = -guiParams.tableHeight/2;
+    scene.add(table);
+
+    var origin = new THREE.Mesh(new THREE.SphereGeometry(guiParams.originSize,8,8),
+                                new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.cyan}));
+    scene.add(origin);
+                                
+    massObj = new THREE.Mesh(new THREE.BoxGeometry(guiParams.massSize,guiParams.massSize,guiParams.massSize),
+                             new THREE.MeshBasicMaterial({color:THREE.ColorKeywords.blue}));
+    massObj.position.y = guiParams.massSize/2;
+    massObj.position.x = guiParams.massInitialX;
+    scene.add(massObj);
+
+    springObj = line(new THREE.Vector3(-guiParams.sceneWidth/2, guiParams.massSize/2, 0),
+                     new THREE.Vector3(guiParams.massInitialX, guiParams.massSize/2, 0));
+    scene.add(springObj);
+}
+makeScene();
+                
+function firstState() {
+    resetAnimationState();
+    TW.render();
+}
+
+function updateState() {
+    // changes the time and everything in the state that depends on it
+    animationState.time += guiParams.deltaT;
+    var x = animationState.massX;
+    var v = animationState.massV;
+    var a = animationState.massA;
+    var dt = guiParams.deltaT;
+    
+    // by diff eq
+    a = -1 * guiParams.springK / guiParams.mass * x;
+    v += a * dt;
+    x += v * dt;
+
+    // copy back into state
+    animationState.massX = x;
+    animationState.massV = v;
+    animationState.massA = a;
+    
+    massObj.position.x = x;
+    scene.remove(springObj);
+    springObj = line(new THREE.Vector3(-guiParams.sceneWidth/2, guiParams.massSize/2, 0),
+                     new THREE.Vector3(x,                       guiParams.massSize/2, 0));
+    scene.add(springObj);
+}
+                
+function oneStep() {
+    updateState();
+    TW.render();
+}
+    
+
+var animationId = null;                // so we can cancel the animation if we want
+
+function animate(timestamp) {
+    oneStep();
+    animationId = requestAnimationFrame(animate);
+}
+
+function stopAnimation() {
+    if( animationId != null ) {
+        cancelAnimationFrame(animationId);
+    }
+}
+
+TW.setKeyboardCallback("0",firstState,"reset animation");
+TW.setKeyboardCallback("1",oneStep,"advance by one step");
+TW.setKeyboardCallback("g",animate,"go:  start animation");
+TW.setKeyboardCallback(" ",stopAnimation,"stop animation");
+
+var gui = new dat.GUI();
+gui.add(guiParams,"deltaT",0.01,3.0).step(0.01);
+gui.add(guiParams,"massInitialX",-50,50).step(1);
+gui.add(guiParams,"mass",300,4800).step(10);
+gui.add(guiParams,"springK",1,9).step(1);
+
+firstState();
+</script> 
+</body> 
+</html>

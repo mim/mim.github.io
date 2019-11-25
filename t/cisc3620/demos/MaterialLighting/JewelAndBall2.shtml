@@ -1,0 +1,496 @@
+<!--Jewel and Ball Demo for CS307
+    Author: Scott D. Anderson
+
+-->
+
+<html>
+  <head>
+    <title>Jewel and Ball</title>
+    <style>
+      body { margin: 0px; }
+      canvas { width: 100%; height: 100% }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<p>Don't use this version. Use <a href="JewelAndBall.shtml">the other one</a>.
+
+<p>This one has code to try to compare the surface normals that Three.js
+  computes for us.
+
+<script>
+
+
+function keysunion(x,y) {
+   // return a list that is the union of those two lists of keys.
+    // this doesn't work; it gets inherited properties, which we don't want
+   var union = {}, k;
+   for( k in x ) { union[k] = x[k]; }
+   for( k in y ) { union[k] = y[k]; }
+   return Object.keys(union);
+}
+
+function keysunion(x,y) {
+   // return a list that is the union of those two lists of keys.
+    var xkeys = Object.keys(x);
+    var ykeys = Object.keys(y);
+    xkeys.sort();
+    ykeys.sort();
+    var unionkeys = [];
+    var i = 0, j = 0, xlen = xkeys.length, ylen = ykeys.length;
+    while ( i < xlen && j < ylen ) {
+        if( xkeys[i] == ykeys[j] ) {
+            unionkeys.push(xkeys[i]);
+            ++i;
+            ++j;
+        } else if( xkeys[i] < ykeys[j] ) {
+            unionkeys.push(xkeys[i]);
+            ++i;
+        } else {
+            unionkeys.push(ykeys[j]);
+            ++j;
+        }
+    }
+    return unionkeys;
+}
+
+function objectDiff(x,y) {
+    "Recursively traverse two objects and tell the differences."
+    var whatis = Object.prototype.toString;
+
+    function diff(indent,x,y) {
+        /*
+        if(objectDiff.verbose > indent)
+            console.log("                     ".substring(0,indent)
+                        + "comparing: "+x+" and "+y);
+        */
+        // primitive types
+        if( typeof x == 'boolean' || typeof y == 'boolean' ||
+            typeof x == 'number'  || typeof y == 'number' ||
+            typeof x == 'string'  || typeof y == 'string' ) {
+            if( typeof x != typeof y ) {
+                if(objectDiff.verbose > indent)
+                    console.log("                     ".substring(0,indent)
+                                + " different primitive types: "+x+" and "+y);
+                return true;
+            }
+            if( x !== y ) {
+                if(objectDiff.verbose > indent)
+                    console.log("                     ".substring(0,indent)
+                                + " different primitive values: "+x+" and "+y);
+                return true;
+            }
+            return false;
+        }
+        // special code for null
+        if( x === null || y === null ) {
+            return x !== y;
+        }
+        // special code for undefined
+        if( x === undefined || y === undefined ) {
+            return x !== y;
+        }
+        // non-primitives
+        xtype = whatis.call(x);
+        ytype = whatis.call(y);
+        if( xtype != ytype ) {
+            if(objectDiff.verbose > indent)
+                console.log("                     ".substring(0,indent)
+                            + " different types: "+x+" and "+y);
+            return true;
+        }
+        // for the non-compositional types:
+        if( xtype == "[object String]" ||
+            xtype == "[object Number]" ||
+            xtype == "[object Boolean]" )
+            if( x !== y ) {
+                if(objectDiff.verbose > indent)
+                    console.log("                     ".substring(0,indent)
+                                + " different values: "+x+" and "+y);
+                return true;
+            }
+        // for the compositional types:
+        if( xtype == "[object Array]" ) {
+            if( x.length != y.length ) {
+                if(objectDiff.verbose > indent)
+                    console.log("                     ".substring(0,indent)
+                                + " arrays different lengths: "+x+" and "+y);
+                return true;
+            }
+            var i = 0, len = x.length;
+            var arraysDiffer = false;
+            for( i = 0; i < len; i++ ) {
+                var thisDiffers = diff(indent+1,x[i],y[i]);
+                arraysDiffer = arraysDiffer || thisDiffers;
+            }
+            if(arraysDiffer && objectDiff.verbose > indent)
+                console.log("                     ".substring(0,indent)
+                            + " arrays differ");
+            return arraysDiffer;
+        }
+        if( xtype == "[object Object]" ) {
+            var allkeys = keysunion(x,y), len = allkeys.length, i;
+            allkeys.sort();
+            // console.log("allkeys ("+len+") is "+allkeys);
+            var objsDiffer = false;
+            for( i = 0 ; i < len ; ++i ) {
+                var prop = allkeys[i];
+                /*
+                if(objectDiff.verbose > indent )
+                    console.log("                     ".substring(0,indent)
+                                +"comparing prop "+prop);
+                */
+                if( ! Object.prototype.hasOwnProperty.call(x,prop) ) {
+                    if(objectDiff.verbose > indent )
+                        console.log("                     ".substring(0,indent)
+                                    + " x lacks property: "+prop);
+                    objsDiffer = true;
+                } else if( ! Object.prototype.hasOwnProperty.call(y,prop) ) {
+                    if(objectDiff.verbose > indent )
+                        console.log("                     ".substring(0,indent)
+                                    + " y lacks property: "+prop);
+                    objsDiffer = true;
+                } else {
+                    var thisDiffers = diff(indent+1,x[prop],y[prop]);
+                    objsDiffer = objsDiffer || thisDiffers;
+                    if(thisDiffers && objectDiff.verbose > indent)
+                        console.log("                     ".substring(0,indent)
+                                    + " props "+prop+" differ");
+                }
+            }
+            if(objectDiff.verbose > indent)
+                console.log("                     ".substring(0,indent)
+                            + " compared: "+x+" and "+y+" => "+objsDiffer);
+            return objsDiffer;
+        }
+        console.log("don't know how to compare "+x+" and "+y);
+        // globals
+        xval = x;
+        yval = y;
+        return true;
+    }
+
+    return diff(0,x,y);
+}
+
+objectDiff.verbose = 2;
+
+
+function printComputedFaceNormal(obj,faceindex) {
+    var cb = new THREE.Vector3(), ab = new THREE.Vector3();
+
+    var face = obj.faces[faceindex];
+
+    var vA = obj.vertices[ face.a ];
+    var vB = obj.vertices[ face.b ];
+    var vC = obj.vertices[ face.c ];
+
+    cb.subVectors( vC, vB );
+    ab.subVectors( vA, vB );
+    cb.cross( ab );
+
+    cb.normalize();
+    console.log("flat face normal is "+JSON.stringify(cb));
+    return cb;
+}
+
+function flattenFaces(obj) {
+    var faces = obj.faces, len = faces.length, i;
+    for( i = 0 ; i < len ; ++ i ) {
+        delete faces[i].vertexNormals;
+    }
+}
+
+function printFaceNormals(obj) {
+    var faces = obj.faces, len = faces.length, i;
+    for( i = 0; i < len ; ++i ) {
+       var face = faces[i];
+       console.log("face["+i+"] has normal(s) "+JSON.stringify(face.normal));
+    }
+}
+</script>
+
+
+<script>
+"use strict";
+
+var renderer = new THREE.WebGLRenderer();
+
+var scene = new THREE.Scene();
+
+TW.mainInit(renderer,scene);
+                        
+var params = {
+    detail: 4,
+    wireframe: false,
+    computeVertexNormals: false,
+    sameGeom: false
+};
+
+params.ambientLightOn = true;
+params.upperLeftLightOn = false;
+params.overheadLightOn = true;
+
+var light0, light1, light2;
+
+function makeLights() {
+    // we're using globals for the lights, for the GUI
+
+    light0 = new THREE.AmbientLight( 0x202020 ); // 10%
+    scene.add(light0);
+
+    light1 = new THREE.PointLight( TW.WHITE, 0.5 ); // 50%
+    light1.position.set( -12, 15, 10 );
+    scene.add(light1);
+
+    light2 = new THREE.DirectionalLight( TW.WHITE, 0.3 );
+    light2.position.set( 0, 100, 10 );
+    scene.add(light2);
+}
+makeLights();
+    
+var light1helper, light2helper;
+
+function addLightHelpers() {
+    light1helper = new THREE.PointLightHelper(light1, 0.2);
+    scene.add(light1helper);
+    light2helper = new THREE.DirectionalLightHelper(light2, 1);
+    scene.add(light2helper);
+}
+addLightHelpers();
+
+function updateLightsFromParams() {
+    // in case we are re-making the lights, remove the old ones
+    scene.remove(light0);
+    scene.remove(light1);
+    scene.remove(light2);
+    scene.remove(light1helper);
+    scene.remove(light2helper);
+
+    // add back in the lights that we want
+    if( params.ambientLightOn ) {
+        scene.add(light0);
+    }
+    if( params.upperLeftLightOn ) {
+        scene.add(light1);
+        scene.add(light1helper);
+    }
+    if( params.overheadLightOn ) {
+        scene.add(light2);
+        scene.add(light2helper);
+    }
+}
+
+updateLightsFromParams();
+
+</script>
+
+<script id="stuff">
+// ================================================================
+// build the two objects
+
+var ballMaterial = new THREE.MeshPhongMaterial(
+    {color: THREE.ColorKeywords.cornflowerblue,
+     specular: 0xCCCCCC,
+     shading: THREE.SmoothShading });
+
+var jewelMaterial = new THREE.MeshPhongMaterial(
+    {color: THREE.ColorKeywords.cornflowerblue,
+     specular: 0xCCCCCC,
+     shading: THREE.FlatShading });
+
+var radius = 10, geom, ball, jewel, ballhelper, jewelhelper;
+
+function buildObjects() {
+    scene.remove(ball);
+    scene.remove(jewel);
+    ballgeom  = new THREE.SphereGeometry( radius, params.detail, params.detail );
+    jewelgeom  = new THREE.SphereGeometry( radius, params.detail, params.detail );
+    console.log("before:");
+    objectDiff(ballgeom,jewelgeom);
+    ball  = new THREE.Mesh( ballgeom, ballMaterial );
+    if( params.sameGeom ) {
+        jewel = new THREE.Mesh( ballgeom, jewelMaterial );
+    } else {
+        jewel = new THREE.Mesh( jewelgeom, jewelMaterial );
+    }
+    console.log("after:");
+    objectDiff(ballgeom,jewelgeom);
+    ball.position.set(-2*radius,0,0);
+    jewel.position.set(2*radius,0,0);
+    scene.add(ball);
+    scene.add(jewel);
+
+    scene.remove(ballhelper);
+    scene.remove(jewelhelper);
+    ballhelper = new THREE.FaceNormalsHelper(ball);
+    scene.add(ballhelper);
+    jewelhelper = new THREE.FaceNormalsHelper(jewel);
+    scene.add(jewelhelper);
+}
+
+buildObjects();
+</script>
+
+<script>
+var state = TW.cameraSetup(renderer,
+               scene,
+               {minx: -2*radius, maxx: 2*radius,
+                miny: -1*radius, maxy: 1*radius,
+                minz: -1*radius, maxz: 1*radius,
+               });
+TW.toggleAxes("show");
+TW.viewFromFront();
+
+// ================================================================
+
+function rebuild() {
+    buildObjects();
+    TW.render();
+}
+
+// ================================================================
+var gui = new dat.GUI();
+gui.add(params, 'detail',3,30).onChange(rebuild);
+gui.add(params, 'wireframe').onChange(function () {
+    ballMaterial.wireframe=params.wireframe;
+    jewelMaterial.wireframe=params.wireframe;
+    TW.render();
+});
+gui.add(params, 'computeVertexNormals').onChange(rebuild);
+gui.add(params, 'sameGeom').onChange(rebuild);
+</script>
+
+<h2>Code</h2>
+
+<p>The code for the objects:
+
+<pre data-codefrom="stuff" class="prettyprint lang-js linenums">
+</pre>  
+
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+<script>
+function objectEqual(x,y) {
+    var whatis = Object.prototype.toString;
+    var objectlen =
+        function (obj) {
+            var p, len = 0;
+            for( p in obj ) len++;
+            return len;
+        };
+
+    xtype = whatis.call(x);
+    ytype = whatis.call(y);
+    if( xtype != ytype ) return false;
+    // for the non-compositional types:
+    if( xtype == "[object String]" ||
+        xtype == "[object Number]" ||
+        xtype == "[object Boolean]" )
+        return x == y;
+    // for the compositional types:
+    if( xtype == "[object Array]" ) {
+        if( x.length != y.length ) return false;
+        var i = 0, len = x.length;
+        for( i = 0; i < len; i++ ) {
+            result = JSON.equal(x[i],y[i])
+            if(!result) return false;
+        }
+        return true;
+    }
+    if( xtype == "[object Object]" ) {
+        var xlen = objectlen(x);
+        var ylen = objectlen(y);
+        if( xlen != ylen ) return false;
+        // Recursively compare.  y should have same properties as
+        // x and all the same values.
+        var p;
+        for( p in x ) {
+            // We could let the recursion handle this, since the
+            // whatis function will return "[object Undefined]"
+            // for a missing property, but I'd rather check
+            // directly for a missing property.
+            if( typeof y[p] === "undefined" ) return false;
+            if( ! equal(x[p],y[p]) ) return false;
+        }
+        return true;
+    }
+    // Shouldn't get to here, I think
+    alert("couldn't compare elements "+x+" and "+y);
+}
+    </script>
+
+
+</body>
+</html>

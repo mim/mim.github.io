@@ -1,0 +1,257 @@
+<!--Jewel and Ball Demo for CS307
+    Author: Scott D. Anderson
+
+-->
+
+<html>
+  <head>
+    <title>Jewel and Ball</title>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <style>
+      canvas { width: 100%; }
+    </style>
+  </head>
+<body>
+
+<h1>Jewel and Ball</h1>
+
+<p>These two objects are the same geometry and the same material and lighting. The
+  only difference is that one uses smooth shading (interpolating colors
+  across each face) and the other uses flat shading (one uniform color per face). 
+  The yellow spikes show the face normals.
+
+<h2>Parameters</h2>
+
+<p>The <q>detail</q> parameter is how much detail in the underlying sphere
+  geometry. The more detail, the more vertices in each.
+
+<p>The <q>computeVertexNormals</q> checkbox is whether to invoke the
+  Three.js <code>computeVertexNormals()</code> method on the ball
+  geometry. That method averages the face normals to figure out the vertex
+  normals, which is appropriate for smooth objects. It doesn't seem to
+  have much effect, though, unless the detail is very small. Interpolating
+  color is more powerful than interpolating normals.
+
+<script>
+"use strict";
+
+var renderer = new THREE.WebGLRenderer();
+
+var scene = new THREE.Scene();
+
+TW.mainInit(renderer,scene);
+                        
+var params = {
+    detail: 8,
+    wireframe: false,
+    computeVertexNormals: true,
+};
+
+params.ambientLightOn = true;
+params.upperLeftLightOn = false;
+params.overheadLightOn = true;
+
+var light0, light1, light2;
+
+function makeLights() {
+    // we're using globals for the lights, for the GUI
+
+    light0 = new THREE.AmbientLight( 0x202020 ); // 10%
+    scene.add(light0);
+
+    light1 = new THREE.PointLight( TW.WHITE, 0.5 ); // 50%
+    light1.position.set( -12, 15, 10 );
+    scene.add(light1);
+
+    light2 = new THREE.DirectionalLight( TW.WHITE, 0.3 );
+    light2.position.set( 0, 100, 10 );
+    scene.add(light2);
+}
+makeLights();
+    
+var light1helper, light2helper;
+
+function addLightHelpers() {
+    light1helper = new THREE.PointLightHelper(light1, 0.2);
+    scene.add(light1helper);
+    light2helper = new THREE.DirectionalLightHelper(light2, 1);
+    scene.add(light2helper);
+}
+addLightHelpers();
+
+function updateLightsFromParams() {
+    // in case we are re-making the lights, remove the old ones
+    scene.remove(light0);
+    scene.remove(light1);
+    scene.remove(light2);
+    scene.remove(light1helper);
+    scene.remove(light2helper);
+
+    // add back in the lights that we want
+    if( params.ambientLightOn ) {
+        scene.add(light0);
+    }
+    if( params.upperLeftLightOn ) {
+        scene.add(light1);
+        scene.add(light1helper);
+    }
+    if( params.overheadLightOn ) {
+        scene.add(light2);
+        scene.add(light2helper);
+    }
+}
+
+updateLightsFromParams();
+
+</script>
+
+<script id="stuff">
+// ================================================================
+// build the two objects
+
+var ballMaterial = new THREE.MeshPhongMaterial(
+    {color: THREE.ColorKeywords.cornflowerblue,
+     specular: 0xCCCCCC,
+     shading: THREE.SmoothShading });
+
+var jewelMaterial = new THREE.MeshPhongMaterial(
+    {color: THREE.ColorKeywords.cornflowerblue,
+     specular: 0xCCCCCC,
+     shading: THREE.FlatShading });
+
+var radius = 10, geom, ball, jewel, ballhelper, jewelhelper;
+
+function buildObjects() {
+    scene.remove(ball);
+    scene.remove(jewel);
+    ballgeom  = new THREE.SphereGeometry( radius, params.detail, params.detail );
+    if( params.computeVertexNormals )
+        ballgeom.computeVertexNormals();
+    jewelgeom  = new THREE.SphereGeometry( radius, params.detail, params.detail );
+    ball  = new THREE.Mesh( ballgeom, ballMaterial );
+    jewel = new THREE.Mesh( jewelgeom, jewelMaterial );
+    ball.position.set(-2*radius,0,0);
+    jewel.position.set(2*radius,0,0);
+    scene.add(ball);
+    scene.add(jewel);
+
+    scene.remove(ballhelper);
+    scene.remove(jewelhelper);
+    ballhelper = new THREE.FaceNormalsHelper(ball);
+    scene.add(ballhelper);
+    jewelhelper = new THREE.FaceNormalsHelper(jewel);
+    scene.add(jewelhelper);
+}
+
+buildObjects();
+</script>
+
+<script>
+var state = TW.cameraSetup(renderer,
+               scene,
+               {minx: -2*radius, maxx: 2*radius,
+                miny: -1*radius, maxy: 1*radius,
+                minz: -1*radius, maxz: 1*radius,
+               });
+TW.toggleAxes("show");
+TW.viewFromFront();
+
+// ================================================================
+
+function rebuild() {
+    buildObjects();
+    TW.render();
+}
+
+// ================================================================
+var gui = new dat.GUI();
+gui.add(params, 'detail',3,30).step(1).onChange(rebuild);
+gui.add(params, 'wireframe').onChange(function () {
+    ballMaterial.wireframe=params.wireframe;
+    jewelMaterial.wireframe=params.wireframe;
+    TW.render();
+});
+gui.add(params, 'computeVertexNormals').onChange(rebuild);
+</script>
+
+<h2>Code</h2>
+
+<p>The code for the objects:
+
+<pre data-codefrom="stuff" class="prettyprint lang-js linenums">
+</pre>  
+
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

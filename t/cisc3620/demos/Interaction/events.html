@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>Events</title>
+    <style>
+      canvas { border: 2px solid teal; }
+    </style>
+    <script src="../libs/three.min.js"></script>
+
+<!-- Maybe I should use jQuery, which claims to regularize events, but
+it retains the crazy behavior that you can't capture arrow keys with
+keypress and if you use keydown, you (1) get an uppercase a when an
+unshifted "a" key is pressed and (2) you can't easily figure out the
+character that is intended.
+-->
+
+  </head>
+<body>
+
+<p>Shows you what the mouse location is, and also what keys are being
+  pressed, etc.
+
+<p>This demo uses 'keypress,' so it can't handle arrow keys and other keys
+that don't send characters to the computer.
+
+<p>
+    <table>
+    <tr><th>Mouse Location</th><td id="mouse"></td></tr>
+    <tr><th>Button</th><td id="button"></td></tr>
+    <tr><th>Drag</th><td id="dragx"></td><td id="dragy"></td></tr>
+    <tr><th>Click Location</th><td id="click"></td></tr>
+    <tr><th>key</th><td id="key"></td></tr>
+    <tr><th>shift</th><td id="shift"></td></tr>
+    <tr><th>control</th><td id="control"></td></tr>
+    <tr><th>alt</th><td id="alt"></td></tr>
+    <tr><th>meta</th><td id="meta"></td></tr>
+  </table>
+
+<p><canvas id="c1" width="400" height="200" style="float: left"></canvas>
+
+<p><canvas id="c2" width="400" height="200" style="float: right"></canvas>
+
+<script>
+    var c1 = document.getElementById('c1');
+    var c2 = document.getElementById('c2');
+    var mouse   = document.getElementById('mouse');
+    var button  = document.getElementById('button');
+    var dragx   = document.getElementById('dragx');
+    var dragy   = document.getElementById('dragy');
+    var key     = document.getElementById('key');
+    var shift   = document.getElementById('shift');
+    var control = document.getElementById('control');
+    var alt     = document.getElementById('alt');
+    var meta    = document.getElementById('meta');
+
+document.addEventListener('keypress',onKeyPress );
+document.addEventListener( 'click', onMouseClick );
+document.addEventListener( 'mousemove', onMouseMove );
+document.addEventListener( 'mousedown', onMouseDown );
+document.addEventListener( 'mouseup', onMouseUp );
+
+var lastEvent;
+
+function onKeyPress(event) {
+    lastEvent = event;
+    key.innerHTML = event.keyCode + " ("+String.fromCharCode(event.keyCode)+")";
+    shift.innerHTML = event.shiftKey ? "YES" : "";
+    control.innerHTML = event.ctrlKey ? "YES" : "";
+    alt.innerHTML = event.altKey ? "YES" : "";
+    meta.innerHTML = event.metaKey ? "YES" : "";
+}    
+
+function onMouseClick (event) {
+    lastEvent = event;
+    button.innerHTML = event.button;
+    shift.innerHTML = event.shiftKey ? "YES" : "";
+    control.innerHTML = event.ctrlKey ? "YES" : "";
+    alt.innerHTML = event.altKey ? "YES" : "";
+    meta.innerHTML = event.metaKey ? "YES" : "";
+    var mx = event.clientX;
+    var my = event.clientY;
+    console.log("click at ("+mx+","+my+")");
+    var target = event.target;
+    if( target == c1 || target == c2 ) {
+        console.log("clicked on a canvas");
+        var rect = target.getBoundingClientRect();
+        var cx = mx - Math.round(rect.left);
+        var cy = my - Math.round(rect.top);
+        console.log("clicked on c1 or c2 at ("+cx+","+cy+")");
+        var where = ( target == c1 ) ? "c1" : "c2";
+        where += "("+cx+","+cy+")";
+        click.innerHTML = where;
+    }
+}    
+
+var isMouseDown = false;
+oldMouse = {x: 0, y: 0}
+
+function onMouseDown (event) {
+    isMouseDown = true;
+    oldMouse.x = event.clientX;
+    oldMouse.y = event.clientY;
+}
+    
+function onMouseUp (event) {
+    isMouseDown = false;
+    dragx.innerHTML = "";
+    dragy.innerHTML = "";
+}
+
+function onMouseMove (event) {
+    var newx = event.clientX;
+    var newy = event.clientY;
+    var oldx = oldMouse.x;
+    var oldy = oldMouse.y;
+    mouse.innerHTML = "("+newx+","+newy+")";
+    if( isMouseDown ) {
+        // in this code, y increases down
+        dragx.innerHTML = ( newx > oldx ? "RIGHT" : "LEFT");
+        dragy.innerHTML = ( newy > oldy ? "DOWN" : "UP");
+        oldMouse.x = newx;
+        oldMouse.y = newy;
+    }
+}    
+
+</script>
+
+<script>
+// label the canvasses
+function labelCanvas(canvas,text,color) {
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.font = "20px arial";
+    ctx.fillText(text,100,100); // assume 400x200
+}
+labelCanvas(c1,"canvas c1","green");
+labelCanvas(c2,"canvas c2","maroon");
+</script>
+
+
+
+</body>
+</html>

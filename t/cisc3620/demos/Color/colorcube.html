@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>CS307 Color Cube</title>
+    <style>
+      body { margin: 0px; width: 100%; }
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var colorcube = TW.createColorCube();
+scene.add(colorcube);
+
+// ================================================================
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: 1,
+                miny: 0, maxy: 1,
+                minz: 0, maxz: 1});
+TW.viewFromAboveFrontSide();
+</script>
+
+</body>
+</html>

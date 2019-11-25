@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <title>Barn Instance Transform</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline-block;
+          margin: 10px 20px;
+          width: 50%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/createBarn.js"></script>
+
+    <link rel="stylesheet"
+          href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+
+  </head>
+<body>
+
+<h1>Barn Instance Transform</h1>
+
+<script>
+    var barnValues = {};
+
+function addSlider (parent, valueSet, valueName, initValue, sliderInits) {
+    valueSet[valueName] = initValue;
+    sliderInits.value = initValue;
+    $(parent)
+        .append('<p>'+valueName+': <span id="'+valueName+'-value"></span>')
+        .append('<span id="'+valueName+'-slider"></span>');
+    $('#'+valueName+"-value").text(initValue);
+    sliderInits.slide = function(event, ui) {
+        valueSet[valueName] = ui.value;
+        $('#'+valueName+'-value').text(ui.value);
+        // defined later
+        updateGraphics(valueSet);
+        TW.render();
+    };
+    $('#'+valueName+'-slider').slider(sliderInits);
+}
+          
+$(function () {
+    var controls = $('#controls');
+    addSlider(controls,barnValues,'barnX',0,{min: -100, max: +100});
+    addSlider(controls,barnValues,'barnY',0,{min: -100, max: +100});
+    addSlider(controls,barnValues,'barnZ',0,{min: -100, max: +100});
+    addSlider(controls,barnValues,'barnRotationX',0,{min: -Math.PI, max: +Math.PI, step: Math.PI*0.01});
+    addSlider(controls,barnValues,'barnRotationY',0,{min: -Math.PI, max: +Math.PI, step: Math.PI*0.01});
+    addSlider(controls,barnValues,'barnRotationZ',0,{min: -Math.PI, max: +Math.PI, step: Math.PI*0.01});
+    addSlider(controls,barnValues,'barnScaleX',1,{min: -2, max: +2, step: 0.1});
+    addSlider(controls,barnValues,'barnScaleY',1,{min: -2, max: +2, step: 0.1});
+    addSlider(controls,barnValues,'barnScaleZ',1,{min: -2, max: +2, step: 0.1});
+    updateGraphics(barnValues);
+    TW.render();
+    $('#code').html($('#updateGraphics').html());
+});
+
+</script>
+
+<div id="controls" style="width:30%;border:1px solid black;display:inline-block"></div>
+
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var barnWidth = 50;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barn1geom = TW.createBarn( barnWidth, barnHeight, barnDepth );
+var barn1mesh = TW.createMesh(barn1geom);
+
+// Proceed as usual
+
+scene.add(barn1mesh);
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: barnWidth,
+                miny: 0, maxy: barnHeight+0.5*barnWidth,
+                minz: -barnDepth, maxz: 0});
+</script>
+
+<script id="updateGraphics">
+function updateGraphics(values) {
+    console.log("new values: "+JSON.stringify(values));
+    // the position is an absolute thing
+    barn1mesh.position.set( values.barnX,
+                            values.barnY,
+                            values.barnZ );
+    // the rotation is an absolute thing
+    barn1mesh.rotation.set( values.barnRotationX,
+                            values.barnRotationY,
+                            values.barnRotationZ,
+                            'XYZ');
+    // the scaling is an absolute thing
+    barn1mesh.scale.set( values.barnScaleX,
+                         values.barnScaleY,
+                         values.barnScaleZ);
+}
+</script>
+
+<pre id="code">
+</pre>
+
+
+</body>
+</html>

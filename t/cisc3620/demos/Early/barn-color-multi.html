@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Barn of Many Colors</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Barn of Multiple Colors</h1>
+
+<script>
+var scene = new THREE.Scene();
+
+var barnWidth = 20;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barnGeometry = TW.createBarnMultipleMaterials( barnWidth, barnHeight, barnDepth );
+
+var endColor = TW.BLUE;
+var sideColor = TW.RED;
+var roofColor = TW.ORANGE;
+var floorColor = TW.GRAY;
+
+var barnMaterials = new THREE.MeshFaceMaterial(
+    [ new THREE.MeshBasicMaterial({ color: endColor } ),
+      new THREE.MeshBasicMaterial({ color: sideColor } ),
+      new THREE.MeshBasicMaterial({ color: roofColor } ),
+      new THREE.MeshBasicMaterial({ color: floorColor } )
+    ]);
+
+var barnMesh = new THREE.Mesh( barnGeometry, barnMaterials );
+
+scene.add(barnMesh);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: barnWidth,
+                miny: 0, maxy: barnHeight+0.5*barnWidth,
+                minz: -barnDepth, maxz: 0});
+TW.viewFromAboveFrontSide();
+</script>
+
+</body>
+</html>

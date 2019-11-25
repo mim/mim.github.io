@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plane Buffy</title>
+    <style>
+       canvas { width: 800px; height: 500px; } 
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane Buffy</h1>
+
+<p>This demo shows a texture-mapping of some images onto some planes.
+
+<script id="loadBuffy">
+
+var sceneSize = 10; // size of scene
+
+function loadPlaneSet() {
+    TW.loadTextures(["../../images/buffy.gif",
+                     "../../images/angel.gif",
+                     "../../images/italian-landscape-mountains-nature.jpg",
+                    ],
+                    function (textures) {
+                        for( var i=0; i<textures.length; i++ ) {
+                            var geom = new THREE.PlaneGeometry(4,4);
+                            var mat = new THREE.MeshBasicMaterial( {color: THREE.ColorKeywords.white,
+                                                                    map: textures[i]});
+                            var mesh = new THREE.Mesh( geom, mat );
+                            mesh.position.set( Math.round(sceneSize*Math.random()),
+                                               Math.round(sceneSize*Math.random()),
+                                               Math.round(sceneSize*Math.random()));
+                            scene.add(mesh);
+                            TW.render();
+                        }
+                    });
+}
+</script>
+
+<script>
+var scene = new THREE.Scene();
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: 0, maxx: sceneSize,
+                            miny: 0, maxy: sceneSize,
+                            minz: 0, maxz: sceneSize});
+
+loadPlaneSet();
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+ow<!doctype html>
+<html>
+  <head>
+    <title>Leg</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Leg</h1>
+
+<script>
+function makeLeg(scene,parameters) {
+    /* Makes a leg going down from the origin, with joints rotating around
+     * z, so we are seeing the leg from its right side, and the foot is
+     * roughly parallel to the x axis. Meshes are shoe, calf, and
+     * thigh. Composite objects are foot, lowerleg, and leg. Composite
+     * objects have the relevant joints: ankle, knee and hip,
+     * respectively, which the GUI lets you control. The naming isn't
+     * perfect, but it was the best I could think of. */
+
+    var shoe = TW.createMesh(new THREE.CylinderGeometry(2, 1, parameters.footLength));
+
+    foot = new THREE.Object3D();
+    foot.name = "foot";
+    shoe.position.x = parameters.footLength/2;
+    shoe.rotation.z = Math.PI/2;
+    foot.add(shoe);
+
+    foot.rotation.z = parameters.ankleRotation;
+
+    var calf = TW.createMesh(new THREE.CylinderGeometry(3, 2, parameters.calfLength));
+
+    lowerleg = new THREE.Object3D();
+    lowerleg.name = "lowerleg";
+    calf.position.y = -parameters.calfLength/2;
+    lowerleg.add(calf);
+    lowerleg.add(foot);
+    foot.position.y = -parameters.calfLength;
+
+    lowerleg.rotation.z = parameters.kneeRotation;
+
+    var thigh = TW.createMesh(new THREE.CylinderGeometry(5, 4, parameters.thighLength));
+
+    leg = new THREE.Object3D();
+    leg.name = "leg";
+    thigh.position.y = -parameters.thighLength/2;
+    leg.add(thigh);
+    leg.add(lowerleg);
+    lowerleg.position.y = -parameters.thighLength;
+
+    leg.rotation.z = parameters.hipRotation;
+
+    scene.add(leg); 
+}
+
+var scene = new THREE.Scene();
+
+var parameters = {
+    ankleRotation: TW.degrees2radians(-10),
+    kneeRotation: TW.degrees2radians(-30),
+    hipRotation: TW.degrees2radians(45),
+    footLength: 10,
+    calfLength: 20,
+    thighLength: 25
+};
+
+makeLeg(scene,parameters);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: 5,
+                maxy: 0, miny: -(parameters.thighLength+parameters.calfLength),
+                minz: -3, maxz: 3});
+TW.toggleAxes("show");
+
+function redraw() {
+    // this variant of re-draw just adjusts the current geometry instead
+    // of discarding it and creating a new one
+    var foot = scene.getObjectByName("foot",true);
+    var lowerleg = scene.getObjectByName("lowerleg",true);
+    var leg = scene.getObjectByName("leg",true);
+        foot.rotation.z = parameters.ankleRotation;
+    lowerleg.rotation.z = parameters.kneeRotation;
+         leg.rotation.z = parameters.hipRotation;
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(parameters,'ankleRotation',-Math.PI/3,Math.PI/3).step(0.001).onChange(redraw);
+gui.add(parameters,'kneeRotation', -2*Math.PI/3, 0.1).step(0.001).onChange(redraw);
+gui.add(parameters,'hipRotation', -Math.PI/6,Math.PI).step(0.001).onChange(redraw);
+</script>
+
+<p>Here is the code that makes that scene:
+
+<pre data-code-jsfunction="makeLeg" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

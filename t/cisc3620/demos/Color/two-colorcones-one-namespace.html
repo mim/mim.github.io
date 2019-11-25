@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>CS307 Color Cones</title>
+    <style>
+      body { margin: 0px; width: 100%; }
+      canvas {
+          display: inline-block;
+          margin: 10px auto;
+          width: 40%;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-multi.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<div class="col">
+   <canvas id="c1"></canvas>
+</div>
+<div class="col">
+   <canvas id="c2"></canvas>
+</div>
+
+<script>
+TW.debug = true;
+
+"use strict";
+</script>
+
+
+<script>
+var scene = new THREE.Scene();
+
+// ====================================================================
+// globals for callbacks.
+
+var numWedges = 6;
+var bothCones = true;
+
+var cone0, cone1;
+
+function createCones(scene) {
+    cone0 = TW.createHLSPyramid(numWedges, 0);
+    scene.add(cone0);
+    cone1 = TW.createHLSPyramid(numWedges, 1);
+    scene.add(cone1);
+    cone1.visible = bothCones;
+}
+
+createCones(scene);
+
+// ================================================================
+var r1 = new THREE.WebGLRenderer( {canvas: document.getElementById('c1')} );
+
+TW.cameraSetup(r1,
+               scene,
+               {minx: -1, maxx: 1,
+                miny: -1, maxy: 1,
+                minz: 0, maxz: 1});
+TW.viewFromFront();
+
+// ================================================================
+// keyboard callbacks. Put it after the camera setup, so that we can
+// use TW.render()
+
+function removeCones(scene) {
+    scene.remove(cone0);
+    scene.remove(cone1);
+}
+
+TW.setKeyboardCallback('1',function () { cone1.visible=false; TW.render()},'one cone');
+TW.setKeyboardCallback('2',function () { cone1.visible=true;  TW.render()},'two cones');
+TW.setKeyboardCallback('+',function () { removeCones(scene);
+                                         ++numWedges;
+                                         createCones(scene);
+                                         TW.render(); },
+                       'more wedges');
+TW.setKeyboardCallback('-',function () { removeCones(scene);
+                                         --numWedges;
+                                         createCones(scene);
+                                         TW.render(); },
+                       'fewer wedges');
+</script>
+
+
+<script>
+var scene = new THREE.Scene();
+
+// ====================================================================
+// globals for callbacks.
+
+var numWedges = 6;
+var bothCones = true;
+
+var cone0, cone1;
+
+function createCones(scene) {
+    cone0 = TW.createHLSPyramid(numWedges, 0);
+    scene.add(cone0);
+    cone1 = TW.createHLSPyramid(numWedges, 1);
+    scene.add(cone1);
+    cone1.visible = bothCones;
+}
+
+createCones(scene);
+
+// ================================================================
+var r2 = new THREE.WebGLRenderer( {canvas: document.getElementById('c2')} );
+
+TW.cameraSetup(r2,
+               scene,
+               {minx: -1, maxx: 1,
+                miny: -1, maxy: 1,
+                minz: 0, maxz: 1});
+TW.viewFromFront();
+
+// ================================================================
+// keyboard callbacks. Put it after the camera setup, so that we can
+// use TW.render()
+
+function removeCones(scene) {
+    scene.remove(cone0);
+    scene.remove(cone1);
+}
+
+TW.setKeyboardCallback('1',function () { cone1.visible=false; TW.render()},'one cone');
+TW.setKeyboardCallback('2',function () { cone1.visible=true;  TW.render()},'two cones');
+TW.setKeyboardCallback('+',function () { removeCones(scene);
+                                         ++numWedges;
+                                         createCones(scene);
+                                         TW.render(); },
+                       'more wedges');
+TW.setKeyboardCallback('-',function () { removeCones(scene);
+                                         --numWedges;
+                                         createCones(scene);
+                                         TW.render(); },
+                       'fewer wedges');
+</script>
+
+</body>
+</html>

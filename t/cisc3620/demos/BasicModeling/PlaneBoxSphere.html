@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Plane Box Sphere</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane Box and Sphere</h1>
+
+<script>
+var scene = new THREE.Scene();
+
+var plane = TW.createMesh( new THREE.PlaneGeometry(6,4) );
+scene.add(plane);
+
+var box = TW.createMesh( new THREE.BoxGeometry(4,6,1) );
+scene.add(box);
+
+var sphere = TW.createMesh( new THREE.SphereGeometry(1));
+scene.add(sphere);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -3, maxx: 3,
+                miny: -3, maxy: 3,
+                minz: -3, maxz: 3});
+</script>
+
+</body>
+</html>

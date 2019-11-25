@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Barn Demo</title>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <style>
+      body { max-width: 100%; }
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin-left: 45%;
+          width: 50%;
+          height: 500px;
+      }
+    </style>
+    <script src="libs/three.min.js"></script>
+    <script src="libs/OrbitControls.js"></script>
+    <script src="libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Barn Demo</h1>
+
+<p>This file has the minimal code to create a working Three.js
+  application, using the TW object to set up the camera for us.
+  Because the canvas does not cover the entire window, there is space for
+  some ordinary HTML like this.
+
+<div style="width: 40%; float: left">
+<h2>GUI</h2>
+
+<p>The <code>TW.cameraSetup()</code> method sets up a THREE.js Orbiting Camera
+  (we'll learn more about this later) that lets you look at the scene
+  from all sides.  You'll find it's pretty intuitive, but here's a brief
+  listing of what the mouse will do:
+  <ul>
+    <li>Clicking and dragging the mouse on the canvas moves the camera around the 
+    center of the scene, <em>orbiting</em> it. For example, clicking and dragging 
+    from left to right lets you look at all the walls of the barn, and dragging 
+    up and down lets you see the roof and floor.
+    <li>The arrow keys can be used to shift the camera to the left, right, up, or
+    down. Dragging the mouse then rotates the barn around a different point.
+    <li>The scroll wheel allows you to <q>dolly</q> the camera in
+    (closer to the center of the scene) or out (farther away).
+  </ul>
+
+<p>Later we'll learn how to modify the GUI to do different actions.
+
+<h2>Keyboard Shortcuts</h2>
+
+<p>The <code>TW.cameraSetup()</code> method also sets up some keyboard
+  commands. Enter "?" to find out what they are.
+  You may need to click on the canvas first, to put it in focus.
+</div>
+
+<script>
+// We always need a scene
+
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+/* Next, we create objects in our scene. Here, the <q>classic</q>
+barn. The front left bottom vertex of the barn is the origin, so, for
+example, the x coordinates go from 0 to 20. */
+
+var barnWidth = 20;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barnGeometry = TW.createBarn( barnWidth, barnHeight, barnDepth );
+
+// the createMesh function adds a "demo" material to the geometry
+
+var barnMesh = TW.createMesh( barnGeometry );
+
+// the scene is the set of things to render, so add the barn
+
+scene.add(barnMesh);
+
+// ================================================================
+
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+/* We always need a camera; here we'll use a default orbiting camera.  The
+third argument gives the ranges for the coordinates, to help with setting up
+the placement of the camera. They need not be perfectly accurate, but if
+they are way off, your camera might not see anything, and you'll get a
+blank canvas. */
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: barnWidth,
+                miny: 0, maxy: barnHeight, // a bit low
+                minz: -barnDepth, maxz: 0});
+</script>
+
+</body>
+</html>

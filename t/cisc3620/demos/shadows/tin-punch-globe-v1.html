@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Shadows</title>
+    <script src="http://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <style>
+        body{
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="WebGL-output"></div>
+
+<script>
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+var renderer = new THREE.WebGLRenderer();
+renderer.setClearColor(0xEEEEEE, 1.0);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMapEnabled = true;
+
+// TW.mainInit(renderer,scene);
+
+/*
+var room = new THREE.Mesh( new THREE.BoxGeometry(10,10,10),
+                           new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.lightblue,
+                                                      side:THREE.BackSide}) );
+                                                      */
+var room = new THREE.Mesh( new THREE.PlaneGeometry(20,20),
+                           new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.lightblue}));
+//room.rotateOnAxis( new THREE.Vector3( 0, 1, 0 ), Math.PI/4 );
+room.receiveShadow  = true;
+room.rotation.y = +Math.PI/4;
+                           
+scene.add(room);
+
+// function to remove a specified number of faces from a geometry, randomly chosen.
+
+function pierceSphere(geom, numFacesToRemove) {
+    var i, faces = geom.faces;
+    for( i = 0 ; i < faces.length; i++ ) {
+        var randIndex = Math.floor( faces.length * Math.random() );
+        faces.splice( randIndex, 1 );
+    }
+}
+
+var lanternGeom = new THREE.SphereGeometry(3,20,20);
+// pierceSphere(lanternGeom, 40);  // 1 in 10, I think
+var lanternMat = new THREE.MeshLambertMaterial({color: THREE.ColorKeywords.yellow});
+var lantern = new THREE.Mesh( lanternGeom, lanternMat );
+lantern.position.set( 5, 0, 5 );
+lantern.castShadow = true;
+scene.add(lantern);
+
+camera.position.set(0,0,20);
+camera.lookAt(scene.position);
+
+// add spotlight for the shadows
+// var spotLight = new THREE.SpotLight( 0xffffff, 1, 0, Math.PI/4, 1 );
+var spotLight = new THREE.SpotLight( 0xffffff );
+// spotLight.position.copy( lantern.position );
+spotLight.position.set( 20, 0, 20 );
+// target is the origin
+spotLight.castShadow = true;
+scene.add( spotLight );
+
+var size = 20;
+/*
+var state = TW.cameraSetup(renderer,scene,{minx: -size, maxx: size,
+                                           miny: -size, maxy: size,
+                                           minz: -size, maxz: size });
+TW.render();
+*/
+
+document.getElementById('WebGL-output').appendChild(renderer.domElement);
+
+renderer.render(scene, camera);
+
+</script>
+
+</body>
+</html>

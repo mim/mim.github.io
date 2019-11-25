@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Town Forest</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 800px;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="tree.js"></script>
+    <script src="snowperson.js"></script>
+    <script src="town.js"></script>
+    
+  </head>
+<body>
+
+<h1>Town Forest</h1>
+
+<p>Moving the mouse while holding down "shift" allows you to smoothly look
+    left/right from your position. Keyboard callbacks (wasd) allow you to
+    move forward/back and strafe left/right. Tilt and pan using ijkl.
+<p>Click the mouse to tilt/pan to face a particular direction.
+<p>Note that you have to move the mouse; just holding down shift won't
+    continue to rotate.  Maybe we should change that?
+
+<script>
+var scene = new THREE.Scene();
+var renderer = new THREE.WebGLRenderer();
+
+makeTown(scene);
+
+var grid = new THREE.Mesh( new THREE.PlaneGeometry(30, 20, 10, 10),
+                           new THREE.MeshBasicMaterial( { color: 0x0000ff, wireframe: true } ));
+grid.position.set(-2, 5, 10);
+scene.add(grid);
+
+// ================================================================
+
+var scene_bb = {minx: -10, maxx: 10,
+                miny: 0, maxy: 9.5,
+                minz: -10, maxz: 10};
+
+var fovy = 75;
+var aspect_ratio = 800/500.0;
+
+TW.mainInit(renderer, scene);
+TW.cameraSetup(renderer, scene, scene_bb);
+
+</script>
+
+</body>
+</html>

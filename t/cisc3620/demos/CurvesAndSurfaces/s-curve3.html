@@ -1,0 +1,79 @@
+<!-- 
+Kelsey Reiman and Scott D. Anderson
+11/1/14 
+CS 307
+
+Creates a cubic bezier curve that roughly S-shaped, but in 3D!
+
+I learned how to make bezier curves in three.js from: 
+https://www.lab4games.net/zz85/blog/2014/09/08/rendering-lines-and-bezier-curves-in-three-js-and-webgl/
+ -->
+<html>
+  <head>
+    <title>S Curve in 3D</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+
+      body { font-size: x-large; }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script id="prog">
+
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene(); 
+TW.mainInit(renderer,scene);
+TW.cameraSetup(renderer,scene, {minx:0,maxx:1,miny:0,maxy:1,minz:0,maxz:1});
+        
+var controlPoints = [ [0,0,1],
+                      [1,0,1],
+                      [1,0,0],
+                      [1,1,0] ];
+var curveGeom = TW.createBezierCurve(controlPoints,20);
+var curve = new THREE.Line( curveGeom,
+                            new THREE.LineBasicMaterial( { color: THREE.ColorKeywords.blue, linewidth: 3 } ));
+scene.add(curve);
+
+var cp_shown = false;
+var cpObj;
+
+function showCP(cpList) {
+    cpObj = new THREE.Object3D();
+    for( var i=0; i < cpList.length; i++ ) {
+        cpObj.add(TW.createPoint(cpList[i]));
+    }
+};
+showCP(controlPoints);
+                      
+function toggleControlPoints() {
+    cp_shown = !cp_shown;
+    if( cp_shown ) {
+        scene.add(cpObj);
+    } else {
+        scene.remove(cpObj);
+    }                      
+    TW.render();                     
+}                      
+
+TW.setKeyboardCallback("c",toggleControlPoints,"toggle control points")
+
+showCP(controlPoints);          // optional, for debugging.
+TW.viewFromFront();        
+</script>
+
+<p>This curve is not flat. Move the camera around to see its shape. Adding
+    the scene bounding box (bound to keystroke 'b') can help, too. You can
+    toggle the control points using the 'c' key.
+
+</body>
+</html>

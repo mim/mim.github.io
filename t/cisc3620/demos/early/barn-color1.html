@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Red Barn</title>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Red Barn</h1>
+
+<script>
+// We always need a scene
+
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+/* Next, we create objects in our scene. Here, the <q>classic</q>
+barn. The front left bottom vertex of the barn is the origin, so, for
+example, the x coordinates go from 0 to 20. */
+
+var barnWidth = 20;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barnGeometry = TW.createBarn( barnWidth, barnHeight, barnDepth );
+
+// createBarnMesh() function creates Mesh for a multi-colored barn
+
+function createBarnMesh (barnGeometry, barnColor) {
+    var barnMaterial = new THREE.MeshBasicMaterial( {color: barnColor} );
+    // create and return a Mesh using the barnGeometry and barnMaterial
+    return new THREE.Mesh( barnGeometry, barnMaterial );
+}
+
+var barnMesh = createBarnMesh( barnGeometry, THREE.ColorKeywords.red );
+
+// some other ways to call createBarnMesh() to create a red barn
+// var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 0xff0000 ) );
+// var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 1, 0, 0 ) );
+// var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "rgb(255, 0, 0)" ) );
+// var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "red" ) );
+
+// the scene is the set of things to render, so add the barn
+
+scene.add(barnMesh);
+
+// ================================================================
+
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+/* We always need a camera; here we'll use a default orbiting camera.  The
+third argument gives the ranges for the coordinates, to help with setting up
+the placement of the camera. They need not be perfectly accurate, but if
+they are way off, your camera might not see anything, and you'll get a
+blank canvas. */
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: 0, maxx: barnWidth,
+                miny: 0, maxy: barnHeight + 0.5*barnWidth, 
+                minz: -barnDepth, maxz: 0});
+</script>
+
+</body>
+</html>

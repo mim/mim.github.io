@@ -1,0 +1,247 @@
+<html>
+  <head>
+    <title>Plane Buffy</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1 style="font-size: xx-large; color: red">Not yet ready; Do not use!</h1>
+
+<h1>Plane Buffy</h1>
+
+<p>This demo shows a texture-mapping of the following image onto a
+simple <code>THREE.PlaneGeometry</code>.
+
+<p>
+    <img src="../../images/buffy.gif" alt="Buffy">
+
+<script>
+    function nextPowerOf2(x) {
+        // returns the next higher power of two
+        return Math.round(Math.exp(Math.log(2)*Math.ceil(Math.log(x)/Math.log(2))));
+    }
+
+TW.createCheckerboard = function (size) {
+    size = nextPowerOf2(size);
+    var i, j, n = 0;
+    var data = new Uint8Array( 3 * size * size );
+    for( i = 0 ; i < size ; ++i ) {
+        for( j = 0 ; j < size ; ++j ) {
+            console.log((i&1) != (j&1));
+            if( (i&1) != (j&1) ) {
+                data[n++] = 255;
+                data[n++] = 255;
+                data[n++] = 255;
+            } else {
+                data[n++] = 0;
+                data[n++] = 0;
+                data[n++] = 0;
+            }
+        }
+    }
+    var texture = new THREE.DataTexture( data, size, size, THREE.RGBFormat );
+    texture.needsUpdate = true;
+    return texture;
+}
+
+TW.convertImageArray2PPM(data, width, height) {
+    // Converts the data (an image array that is width x height) into a
+    // string representing a textual PPM file, type P6, suitable for
+    // writing to a file and converting to an image or just visually
+    // inspecting. This function assumes 24-bit color, so the max color
+    // value is 255.
+    var PPM = "P6 "+width+" "+height+" 255\n";
+    var i, j, k=0, row;
+    for( j = 0; j < height; ++j ) {
+        row = "";
+        for( i = 0; i < width; ++i ) {
+            var val = data[k++];
+            var str = val < 10 ? "   "+val : val < 100 ? "  "+val : " "+val;
+            row += str;
+        }
+        PPM += row+"\n";
+    }
+    return PPM;
+}
+
+// TW.createCheckerboard = function (width, height, pixelsPerCell) {
+    
+
+TW.createSimpleFlag = function (size) {
+    size = nextPowerOf2(size);
+    var i, j, n = 0;
+    var data = new Uint8Array( 3 * size * size );
+    for( i = 0 ; i < size ; ++i ) {
+        for( j = 0 ; j < size ; ++j ) {
+            console.log((i&1) != (j&1));
+            if( (i&1) != (j&1) ) {
+                data[n++] = 255;
+                data[n++] = 255;
+                data[n++] = 255;
+            } else {
+                data[n++] = 0;
+                data[n++] = 0;
+                data[n++] = 0;
+            }
+        }
+    }
+    var texture = new THREE.DataTexture( data, size, size, THREE.RGBFormat );
+    texture.needsUpdate = true;
+    return texture;
+}
+
+document.write(TW.convertImageData2PPM(TW.createSimpleFlag(4));
+
+function rectangularString(str, width, height ) {
+    var len = str.length;
+    if( len != width*height ) {
+        throw "not a rectangular string";
+    }
+    var result = "";
+    var start;
+    for( start = 0 ; start < len ; start += width ) {
+        result += str.substr(start,width) + "\n";
+    }
+    return result;
+}
+    
+console.log(rectangularString("BBRRRBBWWWRRRRRWWWWW",5,4));
+
+function convertArrayToString(arr) {
+    return arr.join("");
+}
+
+
+TW.createUSflag = function ( hoist ) {
+    /* creates and returns a THREE.DataTexture for a United States flag,
+       with the given dimensions.  Actually, the fly is calculated as
+       1.9*hoist, in order to meet the legal specs for a US flag.  Since
+       the hoist has to be divided into 13 equal-width stripes, it should
+       ideally be a multiple of 13.
+       */
+    var height = nextPowerOf2(hoist);
+    var fly = Math.round(1.9*hoist);
+    var width = nextPowerOf2(fly);
+    console.log("flag fly and hoist: "+fly+" x "+hoist);
+    console.log("flag dims: "+width+" x "+height);
+    // The following constants come from the https://cs.wellesley.edu/~cs307/flagspec.htm
+    var L = Math.round(hoist/13); // width of one stripe, in pixels
+    var C = L*7;                  // uhoist: hoist of union
+    var D = Math.round(C*(0.76/(7/13))); // ufly: fly of the union
+    console.log("L is "+L+" C is "+C+" and D is "+D);
+    var size = width * height;
+    var data = new Uint8Array( 3 * size );
+    var show = new Array( size );
+    // I think textures are stored in row-major order, so each stripe will
+    // consist of consecutive pixels
+    function setRGB(index,r,g,b) {
+        data[3*index+0]=r;
+        data[3*index+1]=g;
+        data[3*index+2]=b;
+    }
+
+    // set everything to gray, first
+    for( i = 0; i < width*height ; ++i ) {
+        setRGB(i,128,128,128);
+        show[i] = ".";
+    }
+    // Now, the stripes
+    var i, j, col1, col2, c;
+    for( i = 0 ; i < 13; ++i ) {
+        var stripe_color = (i%2) == 0 ? "red" : "white";
+        for( j = 0 ; j < L ; ++j ) {
+            col1 = width * ( i * L + j ); // first col of this row of pixels
+            col2 = col1 + fly;            // last col of this stripe
+            for( c = col1 ; c < col2 ; ++c ) {
+                if( stripe_color == "white" ) {
+                    setRGB(c,0xFF,0xFF,0xFF);
+                    show[c] = "W";
+                } else {
+                    setRGB(c,0xFF,0,0);
+                    show[c] = "R";
+                }
+            }
+        }
+    }
+    console.log("show length "+show.length);
+    var str = convertArrayToString(show);
+    // console.log("str: "+str+" ("+str.length+")");
+    // console.log(rectangularString(str,width,height));
+    // finished stripes. Now, overwrite the union pixels with blue. 7 stripes worth
+    for( i = 0 ; i < 7; ++i ) {
+        for( j = 0 ; j < L ; ++j ) {
+            col1 = width * ( i * L + j ); // first col of this row of pixels
+            col2 = col1 + D;              // last col of the union in this row
+            for( c = col1 ; c < col2 ; ++c ) {
+                setRGB(c,0,0,255);
+                show[c] = "B";
+            }
+        }
+    }
+    // console.log(rectangularString(convertArrayToString(show),width,height));
+    global_data = data;
+    var texture = new THREE.DataTexture( data, width, height, THREE.RGBFormat );
+    texture.needsUpdate = true;
+    return texture;
+};
+</script>
+
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var planeGeom = new THREE.PlaneGeometry( 8, 4);
+
+// var flagTexture = TW.createCheckerboard(4);
+var flagTexture = TW.createUSflag(8*13);
+var flagMat = new THREE.MeshBasicMaterial(
+    {color: THREE.ColorKeywords.white,
+     map: flagTexture});
+
+var flagMesh = new THREE.Mesh( planeGeom, flagMat );
+scene.add(flagMesh);
+
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+// We always need to init TW
+TW.mainInit(renderer,scene);
+
+/* We almost always need a camera; here we'll use a default orbiting
+camera.  The third argument are the ranges for the coordinates, to help
+with setting up the placement of the camera. They need not be perfectly
+accurate, but if they are way off, your camera might not see anything, and
+you'll get a blank canvas. The camera setup returns a state object which
+stores various values specific to this canvas, including a render()
+function. */
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -4, maxx: 4,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+</script>
+
+
+</body>
+</html>

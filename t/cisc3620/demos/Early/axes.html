@@ -1,0 +1,43 @@
+<!-- Axes display for CS307
+Author: Scott D. Anderson
+Date: August 13, 2014
+
+-->
+
+<html>
+        <head>
+                <title>Axes</title>
+                <style>canvas { width: 400px; height: 300px; }</style>
+                <script src="../libs/three.min.js"></script>
+                <script src="../libs/tw.js"></script>
+                <script src="../libs/OrbitControls.js"></script>
+                <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+        </head>
+<body>
+
+<h1>Axes Demo</h1>
+
+<p>This is viewed from the positive Z axis. Click and drag to move the
+  camera around to get a better understanding of what's going on.
+
+<script>
+var renderer = new THREE.WebGLRenderer();
+
+var scene = new THREE.Scene();
+                        
+var size = 5;
+
+TW.mainInit(renderer,scene);
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -size, maxx: +size,
+                miny: -size, maxy: +size,
+                minz: -size, maxz: +size});
+TW.toggleAxes("show");
+TW.viewFromFront();
+TW.render();
+
+</script>
+</body>
+</html>

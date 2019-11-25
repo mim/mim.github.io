@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- 
+Scott D. Anderson
+Fall 2014
+CS 307
+ball-on-plane.html
+
+Creates a red ball sitting on a brown plane. Someday, put a teapot on a table.
+ -->
+<html>
+  <head>
+    <title>Ball on Plane</title>
+    <style>      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Ball on a Plane</h1>
+
+<p>The red ball is flush with the brown plane (a table).
+<p>We'll consider the pixels that are colored by both the table and the ball.
+<p>Adjust the transparency of the ball.
+
+<script>
+
+var sceneParams = {
+    ballRadius: 3,
+    tableSize: 20,
+    tableThickness: 0.1,
+    ballAlpha: 1,
+    lastParam: null
+};
+    
+var scene = new THREE.Scene(); 
+var renderer = new THREE.WebGLRenderer();
+        
+TW.mainInit(renderer,scene);
+        
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -5, maxx: 5,
+                miny: -5, maxy: 5,
+                minz: -5, maxz: 5});
+        
+
+var ballTable, ball, table;
+
+function makeScene() {
+    scene.remove(ballTable);
+    ballTable = new THREE.Object3D();
+
+    ball = new THREE.Mesh( new THREE.SphereGeometry(sceneParams.ballRadius,30,30),
+                           new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.red,
+                                                        transparent: true,
+                                                        opacity: sceneParams.ballAlpha}) );
+    ball.translateZ(sceneParams.ballRadius);
+    ballTable.add(ball);
+
+    table = new THREE.Mesh( new THREE.BoxGeometry(sceneParams.tableSize,
+                                                  sceneParams.tableSize,
+                                                  sceneParams.tableThickness),
+                            new THREE.MeshBasicMaterial({color: THREE.ColorKeywords.saddlebrown,
+                                                         transparent: false}) );
+    ballTable.add(table);
+    ballTable.rotateX( THREE.Math.degToRad(-30) );
+    scene.add(ballTable);
+    TW.render();
+}
+makeScene();
+
+var gui = new dat.GUI();
+gui.add(sceneParams, "ballAlpha", 0, 1).onChange(makeScene);
+
+</script>
+</body>
+</html>

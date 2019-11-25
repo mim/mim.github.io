@@ -1,0 +1,283 @@
+<!--Frustum and CameraHelper Demo for CS307
+    Author: Scott D. Anderson
+    Date: August 28, 2014
+
+-->
+
+<html>
+  <head>
+    <title>Frustum</title>
+    <style>
+      body { margin: 10px; min-width: 820px; font-size: 14pt; }
+      canvas { margin: 10px auto; display: block; width: 80%; }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<script id="cameraSetup">
+// the "camera" that determines the frustum
+
+var cameraParams = {
+    near: 10,
+    far: 30,
+    fov: 30,                    // degrees!!
+    aspectRatio: 400/300,       // usually from the dimensions of the canvas
+    atX: 0,
+    atY: 0,
+    atZ: -20,
+    eyeX: 0,
+    eyeY: 0,
+    eyeZ: 1,
+    upX: 0,
+    upY: 1,
+    upZ: 0
+};
+    
+// globals, modified from the above
+var at  = new THREE.Vector3();
+var eye = new THREE.Vector3();
+var up  = new THREE.Vector3();
+
+function setCameraView() {
+    at.set( cameraParams.atX, cameraParams.atY, cameraParams.atZ );
+    eye.set( cameraParams.eyeX, cameraParams.eyeY, cameraParams.eyeZ );
+    up.set( cameraParams.upX, cameraParams.upY, cameraParams.upZ );
+}
+setCameraView();
+
+// This function isn't used, but it is displayed to the user.
+
+function setupCamera() {
+    var cp = cameraParams;      // just a shorthand for this function
+    frustumCamera = new THREE.PerspectiveCamera(cp.fov, cp.aspectRatio, cp.near, cp.far);
+    // set location
+    frustumCamera.position.set(cp.eyeX, cp.eyeY, cp.eyeZ);
+    // Cameras inherit an "up" vector from Object3D.
+    frustumCamera.up.set(cp.upX, cp.upY, cp.upZ);
+    // The lookAt method computes the camera direction and orientation from its position
+    // and up parameters, and the input arguments specifying the location of the 'at' point
+    frustumCamera.lookAt(cp.atX, cp.atY, cp.atZ);
+}
+</script>
+
+<script>
+TW.createFrustumFOV = function(fov,aspectRatio,near,far) {
+    var top = near * Math.tan(TW.degrees2radians(fov)/2);
+    var bottom = -top;
+    var right = aspectRatio * top;
+    var left = -right;
+    if( TW.debug ) {
+        console.log("camera:",fov,aspectRatio,near,far);
+        console.log("frustum:",right,left,top,bottom,near,far);
+    }
+    return TW.createFrustum(right,left,top,bottom,near,far);
+}
+
+function createFrustumParams() {
+    var f = TW.createFrustumFOV( cameraParams.fov,
+                                 cameraParams.aspectRatio,
+                                 cameraParams.near,
+                                 cameraParams.far );
+    setCameraView();
+    f.position.copy(eye);
+    f.up.copy(up);
+    f.lookAt(at);
+    f.name = "frustum";
+    return f;
+}
+</script>
+
+
+<script>
+// Canvas, showing frustum
+
+var renderer2 = new THREE.WebGLRenderer();
+var scene2 = new THREE.Scene();
+TW.mainInit(renderer2,scene2);
+
+var frustum = null;
+
+function recreateFrustum() {
+    if( frustum != null ) {
+        scene2.remove(frustum);
+    }
+    frustum = createFrustumParams();
+    scene2.add(frustum);
+}
+recreateFrustum();
+
+function makeMarker(point,color) {
+    var geom = new THREE.SphereGeometry(1,5,5);
+    var mat = new THREE.MeshBasicMaterial( { color: color} );
+    var mesh = new THREE.Mesh(geom,mat);
+    mesh.position.copy(point);
+    return mesh;
+}
+
+var atMarker  = makeMarker(at,TW.CYAN);
+scene2.add(atMarker);
+var eyeMarker = makeMarker(eye,TW.MAGENTA);
+scene2.add(eyeMarker);
+
+var upArrow  = new THREE.ArrowHelper( up, eye, 5, TW.YELLOW );
+upArrow.line.material.linewidth=3;
+scene2.add(upArrow);
+
+var size = 20;
+TW.cameraSetup(renderer2,scene2,
+               {minx: -size, maxx: size,
+                miny: -size, maxy: size,
+                minz: -size, maxz: size});
+TW.toggleAxes("show");
+TW.viewFromAboveFrontSide();
+</script>
+
+<script>
+function redo() {
+    recreateFrustum();
+    atMarker.position.copy(at);
+    eyeMarker.position.copy(eye);
+    upArrow.position.copy(eye);
+    up.normalize();
+    upArrow.setDirection(up);
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(cameraParams,'fov',1,179).onChange(redo);
+gui.add(cameraParams,'aspectRatio',0.1,10).onChange(redo);
+gui.add(cameraParams,'near',1,50).onChange(redo);
+gui.add(cameraParams,'far',1,50).onChange(redo);
+gui.add(cameraParams,'atX',-10,10).onChange(redo);
+gui.add(cameraParams,'atY',-10,10).onChange(redo);
+gui.add(cameraParams,'atZ',-30,10).onChange(redo);
+gui.add(cameraParams,'eyeX',-10,10).onChange(redo);
+gui.add(cameraParams,'eyeY',-10,10).onChange(redo);
+gui.add(cameraParams,'eyeZ',-30,30).onChange(redo);
+gui.add(cameraParams,'upX',-10,10).onChange(redo);
+gui.add(cameraParams,'upY',-10,10).onChange(redo);
+gui.add(cameraParams,'upZ',-10,10).onChange(redo);
+</script>
+
+<h1>Frustum Demo</h1>
+
+<p>This demo displays a <em>frustum</em> whose parameters can be adjusted with
+   the gui controls:
+
+<ul>
+  <li> <code>fov</code> is the <em>field of view</em> that defines the angular
+    extent of the scene that is visible to the camera
+  <li> <code>aspectRatio</code> controls the ratio of the field of view
+    in the horizontal and vertical directions
+  <li> <code>near</code> and <code>far</code> define the range of distance
+    from the camera over which the scene content is visible 
+     <ul>
+        <li>red and green lines are drawn around the near and far planes, respectively
+     </ul>
+  <li> <code>eyeX</code>, <code>eyeY</code>, and <code>eyeZ</code> specify the 
+     position of the camera (EYE location, shown by the MAGENTA ball) 
+  <li> <code>atX</code>, <code>atY</code>, and <code>atZ</code> specify the AT
+     point, where the camera is looking (shown by the CYAN ball)
+  <li> <code>upX</code>, <code>upY</code>, and <code>upZ</code> specify a
+   vector that indicates the UP direction for the camera (shown in yellow)
+</ul>
+
+ <p> In this demo, the code calculates the exact geometry, given the <code>fov</code>, 
+   <code>aspectRatio</code>, and other parameters.
+
+<p>Here is the function that sets up this camera:
+
+<pre data-code-jsfunction="setupCamera" class="prettyprint lang-js linenums">
+</pre>
+
+<!--
+<p>Here is how the frustum parameters are calculated:
+
+<pre data-code-jsfunction="frustumFOV" class="prettyprint lang-js linenums">
+</pre>
+
+<p>If you're curious about how the lines of the frustum are drawn, you're
+  welcome to view the code, but that involves a <code>THREE.Line</code>
+  object, which we haven't learned about, because we're emphasizing 3D
+  objects, rather than lines.
+-->
+
+<!-- to do:
+
+  spin around z axis
+  toggle spinning
+  colors for the frustum, red, lime, blue
+  -->
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

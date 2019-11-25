@@ -1,0 +1,38 @@
+<!-- 
+Kelsey Reiman
+October 2014
+
+Creates an animation of a bouncing ball. This code is adapted from BouncingBlueBall.py
+
+Further adaptation by Scott.
+ -->
+<!doctype html>
+<html> 
+  <head> 
+    <title>Bouncing Ball</title> 
+    
+    <style> canvas { width: 800px; height: 500px }</style> 
+  </head> 
+        
+  <body>
+        
+<h1>Bouncing Ball with Controls</h1>
+
+<ul>
+  <li>0:  reset animation to initial state
+  <li>1:  take one step
+  <li>g:  "go" &mdash; start the animation <q>loop</q>
+  <li>SPC:  stop the animation
+</ul>
+
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+    <script src="bouncingBall-controls.js"></script>
+        
+<script>
+firstState();
+</script> 
+</body> 
+</html>

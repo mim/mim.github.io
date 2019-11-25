@@ -1,0 +1,336 @@
+<!-- TW.cameraSetup demo
+     Author: Scott D. Anderson
+     Date: October 6, 2014
+
+-->
+
+<html>
+  <head>
+    <title>TW Camera</title>
+    <link rel="stylesheet" type="text/css" href="../../../307.css">
+    <link rel="stylesheet" type="text/css" href="../../../js/google-code-prettify/prettify-sda.css">
+    <style>
+      body { margin: 10px; min-width: 820px; }
+      canvas {
+          margin: 10px auto;
+          display: block;
+          width: 800px;
+          height: 300px;
+          border: 2px solid teal;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>TW's Camera Setup</h1> <!-- ' -->
+
+<p>This page illustrates how TW sets up a camera given only the scene
+  bounding box and the desired FOVY. The scene has a blue box matching the
+  scene bounding box, and a green wireframe sphere matching the scene
+  bounding sphere.
+
+<p>There are two canvases (teal outlines):
+    <ul>
+        <li>the first is a visualization of the camera setup, using a 2D
+        slice through the second. </li>
+        <li>The second is what the camera sees.
+    </ul>
+
+<p>Additional legend:
+    <ul>
+        <li>The blue area is the scene bounding box. The green area is the
+  bounding <em>sphere</em>. (The box doesn't touch the sphere in the 2D
+  slice, because we're slicing through the center of the box, not the
+  corners.)
+
+        <li>The green area is the scene bounding sphere (wireframe).
+            
+        <li>In the 2D slice, the eye is at the rightmost vertex of the
+        triangle.
+        <li>The red triangle shows the shape of the frustum.
+    </ul>
+
+<canvas width="800" height="300" id="diagram"></canvas>
+
+<script id="given">
+   // Some functions you might want
+
+   function clearCanvas(ctx) {
+       /* because the GUI will re-draw the canvas, we need to be able to clear
+          it before drawing things another time. This function clears the
+          canvas to white by finding out how big it is and drawing a white
+          rectangle. */
+       var canvas = ctx.canvas;
+       var w = canvas.clientWidth;
+       var h = canvas.clientHeight;
+       ctx.clearRect(0,0,w,h);
+   }
+
+   // f moves the origin and flips the Y axis, so the coordinate system
+   // is more familiar
+
+   function flipY(ctx) {
+       var canvas = ctx.canvas;
+       var w = canvas.clientWidth;
+       var h = canvas.clientHeight;
+       ctx.translate(0,h);
+       ctx.scale(1,-1);
+   }   
+</script>
+
+<script>
+function drawRect(ctx, width, height) {
+    ctx.beginPath();
+    ctx.rect(0,0,width,height);
+    ctx.fill();
+    ctx.closePath();
+}
+
+function drawRectAt(ctx, x, y, width, height) {
+    ctx.save();
+    ctx.translate(x,y);
+    drawRect(ctx, width, height);
+    ctx.restore();
+    console.log("rect: "+height+" x "+width);
+}
+
+function drawCircleAt(ctx, x, y, radius) {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2*Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+    console.log("circle");
+}
+
+function drawTriangle(ctx, ax, ay, bx, by, cx, cy) {
+    ctx.beginPath();
+    ctx.moveTo(ax,ay);
+    ctx.lineTo(bx,by);
+    ctx.lineTo(cx,cy);
+    ctx.lineTo(ax,ay);
+    ctx.stroke();
+    ctx.closePath();
+}
+
+</script>
+
+<script>
+var diagramBB = {
+    minx: -50, maxx: 50,
+    miny: -50, maxy: 50,
+    minz: -50, maxz: 50
+};
+
+var guiParams = {
+    nearDelta: 0,
+    fovy: 90,                   // degrees!!
+    eyeDelta: 0,
+};
+    
+function redrawDiagram() {
+    var ctx = document.getElementById('diagram').getContext('2d');
+    clearCanvas(ctx);
+    ctx.save();
+    flipY(ctx);
+    var cam = TW.cameraSetupParams(diagramBB,guiParams.fovy);
+    console.log(JSON.stringify(cam));
+    ctx.translate(200,150);
+    // from now on, use that origin
+    ctx.fillStyle = "#6060FF";
+    drawRectAt(ctx,
+               diagramBB.minx,
+               diagramBB.miny,
+               cam.xSize,
+               cam.ySize);
+    ctx.strokeStyle = "#80FF80";
+    drawCircleAt(ctx,0,0,cam.sceneRadius);
+
+    // draw the red triangle
+    var theta = Math.PI/2 - cam.fovyRadians/2;
+    console.log("theta: "+TW.radians2degrees(theta));
+    var Tx = Math.cos(theta) * cam.sceneRadius;
+    var Ty = Math.sin(theta) * cam.sceneRadius;
+    ctx.strokeStyle = "#FF0000";
+    drawTriangle(ctx, 0, 0, cam.cameraRadius, 0, Tx, Ty);
+    
+    ctx.restore();
+}
+
+redrawDiagram();
+</script>
+
+<script>
+var renderer = new THREE.WebGLRenderer();
+var scene = new THREE.Scene();
+TW.mainInit(renderer,scene);
+
+TW.debug = true;
+
+var box = TW.createMesh( new THREE.BoxGeometry(2,2,2) );
+scene.add(box);
+
+</script>
+
+<script id="cameraSetup">
+// the "camera" that determines the frustum
+
+var sceneBB = {
+    minx: -1, maxx: +1,
+    miny: -1, maxy: +1,
+    minz: -1, maxz: +1
+};
+
+var mat = new THREE.MeshBasicMaterial({color:0x00FF00});
+mat.wireframe = true;
+var sphere = new THREE.Mesh( new THREE.SphereGeometry(Math.sqrt(3),30,30), mat );
+scene.add(sphere);
+
+// global, so we can modify it from the GUI
+var cam = new THREE.PerspectiveCamera();
+scene.add(cam);
+var camBad = cam;
+camBad.name = "camBad";
+
+var render = function () { renderer.render(scene,cam); };
+var renderBad = function () { renderer.render(scene,camBad); };
+
+function adjustCamera() {
+    var params = TW.cameraSetupParams(sceneBB, guiParams.fovy);
+    canvas = TW.lastClickTarget;
+    aspectRatio = canvas.clientWidth/canvas.clientHeight;
+
+    console.log(" sceneRadius: " + params.sceneRadius +
+                " cameraRadius: " + params.cameraRadius +
+                " near: " + params.near +
+                " far: " + params.far +
+                " aspectRatio: " + aspectRatio +
+               " fovy: " + guiParams.fovy);
+
+    cam.fov = guiParams.fovy;
+    cam.near = params.near;
+    cam.far = params.far;
+    cam.aspect = aspectRatio;
+    cam.position.set(0,0,params.cameraRadius + guiParams.eyeDelta);
+    cam.up.set(0,1,0);
+    cam.lookAt(params.center);
+    cam.updateProjectionMatrix(); // this is necessary!
+    renderBad();
+};
+
+var state = TW.cameraSetup(renderer, scene, sceneBB, guiParams);
+var camGood = state.cameraObject;
+camGood.name = "camGood";
+
+adjustCamera();
+
+</script>
+
+
+<script>
+function redo() {
+    redrawDiagram();
+    adjustCamera();
+    render();
+}
+
+function switchCam(cam) {
+    currCam = cam;
+    render = function () { renderer.render(scene,cam); }
+}
+
+TW.setKeyboardCallback("1",function () { renderer.render(scene,camBad);},"bad cam");
+TW.setKeyboardCallback("2",function () { renderer.render(scene,camGood);},"good cam");
+
+var gui = new dat.GUI();
+gui.add(guiParams,'fovy',1,179).step(1).onChange(redo);
+//gui.add(guiParams,'nearDelta',-10,10).onChange(redo);
+//gui.add(guiParams,'eyeDelta',-10,10).onChange(redo);
+</script>
+
+<h1>Camera Setup Demo</h1>
+
+<p>This demo shows a <code>TW.camera</code> object based on a
+  <code>THREE.PerspectiveCamera()</code> object.  
+
+<p>Here are the functions that set up this camera:
+
+<pre data-code-jsfunction="adjustCamera" class="prettyprint lang-js linenums">
+</pre>
+
+    <p>and, crucially, this one:
+
+<pre data-code-jsfunction="TW.cameraSetupParams" class="prettyprint lang-js linenums">
+</pre>
+
+<div id="footer">
+<p>&copy; Scott D. Anderson<br>
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nc-sa/1.0/">Creative Commons License</a> <br>
+Date Modified: 
+<!--#echo var="LAST_MODIFIED" -->
+
+<!-- Creative Commons License -->
+<ul id="iconlist">
+<li>
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/1.0/"><img
+       alt="Creative Commons License" 
+       src="/~cs110/cache/somerights.gif"></a> 
+       <!-- /Creative Commons License -->
+</li>
+
+<li>
+  <a href="http://www.anybrowser.org/campaign/"><img
+       src="/~cs110/cache/enhanced.gif" 
+       width="96" height="32" 
+       alt="Viewable With Any Browser">
+  </a> 
+</li>
+
+<li>
+  <a href="http://validator.w3.org/check?uri=referer"><img 
+       src="/~cs110/cache/valid-html401.png"
+       alt="Valid HTML 4.01 Strict"
+       title="Valid HTML 4.01 Strict"  
+       height="31" width="88">
+  </a> 
+</li>
+
+<li>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer"><img 
+      style="border:0;width:88px;height:31px"
+      src="/~cs110/cache/vcss.gif"
+      alt="Valid CSS!">
+ </a>
+</li>
+
+</ul>
+</div> <!-- <div id="footer"> -->
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/sh_main.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_python.js"></script>
+<script type="text/JavaScript" src="/~cs110/js/shjs-0.6/lang/sh_javascript.js"></script>
+-->
+<script src="/~cs307/js/google-code-prettify/prettify.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/TOC.js"></script>
+<script type="text/JavaScript" src="/~cs307/js/307.js"></script>
+<script>
+addExecuteButtons();
+handle_codefrom();
+handle_code_jsfunction();
+handle_codeurl();
+prettyPrint();
+$("h2,h3").click(gohere);
+$(".code_solution").click(checkMagicWord);
+$(".code_solution > * ").hide();
+$(".code_solution").attr('data-shown','no');
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Spheres</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="spheres.js"></script>
+  </head>
+<body>
+
+<h1>Spheres</h1>
+
+<p>This demo shows a texture-mapping of a flag onto half
+    a <code>THREE.Sphere</code>. There will be a checkbox to toggle wireframe mode.
+
+<script id="usflag_texture_shader" type="x-shader/x-fragment">
+    varying vec2 vUv;   // texture coords
+
+    void main( void ) {
+        float union_fly = 0.76/1.9;
+        float union_hoist = 0.5385;  // 7/13
+        float s = vUv.x;
+        float t = vUv.y;
+        if ( s < union_fly && t < union_hoist ) {
+             gl_FragColor = vec4( 0.0, 0.0, 1.0, 1.0 );  // blue
+        } else if ( mod(floor(t*13.0), 2.0) == 0.0 ) {
+             gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );  // red
+        } else {                                  
+             gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );  // white
+        }
+    }
+</script>
+
+<script id="grid_texture_shader" type="x-shader/x-fragment">
+    varying vec2 vUv;   // texture coords
+
+    void main( void ) {
+        float s = vUv.x;
+        float t = vUv.y;
+        float s10 = mod(floor(s*100.0),10.0);
+        float t10 = mod(floor(t*100.0),10.0);
+        if( s10 == 0.0 || t10 == 0.0 ) {
+             gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );  // white
+        } else {
+             gl_FragColor = vec4( 1.0 - s, t, s, 1.0 );
+        }
+    }
+</script>
+
+<script id="vertex_shader" type="x-shader/x-vertex">
+   varying vec2 vUv;
+
+   void main( void ) {
+        vUv = uv;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+   }
+</script>
+
+
+
+<script>
+var flagMaterial = new THREE.ShaderMaterial( {
+    vertexShader: document.getElementById( 'vertex_shader' ).textContent,
+    fragmentShader: document.getElementById( 'usflag_texture_shader' ).textContent,
+    side: THREE.DoubleSide
+    });
+
+var gridMaterial = new THREE.ShaderMaterial( {
+    vertexShader: document.getElementById( 'vertex_shader' ).textContent,
+    fragmentShader: document.getElementById( 'grid_texture_shader' ).textContent,
+    side: THREE.DoubleSide
+    });
+
+// half-dimensions of the object
+var width2 = 4;
+var height2 = 2;
+var depth2 = 1;
+
+var flagGeom = new THREE.SphereGeometry( width2, 32, 32 );
+
+// var flagGeom = new THREE.BoxGeometry( 2*width2, 2*height2, 2*depth2 );
+// var flagGeom = new THREE.PlaneGeometry( 2*width2, 2*height2 );
+
+var flagMesh = new THREE.Mesh(flagGeom, gridMaterial);
+</script>
+
+<script>
+// We always need a scene.
+var scene = new THREE.Scene();
+
+scene.add(flagMesh);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -width2, maxx: width2,
+                            miny: -height2, maxy: height2,
+                            minz: -depth2, maxz: depth2});
+
+</script>
+
+
+</body>
+</html>

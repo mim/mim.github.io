@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Plane Buffy</title>
+    <style>
+    canvas { width: 800px; height: 500px; }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+  </head>
+<body>
+
+<h1>Plane Buffy</h1>
+
+<p>This demo shows a texture-mapping of an image onto a
+simple <code>THREE.PlaneGeometry</code> using TW. The advantages are
+small: the TW function provides default progress and error callbacks.
+
+<script id="loadBuffy">
+var planeGeom, planeTex, planeMat, planeMesh;
+var imageLoaded = false;
+var loader = new THREE.TextureLoader();
+
+function loadPlaneBuffy() {
+    TW.loadTexture("../../images/buffy.gif",
+                   function (texture) {
+                       console.log("buffy image is loaded");
+                       imageLoaded = true;
+                       // these should be local, but we use globals
+                       // so that students can poke around
+                       planeGeom = new THREE.PlaneGeometry( 4, 4);
+                       planeMat = new THREE.MeshBasicMaterial( {color: 0xffffff,
+                                                                map: texture});
+                       planeMesh = new THREE.Mesh( planeGeom, planeMat );
+                       scene.add(planeMesh);
+                       TW.render();
+                   });
+}
+</script>
+
+<script>
+var scene = new THREE.Scene();
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -2, maxx: 2,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+loadPlaneBuffy();
+
+</script>
+
+
+</body>
+</html>

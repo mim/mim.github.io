@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>Plane Flags</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: inline;
+          width: 60%;
+          height: 500px;
+      }
+
+      #TextureParamsDisplay {
+          font-size: 2em;
+          display: inline-block;
+          width: 38%;
+      }
+
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/tw.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Plane Flags</h1>
+
+<p>This demo shows a texture-mapping of a computed texture onto a
+simple <code>THREE.PlaneGeometry</code>.
+
+<pre id="TextureParamsDisplay"></pre>
+
+<script>
+function updateTextureParams(quad, sMin, sMax, tMin, tMax) {
+    var elt = quad.faceVertexUvs[0]; // dunno why they have this 1-elt array
+    var face0 = elt[0];
+    face0[0] = new THREE.Vector2(sMin,tMax);
+    face0[1] = new THREE.Vector2(sMin,tMin);
+    face0[2] = new THREE.Vector2(sMax,tMax);
+    var face1 = elt[1];
+    face1[0] = new THREE.Vector2(sMin,tMin);
+    face1[1] = new THREE.Vector2(sMax,tMin);
+    face1[2] = new THREE.Vector2(sMax,tMax);
+    quad.uvsNeedUpdate = true;
+}
+</script>
+
+
+<script id="plane-image-texture">
+function makeFlag(name) {
+    var flagTexture = TW.makeFlagTexture(name);
+    flagTexture.flipY = guiParams.flipY;
+    var flagGeom = new THREE.PlaneGeometry( 8, 4);
+    if(!guiParams.flipY) {
+        updateTextureParams(flagGeom,0,0.75,0.81,0);
+    } else {
+        updateTextureParams(flagGeom,0,0.75,0.19,1); // 1-0.81
+    }
+    document.getElementById('TextureParamsDisplay').innerHTML = TW.stringifyGeometry(flagGeom);
+    var flagMat = new THREE.MeshBasicMaterial(
+        {
+            color: THREE.ColorKeywords.white,
+            map: flagTexture,
+        });
+    var flagMesh = new THREE.Mesh( flagGeom, flagMat );
+    return flagMesh;
+}
+
+</script>
+
+<script>
+// ================================================================
+var guiParams = {
+    flag: "US-RWB",
+    sMin: 0,
+    sMax: 1,
+    tMin: 0,
+    tMax: 1,
+    flipY: false,
+    lastParam: null
+}
+
+var scene = new THREE.Scene();
+var flag = makeFlag(guiParams.flag);
+scene.add(flag);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+var state = TW.cameraSetup(renderer,
+                           scene,
+                           {minx: -4, maxx: 4,
+                            miny: -2, maxy: 2,
+                            minz: 0, maxz: 1});
+
+
+function redoScene() {
+    scene.remove(flag);
+    flag = makeFlag(guiParams.flag);
+    scene.add(flag);
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(guiParams,"flag",["nascar","checks","US-Gray","US-RWB"]).onChange(redoScene);
+gui.add(guiParams,"flipY").onChange(redoScene);
+
+</script>
+
+
+</body>
+</html>
