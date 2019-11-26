@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta name=author content="Scott D. Anderson">
+    <meta name=description content="">
+    <meta name=keywords content="">
+    <link rel="stylesheet" href="http://cs.wellesley.edu/~anderson/sda-style.css">
+    <title>Blank Canvas</title>
+    <style>
+      canvas { border: 3px solid teal; }
+    </style>
+</head>
+<body>
+
+<h2>My Canvas</h2>
+
+<p><canvas id="canvas1" width="500" height="300"></canvas>
+
+<script id="given">
+   // flipY moves the origin and flips the Y axis, so the coordinate system
+   // is more familiar, with the origin (0,0) in the lower left corner
+
+   function flipY(ctx) {
+       var canvas = ctx.canvas;
+       var w = canvas.clientWidth;
+       var h = canvas.clientHeight;
+       ctx.translate(0,h);
+       ctx.scale(1,-1);
+   }   
+</script>
+
+<script id="drawCanvas1">
+
+   // your code here
+
+   function redrawCanvas1() {
+       var ctx = document.getElementById('canvas1').getContext('2d');
+       // flip the coordinate frame
+       ctx.save();
+       flipY(ctx); 
+       // drawTreeAt(ctx,x,y,height,width,radius);
+
+       // your code here
+
+       ctx.restore();
+   }
+       
+   redrawCanvas1();
+</script>
+
+</body>
+</html>
