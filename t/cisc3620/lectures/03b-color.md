@@ -2,6 +2,14 @@
 layout: default
 title: HSL Coloring
 ---
+  <!-- the following two scripts are for MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 # HSL Coloring
 
 ## Plan
@@ -32,7 +40,8 @@ must be converted to a range from 0.0 to 1.0.
     alert("myColor is " + myColor.getHexString());
     
 
-This text is displayed with `myColor` as background.
+<p style="background-color: #9ec2f9">This text is displayed with
+     <code>myColor</code> as background.</p>
 
   * The CMYK model is good to know about, but won't be used in this course. 
 
@@ -41,8 +50,12 @@ This text is displayed with `myColor` as background.
 The _Parametric equation of a triangle_ defines an area that is created from a
 vertex and a line segment, using a parametric equation between the vertex and
 a point on the line segment, where the point on the line segment is itself
-defined by a parametric equation.  [![](../readings/param-
-triangle.svg)](../readings/param-triangle.svg)  Two parametric lines, one of
+defined by a parametric equation.
+
+> [![](img/param-
+triangle.svg)](img/param-triangle.svg)
+> 
+> Two parametric lines, one of
 which is an endpoint of the other, create a parametric triangle
 
 The equation Q(s,t) can also be expressed as:

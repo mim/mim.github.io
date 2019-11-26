@@ -1,0 +1,58 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5 -->
+<!-- CreationDate: Thu Sep 15 16:21:09 2016 -->
+<!-- Magnification: 1.000 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="4.2in" height="2.4in" viewBox="1710 1080 5014 2910">
+<g style="stroke-width:.025in; stroke:black; fill:none">
+<!-- Line -->
+<polyline points="1950,3750
+4252,1447
+" style="stroke:#000000;stroke-width:15;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 1950 3750 - 4296 1403-->
+<polyline points="4145 1638
+4273 1426
+4060 1553
+" style="stroke:#000000;stroke-width:15;
+"/>
+<!-- Line -->
+<polyline points="4275,1425
+6150,3600
+" style="stroke:#000000;stroke-width:15;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="1950,3750
+6150,3600
+" style="stroke:#000000;stroke-width:15;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="3330,2413
+6150,3600
+" style="stroke:#000000;stroke-width:15;
+stroke-linejoin:miter; stroke-linecap:butt;
+stroke-dasharray:60 60;"/>
+<!-- Arrowhead on XXXpoint 6150 3600 - 3273 2389-->
+<polyline points="3548 2439
+3304 2402
+3501 2550
+" style="stroke:#000000;stroke-width:15;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="6525" y="3750" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">C</text>
+<!-- Text -->
+<text xml:space="preserve" x="4275" y="1275" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">B</text>
+<!-- Text -->
+<text xml:space="preserve" x="1725" y="3975" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">A</text>
+<!-- Text -->
+<text xml:space="preserve" x="3375" y="3450" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">Q(s,t)=C+(P(t)-C)s</text>
+<!-- Text -->
+<text xml:space="preserve" x="2025" y="2475" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">P(t)=A+vt</text>
+<!-- Text -->
+<text xml:space="preserve" x="2325" y="2100" stroke="#000000" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">v=B-A</text>
+</g>
+</svg>
