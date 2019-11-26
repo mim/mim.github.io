@@ -32,9 +32,8 @@ We have three APIs:
 
   * **WebGL.** This is a standard graphics API, a subset of the full OpenGL API that is supported by most graphics cards. (I'll use the terms " OpenGL" and "WebGL" interchangeably.) WebGL/OpenGL is about modeling and rendering. The specification is documented in [the online man pages](http://www.khronos.org/registry/webgl/specs/latest/2.0/), but these are difficult to read at best. Fortunately, we will use very little of this directly, because we are using Three.js. 
   * [**Three.js**](http://threejs.org). This is an API built on top of WebGL, doing a lot of the modeling and rendering for you. WebGL is still there, underneath, but we will rarely see it. Three.js is really powerful. It allows you to ignore a lot of detailed technical concepts in Computer Graphics that plain WebGL would force you to know, and the programming is far less work. I think that using Three.js and learning the basic concepts is a good combination for this course. Your JavaScript code might look like this: 
-    
+
         var box_geom = new THREE.BoxGeometry(1,2,3); // width, height, depth
-        
 
   * **TW.** This is Scott Anderson's home-grown API that packages up certain common operations in our Three.js programs. It is layered on top of Three.js  -- a thin layer at that! It does things like setting up a camera for you and allowing you to toggle whether to show the coordinate axes. All of these functions are available in the `TW` object, so your JavaScript code might look like this: 
     

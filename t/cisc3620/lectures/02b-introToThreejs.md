@@ -221,7 +221,7 @@ function do?
     }                        
       
 
-### Exercise: Two Barns
+### Exercise: Two Barns<a name="two-barns"></a>
 
   1. Save [two-barns-start.html](02b-exercises/two-barns-start.html) as `two-barns.html` (with Format "Webpage, HTML Only"). This file contains the definition of the `translateX()` function, and creates a geometry and mesh for a single barn that is added to the scene (`barn1geom` and `barn1mesh`). 
   2. Modify the code to add a _second barn_ that is 
@@ -256,7 +256,7 @@ relies on a few concepts. One is the notion of the "position" of the barn,
 which is just the location of the barn's "origin" (in this case, the lower
 left front corner). We'll see more about this later.
 
-## Adding a Steeple
+## Adding a Steeple<a name="adding_a_steeple"></a>
 
 Now, let's discuss adding a steeple to our barn to convert it into a church.
 The result will look like this:
