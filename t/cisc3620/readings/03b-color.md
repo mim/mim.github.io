@@ -1,23 +1,23 @@
 ---
 layout: default
 title: Color, Part b
+javascripts:
+  - //code.jquery.com/jquery-3.0.0.min.js
+  - ../libs/dat.gui.min.js
+  - ../libs/three.min.js
+  - ../libs/tw.js
+  - ../libs/OrbitControls.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - ../js/google-code-prettify/prettify.js
+  - ../js/custom.js
+  - ../js/307.js
+  - ../js/activities.js
 ---
-  <!-- We load jQuery at the top so that we can intersperse examples in
-       the reading and lecture notes -->
-  <script src="//code.jquery.com/jquery-3.0.0.min.js"></script>
-  <!-- Used for building GUIs -->
-  <script src="../libs/dat.gui.min.js"></script>
-  <!-- We load THREE at the top for inline demos. -->
-  <script src="../libs/three.min.js"></script>
-  <script src="../libs/tw.js"></script>
-  <script src="../libs/OrbitControls.js"></script>
-  <!-- the following two scripts are for MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     });
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 # Color, Part b
 
@@ -481,10 +481,6 @@ is one channel (Y), just like L and V.
 This page is based on <https://cs.wellesley.edu/~cs307/readings/03b-color.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
 
 
-<script src="../js/google-code-prettify/prettify.js"></script>
-<script src="../js/custom.js"></script>
-<script src="../js/307.js"></script>
-<script src="../js/activities.js"></script>
 <script>
 addScriptElements();
 addExecuteButtons();    // has to be done before pretty-printing
@@ -500,13 +496,4 @@ prettyPrint();
 hideFromStudent();
 // do we still want this?
 // sh_highlightDocument();
-</script>
-
-
-<script>
-$(".example-with-code").each(function (index,elt) {
-   var src = $(elt).find(".example").html();
-   console.log("src for "+index+" is "+src);
-   $(elt).find("pre").text(src);
-});
 </script>

@@ -1,6 +1,8 @@
 ---
 layout: default
 title: HSL Coloring
+javascripts:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 ---
   <!-- the following two scripts are for MathJax -->
   <script type="text/x-mathjax-config">
@@ -8,7 +10,6 @@ title: HSL Coloring
        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     });
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 # HSL Coloring
 
