@@ -46,7 +46,7 @@ must be converted to a range from 0.0 to 1.0.
 
   * The CMYK model is good to know about, but won't be used in this course. 
 
-## Parametric Triangles and Color Interpolation
+## Parametric Triangles and Color Interpolation<a name="interp"></a>
 
 The _Parametric equation of a triangle_ defines an area that is created from a
 vertex and a line segment, using a parametric equation between the vertex and
@@ -85,7 +85,7 @@ spatial coordinates are _different objects_.
 Let's explore these ideas with this demo:  [triangle
 interpolation](../demos/Color/triangleInterpolation2.shtml).
 
-### Exercise: Colorful Stars
+### Exercise: Colorful Stars<a name="stars"></a>
 
 This [stars-start.html](03b-exercises/stars-start.html) code file contains a
 function named `starGeometry()` that creates and returns a `Three.Geometry`
