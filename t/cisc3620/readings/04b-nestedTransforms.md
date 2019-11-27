@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Color, Part b
+title: Nested Transforms
 javascripts:
   - //code.jquery.com/jquery-3.0.0.min.js
   - ../libs/dat.gui.min.js
