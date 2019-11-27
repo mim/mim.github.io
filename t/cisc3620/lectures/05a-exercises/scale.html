@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <title>Justice Scale</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/307.css">
+    <link rel="stylesheet" type="text/css" href="https://cs.wellesley.edu/~cs307/js/google-code-prettify/prettify-sda.css">
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui.min.js"></script>
+  </head>
+<body>
+
+<h1>Scale of Justice</h1>
+
+<script>
+var params = {
+    size: 100,
+    angle: 0
+};
+
+// black and red materials for scale
+var materials = [ new THREE.MeshBasicMaterial( {color: new THREE.Color("black")} ),
+                  new THREE.MeshBasicMaterial( {color: new THREE.Color("red")} ) ];
+
+// createCone() creates and returns a "cone object" with its origin at the top of the cone
+
+function createCone (height) {
+    var coneObj = new THREE.Object3D();
+
+    // add cone mesh to coneObj, with tip of cone at the origin of coneObj
+    var coneGeom = new THREE.ConeGeometry(height/3, height);
+    var coneMesh = new THREE.Mesh(coneGeom, materials[1]);
+    coneMesh.position.y = -height/2;
+    coneObj.add(coneMesh);
+
+    return coneObj;
+}
+
+// createBeam() creates and returns a "beam object" holding two cones at its ends
+
+function createBeam (size, angle) {
+    var beamObj = new THREE.Object3D();
+
+    // add mesh for the black beam
+    var beamGeom = new THREE.CylinderGeometry(size/20, size/20, size);
+    var beamMesh = new THREE.Mesh(beamGeom, materials[0]);
+    beamMesh.rotation.z = Math.PI/2 + angle;
+    beamObj.add(beamMesh);
+
+    // add cone objects at the two ends of the beam
+    var sideConeL = createCone(size/2);
+    sideConeL.position.set(-size/2*Math.cos(angle), -size/2*Math.sin(angle), 0);
+    beamObj.add(sideConeL);
+
+    var sideConeR = createCone(size/2);
+    sideConeR.position.set(size/2*Math.cos(angle), size/2*Math.sin(angle), 0);
+    beamObj.add(sideConeR);
+
+    return beamObj;
+}
+
+// createScale() creates and returns a "scale object" with its origin at the center 
+// of the bottom of the base
+
+function createScale (size, angle) {
+
+    var scaleObj = new THREE.Object3D();
+
+    // add mesh for cylindrical base to scaleObj
+    var baseGeom = new THREE.CylinderGeometry(size/2, size/2, size/10);
+    var baseMesh = new THREE.Mesh(baseGeom, materials[0]);
+    baseMesh.position.y = size/20;
+    scaleObj.add(baseMesh);
+
+    // add mesh for vertical pole to scaleObj
+    var poleGeom = new THREE.CylinderGeometry(size/20, size/20, size);
+    var poleMesh = new THREE.Mesh(poleGeom, materials[0]);
+    poleMesh.position.y = size/2 + size/10;
+    scaleObj.add(poleMesh);
+
+    // add beam object to scaleObj, at top of vertical pole
+    var beam = createBeam(size, angle);
+    beam.position.y = size + size/10;
+    scaleObj.add(beam);
+
+    return scaleObj;
+}
+
+var scene = new THREE.Scene();
+
+// create scale object and add it to the scene
+var scale = createScale(params.size, params.angle);
+scene.add(scale);
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer,scene);
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -params.size, maxx: params.size,
+                miny: 0, maxy: 1.5*params.size,
+                minz: -params.size/2, maxz: params.size/2});
+
+function redraw() {
+    scene.remove(scale);
+    scale = createScale(params.size, params.angle);
+    scene.add(scale);
+    TW.render();
+}
+
+var gui = new dat.GUI();
+gui.add(params,'size',60,100).onChange(redraw);
+gui.add(params,'angle',-Math.PI/2,Math.PI/2).step(0.01).onChange(redraw);
+
+</script>
+
+<!--#include virtual="/~cs307/footer.shtml" -->
+</body>
+</html>
