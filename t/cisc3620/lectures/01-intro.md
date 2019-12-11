@@ -66,7 +66,7 @@ are the **fundamental concepts of computer graphics** :
 
 ## The Barn
 
-Here's the CG equivalent of the sketch we just made: the [barn](../threejs/demos/barn-tw.html).
+Here's the CG equivalent of the sketch we just made: the [barn](../demos/barn-tw.html).
 
 ## Some Concepts and Terminology
 
@@ -163,7 +163,7 @@ Homework code submission will involve uploading the URL of your codepen project 
 
 A library of graphics objects has been created by past students in this
 course. I hope each of you will also make a contribution to our library, which
-is in [`../threejs/contrib`](../threejs/contrib/).
+is at <https://cs.wellesley.edu/~cs307/threejs/contrib/>.
 
 ## To Do
 

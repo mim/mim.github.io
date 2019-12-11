@@ -104,7 +104,7 @@ Some tips:
 
   * the barn has 16 faces (indices 0 to 15 in the array of faces), and the roof faces are stored at indices 6, 7, 8, and 9 
 
-The [RGB Color Cube](/~cs307/threejs/demos/Color/colorcube.html) uses _vertex
+The [RGB Color Cube](../demos/Color/colorcube.html) uses _vertex
 colors_ and interpolates colors over each face, creating the appearance of
 smoothly varying color over the surfaces of the cube. To understand the
 computation of interpolated color over a triangular face (next time!), we
