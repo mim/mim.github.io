@@ -24,10 +24,12 @@ highlighter: rouge
 #markdown_ext: ignoreme
 
 # Reveal.js settings
-reveal_theme: black.css
+reveal_theme: moon.css
 reveal_transition: default
 reveal_theme_path: /reveal.js/css/theme/ 
 reveal_notes_server: false
 reveal_options: 
 reveal_dependencies: 
 reveal_path: /reveal.js/
+reveal_extra_css:
+  - /css/reveal.css

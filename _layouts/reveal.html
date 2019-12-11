@@ -19,8 +19,8 @@
 
 		<link rel="stylesheet" href="{{ site.reveal_path }}css/reveal.css">
 		<link rel="stylesheet" href="{{ site.reveal_theme_path }}{{ site.reveal_theme }}" id="theme">
-{% if site.extra_css %}
-	{% for css_file in site.extra_css %}
+{% if site.reveal_extra_css %}
+	{% for css_file in site.reveal_extra_css %}
 		<link rel="stylesheet" href="{{ css_file }}">
 	{% endfor %}
 {% endif %}
@@ -49,7 +49,7 @@
 
 			<div class="slides">
 
-				<section data-markdown data-separator="<hr />" data-separator-vertical="^\n--\n$" data-notes="^Note:">
+				<section data-markdown data-separator="<hr />" data-separator-vertical="^<p>–</p>$" data-notes="^Note:">
 					<script type="text/template">
 {%
 						assign lines = content | replace: "<h2", "<hr /><h2" | newline_to_br | strip_newlines | split: "<br />" 
