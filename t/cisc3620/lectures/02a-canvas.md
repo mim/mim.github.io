@@ -6,7 +6,7 @@ title: Lecture 02a -- Introduction to Canvas Drawing
 
 ## Plan
 
-  * Recap the canvas, using this [reference](../readings/01-canvas.html#canvas_reference) & [slide](Lecture2.pdf)
+  * Recap the canvas, using this [reference](../readings/02a-canvas.html#canvas_reference) & [slide](Lecture2.pdf)
   * Questions from the quiz 
   * Draw three pictures and scenes, about 15-20 minutes each 
 
