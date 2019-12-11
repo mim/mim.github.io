@@ -1,8 +1,9 @@
 ---
-layout: default
-title: Lecture 01 -- Computer Graphics
+layout: reveal
+title: 'Lecture 01: Computer Graphics'
 ---
-# Computer Graphics
+# {{ page.title }}
+{{ site.author }}
 
 ## What is CG?
 
