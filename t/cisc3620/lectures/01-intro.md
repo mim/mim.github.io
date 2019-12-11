@@ -1,9 +1,24 @@
 ---
 layout: reveal
 title: 'Lecture 01: Computer Graphics'
+javascripts:
+  - //code.jquery.com/jquery-3.0.0.min.js
+  - ../libs/dat.gui.min.js
+  - ../libs/three.min.js
+  - ../libs/tw.js
+  - ../libs/OrbitControls.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - ../js/google-code-prettify/prettify.js
+  - ../js/custom.js
+  - ../js/307.js
+  - ../js/activities.js
+  - 01-intro.js
 ---
 # {{ page.title }}
-{{ site.author }}
+### {{ site.author }}
+
+Based on [CS 307 lecture 1](https://cs.wellesley.edu/~cs307/lectures/01-intro.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+
 
 ## What is CG?
 
@@ -54,6 +69,10 @@ Make a simple sketch of this barn, and discuss:
   * reflection 
   * color 
 
+## Basics
+
+![](img/barnNH.png)
+
 The purpose of sketching the barn is to raise the following concepts. These
 are the **fundamental concepts of computer graphics** :
 
@@ -68,6 +87,9 @@ are the **fundamental concepts of computer graphics** :
 ## The Barn
 
 Here's the CG equivalent of the sketch we just made: the [barn](../demos/barn-tw.html).
+
+<div id="barnDiv"></div>
+
 
 ## Some Concepts and Terminology
 
@@ -170,8 +192,3 @@ is at <https://cs.wellesley.edu/~cs307/threejs/contrib/>.
 
   * Reading for Tuesday
   * If you are going to use your own laptop for the coding in this course, you should make sure you have installed a decent text editor.  [Atom](http://atom.io/), runs on all three major OS platforms, but you're welcome to use a different editor if you like.
-
-
-### Source
-
-This page is based on <https://cs.wellesley.edu/~cs307/lectures/01-intro.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 

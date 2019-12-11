@@ -1,8 +1,12 @@
 ---
-layout: default
+layout: reveal
 title: Lecture 02a -- Introduction to Canvas Drawing
 ---
-# Introduction to Canvas Drawing
+# {{ page.title }}
+### {{ site.author }}
+
+Based on [CS 307 lecture 2a](https://cs.wellesley.edu/~cs307/lectures/02a.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons BY-NC-SA License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+
 
 ## Plan
 
@@ -24,16 +28,24 @@ and run it (e.g. load an associated webpage into a browser).
 
   1. Visit the following link and save the page to your Desktop: 
 
-> [blank-canvas.html](02a-exercises/blank-canvas.html)
+  > [blank-canvas.html](02a-exercises/blank-canvas.html)
 
-(select `Save Page As...` from the `File` menu, complete the dialog box as
-shown below, and click on `Save`):
+  (select `Save Page As...` from the `File` menu, complete the dialog box as
+  shown below, and click on `Save`):
 
-![](img/saveEx1.png)
+  ![](img/saveEx1.png)
+     
+--
 
-  2. Open your code file in Atom and add some JavaScript code to draw a "tree" that looks like a green lollipop with a brown stick near the center of the canvas. Follow the link below to see a sample picture, but please do not look at the code. In your solution, add code to define the `drawTreeAt()` function, possibly with separate helper functions, and add a call to this function inside `redrawCanvas1()`. You can view your modified code in a new tab, with `Open File...` from the `File` menu. 
+  1. Open your code file in Atom
+  1. Add some JavaScript code to draw a "tree" that looks like a green lollipop with a brown stick near the center of the canvas.
+  1. Follow the link below to see a sample picture, but please do not look at the code.
+  1. In your solution, add code to define the `drawTreeAt()` function, possibly with separate helper functions,
+  1. Add a call to this function inside `redrawCanvas1()`.
 
-> [ex1-tree.shtml](02a-exercises/ex1-tree.shtml)
+  You can view your modified code in a new tab, with `Open File...` from the `File` menu. 
+
+  > [ex1-tree.shtml](02a-exercises/ex1-tree.shtml)
 
 ## Code Discussion
 
@@ -62,7 +74,3 @@ solutions, including mine.
   * Parameterize the functions, e.g. a function to draw a tree with a given width and height. 
   * Make the functions be _generic_ , e.g. a tree with its origin at the lower left. 
   * Use transformations to translate the generic objects.  
-
-### Source
-
-This page is based on <https://cs.wellesley.edu/~cs307/lectures/02a.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
