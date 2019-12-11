@@ -41,6 +41,10 @@
 		<!--[if lt IE 9]>
 		<script src="{{ site.reveal_path }}lib/js/html5shiv.js"></script>
 		<![endif]-->
+                
+                {% for js in page.javascripts %}
+                <script type="text/javascript" src="{{ js }}"></script>
+                {% endfor %}
 	</head>
 
 	<body>
