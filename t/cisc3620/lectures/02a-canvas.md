@@ -2,9 +2,7 @@
 layout: reveal
 title: Lecture 02a -- Introduction to Canvas Drawing
 javascripts:
- - 02a-exercises/ex1-tree.js
- - 02a-exercises/ex2-house.js
- - 02a-exercises/ex3-town-forest.js
+ - 02a-exercises.js
 ---
 # {{ page.title }}
 ### {{ site.author }}
