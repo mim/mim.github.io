@@ -1,12 +1,18 @@
 ---
-layout: default
-title: Lecture 02b -- Introduction to Three.js Programming
+layout: reveal
+title: Introduction to Three.js Programming
+javascripts:
+ - 02b-exercises.js
 ---
-# Introduction to Three.js Programming
+# {{ page.title }}
+### {{ site.author }}
+
+Based on [CS 307 lecture 2b](https://cs.wellesley.edu/~cs307/lectures/02.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons BY-NC-SA License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+
 
 ## Plan
 
-  * Brief recap of reading and questions from the quiz  ([slides](Lecture3.pdf) and [barn demo with code](../demos/Early/barn-tw-documented.shtml)) 
+  * Brief recap of reading ([slides](http://m.mr-pc.org/t/cisc3620/2020sp/Lecture3.pptx) and [barn demo with code](../demos/Early/barn-tw-documented.shtml)) 
   * Save and run a copy of the Barn demo 
   * Exercise: Local library files 
   * Exercise: Changing width 
@@ -400,7 +406,3 @@ hexagon, or more-generally, a regular polygon.
   * Save versions by saving the file to a different filename (`ex1.html`, `ex2.html`, ...) It will be easier (emotionally) to experiment with things if you know you can go back to an earlier version. 
   * Be willing to create a simple "test" program to see how something works without all the complexity of your larger program. 
   * Be modular, and document as you go. It'll be easier to understand and debug your own code. 
-
-### Source
-
-This page is based on <https://cs.wellesley.edu/~cs307/lectures/02.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 

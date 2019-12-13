@@ -1,6 +1,6 @@
 ---
 layout: reveal
-title: Lecture 02a -- Introduction to Canvas Drawing
+title: Introduction to Canvas Drawing
 javascripts:
  - 02a-exercises.js
 ---
