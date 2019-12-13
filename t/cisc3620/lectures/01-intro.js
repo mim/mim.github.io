@@ -29,6 +29,8 @@ scene.add(barnMesh);
 // We always need a renderer
 
 var renderer = new THREE.WebGLRenderer();
+renderer.domElement.width = 300;
+renderer.domElement.height = 300;
 
 TW.mainInit(renderer, scene, {parentID: "barnDiv"});
 
@@ -41,7 +43,7 @@ blank canvas. */
 TW.cameraSetup(renderer,
                scene,
                {minx: 0, maxx: barnWidth,
-                miny: 0, maxy: barnHeight, // a bit low
+                miny: 0, maxy: 1.5 * barnHeight, // a bit low
                 minz: -barnDepth, maxz: 0});
 }
 

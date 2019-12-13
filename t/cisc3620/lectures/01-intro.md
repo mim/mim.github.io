@@ -46,6 +46,8 @@ JavaScript code. The advantage of JavaScript is that it runs in pretty much
 every web browser. The disadvantage is that its debugging environments are
 still improving.
 
+--
+
 The course is fairly mathematical. We will learn about the math that underlies
 all those pretty pictures:
 
@@ -105,11 +107,16 @@ https://www.ntu.edu.sg/home/ehchua/programming/opengl/images/Graphics3D_Hardware
   * Output Devices: typically a monitor, such as a CRT or LCD screen 
   * Input Devices: keyboards, mice, trackballs, video game controllers, etc. 
 
+
+## Some Concepts and Terminology
+
 Our software is going to "construct" a 3D model of our object or scene,
 typically as a collection of vertices, faces, surfaces, control points, and
 the like. These will be sent to the graphics card, which will _render_ the
 scene as a raster image of pixels. These are written into the frame buffer,
 where they stay in order to drive the display.
+
+--
 
 ![luxo JR and some RGB pixels](img/luxoCombo.png)
 
@@ -121,6 +128,8 @@ The above image of _Luxo Jr._ illustrates some useful terminology:
   * [RGB](http://en.wikipedia.org/wiki/Rgb): Red/Green/Blue color primaries are how the color is defined for each pixel. 
   * [Display resolution](http://en.wikipedia.org/wiki/Display_resolution). The greater the number of pixels, the more fine detail can be displayed, as well as reducing the inevitable jagginess of lines and curves that don't match the raster. 
   * [Vector displays](http://en.wikipedia.org/wiki/Vector_display) are images that are drawn in a continuous way, by a pen, electron beam, or other device. 
+
+--
 
 The main idea is that raster graphics has won over vector graphics, and now
 all graphics is done as a rectangular grid of pixels, each a single spot of
@@ -136,22 +145,18 @@ write code in JavaScript! This means:
   * Anyone using a modern web browser will be able to see your work without installing software. Show off your work to friends, family, and employers! 
   * You can share your code with others in this class by providing a link that they can load into their web browser. 
 
-Over the past three years, Scott Anderson has revised all of the class demos
-and lectures to use the above software. Most of the errors have been fixed but
-please point out any errors if you find them. `Three.js` is still evolving, so
-further revisions may be needed. Using rapidly evolving software has
-advantages, but also disadvantages!
-
 ## Learning JavaScript
 
 If you do not know JavaScript, now is an _excellent_ time to learn!
 
-Scott wrote a [crash course on JavaScript](../readings/JavaScript-crash-
+Here is a [crash course on JavaScript](../readings/JavaScript-crash-
 course.html) that covers most of the essentials of JavaScript needed for this
 course. We will spend some class time on the OOP parts, but I will expect you
 to learn the basics without much class time.
 
-If you'd like to supplement Scott's documentation, a Google search will show
+--
+
+If you'd like to supplement this documentation, a Google search will show
 you many JavaScript tutorials. Here are some examples:
 
   * Mozilla's [A Re-Introduction to JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) is written for people who already know how to program and just need to learn a new language. It's very good. The material through "Functions" is most relevant for this course. 
@@ -160,6 +165,8 @@ you many JavaScript tutorials. Here are some examples:
   * David Sawyer MacFarland's [ JavaScript and jQuery: The Missing Manual](http://shop.oreilly.com/product/0636920032663.do), 2nd edition, is also good. You will not need the jQuery part for this course. 
   * [JavaScript Tutorial](http://www.w3schools.com/js/default.asp). 
   * Here's a [JavaScript Quick Guide](http://www.tutorialspoint.com/javascript/javascript_quick_guide.htm), just 13 intense pages, in a printer-friendly format. 
+
+--
 
 In general, a lot of what makes JavaScript hard is the event-handling and
 browser API, which we will not need to worry about. We will mainly draw upon
@@ -190,5 +197,5 @@ is at <https://cs.wellesley.edu/~cs307/threejs/contrib/>.
 
 ## To Do
 
-  * Reading for Tuesday
+  * Readings for next class
   * If you are going to use your own laptop for the coding in this course, you should make sure you have installed a decent text editor.  [Atom](http://atom.io/), runs on all three major OS platforms, but you're welcome to use a different editor if you like.
