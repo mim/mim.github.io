@@ -1,0 +1,7 @@
+.reveal {
+    font-size: 30px !important;
+}
+
+.reveal ol, .reveal dl, .reveal ul {
+    display: block;
+}

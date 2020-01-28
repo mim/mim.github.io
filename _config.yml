@@ -16,6 +16,20 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://mr-pc.org" # the base hostname & protocol for your site
 twitter_username: mimasterix
 github_username:  mim
+author: Michael Mandel
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+#markdown_ext: ignoreme
+
+# Reveal.js settings
+reveal_theme: moon.css
+reveal_transition: default
+reveal_theme_path: /reveal.js/css/theme/ 
+reveal_notes_server: false
+reveal_options: 
+reveal_dependencies: 
+reveal_path: /reveal.js/
+reveal_extra_css:
+  - /css/reveal.css

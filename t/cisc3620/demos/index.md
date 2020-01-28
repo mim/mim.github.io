@@ -99,4 +99,4 @@ A few demos to help understand cameras:
 
 ### Source
 
-Based on <https://cs.wellesley.edu/~cs307/threejs/demos/all-demos.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+This page is based on <https://cs.wellesley.edu/~cs307/threejs/demos/all-demos.html>. Copyright &copy; Scott D. Anderson. This work is licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 

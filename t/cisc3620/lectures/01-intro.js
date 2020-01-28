@@ -1,28 +1,5 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Barn Demo</title>
-    <link rel="stylesheet" type="text/css" href="../../css/3620.css">
-    <style>
-      /* feel free to style the canvas any way you want. If you want it to
-      use the entire window, set width: 100% and height: 100%. */
-      
-      canvas {
-          display: block;
-          margin: 10px auto;
-          width: 80%;
-          height: 500px;
-      }
-    </style>
-    <script src="../libs/three.min.js"></script>
-    <script src="../libs/OrbitControls.js"></script>
-    <script src="../libs/tw.js"></script>
-  </head>
-<body>
+function barnScene() {
 
-<h1>Barn Demo</h1>
-
-<script>
 // We always need a scene
 
 var scene = new THREE.Scene();
@@ -52,8 +29,10 @@ scene.add(barnMesh);
 // We always need a renderer
 
 var renderer = new THREE.WebGLRenderer();
+renderer.domElement.width = 300;
+renderer.domElement.height = 300;
 
-TW.mainInit(renderer,scene);
+TW.mainInit(renderer, scene, {parentID: "barnDiv"});
 
 /* We always need a camera; here we'll use a default orbiting camera.  The
 third argument gives the ranges for the coordinates, to help with setting up
@@ -64,9 +43,10 @@ blank canvas. */
 TW.cameraSetup(renderer,
                scene,
                {minx: 0, maxx: barnWidth,
-                miny: 0, maxy: barnHeight, // a bit low
+                miny: 0, maxy: 1.5 * barnHeight, // a bit low
                 minz: -barnDepth, maxz: 0});
-</script>
+}
 
-</body>
-</html>
+
+window.addEventListener("load", barnScene);
+

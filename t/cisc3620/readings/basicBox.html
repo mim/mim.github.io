@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Basic Box</title>
+    <style>
+      /* feel free to change the canvas style. If you want to use the entire
+      window, set width: 100% and height: 100% */
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+</head>
+
+<body>
+
+<h1>Scene with a Box</h1>
+
+<script>
+    // Create an initial empty Scene
+    var scene = new THREE.Scene();
+
+    // Create a 3D rectangular box of a given width, height, depth
+    var boxGeom = new THREE.BoxGeometry(4,6,8);
+
+    // Create a mesh for the box
+    // TW.createMesh() assigns a set of demo materials to object faces
+    var boxMesh = TW.createMesh(boxGeom);
+
+    // Add the box mesh to the scene
+    scene.add(boxMesh);
+
+    // Create a renderer to render the scene
+    var renderer = new THREE.WebGLRenderer();
+
+    // TW.mainInit() initializes TW, adds the canvas to the document,
+    // enables display of 3D coordinate axes, sets up keyboard controls
+    TW.mainInit(renderer,scene);
+
+    // Set up a camera for the scene
+    var state = TW.cameraSetup(renderer,
+                               scene,
+                               {minx: -2.5, maxx: 2.5,
+                                miny: -3.5, maxy: 3.5,
+                                minz: -4.5, maxz: 4.5});
+</script>
+
+</body>
+</html>

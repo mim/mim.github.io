@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Two Barns, Using position.set()</title>
+    <style>
+      /* feel free to style the canvas any way you want. If you want it to
+      use the entire window, set width: 100% and height: 100%. */
+      
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Two Barns, Using position.set()</h1>
+
+<script>
+// We always need a scene
+var scene = new THREE.Scene();
+
+// ====================================================================
+
+var barnWidth = 50;
+var barnHeight = 30;
+var barnDepth = 40;
+
+var barn1geom = TW.createBarn(barnWidth, barnHeight, barnDepth);
+
+// the createMesh function adds a "demo" material to the geometry
+
+var barn1mesh = TW.createMesh(barn1geom);
+
+// the scene is the set of things to render, so add the barn.
+
+scene.add(barn1mesh);
+
+// create a half-size barn and add it to the scene
+
+var barn2geom = TW.createBarn(0.5*barnWidth, 0.5*barnHeight, 0.5*barnDepth);
+
+var barn2mesh = TW.createMesh(barn2geom);
+
+barn2mesh.position.set(-30,0,0);
+
+scene.add(barn2mesh);
+
+
+// ================================================================
+// 
+// We always need a renderer
+
+var renderer = new THREE.WebGLRenderer();
+
+TW.mainInit(renderer, scene);
+
+// MODIFY CODE BELOW to adjust the bounding box for the two barns
+
+TW.cameraSetup(renderer,
+               scene,
+               {minx: -30, maxx: 55,
+                miny: 0, maxy: barnHeight+25,
+                minz: -barnDepth, maxz: 0});
+</script>
+
+
+</body>
+</html>

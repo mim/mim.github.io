@@ -1,0 +1,82 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5 -->
+<!-- CreationDate: Thu Sep 22 14:39:20 2016 -->
+<!-- Magnification: 1.000 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="5.7in" height="3.4in" viewBox="2385 1131 6891 4134">
+<g style="stroke-width:.025in; stroke:black; fill:none">
+<!-- Line -->
+<polyline points="4950,1650
+3508,2370
+" style="stroke:#000000;stroke-width:45;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 4950 1650 - 3396 2426-->
+<polyline points="3860 2060
+3485 2382
+3968 2274
+" style="stroke:#000000;stroke-width:45;
+"/>
+<!-- Line -->
+<polyline points="5250,1650
+6542,2368
+" style="stroke:#000000;stroke-width:45;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 5250 1650 - 6652 2429-->
+<polyline points="6087 2252
+6565 2381
+6203 2042
+" style="stroke:#000000;stroke-width:45;
+"/>
+<!-- Line -->
+<polyline points="6600,3150
+5610,3574
+" style="stroke:#000000;stroke-width:45;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 6600 3150 - 5494 3623-->
+<polyline points="5979 3284
+5585 3584
+6073 3505
+" style="stroke:#000000;stroke-width:45;
+"/>
+<!-- Line -->
+<polyline points="7050,3150
+7891,3570
+" style="stroke:#000000;stroke-width:45;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7050 3150 - 8003 3626-->
+<polyline points="7430 3474
+7914 3582
+7538 3260
+" style="stroke:#000000;stroke-width:45;
+"/>
+<!-- Line -->
+<polyline points="8250,4350
+8384,4886
+" style="stroke:#000000;stroke-width:45;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 8250 4350 - 8414 5008-->
+<polyline points="8157 4475
+8390 4912
+8390 4417
+" style="stroke:#000000;stroke-width:45;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="2400" y="2850" stroke="#8f0000" fill="#8f0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Thigh Mesh</text>
+<!-- Text -->
+<text xml:space="preserve" x="4800" y="4050" stroke="#8f0000" fill="#8f0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Calf Mesh</text>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="2850" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Lower Leg Object3D</text>
+<!-- Text -->
+<text xml:space="preserve" x="4200" y="1350" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Leg Object3D</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="4050" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Foot Object3D</text>
+<!-- Text -->
+<text xml:space="preserve" x="7800" y="5250" stroke="#8f0000" fill="#8f0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">Shoe Mesh</text>
+</g>
+</svg>
