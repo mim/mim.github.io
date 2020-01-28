@@ -13,6 +13,8 @@ javascripts:
   - ../js/307.js
   - ../js/activities.js
   - 01-intro.js
+css:
+  - ../css/3620.css
 ---
 # {{ page.title }}
 ### {{ site.author }}
@@ -27,7 +29,7 @@ Based on [CS 307 lecture 1](https://cs.wellesley.edu/~cs307/lectures/01-intro.ht
 
 What are some common applications of CG?
 
-Let's look at some [examples...](Lecture1.pdf)
+Let's look at some [examples...](http://m.mr-pc.org/t/cisc3620/2020sp/Lecture01.pdf)
 
   * _What do we need to model_ in order to render these graphical images? 
 
@@ -35,7 +37,12 @@ Let's look at some [examples...](Lecture1.pdf)
 
 Before we dig into the material of the course, let's look at a few demos:
 
-  * [Three.js examples](http://threejs.org/examples/) 
+  * [Many three.js examples](http://threejs.org/examples/), including:
+     * [Particle sprites](https://threejs.org/examples/webgl_points_sprites.html)
+     * [Orbit controls](https://threejs.org/examples/misc_controls_orbit.html)
+     * [Shadowmaps](https://threejs.org/examples/webgl_shadowmap.html)
+  * [Fancy eye demo](http://www.vill.ee/eye/)
+  * [Highlight reel](http://davidscottlyons.com/threejs-intro/videos/webgl-demos.mp4)
 
 ## About CISC 3620
 
@@ -63,13 +70,25 @@ all those pretty pictures:
 
 Make a simple sketch of this barn, and discuss:
 
+<div class="container" style="display: flex;">
+<div class="flex-col" data-markdown>
+
   * vertices 
   * camera position 
   * camera direction 
   * image plane 
+
+</div>
+
+<div class="flex-col" data-markdown>
+
   * _projection_
   * reflection 
   * color 
+
+</div>
+</div>
+
 
 ## Basics
 
@@ -78,13 +97,24 @@ Make a simple sketch of this barn, and discuss:
 The purpose of sketching the barn is to raise the following concepts. These
 are the **fundamental concepts of computer graphics** :
 
+<div class="container" style="display: flex;">
+<div class="flex-col" data-markdown>
+
   * Object modeling 
   * Camera placement and shape of viewed region 
   * Material 
+
+</div>
+
+<div class="flex-col" data-markdown>
+
   * Lighting 
   * Texture mapping 
   * Modeling curves and surfaces 
   * Animation 
+
+</div>
+</div>
 
 ## The Barn
 

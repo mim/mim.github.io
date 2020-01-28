@@ -4,3 +4,11 @@
    width: 80%;
    height: 500px;
 }
+
+// For 2-column, put flex-col inside container
+.container{
+    display: flex !important;
+}
+.flex-col{
+    flex: 1;
+}

@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="{{ css_file }}">
 	{% endfor %}
 {% endif %}
-
+                
 		<!-- For syntax highlighting -->
 		{% if site.highlight_style_sheet %}
 			{% assign highlight_style_sheet = site.highlight_style_sheet %}
@@ -41,6 +41,10 @@
 		<!--[if lt IE 9]>
 		<script src="{{ site.reveal_path }}lib/js/html5shiv.js"></script>
 		<![endif]-->
+
+                {% for css in page.css %}
+                <link rel="stylesheet" href="{{ css }}">
+                {% endfor %}
                 
                 {% for js in page.javascripts %}
                 <script type="text/javascript" src="{{ js }}"></script>
