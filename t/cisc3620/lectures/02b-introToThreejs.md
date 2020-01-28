@@ -25,7 +25,10 @@ Based on [CS 307 lecture 2b](https://cs.wellesley.edu/~cs307/lectures/02.html) w
   * We will use three APIs: 
     * WebGL, a subset of OpenGL (we won't actually _see_ much of it) 
     * Three.js, a JavaScript library built on top of WebGL 
-    * TW, a home-grown set of conveniences and short-cuts created by Scott Anderson 
+    * TW, a home-grown set of conveniences and short-cuts created by Scott Anderson
+
+--
+
   * Three.js automatically adds a canvas to your page 
   * You need to create 
     * a scene object 
@@ -35,6 +38,9 @@ Based on [CS 307 lecture 2b](https://cs.wellesley.edu/~cs307/lectures/02.html) w
   * The stuff are _meshes_ consisting of _geometry_ and _material_
   * Geometry is comprised of _vertices_ and _faces_ (usually triangles) 
   * Triangle vertices are specified in counterclockwise order from the _front_
+
+--
+
   * OpenGL/WebGL is a [_pipeline_](https://www.opengl.org/wiki/Rendering_Pipeline_Overview). Vertices, faces, and material go in one end, and pixels come out the other end 
     * OpenGL hangs onto some information (we'll refer to this as _state_ ) ... 
     * ... but other information slips through the pipeline, with only pixels to show for it 
@@ -43,7 +49,9 @@ Based on [CS 307 lecture 2b](https://cs.wellesley.edu/~cs307/lectures/02.html) w
 
 ## Set up our Stuff
 
-  * Visit [the barn](../demos/Early/barn-ex.html) and save the page to your Desktop as `barn.html`. You can do this by selecting the `File>Save Page As...` menu item and specifying the file name as `barn` and Format as "Webpage, HTML Only". 
+  * Visit [the barn](../demos/Early/barn-ex.html) and save the page to your Desktop as `barn.html`.
+    * You can do this by selecting the `File>Save Page As...` menu item
+    * and specifying the file name as `barn` and Format as "Webpage, HTML Only". 
   * In a new tab, visit the local file from your browser: 
     * `File>Open File...`
     * Navigate to Desktop 
@@ -56,8 +64,11 @@ The URL will be something like `file:///Users/youraccount/Desktop/barn.html`
 The Three.js Orbiting Camera, which the TW camera creates, makes it easy to
 view your model.
 
-  * Clicking and dragging with the mouse left/right moves the camera around the model ( _orbits it_ ), keeping a constant distance from the center. You can also drag up/down but that stops at the "poles". 
-  * The arrow keys can be used to shift the camera to the left, right, up, or down -- this also changes the center of the scene, so that dragging with the mouse then rotates the model around a different point. 
+  * Clicking and dragging with the mouse left/right moves the camera around the model ( _orbits it_ ), keeping a constant distance from the center.
+  * You can also drag up/down but that stops at the "poles". 
+  * The arrow keys can be used to shift the camera to the left, right, up, or down
+    * this also changes the center of the scene
+    * so that dragging with the mouse then rotates the model around a different point. 
   * Using the scroll wheel lets you dolly in/out. 
 
 ## Keyboard Commands
@@ -80,45 +91,53 @@ it starts by loading three JavaScript files from the web, all from
   * `OrbitControls.js`, which is the extra code for the orbiting camera 
   * `tw.js`, which is the Fall 2016 version of our TW code. This file contains the `TW.createBarn()` function. 
 
-What if you have a laptop, hiking in the White Mountains on a glorious fall
-day, far from any internet connection, and you have a sudden inspiration to do
-some graphics coding? What do you do then?
+What if you are trying to finish your homework on the subway ride in and don't have an internet connection?
 
-First, try sitting down to view the beauty of nature, waiting for the feeling
-to pass, and reminding yourself that there is more to life than work, and that
-you should stop and smell the roses.
-
-If that doesn't work, you can hope that you had the foresight to have a a
-_local_ copy of those files. If they're on your laptop, you can make the
+Luckily you can keep a _local_ copy of those files. If they're on your laptop, you can make the
 appropriate changes to your program file, and load the local copies instead.
 
-### Exercise: Using Local Library Files
+## Exercise: Using Local Library Files
 
 You can "manually" download the necessary library files to your local machine
 and modify the source code to use the local files, but here we'll use a
-shortcut. Again save the code for the barn using the `File>Save Page As...`
+shortcut.
+
+* Again save the code for the barn using the `File>Save Page As...`
 menu item, but this time save it as "Webpage, Complete" and use a different
-name, like `barnComplete`. You'll see both an HTML file and a folder
-(`barnComplete_files`) on your Desktop. Load the new HTML file into your
-browser and view the source. What changed in the code statements that load the
-library files?
+name, like `barnComplete`.
+* You'll see both an HTML file and a folder (`barnComplete_files`) on your Desktop.
+* Load the new HTML file into your browser and view the source.
+* What changed in the code statements that load the library files?
 
-## Warm-up Exercise
-
-### Exercise: Changing Width
+## Warm-up Exercise: Changing Width
 
 This will be a relatively quick exercise, just to get us warmed up.
 
   1. Copy `barn.html` to another file, say `wide-barn.html`. 
   2. Edit the new file to change the width of the barn (`barnWidth`), say to 50. 
-  3. View the changed `wide-barn.html` file in your browser. Is this what you expected? 
+  3. View the changed `wide-barn.html` file in your browser. Is this what you expected?
+
+--
+
   4. Edit the file again. This time, mispell `barnWidth` somewhere, just to see what errors look like. In your browser, open the JavaScript console ( _option-command-j_ in Chrome). Re-load the buggy file and view the error message(s) in the JS console. 
-    * Note: If you suspect that your modified file is not being loaded, try clicking _shift-reload_. 
-  5. Edit the file to fix the spelling error. Change the width of the barn again, but this time, put numeric constants in place of the variable references. Use a larger value for the width of the barn in the call to `TW.createBarn()` versus the `maxx` used in the _bounding box_ supplied in the call to `TW.cameraSetup()`. 
-  6. What do you notice about the wide barn in this case? 
-    * You might have something like this [wide-barn.html](02b-exercises/wide-barn.html). In this sample solution, the barn is wide (50) but `maxx` for the camera is only 20, so the camera setup is off. The original code allowed us to change the width of the barn in just one place and the camera setup changed automatically. _This is a good reason to use variables instead of numeric constants!_
-  7. Change the numeric constants back to the variable `barnWidth`. The bounding box for the original barn truncates some of the roof of the barn from view. Modify the value for `maxy` in the bounding box, so that the entire roof is visible. ( **Hint:** In the [ `createBarn()`](../demos/Early/barn-tw-documented.shtml) function, how is the y coordinate of the roof of the barn defined?) 
-    * You might have something like this [full-barn.html](02b-exercises/full-barn.html).  
+     * Note: If you suspect that your modified file is not being loaded, try clicking _shift-reload_. 
+  5. Edit the file to fix the spelling error.
+
+--
+
+  6. Change the width of the barn again, but this time, put numeric constants in place of the variable references. Use a larger value for the width of the barn in the call to `TW.createBarn()` versus the `maxx` used in the _bounding box_ supplied in the call to `TW.cameraSetup()`. 
+  7. What do you notice about the wide barn in this case? 
+     * You might have something like this [wide-barn.html](02b-exercises/wide-barn.html).
+     * In this sample solution, the barn is wide (50) but `maxx` for the camera is only 20, so the camera setup is off.
+     * The original code allowed us to change the width of the barn in just one place and the camera setup changed automatically.
+     * _This is a good reason to use variables instead of numeric constants!_
+
+--
+
+  7. Change the numeric constants back to the variable `barnWidth`.
+  8. The bounding box for the original barn truncates some of the roof of the barn from view. Modify the value for `maxy` in the bounding box, so that the entire roof is visible.
+     * **Hint:** In the [ `createBarn()`](../demos/Early/barn-tw-documented.shtml) function, how is the y coordinate of the roof of the barn defined?
+     * You might have something like this [full-barn.html](02b-exercises/full-barn.html).  
 
 ## Remodularizing the Barn Building
 
