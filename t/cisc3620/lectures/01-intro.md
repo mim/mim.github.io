@@ -153,7 +153,7 @@ are the **fundamental concepts of computer graphics** :
 
 ### The Barn
 
-Here's the CG equivalent of the sketch we just made: the [barn](../demos/barn-tw.html).
+Here's the CG equivalent of the sketch we just made: the [barn](https://codepen.io/asterix77/pen/bGNyGYJ).
 
 <div id="barnDiv"></div>
 
