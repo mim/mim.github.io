@@ -65,7 +65,7 @@
 						for line in lines
 %}{% 
 							assign processed_line = line
-								| replace:'<fragment/>','<!-- .element: class="fragment" -->'
+								| replace:'<fragment />','<!-- .element: class="fragment" -->'
 								| replace:'<background>','<!-- .slide: data-background="'
 								| replace:'</background>','" -->'
 								| replace:'<backgroundimage>','<!-- .slide: data-background="'
