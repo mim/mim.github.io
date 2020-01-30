@@ -31,5 +31,7 @@ reveal_notes_server: false
 reveal_options: 
 reveal_dependencies: 
 reveal_path: /reveal.js/
+reveal_highlight: false
 reveal_extra_css:
   - /css/reveal.css
+  - /css/rouge.css

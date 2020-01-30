@@ -130,8 +130,10 @@
 					{ src: '{{ site.reveal_path }}lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: '{{ site.reveal_path }}plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: '{{ site.reveal_path }}plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                                        {% if site.reveal_highlight %}
 					{ src: '{{ site.reveal_path }}plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '{{ site.reveal_path }}plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                                        {% endif %}
+			                { src: '{{ site.reveal_path }}plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					{% if site.reveal_notes_server %}
 					{ src: '{{ site.reveal_path }}socket.io/socket.io.js', async: true },
 					{ src: '{{ site.reveal_path }}plugin/notes-server/client.js', async: true }
