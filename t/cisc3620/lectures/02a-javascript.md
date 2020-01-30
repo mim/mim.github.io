@@ -1,13 +1,13 @@
 ---
 layout: reveal
-title: JavaScript crash course
+title: JavaScript and Canvas
 javascripts:
  - 02a-exercises.js
 ---
 # {{ page.title }}
 #### {{ site.author }}
 
-Based on [CS 307 JS Crash course](https://cs.wellesley.edu/~cs307/readings/JavaScript-crash-course.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+Based on [CS 307 JS Crash course](https://cs.wellesley.edu/~cs307/readings/JavaScript-crash-course.html) and [CS 307 canvas tutorial](https://cs.wellesley.edu/~cs307/readings/canvas.html) which are copyright &copy; Scott D. Anderson and licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
 
 
 ## Plan
@@ -15,8 +15,8 @@ Based on [CS 307 JS Crash course](https://cs.wellesley.edu/~cs307/readings/JavaS
   * Go over basics of JavaScript
     * Variables, functions, conditionals, loops, data structures
     * Object-oriented concepts: using objects, classes, methods
-  * Do some coding examples
   * Start going over HTML5 Canvas 2D drawing
+  * Do some coding examples
 
 
 ## About JavaScript
@@ -27,7 +27,7 @@ Based on [CS 307 JS Crash course](https://cs.wellesley.edu/~cs307/readings/JavaS
     * weakly typed, has anonymous functions and closures
   * No connection to Java besides name
 
-## The SCRIPT tag
+## Put JavaScript in html using the SCRIPT tag
 
   * Switch from HTML to JavaScript (JS) using the `script` tag
   * `src` attribute loads JS code  from another file or URL
@@ -356,6 +356,248 @@ arguments
     var a_date = new Date();
 ```
 
+## The HTML5 `<canvas>` element
+
+  * Provides a canvas on which JavaScript can draw
+```html
+    <canvas id="tutorial" width="150" height="150"></canvas>
+```
+
+  * We will use the 2D drawing "context" for now
+  * Also used by WebGL and Three.js behind the scenes for 3D
+  * To access the 2D context from JavaScript:
+```javascript
+var canvas = document.getElementById('tutorial');
+var ctx = canvas.getContext('2d');
+```
+
+  * (This section is based on the [MDN Canvas Tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial))
+
+### A simple example ([codepen](https://codepen.io/asterix77/pen/VwYJaML))
+
+```html
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <script type="application/javascript">
+    function draw() {
+      var canvas = document.getElementById('canvas');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillRect(10, 10, 50, 50);
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(30, 30, 50, 50);
+      }
+    }
+  </script>
+ </head>
+ <body onload="draw();">
+   <canvas id="canvas" width="150" height="150"></canvas>
+ </body>
+</html>
+```
+
+### The grid
+
+![HTML5 Canvas Grid](https://mdn.mozillademos.org/files/224/Canvas_default_grid.png)
+
+  * By default, the origin is in the top left
+  * Increasing `y` values go down the page (opposite of 8th grade math)
+  * Specify points/coordinates as `(x,y)` pairs
+
+## Drawing rectangles
+
+  * Canvas only supports two primitive shapes: rectangles and paths
+  * To draw rectangles:
+    * `fillRect(x, y, width, height)`: Draws a filled rectangle
+    * `strokeRect(x, y, width, height)`: Draws a rectangular outline
+    * `clearRect(x, y, width, height)`: Clears the specified rectangular area, making it fully transparent
+  * `(x,y)` in this case specifies the top left corner
+
+### You try: Drawing rectangles
+
+  * Start from [this codepen](https://codepen.io/asterix77/pen/PowrNep)
+  * Try to draw this picture using the above rectangle functions
+
+![Rectangle example](https://mdn.mozillademos.org/files/245/Canvas_rect.png)
+
+
+### Answer: Drawing rectangles
+
+```javascript
+function draw() {
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    ctx.fillRect(25, 25, 100, 100);
+    ctx.clearRect(45, 45, 60, 60);
+    ctx.strokeRect(50, 50, 50, 50);
+  }
+}
+```
+
+## Drawing paths
+
+  * A path is a list of points, connected by segments of lines
+  * Segments can be different shapes, curved, straight, different colors
+  * To make shapes using paths
+    1. Create the path using `beginPath()`
+    1. Use `moveto(x,y)` to go to the start point
+    1. Add segments to the path
+    1. Draw it using either `fill()` (solid shape) or `stroke()` (just outline)
+
+### Path example: Drawing a triangle ([codepen](https://codepen.io/asterix77/pen/rNaEegg))
+
+![Triangle drawn as a path](https://mdn.mozillademos.org/files/9847/triangle.png)
+
+```javascript
+function draw() {
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(75, 50);
+    ctx.lineTo(100, 75);
+    ctx.lineTo(100, 25);
+    ctx.fill();
+  }
+}
+```
+
+### You try: Drawing two triangles
+
+  * Start from [this codepen](https://codepen.io/asterix77/pen/ZEYdWgZ)
+  * Try to draw this picture using the above path functions
+
+![Two triangles example](https://mdn.mozillademos.org/files/238/Canvas_lineTo.png)
+
+
+### Answer: Drawing two triangles
+
+```javascript
+function draw() {
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    // Filled triangle
+    ctx.beginPath();
+    ctx.moveTo(25, 25);
+    ctx.lineTo(105, 25);
+    ctx.lineTo(25, 105);
+    ctx.fill();
+    // Stroked triangle
+    ctx.beginPath();
+    ctx.moveTo(125, 125);
+    ctx.lineTo(125, 45);
+    ctx.lineTo(45, 125);
+    ctx.closePath();
+    ctx.stroke();
+  }
+}
+```
+
+## Drawing arcs in paths
+
+  * There are two path functions to add arcs (portions of circles)
+  * `arc(x, y, radius, startAngle, endAngle, anticlockwise)` draws an arc
+    * centered at `(x, y)`
+    * with radius `r`
+    * starting at `startAngle` (in radians with 0 to the right)
+    * ending at `endAngle`
+    * going in the given direction indicated by anticlockwise (defaulting to clockwise)
+  * `arcTo(x1, y1, x2, y2, radius)` draws an arc
+    * starting at current point
+    * going to `(x1, y1)` and then `(x2, y2)`
+    * for a circle with radius `radius`
+  * Angles in radians can be computed with `radians = (Math.PI/180)*degrees`
+
+### You try: complete the smiley face
+
+  * Start from this [codepen](https://codepen.io/asterix77/pen/dyPBXYO)
+  * Complete the smiley face to match this picture (don't worry about the orange lines):
+
+![Smiley face](https://mdn.mozillademos.org/files/252/Canvas_smiley.png)
+
+
+### Answer: complete the smiley face
+
+```javascript
+function draw() {
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext) {
+     var ctx = canvas.getContext('2d');
+     ctx.beginPath();
+     ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+     ctx.moveTo(110, 75);
+     ctx.arc(75, 75, 35, 0, Math.PI, false);  // Mouth (clockwise)
+     ctx.moveTo(65, 65);
+     ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
+     ctx.moveTo(95, 65);
+     ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
+     ctx.stroke();
+  }
+}
+```
+
+
+## Coloring shapes
+
+  * Setting the context's `fillStyle` property affects all future shapes
+    * until the property is set again
+    * Same for `strokeStyle`
+  * Can use any CSS color specification
+```javascript
+ctx.fillStyle = 'orange';
+ctx.fillStyle = '#FFA500';
+ctx.fillStyle = 'rgb(255, 165, 0)';
+ctx.fillStyle = 'rgba(255, 165, 0, 1)';
+```
+
+### Example: coloring circles ([codepen](https://codepen.io/asterix77/pen/jOEjrwJ))
+
+```javascript
+  function draw() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 6; j++) {
+        ctx.fillStyle = 'rgb(0, ' + Math.floor(255 - 42.5 * i) + ', ' + 
+                         Math.floor(255 - 42.5 * j) + ')';
+        ctx.beginPath();
+        ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
+        ctx.fill();
+      }
+    }
+  }
+```
+
+![Filled circle grid](../images/filledCircleGrid.png)
+
+### You try: rectangle grid
+
+  * Start from this [codepen](https://codepen.io/asterix77/pen/WNbqxXP)
+  * Try to match this picture
+
+![Filled rectangles](https://mdn.mozillademos.org/files/5417/Canvas_fillstyle.png)
+
+
+### Answer: rectangle grid
+
+```javascript
+function draw() {
+  var ctx = document.getElementById('canvas').getContext('2d');
+  for (var i = 0; i < 6; i++) {
+    for (var j = 0; j < 6; j++) {
+      ctx.fillStyle = 'rgb(' + Math.floor(255 - 42.5 * i) + ', ' +
+                       Math.floor(255 - 42.5 * j) + ', 0)';
+      ctx.fillRect(j * 25, i * 25, 25, 25);
+    }
+  }
+}
+```
+
+
 ## Summary
 
   * JavaScript syntax looks a lot like Java
@@ -363,3 +605,4 @@ arguments
   * Data has a type, variables do not
   * Functions are first-class objects
   * Objects look like Java objects
+  * We can use the `<canvas>` element to draw many shapes
