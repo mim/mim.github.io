@@ -1,6 +1,6 @@
 ---
 layout: reveal
-title: JavaScript and Canvas
+title: JavaScript and Canvas drawing
 javascripts:
  - 02a-exercises.js
 ---
