@@ -57,11 +57,16 @@
 
 			<div class="slides">
 
-				<section data-markdown data-separator="<hr />" data-separator-vertical="^<p>–</p>$" data-notes="^Note:">
+				<section data-markdown data-separator="<hr />" data-separator-vertical="<p>–</p>" data-notes="^Note:">
 					<script type="text/template">
-{%
-						assign lines = content | replace: "<h2", "<hr /><h2" | newline_to_br | strip_newlines | split: "<br />" 
-%}{%
+                                          {%
+                                          assign lines = content
+                                          | replace: "<h2", "<hr /><h2"
+                                          | replace: "<h3", "<p>–</p><h3"
+                                                                       | newline_to_br
+                                                                       | strip_newlines
+                                                                       | split: "<br />" 
+                                              %}{%
 						for line in lines
 %}{% 
 							assign processed_line = line

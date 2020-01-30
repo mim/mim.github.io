@@ -17,7 +17,7 @@ css:
   - ../css/3620.css
 ---
 # {{ page.title }}
-### {{ site.author }}
+#### {{ site.author }}
 
 Based on [CS 307 lecture 1](https://cs.wellesley.edu/~cs307/lectures/01-intro.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
 
@@ -53,8 +53,6 @@ What is this course like?
     * The advantage of JavaScript is that it runs in pretty much every web browser.
     * The disadvantage is that its debugging environments are still improving.
 
---
-
 ### About CISC 3620
 
   * The course is fairly mathematical
@@ -65,27 +63,19 @@ What is this course like?
     * calculus 
     * some linear algebra  
 
---
-
 ### [Course website](http://mr-pc.org/t/cisc3620/)
 
 ![](../images/website.png)
-
---
 
 ### [Syllabus](http://m.mr-pc.org/t/cisc3620/2020sp/syllabus.pdf)
 
 ![](../images/syllabus.png)
 
 
---
-
 ### [About me](http://mr-pc.org)
 
 ![](../images/mrpc.png)
 
-
---
 
 ### About you
 
@@ -120,8 +110,6 @@ Make a simple sketch of this barn, and discuss:
 </div>
 
 
---
-
 ### Basics
 
 ![](img/barnNH.png)
@@ -149,8 +137,6 @@ are the **fundamental concepts of computer graphics** :
 </div>
 
 
---
-
 ### The Barn
 
 Here's the CG equivalent of the sketch we just made: the [barn](https://codepen.io/asterix77/pen/bGNyGYJ).
@@ -167,8 +153,6 @@ Here's the CG equivalent of the sketch we just made: the [barn](https://codepen.
   * These are written into the frame buffer
     * where they stay in order to drive the display.
 
-
---
 
 ### Graphics Computer
 
@@ -190,8 +174,6 @@ Here's the CG equivalent of the sketch we just made: the [barn](https://codepen.
 
 </div>
 </div>
-
---
 
 ### Pixels
 
@@ -224,8 +206,6 @@ The above image of _Luxo Jr._ illustrates some useful terminology:
     * covers most of the essentials needed for this course
   * We will spend some class time on it, but it will help to learn the basics on your own
 
---
-
 ### Learning JavaScript
 
 If you'd like to supplement this documentation, here are some good ones:
@@ -237,8 +217,6 @@ If you'd like to supplement this documentation, here are some good ones:
   * You might prefer the [Eloquent JavaScript](http://www.eloquentjavascript.net) online book 
   * W3Schools' [JavaScript Tutorial](http://www.w3schools.com/js/default.asp)
   * Here's a [JavaScript Quick Guide](http://www.tutorialspoint.com/javascript/javascript_quick_guide.htm), just 13 intense pages
-
---
 
 ### Learning JavaScript
 
@@ -258,8 +236,6 @@ If you'd like to supplement this documentation, here are some good ones:
   * Assignments, labs, and demos will typically be distributed on [CodePen](http://codepen.io)
   * You can work on a Mac, Linux, or Windows machine, including your own laptop.
   * Homework code submission will involve uploading the URL of your codepen project to a dropbox on Blackboard for each assignment.
-
---
 
 ### Building on the Work of Others
 
