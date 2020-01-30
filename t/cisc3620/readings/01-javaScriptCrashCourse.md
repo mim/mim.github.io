@@ -1,6 +1,8 @@
 ---
 layout: default
 title: JavaScript crash course
+stylesheets:
+ - /css/rouge.css
 ---
 # JavaScript Crash Course
 
@@ -52,7 +54,7 @@ following bare-bones skeleton of a web page illustrates the use of the
 `script` tag in the `head` and `body` of the code file:
 
     
-    
+```html
     <html>
       <head>
         ...
@@ -66,7 +68,7 @@ following bare-bones skeleton of a web page illustrates the use of the
         </script>
       </body>
     </html>
-    
+```
 
 ## Basic Syntax
 
@@ -77,19 +79,19 @@ guess where they should be; don't use this misfeature, because an incorrect
 guess is hard to debug.)
 
     
-    
+```javascript
     /* omit this dumb code
       var x = 3;  // magic number is 3
       var y = 7;  // another mystical number
     */
-    
+```
 
 Major control structures (`if` statements and `for` and `while` loops) look
 just like Java. The following nested loops with conditionals print the prime
 numbers from 2 to `max`.
 
     
-    
+```javascript 
     var max = 50;
     var i,j;
     for ( i = 2 ; i < max ; i++ ) {
@@ -107,7 +109,7 @@ numbers from 2 to `max`.
            console.log("prime: " + i);
        }                        
     }               
-    
+```
 
 Useful tools for debugging are built-in functions `alert` (which halts the
 program and pops up a window that must be acknowledged) and `console.log`
@@ -129,14 +131,14 @@ not be available in your console, but the console.log function works
 correctly.) Then execute the following code:
 
     
-    
+```javascript    
     var x = 3;
     var y = 4;
     var sum = x + y;
     console.log("the values are " + x + " and " + y);
     alert("the sum is " + sum);
     console.log("they add up to " + sum);
-    
+```
 
 Notice the difference between `alert()` and `console.log()`. Note also that
 `alert()` stops the browser, so the second call to `console.log()` doesn't
@@ -162,11 +164,11 @@ be.
 This illustrates an easy mistake to make:
 
     
-    
+```javascript 
     var x = 3;
     var y = 4;
     alert("the sum is " + x + y);
-    
+```
 
 ### Compound Datatypes
 
@@ -175,14 +177,14 @@ and objects. Both have a simple and convenient literal syntax. Here is the
 array type in action:
 
     
-    
+```javascript 
     // an array of some primes
     var primes = [2, 3, 5, 7, 11, 13];
     console.log("we currently have " + primes.length + " primes.");
     primes[6] = 17;   // add another
     primes.push(19);  // and another
     console.log(primes);
-    
+```
 
 (Remember that if you want to play around with the `primes` variable, you
 should copy/paste that code into the JavaScript console, rather than using the
@@ -197,7 +199,7 @@ languages call hashtables (Lisp, Java), associative arrays (PHP), dictionaries
 (Smalltalk, Python), hashes (Perl), and so forth. Here's an example:
 
     
-    
+```javascript 
     // an object representing a movie
     var movie1 = { title: "Dr. Zhivago",
                    director: "David Lean",
@@ -205,7 +207,7 @@ languages call hashtables (Lisp, Java), associative arrays (PHP), dictionaries
                    release: 1965 }
     movie1.running_time = 197; // in minutes
     console.log("The title is " + movie1.title);
-    
+```
 
 Note that values of the properties can be scalar or compound; above we have an
 array literal of strings for the stars of the movie.
@@ -220,7 +222,7 @@ over the web) using the function `JSON.stringify()`. You can convert such a
 string back into the data structure using the function `JSON.parse()`.
 
     
-    
+```javascript 
     var movie1 = { title: "Dr. Zhivago",
                    director: "David Lean"};
     var movie_string = JSON.stringify(movie1);
@@ -231,7 +233,7 @@ string back into the data structure using the function `JSON.parse()`.
     if( movie1.title == movie_copy.title && movie1.director == movie_copy.director ) {
         console.log("But they have the same title and director");
     }
-    
+```
 
 An important note on terminology: this concept of turning a data structure
 into a string, suitable for writing to a file or transmitting across a
@@ -245,31 +247,31 @@ In JS, variables don't have types; data does. So a variable can store any type
 of data, and you don't have to declare the datatype. The following is fine:
 
     
-    
+```javascript 
     var x = "five"; // a string
     x = 5;     // a number
     x = true;  // a boolean
     x = [2,3]; // an array
     x = {a: 2, b: 3};  // an object
-    
+```
 
 In _practice_ , the code above is awful, because you or anyone reading your
 code will not have any idea what kind of data is stored in `x` at any time.
 For another example, what kind of data is stored in the following variable?
 
     
-    
+```javascript    
     var students;
-    
+```
 
 Given an ambiguous name like that, any of the following might be reasonable:
 
     
-    
+```javascript    
     students = 3;   // maybe numStudents is better?
     students = ["alice", "bob", "charlie" ];  // maybe studentList?
     students = "alice, bob, and charlie";
-    
+```
 
 Since the datatype isn't there to help clarify, you'll need to be more clear
 in the naming of your variables and their documentation.
@@ -285,22 +287,22 @@ types of arguments or return values. The following code creates a function
 named `add5` and invokes it on `2`:
 
     
-    
+```javascript    
     function add5(x) {
         return x + 5;
     }
     console.log("the result is " + add5(2));  
-    
+```
 
 As you can infer, the syntax is:
 
     
-    
+```javascript
     function nameOfFunction(arg1, arg2, arg3, arg4) {
         // body
         return ans;   // optional
     }
-    
+```
 
 JavaScript does not check that a function is invoked with the right number of
 arguments: you can pass in too many or too few. This allows for some fancy
@@ -324,7 +326,7 @@ functions, one of which adds to the global and the other creates and adds to a
 _local_ variable with the same name. Read the code to understand the details:
 
     
-    
+```javascript
     var x = 5;  // global named x
     
     function addToGlobalx(y) {
@@ -344,7 +346,7 @@ _local_ variable with the same name. Read the code to understand the details:
     // but local x is always 2
     console.log(addToLocalx(3));   // 6
     console.log(addToLocalx(3));   // 6
-    
+```
 
 (There are other scopes, such as closures, but we will not make much use of
 them for now.)
@@ -356,20 +358,21 @@ function that adds four to its argument. The anonymous function is stored in a
 variable called `add4`. The last line invokes the function on `3`:
 
     
-    
+```javascript    
     var add4 = function (x) { return x + 4; };
     console.log("the result is " + add4(3));  
-    
+```
 
 Functions and variables share the same _namespace_ , so the preceding way to
 create a function is (nearly) the same as the first way we saw, namely:
 
     
     
+```javascript    
     function add5(x) {
         return x + 5;
     }
-    
+```    
 
 (The only differences are in minor ways such as error messages, where an error
 message from a named function can say what the name of the function is.)
@@ -395,12 +398,13 @@ Here are some simple examples:
 
     
     
+```javascript    
     function isPythagoreanTriple(a,b,c) {
         var square = function (x) { return x * x; };
         return square(a) + square(b) == square(c);
     }
     console.log(isPythagoreanTriple(3,4,5)); // true
-    
+```    
 
 A common use of helper functions is in recursion, particularly tail-recursion.
 Here's a classic example, where the main function should have only one
@@ -409,6 +413,7 @@ function can be local.
 
     
     
+```javascript    
     // tail recursively compute factorial
     function factorialTail(n) {
         function helper(n,result) {
@@ -422,7 +427,7 @@ function can be local.
     }
     
     console.log( factorialTail(4) );  // 24
-    
+```    
 
 ## Functions as First Class Objects
 
@@ -441,11 +446,12 @@ function is then invoked with a function as input:
 
     
     
+```javascript    
     var five = function () { return 5; };
     var next = function (curr) { return 1 + curr(); };
     var ans = next(five);
     alert("the answer is " + ans);
-    
+```    
 
 Notice that when we pass `five` as an argument, we want to pass the function
 itself, not the result of invoking it, so we just give the variable that
@@ -462,8 +468,9 @@ function call a bit confusing:
 
     
     
+```javascript    
     glFrustum(-2,2,1,-1,1,10);
-    
+```    
 
 (`glFrustum` is related to setting up a synthetic camera in computer
 graphics.)
@@ -472,8 +479,9 @@ Some languages, such as Python, address this by having _keyword_ arguments:
 
     
     
+```javascript    
     glFrustum(left = -2, right = 2, top = 1, bottom = -1, near = 1, far = 10)
-    
+```    
 
 This is a bit more typing for the caller of the function, but the meaning of
 each argument is clear. Also, the arguments can be written in any order.
@@ -484,8 +492,9 @@ the others default.
 
     
     
+```javascript    
     glFrustum(far = 10)
-    
+```    
 
 JavaScript doesn't have special support for keyword arguments in the language,
 but the object literal syntax is so easy that programmers use it for keyword
@@ -493,6 +502,7 @@ arguments.
 
     
     
+```javascript    
     /* returns the volume of a box with the given dimensions, 'width,'
        'height,' and 'depth.' */
     
@@ -501,7 +511,7 @@ arguments.
     }
     
     console.log(boxVolume( {width: 2, height: 10, depth: 3} ));
-    
+```    
 
 Note the curly braces around the object literal, and the whole literal is the
 `dims` parameter of the function.
@@ -512,6 +522,7 @@ first is false, and an undefined property counts as false:
 
     
     
+```javascript    
     /* returns the volume of a box with the given dimensions, 'width,'
       'height,' and 'depth.' Dimensions default to 1. */
     
@@ -523,7 +534,7 @@ first is false, and an undefined property counts as false:
     }
     
     console.log(boxVolumeDefaults( {height: 10, depth: 3} ));
-    
+```    
 
 You'll note that I was extremely terse with the variables I used in the
 previous example. This is justified by the fact that (1) the meaning of each
@@ -548,11 +559,12 @@ numbering is zero-based, so we add one here.)
 
     
     
+```javascript    
     var d = new Date();
     var mon = d.getMonth() + 1;
     console.log("The date is " + mon + "/" + d.getDate());
     console.log("The time is " + d.getHours() + ":" + d.getMinutes());
-    
+```    
 
 ## Using Objects
 
@@ -576,12 +588,13 @@ saw this above with the Date object. Here's another example:
 
     
     
+```javascript    
     var d1 = new Date();
     alert('How fast can you click "ok"?');
     var d2 = new Date();
     var diff = d2.getTime() - d1.getTime();
     console.log('It took you ' + diff + ' milliseconds to do so');
-    
+```    
 
 Note that as a _convention_ , any function with an initial capital letter is a
 constructor whose invocation is intended to be preceded by the `new` keyword.
@@ -591,8 +604,9 @@ In this class, we will often create instances of Three.js stuff, like this:
 
     
     
+```javascript    
       var box = new THREE.BoxGeometry(w,h,d);
-    
+```    
 
 ## Invoking Methods
 
@@ -600,8 +614,9 @@ As we've also seen, to invoke a method on an object, you do this:
 
     
     
+```javascript    
     objvar.method(arg1,arg2,...);
-    
+```    
 
 That is, you give a variable containing the object (like `objvar`), a dot, the
 name of the method, and then any arguments, in parentheses.
@@ -612,27 +627,30 @@ using the `getTime()` method on dates:
 
     
     
+```javascript    
     console.log('Since the epoch, it has been ' + (new Date()).getTime() + " milliseconds.");
-    
+```    
 
 Or, using the `substring()` and `toUpperCase()` methods on [
 strings](http://www.w3schools.com/jsref/jsref_obj_string.asp).
 
     
     
+```javascript    
     var list1 = ["sat", "sit"];
     console.log("word ends are "
         + (list1[0].substring(1).toUpperCase()) + " and "
         + (list1[1].substring(1).toUpperCase()));
-    
+```    
 
 In this class, we can invoke methods on Three.js stuff like this:
 
     
     
+```javascript    
     var box = new THREE.BoxGeometry(w,h,d);
     box.translateX(dist); // move it to the right
-    
+```    
 
 How can you find out what methods an object supports? Beyond reading the
 documentation, you can also use the JavaScript debugger. Given a variable
@@ -645,10 +663,11 @@ variable name and a dot:
 
     
     
+```javascript    
     var a_string = "JavaScript is fun";
     var a_list = ["and", "also", "useful"];
     var a_date = new Date();
-    
+```    
 
 ### Source
 
