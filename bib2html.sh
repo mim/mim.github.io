@@ -45,7 +45,7 @@ for n in `seq ${#AUXS[@]}` ; do
     BIBHTML="mandel_${FILE}_bib.html"
     ABSHTML="mandel_${FILE}_abstracts.html"
 
-    ( cd $AUXDIR ; aux2bib bu$AUX.aux | grep -v \@comment ) > $BIB
+    ( cd $AUXDIR ; cat cv${AUX}-blx.aux | grep -v biblatex-control | aux2bib - | grep -v \@comment ) > $BIB
     bibtex2html --both -nf poster Poster -nf slides Slides -nf http Demo -nf code Code $BIB
 
     # Strip off headers and footers
