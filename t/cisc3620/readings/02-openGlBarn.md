@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Introduction to OpenGL/WebGL, Three.js, and the Barn
+stylesheets:
+ - /css/rouge.css
 ---
 # Introduction to OpenGL/WebGL, Three.js, and the Barn
 
@@ -16,8 +18,7 @@ topics we'll cover are:
   * some geometrical objects that we'll want to be able to draw, and how they're defined in OpenGL and Three.js 
   * how to create a simple scene using Three.js and TW  
 
-After all this, we'll finally be ready to read [the code for the
-barn.](../demos/Early/barn-tw-documented.shtml)
+After all this, we'll finally be ready to read [the code for the barn.](../demos/Early/barn-tw-documented.shtml)
 
 This reading also contains pointers to additional documentation for Three.js.
 
@@ -33,13 +34,16 @@ We have three APIs:
   * **WebGL.** This is a standard graphics API, a subset of the full OpenGL API that is supported by most graphics cards. (I'll use the terms " OpenGL" and "WebGL" interchangeably.) WebGL/OpenGL is about modeling and rendering. The specification is documented in [the online man pages](http://www.khronos.org/registry/webgl/specs/latest/2.0/), but these are difficult to read at best. Fortunately, we will use very little of this directly, because we are using Three.js. 
   * [**Three.js**](http://threejs.org). This is an API built on top of WebGL, doing a lot of the modeling and rendering for you. WebGL is still there, underneath, but we will rarely see it. Three.js is really powerful. It allows you to ignore a lot of detailed technical concepts in Computer Graphics that plain WebGL would force you to know, and the programming is far less work. I think that using Three.js and learning the basic concepts is a good combination for this course. Your JavaScript code might look like this: 
 
-        var box_geom = new THREE.BoxGeometry(1,2,3); // width, height, depth
+    ```javascript
+    var box_geom = new THREE.BoxGeometry(1,2,3); // width, height, depth
+    ```
 
   * **TW.** This is Scott Anderson's home-grown API that packages up certain common operations in our Three.js programs. It is layered on top of Three.js  -- a thin layer at that! It does things like setting up a camera for you and allowing you to toggle whether to show the coordinate axes. All of these functions are available in the `TW` object, so your JavaScript code might look like this: 
-    
-        var box_mesh = TW.createMesh( box_geom );
-        TW.cameraSetup( args );
-    
+
+    ```javascript
+    var box_mesh = TW.createMesh( box_geom );
+    TW.cameraSetup( args );
+    ````    
 
 Don't worry if you don't yet understand this code. The point is the syntax.
 
@@ -184,9 +188,9 @@ vectors are represented as a triple of numbers.
 How do we specify points and vectors to Three.js? Here's an example:
 
     
-    
-      var P = new THREE.Vector3(1,2,3);
-    
+```javascript
+var P = new THREE.Vector3(1,2,3);
+```    
 
 The authors of Three.js only defined a `Vector3` class, which we'll use for
 both points and vectors. However, they are different concepts, so we will
@@ -214,20 +218,21 @@ So, in Three.js, we'll build a _geometry_ object, combine it with some
 material, and add it to the scene. Later, we'll learn about how scenes are
 rendered. Building a geometry looks like this:
 
-    
-    
-        var barnGeometry = new THREE.Geometry();
-        // add the front
-        barnGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
-        barnGeometry.vertices.push(new THREE.Vector3(30, 0, 0));
-        barnGeometry.vertices.push(new THREE.Vector3(30, 40, 0));
-        ...
-        // front faces
-        barnGeometry.faces.push(new THREE.Face3(0, 1, 2));
-        barnGeometry.faces.push(new THREE.Face3(0, 2, 3));
-        barnGeometry.faces.push(new THREE.Face3(3, 2, 4));
-        ...
-    
+        
+```javascript
+ var barnGeometry = new THREE.Geometry();
+ // add the front
+ barnGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
+ barnGeometry.vertices.push(new THREE.Vector3(30, 0, 0));
+ barnGeometry.vertices.push(new THREE.Vector3(30, 40, 0));
+ ...
+ // front faces
+ barnGeometry.faces.push(new THREE.Face3(0, 1, 2));
+ barnGeometry.faces.push(new THREE.Face3(0, 2, 3));
+ barnGeometry.faces.push(new THREE.Face3(3, 2, 4));
+ ...
+```
+
 
 The above code just shows a snippet of the construction of the barn geometry,
 for three of the ten vertices that define the 3D structure of the barn, and
@@ -272,6 +277,7 @@ Anderson's TW module, which we will use this fall.
 
     
     
+```html
     <!doctype html>
     <html>
     <head>
@@ -295,13 +301,14 @@ Anderson's TW module, which we will use this fall.
       ...
     </body>
     </html>
-    
+```
 
 Inside the `<body>` section of the page, you'll see a header and JavaScript
 code to create the scene:
 
     
     
+```html
     <h1>Scene with a Box</h1>
     
     <script>
@@ -332,7 +339,7 @@ code to create the scene:
                                     miny: -3.5, maxy: 3.5,
                                     minz: -4.5, maxz: 4.5});
     </script>
-    
+```
 
 The key elements include:
 
@@ -367,10 +374,12 @@ We'll learn much more Three.js over the semester, and most of what you need to
 know will be covered in the online readings and lecture notes for the course.
 Other sources include:
 
-  * Book by Jos Dirksen, [ _Learning Three.js: The JavaScript 3D Library for WebGL, Third Edition_](https://www.packtpub.com/web-development/learn-threejs-third-edition). [This github repo](https://github.com/josdirksen/learning-threejs-third) contains Dirksen's code for all the examples in his book, and [this github repo](https://github.com/josdirksen/learning-threejs) contains all of the examples from the second edition of the book. Here are a few examples to give you a taste (do not worry about understanding the code at this point): 
-    * [02-first-scene.html](https://github.com/josdirksen/learning-threejs-third/blob/master/src/chapter-01/02-first-scene.html)
-    * [03-materials-light.html](https://github.com/josdirksen/learning-threejs-third/blob/master/src/chapter-01/03-materials-light.html)
-    * [04-materials-light-animation.html](https://github.com/josdirksen/learning-threejs-third/blob/master/src/chapter-01/04-materials-light-animation.html)
+  * Book by Jos Dirksen, [ _Learning Three.js: The JavaScript 3D Library for WebGL, Third Edition_](https://www.packtpub.com/web-development/learn-threejs-third-edition).
+    * [This github repo](https://github.com/josdirksen/learning-threejs-third) contains Dirksen's code for all the examples in his book (third edition). Here are a few examples to give you a taste (do not worry about understanding the code at this point): 
+      * [02-first-scene.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/02-first-scene.html)
+      * [03-materials-light.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/03-materials-light.html)
+      * [04-materials-light-animation.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/04-materials-light-animation.html)
+    * and [this github repo](https://github.com/josdirksen/learning-threejs) contains all of the examples from the second edition of the book. 
   * [Online Three.js documentation](https://threejs.org/docs/index.html#manual/introduction/Creating-a-scene) -- this is more of a reference source than a tutorial, but includes many code examples and links to the Three.js source code on GitHub. The online course notes contain many links to specific documentation pages. 
   * At times, we may need to resort to posting questions on [StackOverflow](http://stackoverflow.com/tags/three.js/info). 
 
