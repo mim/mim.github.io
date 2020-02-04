@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Axis Demo</title>
+    <style>
+      /* feel free to change canvas style. If you want it to use the entire
+      window, set width: 100% and height: 100% */
+      canvas {
+          display: block;
+          margin: 10px auto;
+          width: 80%;
+          height: 500px;
+      }
+    </style>
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.js"></script>
+    <script src="../libs/tw.js"></script>
+  </head>
+<body>
+
+<h1>Coordinate Axes</h1>
+
+<p> Drag your mouse around the canvas to view the three coordinate axes (red: X axis, green: Y axis, blue: Z axis)
+
+<script>
+    // Create an empty Scene
+    var scene = new THREE.Scene();
+
+    // Create a renderer to render the scene
+    var renderer = new THREE.WebGLRenderer();
+
+    // TW.mainInit() initializes TW, adds the canvas to the document,
+    // enables display of 3D coordinate axes, sets up keyboard controls
+    TW.mainInit(renderer,scene);
+
+    // Set up a camera for the scene
+    var state = TW.cameraSetup(renderer,
+                               scene,
+                               {minx: -2, maxx: 2,
+                                miny: -3, maxy: 3,
+                                minz: -4, maxz: 4});
+
+    // Turn on the axes and view from the front (z axis)
+    TW.toggleAxes("show");
+    TW.viewFromFront();
+    TW.render();
+ </script>
+
+</body>
+</html>
