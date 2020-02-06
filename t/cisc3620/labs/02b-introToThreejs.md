@@ -12,78 +12,33 @@ Based on [CS 307 lecture 2b](https://cs.wellesley.edu/~cs307/lectures/02.html) w
 
 ## Plan
 
-  * Brief recap of reading ([slides](http://m.mr-pc.org/t/cisc3620/2020sp/Lecture3.pptx) and [barn demo with code](../demos/Early/barn-tw-documented.shtml)) 
-  * Save and run a copy of the Barn demo 
-  * Exercise: Local library files 
-  * Exercise: Changing width 
+  * Exercise: Changing width of barn
   * Exercise: Two barns 
   * Exercise: A church 
   * Exercise: A hexagon (optional, to complete on your own) 
 
-## Summary
-
-  * We will use three APIs: 
-    * WebGL, a subset of OpenGL (we won't actually _see_ much of it) 
-    * Three.js, a JavaScript library built on top of WebGL 
-    * TW, a home-grown set of conveniences and short-cuts created by Scott Anderson
-
-### Three.js
-
-  * Three.js automatically adds a canvas to your page 
-  * You need to create 
-    * a scene object 
-    * a camera object 
-    * a renderer object 
-    * stuff to look at, added to the scene object 
-  * The stuff are _meshes_ consisting of _geometry_ and _material_
-  * Geometry is comprised of _vertices_ and _faces_ (usually triangles) 
-  * Triangle vertices are specified in counterclockwise order from the _front_
-
-### WebGL
-
-  * OpenGL/WebGL is a [_pipeline_](https://www.opengl.org/wiki/Rendering_Pipeline_Overview). Vertices, faces, and material go in one end, and pixels come out the other end 
-    * OpenGL hangs onto some information (we'll refer to this as _state_ ) ... 
-    * ... but other information slips through the pipeline, with only pixels to show for it 
-    * Modern OpenGL usage emphasizes _vertex buffers_ that hold data in the graphics card, avoiding a bottleneck of constantly re-transmitting data from main memory down to the card 
-    * The pipeline is _programmable_ , but we'll let Three.js do that  
-
-## Getting setup
-
-  * Start from [this codepen]()
-
-
-### Keyboard Commands
-
-TW defines some keyboard commands:
-
-  * A "?" prints a list of single-letter commands to the terminal window 
-  * The letter "a" toggles an "axis helper" that shows you the orientation of the model (where the X, Y and Z axes are). The axes emanate from the origin. 
-  * The letter "b" toggles a visualization of the scene bounding box. This is the bounding box you used to set up the camera, not the true bounding box of the scene. 
-  * The lowercase axis letters view the model from that direction: "x" "y" "z" 
-  * The letter "o" (for "oblique") views the model from an oblique direction.  
 
 
 ## Warm-up Exercise: Changing Width
 
 This will be a relatively quick exercise, just to get us warmed up.
 
-  1. Copy `barn.html` to another file, say `wide-barn.html`. 
+  1. Start from [this codepen](https://codepen.io/asterix77/pen/NWqWzBG?editors=1010)
   2. Edit the new file to change the width of the barn (`barnWidth`), say to 50. 
-  3. View the changed `wide-barn.html` file in your browser. Is this what you expected?
+  3. View the changed codepen. Is this what you expected?
 
 ### Warm-up Exercise: Changing Width
 
 {:start="4"}
-  4. Edit the file again. This time, mispell `barnWidth` somewhere, just to see what errors look like. In your browser, open the JavaScript console ( _option-command-j_ in Chrome). Re-load the buggy file and view the error message(s) in the JS console. 
-     * If you suspect that your modified file is not being loaded, try clicking _shift-reload_. 
-  5. Edit the file to fix the spelling error.
+  4. Edit the pen again. This time, mispell `barnWidth` somewhere, just to see what errors look like. In your browser, open the JavaScript console ( _option-command-j_ in Chrome). Re-load the buggy pen and view the error message(s) in the JS console. 
+  5. Edit the pen to fix the spelling error.
 
 ### Warm-up Exercise: Changing Width
 
 {:start="6"}
   6. Change the width of the barn again, but this time, put numeric constants in place of the variable references. Use a larger value for the width of the barn in the call to `TW.createBarn()` versus the `maxx` used in the _bounding box_ supplied in the call to `TW.cameraSetup()`. 
   7. What do you notice about the wide barn in this case? 
-     * You might have something like this [wide-barn.html](02b-exercises/wide-barn.html).
+     * You might have something like [this pen](https://codepen.io/asterix77/pen/vYOYrvM?editors=1010).
      * In this sample solution, the barn is wide (50) but `maxx` for the camera is only 20, so the camera setup is off.
      * The original code allowed us to change the width of the barn in just one place and the camera setup changed automatically.
      * _This is a good reason to use variables instead of numeric constants!_
@@ -93,8 +48,8 @@ This will be a relatively quick exercise, just to get us warmed up.
 {:start="8"}
   8. Change the numeric constants back to the variable `barnWidth`.
   9. The bounding box for the original barn truncates some of the roof of the barn from view. Modify the value for `maxy` in the bounding box, so that the entire roof is visible.
-     * **Hint:** In the [ `createBarn()`](../demos/Early/barn-tw-documented.shtml) function, how is the y coordinate of the roof of the barn defined?
-     * You might have something like this [full-barn.html](02b-exercises/full-barn.html).  
+     * **Hint:** In the [ `createBarn()`](../demos/Early/barn-tw-documented.html) function, how is the y coordinate of the roof of the barn defined?
+     * You might have something like [this pen](https://codepen.io/asterix77/pen/Poqoagw?editors=1010).  
 
 ## Remodularizing the Barn Building
 
