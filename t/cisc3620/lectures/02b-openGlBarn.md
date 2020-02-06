@@ -71,7 +71,7 @@ TW.cameraSetup( args );
 
   * The OpenGL API and the graphics card are implemented as a _pipeline_.
     * Possibly familiar from computer architecture
-  * Calls to the OpenGL functions will often
+  * Calls to OpenGL functions will often
     * put data (e.g., vertices) into one end of a pipeline
     * where they undergo transformations of various sorts
     * and finally emerge at the other end (e.g., as pixels)
@@ -93,9 +93,13 @@ materials, lights, and the camera) into one end of the pipeline
     * we have to send all of the vertices through the pipeline again
     * although the graphics card does have local buffers that store pipeline inputs
 
-## Geometry Data Structures
+## Geometrical objects and data structures
 
+  * Let's talk about how we can represent objects in computer graphics
   * Mostly what you are used to from drawing, with some wrinkles
+
+### Geometrical objects and data structures
+
   * **Points/Vertices**: just _dots_. Have location and nothing else 
   * **Vectors**: _arrows_. Have direction and magnitude and nothing else.
     * Can't draw them in OpenGL, but they are used a lot
@@ -106,7 +110,7 @@ materials, lights, and the camera) into one end of the pipeline
 
 ### Triangles
 
-  * Triangls are necessarily **planar** (flat) and **convex** (no dents)
+  * Triangles are necessarily **planar** (flat) and **convex** (no dents)
   * Bad things happen if you try to draw non-planar or non-convex polygons
   * Three.js uses triangles as its universal representation of geometry
     * API calls to build, e.g., spheres and cylinders return a _polygonal approximation_ of the smooth object.
@@ -134,8 +138,8 @@ materials, lights, and the camera) into one end of the pipeline
 
   * We then define a triangle by listing its vertices _in counter-clockwise order from the outside_.
   * So, 4,3,2 is one way to describe the top of the barn
-    * List the other equivalent ways
-  * List other non-equivalent ways
+    * What are other equivalent ways?
+    * What are other non-equivalent ways?
   * Note that to save computation, by default Three.js only draws the front of every triangle
     * How much time does this save?
 
@@ -191,7 +195,7 @@ var P = new THREE.Vector3(1,2,3);
     1. _represent_ something
     1. then _render_ it
   * So how do we _represent_ stuff in Three.js?
-  * Wow would we represent the barn that we saw on the first day of class?
+  * How would we represent the barn that we saw on the first day of class?
 
 
 ### Three.js terminology
@@ -227,6 +231,8 @@ var P = new THREE.Vector3(1,2,3);
 ```
 
   * Note that this is just for 3 vertices, and 3 faces
+    * How many are there total?
+  * See full code [here](../libs/tw.js)
 
 
 ## Coordinates
@@ -239,6 +245,8 @@ var P = new THREE.Vector3(1,2,3);
   * So things farther from you in the scene have lower Z components or even negative ones.
     * e.g., the front of the barn is at Z=0 and the back is at Z=-len
 
+[![Default OpenGL axes](http://www.songho.ca/opengl/files/gl_camera01.png)](http://www.songho.ca/opengl/gl_camera.html)
+
 ### Scale
 
   * Our coordinates can have (pretty much) any scale we want
@@ -248,11 +256,15 @@ var P = new THREE.Vector3(1,2,3);
   * These numbers can mean anything you want
     * could be millimeters, kilometers or light years
   * If you're imagining a real barn, perhaps the numbers are in feet or meters
-  * Note: it is useful for debugging and development purposes to decide on a real scale and stick to it
+  * C.f.: it is useful for debugging and development purposes to decide on a real scale and stick to it
 
 ## Creating a Simple Scene with Three.js and TW
 
-[Box demo](https://codepen.io/asterix77/pen/jOPNaVZ?editors=1010)
+<iframe height="558" style="width: 100%;" scrolling="no" title="Box Demo" src="https://codepen.io/asterix77/embed/jOPNaVZ?height=558&theme-id=default&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/jOPNaVZ'>Box Demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 
 ### Box demo
 
@@ -266,21 +278,24 @@ The key elements include:
 
 ### The Barn Code
 
-[Barn demo](https://codepen.io/asterix77/pen/bGNyGYJ)
+<iframe height="680" style="width: 100%;" scrolling="no" title="Barn Demo" src="https://codepen.io/asterix77/embed/bGNyGYJ?height=680&theme-id=default&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/bGNyGYJ'>Barn Demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ## Learning More Three.js
 
-We'll learn much more Three.js over the semester, and most of what you need to
-know will be covered in the lecture notes for the course.
-
-Other sources include:
-
+  * The course notes will cover most of what we need for Three.js. But there is also:
   * Book by Jos Dirksen, [ _Learning Three.js: The JavaScript 3D Library for WebGL, Third Edition_](https://www.packtpub.com/web-development/learn-threejs-third-edition).
     * [This github repo](https://github.com/josdirksen/learning-threejs-third) contains Dirksen's code for all the examples in his book (third edition). Here are a few examples to give you a taste (do not worry about understanding the code at this point): 
       * [02-first-scene.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/02-first-scene.html)
       * [03-materials-light.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/03-materials-light.html)
       * [04-materials-light-animation.html](https://mr-pc.org/learning-threejs-third/src/chapter-01/04-materials-light-animation.html)
     * and [this github repo](https://github.com/josdirksen/learning-threejs) contains all of the examples from the second edition of the book. 
+
+### Learning More Three.js
+
+  * The course notes will cover most of what we need for Three.js. But there is also:
   * [Online Three.js documentation](https://threejs.org/docs/index.html#manual/introduction/Creating-a-scene) -- this is more of a reference source than a tutorial, but includes many code examples and links to the Three.js source code on GitHub. The online course notes contain many links to specific documentation pages. 
   * At times, we may need to resort to posting questions on [StackOverflow](http://stackoverflow.com/tags/three.js/info). 
 
