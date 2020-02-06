@@ -146,6 +146,19 @@
 				]
 			});
 
+                        {% comment %}
+                        From https://github.com/hakimel/reveal.js/issues/2202#issuecomment-408771833
+                        {% endcomment %}
+                        function drawCurrentSlide() {
+                          Array.prototype.forEach.call(
+                            Reveal.getCurrentSlide().querySelectorAll('canvas'),
+                            function(canvas, ii) {
+                              draw(canvas);
+                          });
+                        }
+                        
+                        Reveal.addEventListener('ready', drawCurrentSlide);
+                        Reveal.addEventListener('slidechanged', drawCurrentSlide);
 		</script>
 
 	</body>
