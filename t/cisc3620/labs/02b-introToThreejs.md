@@ -1,6 +1,6 @@
 ---
 layout: reveal
-title: Introduction to Three.js Programming
+title: Lab -- Introduction to Three.js Programming
 javascripts:
  - 02b-exercises.js
 ---
