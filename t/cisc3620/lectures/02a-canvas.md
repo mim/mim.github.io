@@ -417,6 +417,13 @@ function draw() {
 
   <div id="canvas3parent"></div>
 
+### Codepen Solution
+
+<iframe height="501" style="width: 100%;" scrolling="no" title="WNvNKpO" src="https://codepen.io/asterix77/embed/WNvNKpO?height=501&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/WNvNKpO'>WNvNKpO</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 ## Summary
 
   * Drawing in a 2D coordinate system isn't so bad. 
