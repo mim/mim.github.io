@@ -25,3 +25,5 @@ h1, h2, h3, h4 { font-family: 'Droid Serif', Georgia, Times, serif; }
 
 .list-inline>li { display: inline-block; padding-right: 5px; padding-left: 5px; }
 .list-inline { padding-left: 0; margin-left: -5px; list-style: none; }
+
+figcaption { margin: 1em 0em 2em 3em; font-size: 120%; }

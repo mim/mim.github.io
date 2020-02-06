@@ -482,18 +482,20 @@ This page is based on <https://cs.wellesley.edu/~cs307/readings/03b-color.html>.
 
 
 <script>
-addScriptElements();
-addExecuteButtons();    // has to be done before pretty-printing
-handle_code_jsfunction(); // also before pretty-printing
-handle_codefrom();
-handle_codeurl();
-// ready for pretty-printing
-checkPreElements();
-trimPreElements();
-addPrettyPrintClass();
-addPreExamples();
-prettyPrint();
-hideFromStudent();
-// do we still want this?
-// sh_highlightDocument();
+window.addEventListener('load', function () {
+  addScriptElements();
+  addExecuteButtons();    // has to be done before pretty-printing
+  handle_code_jsfunction(); // also before pretty-printing
+  handle_codefrom();
+  handle_codeurl();
+  // ready for pretty-printing
+  checkPreElements();
+  trimPreElements();
+  addPrettyPrintClass();
+  addPreExamples();
+  prettyPrint();
+  hideFromStudent();
+  // do we still want this?
+  // sh_highlightDocument();
+});
 </script>

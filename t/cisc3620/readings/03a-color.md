@@ -12,6 +12,8 @@ javascripts:
   - ../js/custom.js
   - ../js/307.js
   - ../js/activities.js
+stylesheets:
+  - /css/rouge.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -137,30 +139,30 @@ Three.js has a [Color](http://threejs.org/docs/#api/math/Color) class that
 allows you to enter colors in a variety of ways:
 
     
-    
-    // hexadecimal number, one byte per primary
-    var red1 = new THREE.Color( 0xff0000 );  
-    
-    // color cube: 0-1 for each of 3 dimensions
-    var red2 = new THREE.Color( 1, 0, 0 );   
-    
-    // CSS string, 0-255 for each of 3 dimensions
-    var red3 = new THREE.Color( "rgb(255,0,0)" );  
-    
-    // CSS color name 
-    var red4 = new THREE.Color( "red" );     
-    
-    // Three.js keyword
-    var red5 = new THREE.Color( THREE.ColorKeywords.red ); 
-    
-    // those are all the same:
-    alert(red1.equals(red2) && red2.equals(red3)
-          && red3.equals(red4) && red4.equals(red5));
-    
-    // conversions
-    alert("red5 Numeric value: " + red5.getHex())
-    alert("red5 Hex String: " + red5.getHexString());
-    
+```javascript
+// hexadecimal number, one byte per primary
+var red1 = new THREE.Color( 0xff0000 );  
+
+// color cube: 0-1 for each of 3 dimensions
+var red2 = new THREE.Color( 1, 0, 0 );   
+
+// CSS string, 0-255 for each of 3 dimensions
+var red3 = new THREE.Color( "rgb(255,0,0)" );  
+
+// CSS color name 
+var red4 = new THREE.Color( "red" );     
+
+// Three.js keyword
+var red5 = new THREE.Color( THREE.ColorKeywords.red ); 
+
+// those are all the same:
+alert(red1.equals(red2) && red2.equals(red3)
+      && red3.equals(red4) && red4.equals(red5));
+
+// conversions
+alert("red5 Numeric value: " + red5.getHex())
+alert("red5 Hex String: " + red5.getHexString());
+```
 
 The
 [THREE.ColorKeywords](https://github.com/mrdoob/three.js/blob/master/src/math/Color.js)
@@ -181,15 +183,15 @@ In the JS code for the red barn example, the previous call to
 `TW.createMesh()` is replaced with the following code:
 
     
-    
-    function createBarnMesh (barnGeometry, barnColor) {
-        var barnMaterial = new THREE.MeshBasicMaterial( {color: barnColor} );
-        // create and return a Mesh using the barnGeometry and barnMaterial
-        return new THREE.Mesh( barnGeometry, barnMaterial );
-    }
-    
-    var barnMesh = createBarnMesh( barnGeometry, THREE.ColorKeywords.red );
-    
+```javascript
+function createBarnMesh (barnGeometry, barnColor) {
+    var barnMaterial = new THREE.MeshBasicMaterial( {color: barnColor} );
+    // create and return a Mesh using the barnGeometry and barnMaterial
+    return new THREE.Mesh( barnGeometry, barnMaterial );
+}
+
+var barnMesh = createBarnMesh( barnGeometry, THREE.ColorKeywords.red );
+```    
 
 In the `createBarnMesh()` function, a new `THREE.MeshBasicMaterial` is created
 for the particular input color. Note the syntax of the input to this
@@ -200,12 +202,12 @@ the color red is specified using `THREE.ColorKeywords`, but any of the
 following forms of the color input also work:
 
     
-    
-    var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 0xff0000 ) );
-    var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 1, 0, 0 ) );
-    var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "rgb(255, 0, 0)" ) );
-    var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "red" ) );
-    
+```javascript
+var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 0xff0000 ) );
+var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( 1, 0, 0 ) );
+var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "rgb(255, 0, 0)" ) );
+var barnMesh = createBarnMesh( barnGeometry, new THREE.Color( "red" ) );
+```    
 
 You'll notice that the red barn lacks "depth cues" because there's no shading.
 Later, we'll learn about materials that interact with light to produce nice
@@ -220,9 +222,10 @@ two parts to the change:
 
   * We supply an _array (list) of colors_ for the object. This array is used to create an instance of `THREE.MeshFaceMaterial`. To be precise, each color is used to create a `THREE.MeshBasicMaterial`, and the _array of Materials_ is supplied to `THREE.MeshFaceMaterial`. 
   * Each _face_ of our geometry object has an instance variable that is an _index_ into the array of Materials, specifying which color applies to this face. This index is called the `materialIndex`, and is a property of the `THREE.Face3` object. It can be specified when you create a `Face3` object, or you can set it after the fact, for example: 
-    
-        barnGeometry.faces[0].materialIndex = 1;
-    
+
+    ```javascript
+    barnGeometry.faces[0].materialIndex = 1;
+    ```    
 
 Here is the [multi-colored barn](../demos/Early/barn-colors.html) in
 action. Move the camera to see the different face colors.
@@ -230,36 +233,36 @@ action. Move the camera to see the different face colors.
 Here is the new definition of the `createBarnMesh()` function:
 
     
-    
-    function createBarnMesh (barnGeometry) {
-        // create four colors for the faces of the barn
-        var endColor = THREE.ColorKeywords.blue;
-        var sideColor = THREE.ColorKeywords.red;
-        var roofColor = THREE.ColorKeywords.orange;
-        var floorColor = THREE.ColorKeywords.gray;
-    
-        // construct THREE.MeshFaceMaterial from array of THREE.MeshBasicMaterial 
-        // instances created from the four colors
-        var barnMaterials = new THREE.MeshFaceMaterial (
-          [ new THREE.MeshBasicMaterial( {color: endColor} ),
-            new THREE.MeshBasicMaterial( {color: sideColor} ),
-            new THREE.MeshBasicMaterial( {color: roofColor} ),
-            new THREE.MeshBasicMaterial( {color: floorColor} )
-          ]);
-        
-        // set the material index for each of the 16 triangular faces
-        var endIndex = 0, sideIndex = 1, roofIndex = 2, floorIndex = 3;
-        TW.setMaterialForFaces(barnGeometry, endIndex, 0, 1, 2, 3, 4, 5); // ends
-        TW.setMaterialForFaces(barnGeometry, roofIndex, 6, 7, 8, 9); // roof
-        TW.setMaterialForFaces(barnGeometry, sideIndex, 10, 11, 12, 13); // sides
-        TW.setMaterialForFaces(barnGeometry, floorIndex, 14, 15); // floor
-    
-        // create and return a Mesh using the barnGeometry and barnMaterials
-        return new THREE.Mesh(barnGeometry, barnMaterials);
-    }
-    
-    var barnMesh = createBarnMesh( barnGeometry );
-    
+```javascript
+function createBarnMesh (barnGeometry) {
+    // create four colors for the faces of the barn
+    var endColor = THREE.ColorKeywords.blue;
+    var sideColor = THREE.ColorKeywords.red;
+    var roofColor = THREE.ColorKeywords.orange;
+    var floorColor = THREE.ColorKeywords.gray;
+
+    // construct THREE.MeshFaceMaterial from array of THREE.MeshBasicMaterial 
+    // instances created from the four colors
+    var barnMaterials = new THREE.MeshFaceMaterial (
+      [ new THREE.MeshBasicMaterial( {color: endColor} ),
+        new THREE.MeshBasicMaterial( {color: sideColor} ),
+        new THREE.MeshBasicMaterial( {color: roofColor} ),
+        new THREE.MeshBasicMaterial( {color: floorColor} )
+      ]);
+
+    // set the material index for each of the 16 triangular faces
+    var endIndex = 0, sideIndex = 1, roofIndex = 2, floorIndex = 3;
+    TW.setMaterialForFaces(barnGeometry, endIndex, 0, 1, 2, 3, 4, 5); // ends
+    TW.setMaterialForFaces(barnGeometry, roofIndex, 6, 7, 8, 9); // roof
+    TW.setMaterialForFaces(barnGeometry, sideIndex, 10, 11, 12, 13); // sides
+    TW.setMaterialForFaces(barnGeometry, floorIndex, 14, 15); // floor
+
+    // create and return a Mesh using the barnGeometry and barnMaterials
+    return new THREE.Mesh(barnGeometry, barnMaterials);
+}
+
+var barnMesh = createBarnMesh( barnGeometry );
+```    
 
 Note the square brackets around the four `THREE.MeshBasicMaterial` objects
 that form the input to the `THREE.MeshFaceMaterial` constructor, placing them
@@ -269,21 +272,21 @@ all material `m`, our code would be a tedious repetition of assignment
 statements like this:
 
     
-    
-    barnGeometry.faces[0].materialIndex = m;
-    barnGeometry.faces[1].materialIndex = m;
-    barnGeometry.faces[2].materialIndex = m;
-    barnGeometry.faces[3].materialIndex = m;
-    barnGeometry.faces[4].materialIndex = m;
-    barnGeometry.faces[5].materialIndex = m;
-    
+```javascript
+barnGeometry.faces[0].materialIndex = m;
+barnGeometry.faces[1].materialIndex = m;
+barnGeometry.faces[2].materialIndex = m;
+barnGeometry.faces[3].materialIndex = m;
+barnGeometry.faces[4].materialIndex = m;
+barnGeometry.faces[5].materialIndex = m;
+```
 
 Instead, we can say this:
 
     
-    
-        TW.setMaterialForFaces(barnGeometry, m, 0, 1, 2, 3, 4, 5);
-    
+```javascript
+TW.setMaterialForFaces(barnGeometry, m, 0, 1, 2, 3, 4, 5);
+```    
 
 You may want to look back at the definition of [
 `TW.createBarn()`](../demos/Early/barn-tw-documented.shtml) to see how
@@ -318,9 +321,9 @@ An alternative is to name the variable by what its _purpose_ or _use_ is. Such
 as:
 
     
-    
-    var skyColor = new THREE.Color( 0.39, 0.58, 0.93 ); // use cornflower for the sky
-    
+```javascript
+var skyColor = new THREE.Color( 0.39, 0.58, 0.93 ); // use cornflower for the sky
+```    
 
 Later, if you decide to change the color of the sky, you can change the
 definition of `skyColor` and everything adjusts correctly. This is a powerful
@@ -330,11 +333,11 @@ You can even combine these approaches, by defining some of the colors you will
 use and then assigning them to various uses:
 
     
-    
-    var cornflower = new THREE.Color( 0.39, 0.58, 0.93 );
-    var skyColor = cornflower;  // use cornflower for the sky
-    ...
-    
+```javascript
+var cornflower = new THREE.Color( 0.39, 0.58, 0.93 );
+var skyColor = cornflower;  // use cornflower for the sky
+...
+```
 
 ## Smooth and Flat Shading
 
@@ -406,9 +409,7 @@ it's the same line, but a different journey.)
 
 ## Parametric Line Metaphor: Bug Paths
 
-![a line in a 2D coordinate system](images/line.png)
-
-       Figure 1: a line in a 2D coordinate system
+{% include figure.html url="images/line.png" description="Figure 1: a line in a 2D coordinate system" %}
 
 The math above works fine, but might be a little dry. Let's explore some
 metaphors for parametric equations. To start with, consider the picture in
@@ -455,9 +456,7 @@ time does it meet (and eat) the ant? Where does this gruesome event occur?
 Before we answer that question, let's look at another situation, this with two
 lines:
 
-![two lines in a 2D coordinate system](images/lines.png)
-
-       Figure 2: two lines in a 2D coordinate system
+{% include figure.html url="images/lines.png" description="Figure 2: two lines in a 2D coordinate system" %}
 
 We now have two lines, the cyan one and the magenta one. We can see that they
 intersect, but where? Do the bugs meet? Convince yourself of the following:
@@ -501,9 +500,7 @@ namely as a _weighted average_ or as a _mixture_.
 
 To start, I'm going to repeat figure 1, now as figure 3:
 
-![a line in a 2D coordinate system](images/line.png)
-
-       Figure 3: a line in a 2D coordinate system
+{% include figure.html url="images/line.png" description="Figure 3: a line in a 2D coordinate system" %}
 
 Let's think about a line from A to C:
 
@@ -690,18 +687,20 @@ This page is based on <https://cs.wellesley.edu/~cs307/readings/03a-color.html>.
 
 
 <script>
-addScriptElements();
-addExecuteButtons();    // has to be done before pretty-printing
-handle_code_jsfunction(); // also before pretty-printing
-handle_codefrom();
-handle_codeurl();
-// ready for pretty-printing
-checkPreElements();
-trimPreElements();
-addPrettyPrintClass();
-addPreExamples();
-prettyPrint();
-hideFromStudent();
-// do we still want this?
-// sh_highlightDocument();
+window.addEventListener("load", function(event) {
+  addScriptElements();
+  addExecuteButtons();    // has to be done before pretty-printing
+  handle_code_jsfunction(); // also before pretty-printing
+  handle_codefrom();
+  handle_codeurl();
+  // ready for pretty-printing
+  checkPreElements();
+  trimPreElements();
+  addPrettyPrintClass();
+  addPreExamples();
+  prettyPrint();
+  hideFromStudent();
+  // do we still want this?
+  // sh_highlightDocument();
+});
 </script>
