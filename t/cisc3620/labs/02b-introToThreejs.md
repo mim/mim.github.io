@@ -58,7 +58,7 @@ of the list of vertices from the creation of the faces:
 
 
 ```javascript
-// My "classic" barn, converted to THREE.js by Jos Dirksen, with my thanks.
+// The "classic" barn, converted to THREE.js by Jos Dirksen, with thanks.
 
 function createBarnVertices(w, h, len) {
     var barnGeometry = new THREE.Geometry();
@@ -122,10 +122,7 @@ function createBarnFaces(barnGeometry) {
 
 ### Remodularizing the Barn Building
 
-This would give us the opportunity to modify the vertices before building the
-faces. Something like this:
-
-    
+  * This would give us the opportunity to modify the vertices before building the faces. Something like this:
 ```javascript
     var barnGeom = createBarnVertices(30,40,50);
     modifyVertices(barnGeom.vertices);
@@ -135,11 +132,8 @@ faces. Something like this:
     scene.add(barnMesh);
 ```    
 
-How could we modify a vertex? The `THREE.Vector3` object has many methods, but
-three important properties: x, y, and z. In a JavaScript console in one of
-your windows, try the following (enter the code statements one at a time):
-
-    
+  * How could we modify a vertex? The `THREE.Vector3` object has many methods, but three important properties: x, y, and z.
+  * In a JavaScript console in one of your windows, try the following (enter the code statements one at a time):
 ```javascript    
     var p = new THREE.Vector3(1,2,3);
     p.length();
@@ -148,7 +142,7 @@ your windows, try the following (enter the code statements one at a time):
     p.length();
 ```
 
-What does the `length()` method appear to do?
+  * What does the `length()` method appear to do?
 
 ## Translation Exercise
 
@@ -167,12 +161,13 @@ function do?
 
 ### Exercise: Two Barns<a name="two-barns"></a>
 
-  1. Save [two-barns-start.html](02b-exercises/two-barns-start.html) as `two-barns.html` (with Format "Webpage, HTML Only"). This file contains the definition of the `translateX()` function, and creates a geometry and mesh for a single barn that is added to the scene (`barn1geom` and `barn1mesh`). 
+  1. Start from [this codepen](https://codepen.io/asterix77/pen/jOPOeBP?editors=1010)
+  1. This file contains the definition of the `translateX()` function, and creates a geometry and mesh for a single barn that is added to the scene (`barn1geom` and `barn1mesh`). 
   2. Modify the code to add a _second barn_ that is 
     1. _half the size_ of the first barn 
     2. _shifted to the left_ of the first barn, leaving a gap between the two barns 
-  3. Adjust the bounding box so that you can see the two barns in their entirety. Your result might look something like this [two-barns-after.html](02b-exercises/two-barns-after.html) 
-
+  3. Adjust the bounding box so that you can see the two barns in their entirety. Your result might look something like [this pen](https://codepen.io/asterix77/pen/NWqWOjW?editors=1010)
+  
 Moving a barn this way is a bit painful. Next week, we'll learn about the
 _instance transform_ , which will make it very easy to place instances of an
 object around our scene.
@@ -180,25 +175,23 @@ object around our scene.
 
 ### Object Origins
 
-For now, we'll learn that in Three.js, an instance of `Mesh` (actually, an
-instance of `Object3D`, which is the parent class of `Mesh`) has a property
-called `position` that is a `Vector3`, which has a method `set(x,y,z)` that
-can be used to set the components of the vector. Thus, we can position our
-barn using the following code:
-
-
+  * Actually, it is unnecessary to transform all of the vertices individually
+  * A `Mesh` (actually, an instance of `Object3D`, the parent class of `Mesh`) has a `position` property with a method `set(x,y,z)`
+    * that can be used to set its components
+  * Thus, we can position our barn using the following code:
 ```javascript
     barn2mesh.position.set(-30,0,0);
 ```
 
-This also avoids having to factor the `createBarn()` function the way we did,
-and having to create the `translateX` function. So, if we use this technique,
-the code might look like this [two-barns-after-pos.html](02b-exercises/two-barns-after-pos.html). Look at the code; it's _much simpler_.
+### Object Origins
 
-The code that we just saw to set the position of the barn is simpler, but it
-relies on a few concepts. One is the notion of the "position" of the barn,
-which is just the location of the barn's "origin" (in this case, the lower
-left front corner). We'll see more about this later.
+  * This also avoids having to factor the `createBarn()` function the way we did
+    * and having to create the `translateX` function
+  * So, if we use this technique, the code might look like [this](https://codepen.io/asterix77/pen/ZEGEqJL?editors=1010)
+  * It's _much simpler_
+  * But it relies on the notion of the "position" of the barn
+    * which is just the location of the barn's "origin" (in this case, the lower left front corner)
+    * more about this later
 
 
 ## Adding a Steeple<a name="adding_a_steeple"></a>
@@ -226,7 +219,9 @@ Y axis](02b-exercises/church-wire-y.png)
 
 ### Exercise: A Church, Part 1
 
-  1. With a partner, figure out some reasonable coordinates for a steeple of roughly the dimensions described above, and with the coordinate frame as indicated by the colored axes in the above pictures. Your coordinates need not be exact! Next week, we'll talk about how to use linear interpolation to get the coordinates exactly right (if we want to). 
+  1. With a partner, figure out some reasonable coordinates for a steeple of roughly the dimensions described above
+     * Your coordinates need not be exact!
+     * Next week, we'll talk about how to use linear interpolation to get the coordinates exactly right (if we want to). 
   2. Draft some code to draw the steeple.  
 
 We'll discuss these as a class before proceeding with the coding.
@@ -277,33 +272,28 @@ Then, we just add the steeple to the scene, properly positioned.
 
 ### Exercise: A Church, Part 2
 
-Using [barn-steeple-start.html](02b-exercises/barn-steeple-start.html) as a
-starting point, modify the code to do the following:
+  1. Start from [this codepen](https://codepen.io/asterix77/pen/abObRVV?editors=1010)
+  1. Create variables to store the dimensions of the steeple 
+  1. Invoke the `createSteeple()` function to create the geometry 
+  1. Make a mesh using `TW.createMesh()`
+  1. Add the steeple to the scene, positioning it using `position.set()`
+  1. Adjust the bounding box in the call to `TW.cameraSetup()` so that you can see the entire church 
 
-  * Create variables to store the dimensions of the steeple 
-  * Invoke the `createSteeple()` function to create the geometry 
-  * Make a mesh using `TW.createMesh()`
-  * Add the steeple to the scene, positioning it using `position.set()`
-  * Adjust the bounding box in the call to `TW.cameraSetup()` so that you can see the entire church 
-
-Your finished code should work roughly like [barn-and-steeple.html](02b-exercises/barn-and-steeple.html).
+Your finished code should work roughly like [this codepen](https://codepen.io/asterix77/pen/GRJRzwb?editors=1010).
 
 ## A Hexagon (Optional)
 
-Barns in Pennsylvania Dutch country often have [hex
-signs](http://en.wikipedia.org/wiki/Hex_sign) on them. They aren't hexagons,
-but ours will be.
-
-How would we draw a hexagon? More generally, how would we draw an N-gon?
-
-First, note that a hexagon is _flat_ , so let's assume that we are drawing in
-the Z=k plane, so our Z coordinate is always "k" and we only have to worry
-about X and Y.
+  * Barns in Pennsylvania Dutch country often have [hex signs](http://en.wikipedia.org/wiki/Hex_sign) on them
+    * They aren't hexagons, but ours will be.
+  * How would we draw a hexagon?
+  * More generally, how would we draw an N-gon?
+  * First, note that a hexagon is _flat_ ,
+    * so let's assume that we are drawing in the Z=k plane
+    * our Z coordinate is always "k" and we only have to worry about X and Y.
 
 ### A Hexagon (Optional)
 
-Here's a strategy: Let's iterate from 0 to the number of vertices. For each
-vertex:
+One way: iterate from 0 to the number of vertices. For each vertex:
 
   * Compute the fraction of a full 2π circle that corresponds to this vertex. The first (zeroth) vertex will always be at 0 degrees. The second vertex of a hexagon will be 1/6th of the way around the circle, so (1/6)*(2π), and so on. 
   * Compute the angle for the vertex. The second vertex of a hexagon will be at 2π/6 or, 360/6=60 degrees. 
@@ -325,7 +315,11 @@ hexagon into a hexagonal cylinder.
 Working with a partner, draft some JavaScript to do the computations to make a
 hexagon, or more-generally, a regular polygon.
 
-    
+
+### Exercise: A Hexagon
+
+Here is the start of such a function
+
 ```javascript
     // Creates a regular polygon in a plane of constant z
     function createRegularPolygon(numVertices, radius, zCoordinate) {
@@ -347,6 +341,9 @@ hexagon, or more-generally, a regular polygon.
 ## Coding Advice
 
   * Build and test your code _incrementally_. Save often! 
-  * Save versions by saving the file to a different filename (`ex1.html`, `ex2.html`, ...) It will be easier (emotionally) to experiment with things if you know you can go back to an earlier version. 
+  * Save versions by forking your codepen
+    * Or by downloading versions periodically
+    * Or by downloading and using version control!
+  * It will be easier (emotionally) to experiment with things if you know you can go back to an earlier version.
   * Be willing to create a simple "test" program to see how something works without all the complexity of your larger program. 
   * Be modular, and document as you go. It'll be easier to understand and debug your own code. 
