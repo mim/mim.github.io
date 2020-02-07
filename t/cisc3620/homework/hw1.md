@@ -52,16 +52,13 @@ Some additional requirements.
   2. The origin of the monument should be at the center of the base, directly below the peak. 
   3. Build a GUI so that you can play with the dimensions of the monument. 
   4. The camera settings must be correct, so that I can see the whole figure by using the mouse. This should work for the largest values of the dimensions that can be set by the user in the GUI. 
-  5. Each side should be a different color, so that all the edges are plainly visible. 
-    * Use a variety of different ways of specifying the colors (e.g. `THREE.ColorKeywords`, hexidecimal notation, CSS string, `rgb`, or even `TW.randomColor()` if you're feeling uninspired). 
-    * Use RGB color at least twice, to show you know how to use it. Document the color you are using. 
-  6. Your material should be the default one-sided material, so that if we look at the monument from below, the sides will disappear. 
+  5. You can use the default colors assigned by `TW.createMesh()` when it is just given a Geometry
 
 Consider building your solution incrementally, for example:
 
   1. build the obelisk geometry and view it with the demo materials created with the `TW.createMesh()` function 
   2. add a GUI to adjust the parameters interactively 
-  3. create a mesh for your obelisk with different colors for the faces 
+  3. adjust various parameters and optionally color the faces/vertices by defining your own material
 
 ## Model Solution
 
