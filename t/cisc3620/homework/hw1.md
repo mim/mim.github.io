@@ -15,6 +15,11 @@ javascripts:
 ---
 # Homework 1: Obelisk
 
+Please read the [standard instructions for all assignments](common.html).
+
+Feel free to use the [template pen](https://codepen.io/asterix77/pen/PoqoLwq?editors=1010) as
+a starting point.
+
 ## Goals
 
 The main goal of this programming assignment is to help you feel comfortable
@@ -51,11 +56,6 @@ Some additional requirements.
     * Use a variety of different ways of specifying the colors (e.g. `THREE.ColorKeywords`, hexidecimal notation, CSS string, `rgb`, or even `TW.randomColor()` if you're feeling uninspired). 
     * Use RGB color at least twice, to show you know how to use it. Document the color you are using. 
   6. Your material should be the default one-sided material, so that if we look at the monument from below, the sides will disappear. 
-
-Please read the [standard instructions for all assignments](common.html).
-
-Feel free to use the [template pen](https://codepen.io/asterix77/pen/PoqoLwq?editors=1010) as
-a starting point.
 
 Consider building your solution incrementally, for example:
 
