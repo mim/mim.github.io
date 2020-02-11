@@ -52,7 +52,7 @@ An Application Programming Interface (API) is
 var box_geom = new THREE.BoxGeometry(1,2,3); // width, height, depth
 ```
 
-### TW
+### TW ([link](../libs/tw.js))
 
   * TW is Scott Anderson's home-grown API
     * packages up certain common operations in our Three.js programs
