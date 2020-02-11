@@ -127,7 +127,7 @@ TW.setKeyboardCallback = function (charstring,callback,doc,shared) {
     obj.keyboard_callbacks[charCode] = callback
     obj.keyboard_callbacks_docs[charCode] = doc;
     // helpful for debugging; won't measurably impact performance
-    obj.keyboard_callbacks[charstring] = doc + (shared?" shared":" not-shared");
+    obj.keyboard_callbacks_docs[charstring] = doc + (shared?" shared":" not-shared");
 };
 
 TW.showKeyboardCallbacks = function () {
