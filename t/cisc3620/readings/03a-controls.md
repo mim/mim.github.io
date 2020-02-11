@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Keyboard and GUI Controls
+stylesheets:
+ - /css/rouge.css
 ---
 # Keyboard and GUI Controls
 
@@ -27,7 +29,7 @@ The JavaScript code, shown below, contains just a few key elements:
 Here is the JavaScript code:
 
     
-    
+```javascript    
     // Create an initial empty Scene
     var scene = new THREE.Scene();
     
@@ -76,7 +78,7 @@ Here is the JavaScript code:
     
     TW.setKeyboardCallback('+', expandBox, "wider box");
     TW.setKeyboardCallback('-', shrinkBox, "narrower box");
-    
+```
 
 ## dat.GUI
 
@@ -95,18 +97,10 @@ The JavaScript code, shown below, again contains just a few key elements:
   * creation of a new `dat.GUI` object (called `gui` in the code below) 
   * calls to the `add()` method and `onChange()` _event handler_ (these two calls can be combined in a single code statement) that specify each combination of global object variable, parameter, range of values for the slider, and callback function to execute when the parameter is changed by the user 
 
-We have a local copy of the `dat.GUI` package that you can load in the
-`<head>` section of your HTML file:
-
-    
-    
-    <script src="../libs/dat.gui.min.js"></script>
-    
-
 Finally, here is the JavaScript code for the adjustable box with a GUI:
 
     
-    
+```javascript    
     // Create an initial empty Scene
     var scene = new THREE.Scene();
     
@@ -153,7 +147,7 @@ Finally, here is the JavaScript code for the adjustable box with a GUI:
     gui.add(sceneParams, 'boxWidth', 10, 30).onChange(redrawBox);
     gui.add(sceneParams, 'boxHeight', 20, 50).onChange(redrawBox);
     gui.add(sceneParams, 'boxDepth', 30, 70).onChange(redrawBox);
-    
+```    
 
 When creating a GUI for your own programs, be sure to adjust the scene
 bounding box to accommodate the range of values that you allow for your
