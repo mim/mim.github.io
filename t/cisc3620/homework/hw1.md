@@ -77,9 +77,30 @@ Submit the URL to your pen via the dropbox on blackboard. Do not change your cod
 
 ## How you will be graded
 
-I'll use approximately the following [grading rubric](programming-grade-sheet-
-hwk1.pdf) for the programming part of this assignment. The Math part will be
-worth 20 points.
+Grading will be broken down into two parts, basic functionality and style and documentation
+
+{:class="table table-striped table-responsive" style="width: 60%; margin:auto"}
+| | Rating | Actual Points |
+| --- | --- | --: | 
+| Basic functionality (80%) | | |
+| | a good start | 50 | 
+| | significant progress | 60 |
+| | good | 70 |
+| | excellent | 80 |
+| Style and documentation (20%) | | |
+| | missing | 0 |
+| | fair | 10 |
+| | good | 15 |
+| | excellent | 20 |
+| Total (100%) | | |
+
+
+Grading of the basic functionality will be in terms of the following requirements:
+ * proper geometry
+ * origin in center of base
+ * camera settings allow all rotations to be seen
+ * GUI works
+ * GUI has reasonable values
 
 
 
