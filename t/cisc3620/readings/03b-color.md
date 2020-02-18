@@ -12,6 +12,8 @@ javascripts:
   - ../js/custom.js
   - ../js/307.js
   - ../js/activities.js
+stylesheets:
+  - ../css/3620.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -186,7 +188,7 @@ Either click through to the [color cones
 demo](../demos/Color/colorcones.html) or use this small version
 here:
 
-<div id="colorConeSceneDiv"></div>
+<div class="demo" id="colorConeSceneDiv"></div>
 
 <script>
 function colorConeScene () {

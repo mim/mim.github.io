@@ -14,6 +14,7 @@ javascripts:
   - ../js/activities.js
 stylesheets:
   - /css/rouge.css
+  - ../css/3620.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -67,7 +68,7 @@ Here's [ an example of a color cube, built in
 Three.js](../demos/Color/colorcube.html). You can rotate it by
 dragging with the mouse.
 
-<div id="rgb-cube"></div>
+<div class="demo" id="rgb-cube"></div>
 
 <script>
 (function () {
