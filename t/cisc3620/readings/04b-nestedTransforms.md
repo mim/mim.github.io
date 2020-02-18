@@ -12,6 +12,9 @@ javascripts:
   - ../js/custom.js
   - ../js/307.js
   - ../js/activities.js
+stylesheets:
+  - /css/rouge/css
+  - ../css/3620.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -58,7 +61,7 @@ components of).
 ## Demo: A Snowperson
 
 Consider the following simple [three-ball snowperson](../demos/BasicModeling/SnowPerson-composite.shtml):
-<div id="canvasDiv0"></div>
+<div class="demo" id="canvasDiv0"></div>
 
 <div id="snowpersoncontrols"></div>
 
@@ -274,9 +277,9 @@ Rotating around something other than the center of an object is very useful.
 Here's how we might model [a jointed leg](../demos/BasicModeling/Leg1.shtml):
 
     
-<div id="canvasDiv1"></div>
+<div class="demo" id="canvasDiv1"></div>
 
-<div id="legdemo">
+<div class="demo" id="legdemo">
   <script>
 function makeLeg(scene,parameters) {
     /* Makes a leg going down from the origin, with joints rotating around
@@ -414,7 +417,7 @@ barn many times!
 
 Here's a demo that creates a fence:
     
-<div id="canvasDiv2"></div>
+<div class="demo" id="canvasDiv2"></div>
 
 <script>
 function makeFence(scene, numPickets) {
@@ -461,7 +464,7 @@ code that calls the `makeFence()` function).
 
 Here's a slightly more complex example, a curved fence:
 
-<div id="canvasDiv3"></div>
+<div class="demo" id="canvasDiv3"></div>
 
 <script>
 function makeFenceCurved(scene, numPickets) {
