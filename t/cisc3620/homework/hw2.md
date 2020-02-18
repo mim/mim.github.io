@@ -13,6 +13,8 @@ javascripts:
   - ../js/307.js
   - ../js/activities.js
   - hw2.jso
+stylesheets:
+  - ../css/3620.css
 ---
 # Homework 2: Clown
 

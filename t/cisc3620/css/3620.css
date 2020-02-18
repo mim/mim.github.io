@@ -1,4 +1,4 @@
-.demo canvas {
+.demo canvas, #canvasParent canvas {
    display: block;
    margin: 10px auto;
    width: 80%;

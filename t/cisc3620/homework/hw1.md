@@ -12,6 +12,9 @@ javascripts:
   - ../js/custom.js
   - ../js/307.js
   - ../js/activities.js
+  - hw1.jso
+stylesheets:
+  - ../css/3620.css
 ---
 # Homework 1: Obelisk
 
@@ -65,6 +68,9 @@ Consider building your solution incrementally, for example:
 Here is a model [obelisk solution](hw1-solution.html). (Note that camera settings in this solution do not accommodate the full
 range of the main height that the user can set in the GUI, but in your
 solution, it should.)
+
+<div id="guiContainer"></div>
+<div id="canvasParent"></div>
 
 I give you this to clarify what I'm looking for. I expect that you will not
 try to reverse-engineer the solution. I have made it difficult (so you won't
