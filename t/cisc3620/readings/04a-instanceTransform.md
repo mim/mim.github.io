@@ -12,6 +12,9 @@ javascripts:
   - ../js/custom.js
   - ../js/307.js
   - ../js/activities.js
+stylesheets:
+  - /css/rouge.css
+  - ../css/3620.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -69,7 +72,7 @@ Here is an example of a [scene using a plane, a box, and a
 sphere](../demos/BasicModeling/PlaneBoxSphere.html). (Enter "b"
 to see the yellow wireframe bounding box.)
 
-<div id="scenePlaneBoxSphereDiv"></div>
+<div class="demo" id="scenePlaneBoxSphereDiv"></div>
 
 <script>
 function scenePlaneBoxSphere() {
@@ -128,7 +131,7 @@ You can play with the two arguments to the sphere constructor using the
 [polygonal sphere](../demos/BasicModeling/polygonalSphere.html)
 demo.
 
-<div id="polygonalSphere"></div>
+<div class="demo" id="polygonalSphere"></div>
 
 <script>
 (function () {
@@ -233,7 +236,7 @@ each other.
 
 Let's look again at our example of how to use a Three.js box:
 
-<div id="sceneOneBoxDiv"></div>
+<div class="demo" id="sceneOneBoxDiv"></div>
 
 <script>
 function sceneOneBox () {
@@ -296,7 +299,7 @@ _transformed_. We'll look more at the mathematics of this in a future reading.
 Here is a demo that positions two barns, one translated relative to the other,
 as shown in the birds' eye view (along the Y axis) above:
 
-<div id="sceneTwoBarnsDiv"></div>
+<div class="demo" id="sceneTwoBarnsDiv"></div>
 
 <script>
 function sceneTwoBarns () {
@@ -358,7 +361,7 @@ from above, might look like:
 
 > ![two blocks, the green translated and rotated](images/blocks3_new.png)
 
-<div id="sceneTwoBarnsRotatedDiv"></div>
+<div class="demo" id="sceneTwoBarnsRotatedDiv"></div>
 
 <script>
 function sceneTwoBarnsRotated () {
@@ -402,7 +405,7 @@ Here, we translate, rotate, and then double the size of the green barn:
 
 > ![two blocks, the green translated, rotated and scaled](images/blocks4_new.png)
 
-<div id="sceneTwoBarnsRotatedScaledDiv"></div>
+<div class="demo" id="sceneTwoBarnsRotatedScaledDiv"></div>
 
 <script>
 function sceneTwoBarnsRotatedScaled () {
@@ -442,7 +445,7 @@ angles to get a better sense of their relative positioning, rotation and
 scaling. (Enter "a" to see the scene axes.)
 
 
-<div id="sceneManyBlocksDiv"></div>
+<div class="demo" id="sceneManyBlocksDiv"></div>
 
 <script>
 function sceneManyBlocks() {
