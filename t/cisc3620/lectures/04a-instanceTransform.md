@@ -20,7 +20,7 @@ stylesheets:
 # {{ page.title }}
 #### {{ site.author }}
 
-Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/04-instance-transform.html) which is copyright &copy; Scott D. Anderson and licensed under a [Creative Commons BY-NC-SA License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
+Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/04-instance-transform.html) and [this CS 307 lecture](https://cs.wellesley.edu/~cs307/lectures/04.html) which are copyright &copy; Scott D. Anderson and licensed under a [Creative Commons BY-NC-SA License](http://creativecommons.org/licenses/by-nc-sa/1.0/). 
 
 
 ## Plan
@@ -475,6 +475,63 @@ affine transformations to place it in the scene.
     * scaling, rotation, translation
   * These transformations change the object's coordinates relative to the global coordinates
   * There are relative versions of instance transformations as well
+
+
+## Exercise: Building a Town
+
+Build a "town" consisting of just three houses. Here's the layout of the town:
+
+> ![town with three houses around central area](img/town1.png)
+
+### Exercise: Building a Town
+
+Here's an initial [town0](https://codepen.io/asterix77/pen/WNvGyYE?editors=1010) to get you started
+
+  1. Figure out your scene's bounding box 
+  2. Place the first house. Remember the following functions used in the [barn example](../demos/Early/barn-ex.html): 
+    * `TW.createBarn(w,h,d)`
+    * `TW.createMesh(geom)`
+  3. Place two more houses 
+
+Your finished town might look like [town1](https://codepen.io/asterix77/pen/rNVMKoq?editors=1010)
+
+## Exercise: Town with tree
+
+Add a tree to the scene. A tree can just be a green cone coming up from the ground.
+
+> ![town with tree](img/town-w-tree.png)
+
+  * You can use the [`THREE.ConeGeometry`](https://threejs.org/docs/#api/geometries/ConeGeometry)
+to create a cone.
+    * The trick is to get the dimensions and positioning right.
+  * Also recall that [`THREE.Mesh`](https://threejs.org/docs/#api/objects/Mesh) and [`THREE.MeshBasicMaterial`](https://threejs.org/docs/#api/materials/MeshBasicMaterial) can be used to set up the color of the tree.
+
+Your finished town might look like [town2](https://codepen.io/asterix77/pen/eYNdKxL?editors=1010)
+
+## Exercise: Town with tree and snowman
+
+Add a snowman to the scene. A snowman is just a stack of three spheres.
+
+> ![town with tree and snowman](img/town-w-tree-n-snowman.png)
+
+  * The trick with this is to get the distances right.
+    * What radii do you want to use for the snowman? 
+    * What, then, are the locations of the spheres? 
+
+Your finished town might look like [town3](https://codepen.io/asterix77/pen/QWbKxoO?editors=1010)
+
+
+## Exercise: Building Our Own Luxo Lamp
+
+  * Starting with [luxo-start](https://codepen.io/asterix77/pen/GRJjGLq?editors=1010), add code to create a basic Luxo lamp using the built-in Three.js geometries and the instance transform.
+  * The starting code creates an array of `THREE.MeshBasicMaterial` objects to use for the colors of the lamp.
+  * Your result might look something like this [luxo](https://codepen.io/asterix77/pen/yLNaEWE?editors=1010). Rotate the camera to see the light bulb inside the lamp.
+
+### Luxo Lamp tips
+
+  * Check the Three.js documentation for the [THREE.ConeGeometry](http://threejs.org/docs/#api/geometries/ConeGeometry) class to see how you can render the cone for the lamp so that its base is "open" 
+  * Choose a convenient "origin" for the object in the scene coordinate frame. It's ok to estimate the size and position of subparts of the lamp, and use numbers in your code (it may take some trial-and-error to get things right!) 
+
 
 
 <script>
