@@ -52,28 +52,10 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/04-insta
 
 ### Demo: Plane, Box, and Sphere
 
-  * Here is an example of a [scene using a plane, a box, and a sphere](https://codepen.io/asterix77/pen/rNVMqpv?editors=1010).
-
-```javascript
-var scene = new THREE.Scene();
-
-var box = TW.createMesh( new THREE.BoxGeometry(4,6,1) );
-scene.add(box);
-
-var plane = TW.createMesh( new THREE.PlaneGeometry(6,4) );
-scene.add(plane);
-
-var sphere = TW.createMesh( new THREE.SphereGeometry(1) );
-scene.add(sphere);
-
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'scenePlaneBoxSphereDiv'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: -3, maxx: 3,
-                miny: -3, maxy: 3,
-                minz: -3, maxz: 3});
-```
+<iframe height="598" style="width: 100%;" scrolling="no" title="Plane, box, sphere" src="https://codepen.io/asterix77/embed/rNVMqpv?height=598&theme-id=default&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/rNVMqpv'>Plane, box, sphere</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### Demo: Plane, Box, and Sphere
 
@@ -91,42 +73,10 @@ TW.cameraSetup(renderer,
 
 ### Demo: Polygonal Approximation
 
-Play with the two arguments to the sphere constructor in the [polygonal sphere](https://codepen.io/asterix77/pen/rNVMqJK?editors=1010) demo.
-
-```javascript
-var scene = new THREE.Scene();
-var sphere;
-var parameters = {
-    widthSegments: 8,
-    heightSegments: 3
-};
-function addSphere() {
-    w = parameters.widthSegments;
-    h = parameters.heightSegments;
-    sphere = TW.createMesh( new THREE.SphereGeometry(2,w,h) );
-    scene.add(sphere);
-}
-addSphere();
-//
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'polygonalSphere'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: -2, maxx: 2,
-                miny: -2, maxy: 2,
-                minz: -2, maxz: 2});
-//
-var render = TW.lastClickTarget.TW_state.render; // save the render function.
-function redraw() {
-    scene.remove(sphere);
-    addSphere();
-    render();
-}
-//
-var gui = new dat.GUI({autoPlace: false});
-gui.add(parameters,'widthSegments',0,30).step(1).onChange(redraw);
-gui.add(parameters,'heightSegments',0,30).step(1).onChange(redraw);
-```
+<iframe height="598" style="width: 100%;" scrolling="no" title="Polygonal sphere" src="https://codepen.io/asterix77/embed/rNVMqJK?height=598&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/rNVMqJK'>Polygonal sphere</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### Demo: Polygonal Approximation
 
@@ -176,26 +126,14 @@ TW.cameraSetup(renderer, scene, scene_bounding_box);
 
 ### Bounding Boxes: Objects
 
-Let's look again at our example of the [Three.js box](https://codepen.io/asterix77/pen/jOPNaVZ):
-
-```javascript
-    var scene = new THREE.Scene();
-    var box = TW.createMesh( new THREE.BoxGeometry(6,4,2) );
-    scene.add(box);
-    var renderer = new THREE.WebGLRenderer();
-    TW.mainInit(renderer,scene,{parentID: 'sceneOneBoxDiv'});
-    TW.cameraSetup(renderer,
-                   scene,
-                   {minx: -3, maxx: 3,
-                    miny: -2, maxy: 2,
-                    minz: -1, maxz: 1});
-    TW.toggleAxes("show");
-    TW.viewFromAboveFrontSide();
-```
-
-  * Where is the box?
-  * What is its bounding box?
+  * Let's look again at our example of the [Three.js box](https://codepen.io/asterix77/pen/jOPNaVZ)
+  * Where is the box? What is its bounding box?
     * Use the "a" and "b" keys to figure it out
+
+<iframe height="501" style="width: 100%;" scrolling="no" title="Box Demo" src="https://codepen.io/asterix77/embed/jOPNaVZ?height=501&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/jOPNaVZ'>Box Demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 
 ## Placing Instances: Barn instance transforms
