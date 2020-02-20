@@ -353,7 +353,7 @@ has two choices:
   * _flat_ shading: only one color is used, the color of one of the vertices. All the pixels get the same color. 
   * _smooth_ shading: interpolate the color between vertices. Note that only triangles are reliable for smooth shading, because of the hardware support (quads (four-sided facets) can be broken into triangles in different ways, leading to ambiguity in smooth shading), which is another reason why Three.js uses triangles for all its geometry. 
 
-## Parametric Equation for a Line
+## Parametric Equation for a Line <a name="parametric_lines"></a>
 
 To learn how WebGL/OpenGL does this linear interpolation, we first have to
 understand how OpenGL represents lines. It uses **parametric equations**.

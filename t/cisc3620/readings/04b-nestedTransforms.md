@@ -552,10 +552,10 @@ rendering the last picket of a fence, is it remembering each transformation
 call, or is it somehow able to remember just the aggregate? It's the latter,
 but we need to do some work first to see why.
 
-Because there's a fair amount of math, the next part of the reading is written
-in LaTeX, so please read the following PDF file:
+## Read this [Affine math pdf](https://cs.wellesley.edu/~cs307/readings/04-affine-math.pdf)
 
-> [affine math](04-affine-math.pdf)
+Because there's a fair amount of math, this part of the reading is written
+in LaTeX. Read this [affine math pdf](https://cs.wellesley.edu/~cs307/readings/04-affine-math.pdf). Although it might make more sense after we've covered [parametric lines and linear combinations](03a-color.html#parametric_lines) in a few class meetings.
 
 Even though we won't typically be working directly with matrices in our
 programs, there are still good reasons to learn this math:
