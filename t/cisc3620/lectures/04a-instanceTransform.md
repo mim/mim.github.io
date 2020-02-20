@@ -52,7 +52,7 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/04-insta
 
 ### Demo: Plane, Box, and Sphere
 
-  * Here is an example of a [scene using a plane, a box, and a sphere](../demos/BasicModeling/PlaneBoxSphere.html).
+  * Here is an example of a [scene using a plane, a box, and a sphere](https://codepen.io/asterix77/pen/rNVMqpv?editors=1010).
 
 ```javascript
 var scene = new THREE.Scene();
@@ -91,18 +91,15 @@ TW.cameraSetup(renderer,
 
 ### Demo: Polygonal Approximation
 
-You can play with the two arguments to the sphere constructor using the [polygonal sphere](../demos/BasicModeling/polygonalSphere.html) demo.
+Play with the two arguments to the sphere constructor in the [polygonal sphere](https://codepen.io/asterix77/pen/rNVMqJK?editors=1010) demo.
 
 ```javascript
 var scene = new THREE.Scene();
-
 var sphere;
-
 var parameters = {
     widthSegments: 8,
     heightSegments: 3
 };
-
 function addSphere() {
     w = parameters.widthSegments;
     h = parameters.heightSegments;
@@ -110,24 +107,22 @@ function addSphere() {
     scene.add(sphere);
 }
 addSphere();
-
+//
 var renderer = new THREE.WebGLRenderer();
-
 TW.mainInit(renderer,scene,{parentID: 'polygonalSphere'});
 TW.cameraSetup(renderer,
                scene,
                {minx: -2, maxx: 2,
                 miny: -2, maxy: 2,
                 minz: -2, maxz: 2});
-
+//
 var render = TW.lastClickTarget.TW_state.render; // save the render function.
-
 function redraw() {
     scene.remove(sphere);
     addSphere();
     render();
 }
-
+//
 var gui = new dat.GUI({autoPlace: false});
 gui.add(parameters,'widthSegments',0,30).step(1).onChange(redraw);
 gui.add(parameters,'heightSegments',0,30).step(1).onChange(redraw);
@@ -181,7 +176,7 @@ TW.cameraSetup(renderer, scene, scene_bounding_box);
 
 ### Bounding Boxes: Objects
 
-Let's look again at our example of how to use a Three.js box:
+Let's look again at our example of the [Three.js box](https://codepen.io/asterix77/pen/jOPNaVZ):
 
 ```javascript
     var scene = new THREE.Scene();
@@ -198,12 +193,17 @@ Let's look again at our example of how to use a Three.js box:
     TW.viewFromAboveFrontSide();
 ```
 
-Where is the cube? What is its bounding box? Use the "a" and "b" keys to figure it out
+  * Where is the box?
+  * What is its bounding box?
+    * Use the "a" and "b" keys to figure it out
 
 
 ## Placing Instances: Barn instance transforms
 
-[barn instance transform](../demos/BasicModeling/barn-instance-transform-dat.html)
+<iframe height="601" style="width: 100%;" scrolling="no" title="Barn instance transforms" src="https://codepen.io/asterix77/embed/qBdaJKw?height=601&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/qBdaJKw'>Barn instance transforms</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 
 ### Barn instance transforms
@@ -238,29 +238,17 @@ The barn instance has three kinds of state:
   * None of the vertices needs to be changed, they are just _transformed_.
   * We'll look more at the mathematics of this in a future lecture
 
-![two blocks, the green translated relative to the red](../readings/images/blocks2_new.png)
+{% include figure.html url="../readings/images/blocks2_new.png" description="two blocks, the green translated relative to the red" classes="stretch"%}
 
 ### Demo: Positioning/Translation
 
   * In this demo we have two barns and position one of them
   * We view the scene from above (along the y-axis)
 
-```javascript
-var scene = new THREE.Scene();
-var redbarn = TW.createBarnSolidColor(1,1,1,"red");
-var greenbarn = TW.createBarnSolidColor(1,1,1,"green");
-greenbarn.position.set(2,0,-1);
-scene.add(redbarn);
-scene.add(greenbarn);
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'sceneTwoBarnsDiv'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: 0, maxx: 2,
-                miny: 0, maxy: 1,
-                minz: -1, maxz: 1});
-TW.toggleAxes("show");
-```
+<iframe height="498" style="width: 100%;" scrolling="no" title="Translation demo" src="https://codepen.io/asterix77/embed/OJVRaVm?height=498&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/OJVRaVm'>Translation demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### Demo: Positioning/Translation
 
@@ -276,30 +264,17 @@ TW.toggleAxes("show");
 rotated by 30 degrees around the Y axis of the barn
   * The result, in wireframe from above, looks like
 
-![two blocks, the green translated and rotated](../readings/images/blocks3_new.png)
+{% include figure.html url="../readings/images/blocks3_new.png" description="two blocks, the green translated and rotated" classes="stretch"%}
 
 
 ### Demo: Rotation
 
 Here is a demo
 
-```javascript
-var scene = new THREE.Scene();
-var redbarn = TW.createBarnSolidColor(1,1,1,"red");
-var greenbarn = TW.createBarnSolidColor(1,1,1,"green");
-greenbarn.position.set(2,0,-1);
-greenbarn.rotation.set(0,Math.PI/6,0);   // pi/6 = 30 degrees rotation
-scene.add(redbarn);
-scene.add(greenbarn);
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'sceneTwoBarnsRotatedDiv'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: 0, maxx: 2,
-                miny: 0, maxy: 1,
-                minz: -1, maxz: 1});
-TW.toggleAxes("show");
-```
+<iframe height="504" style="width: 100%;" scrolling="no" title="Rotation demo" src="https://codepen.io/asterix77/embed/OJVRayg?height=504&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/OJVRayg'>Rotation demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### Rotation details
 
@@ -321,89 +296,24 @@ TW.toggleAxes("show");
     * but by multiplying by a negative value, you can flip an object around
   * Here, we translate, rotate, and then double the size of the green barn:
 
-![two blocks, the green translated, rotated and scaled](../readings/images/blocks4_new.png)
+{% include figure.html url="../readings/images/blocks4_new.png" description="two blocks, the green translated, rotated, and scaled" classes="stretch"%}
 
 
 ### Demo: Scaling
 
-```javascript
-var scene = new THREE.Scene();
-var redbarn = TW.createBarnSolidColor(1,1,1,"red");
-var greenbarn = TW.createBarnSolidColor(1,1,1,"green");
-greenbarn.position.set(2,0,-1);
-greenbarn.rotation.set(0,Math.PI/6,0);   // pi/6 = 30 degrees rotation
-greenbarn.scale.set(2,2,2);
-scene.add(redbarn);
-scene.add(greenbarn);
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'sceneTwoBarnsRotatedScaledDiv'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: 0, maxx: 2,
-                miny: 0, maxy: 1,
-                minz: -1, maxz: 1});
-TW.toggleAxes("show");
-```
+<iframe height="501" style="width: 100%;" scrolling="no" title="Scaling demo" src="https://codepen.io/asterix77/embed/XWbjymG?height=501&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/XWbjymG'>Scaling demo</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
     
 
-## Demo: Blocks
+## Demo: Blocks (many consistent instance transforms)
 
-```javascript
-var scene = new THREE.Scene();
+<iframe height="601" style="width: 100%;" scrolling="no" title="Blocks" src="https://codepen.io/asterix77/embed/MWwjzKP?height=601&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/MWwjzKP'>Blocks</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
-var box1 = TW.wireCube("white");
-scene.add(box1);
-
-var box2 = TW.wireCube("red");
-box2.position.set(2,3,4);
-scene.add(box2);
-
-var box3 = TW.wireCube("purple");
-box3.position.set(4,0,5);
-box3.scale.set(2,2,2);
-scene.add(box3);
-
-// compensating in the translation
-var box4 = TW.wireCube("blue");
-box4.position.set(8,1,1);
-box4.scale.set(2,2,2);
-scene.add(box4);
-
-// stacking some rotated blocks
-var box5 = TW.wireCube("yellow");
-box5.position.set(1,1,8);
-box5.scale.set(2,2,2);
-scene.add(box5);
-
-var box6 = TW.wireCube("orange");
-box6.position.set(1,3,8); // 2 units higher than box5
-box6.rotation.set(0, TW.degrees2radians(30), 0);  // degrees around Y
-box6.scale.set(2,2,2);
-scene.add(box6);
-
-var box7 = TW.wireCube("brown");
-box7.position.set(1,5,8); // 2 more units higher
-box7.rotation.set(0, TW.degrees2radians(60), 0);
-box7.scale.set(2,2,2);
-scene.add(box7);
-
-// non-uniform scaling
-var box8 = TW.wireCube("cyan");
-box8.position.set(8,0,8);
-box8.rotation.set(0, TW.degrees2radians(45), 0);
-box8.scale.set(1,5,1);
-scene.add(box8);
-
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene,{parentID: 'sceneManyBlocksDiv'});
-TW.cameraSetup(renderer,
-               scene,
-               {minx: 0, maxx: 10,
-                miny: 0, maxy: 5,
-                minz: 0, maxz: 10});
-TW.toggleGroundPlane("show");
-```    
-    
 
 ## Absolute versus Relative
 
@@ -454,7 +364,8 @@ TW.toggleGroundPlane("show");
   * When you translate, rotate, or scale an object
     * You change the coordinate system for all subsequent operations within that object
     * E.g., the vertex (2,3,4) means something different as a result.
-  * We haven't looked at _nested_ objects yet, but will soon. Keep this in mind.
+  * We haven't looked at _nested_ objects yet, but will soon.
+    * Keep this in mind.
 
 ### Coordinate Systems
 
@@ -481,7 +392,7 @@ affine transformations to place it in the scene.
 
 Build a "town" consisting of just three houses. Here's the layout of the town:
 
-> ![town with three houses around central area](img/town1.png)
+{% include figure.html url="img/town1.png" description="town with three houses around central area" classes="stretch"%}
 
 ### Exercise: Building a Town
 
@@ -497,10 +408,9 @@ Your finished town might look like [town1](https://codepen.io/asterix77/pen/rNVM
 
 ## Exercise: Town with tree
 
-Add a tree to the scene. A tree can just be a green cone coming up from the ground.
+Add a tree to the scene.
 
-> ![town with tree](img/town-w-tree.png)
-
+  * A tree can just be a green cone coming up from the ground.
   * You can use the [`THREE.ConeGeometry`](https://threejs.org/docs/#api/geometries/ConeGeometry)
 to create a cone.
     * The trick is to get the dimensions and positioning right.
@@ -508,24 +418,29 @@ to create a cone.
 
 Your finished town might look like [town2](https://codepen.io/asterix77/pen/eYNdKxL?editors=1010)
 
+
+{% include figure.html url="img/town-w-tree.png" description="town with tree" classes="stretch"%}
+
+
 ## Exercise: Town with tree and snowman
 
-Add a snowman to the scene. A snowman is just a stack of three spheres.
+Add a snowman to the scene. 
 
-> ![town with tree and snowman](img/town-w-tree-n-snowman.png)
-
+  * A snowman is just a stack of three spheres.
   * The trick with this is to get the distances right.
     * What radii do you want to use for the snowman? 
-    * What, then, are the locations of the spheres? 
+    * What, then, are the locations of the spheres?
+  * Your finished town might look like [town3](https://codepen.io/asterix77/pen/QWbKxoO?editors=1010)
 
-Your finished town might look like [town3](https://codepen.io/asterix77/pen/QWbKxoO?editors=1010)
+{% include figure.html url="img/town-w-tree-n-snowman.png" description="town with tree and snowman" classes="stretch"%}
 
 
 ## Exercise: Building Our Own Luxo Lamp
 
   * Starting with [luxo-start](https://codepen.io/asterix77/pen/GRJjGLq?editors=1010), add code to create a basic Luxo lamp using the built-in Three.js geometries and the instance transform.
   * The starting code creates an array of `THREE.MeshBasicMaterial` objects to use for the colors of the lamp.
-  * Your result might look something like this [luxo](https://codepen.io/asterix77/pen/yLNaEWE?editors=1010). Rotate the camera to see the light bulb inside the lamp.
+  * Your result might look something like this [luxo](https://codepen.io/asterix77/pen/yLNaEWE?editors=1010).
+    * Rotate the camera to see the light bulb inside the lamp.
 
 ### Luxo Lamp tips
 
