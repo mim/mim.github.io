@@ -169,6 +169,12 @@ The barn instance has three kinds of state:
     * What would be different for rotation and positioning?
   * What order do we want them to happen in?
 
+### Order of rotations example
+
+[Jeffery, et al (2015)](https://www.researchgate.net/publication/280044416_Neural_encoding_of_large-scale_three-dimensional_space-properties_and_constraints)
+
+{% include figure.html url="https://www.researchgate.net/profile/Jonathan_Wilson14/publication/280044416/figure/fig2/AS:267399035355138@1440764306843/Non-commutativity-of-rotations-in-three-dimensions-showing-that-the-same-set-of_W640.jpg" description="Different final orientations of an object after the same three rotations are applied in different orders. Note that these rotations are relative to the object's local frame of reference. The same effect holds for rotations about fixed global axes." classes="stretch"%}
+
 ## Demo: Positioning/Translation
 
   * Positioning an instance as drawing it in a coordinate system where the _origin_ has moved
