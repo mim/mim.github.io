@@ -248,8 +248,8 @@ function makeConeScene(scene,parameters) {
 
 ### Demo: picket fence
 
-<iframe height="602" style="width: 100%;" scrolling="no" title="Picket fence" src="https://codepen.io/asterix77/embed/dyovbrw?height=602&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/asterix77/pen/dyovbrw'>Picket fence</a> by Michael Mandel
+<iframe height="603" style="width: 100%;" scrolling="no" title="Sibling picket fence" src="https://codepen.io/asterix77/embed/yLNMVQV?height=603&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/yLNMVQV'>Sibling picket fence</a> by Michael Mandel
   (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
@@ -260,19 +260,40 @@ function makeConeScene(scene,parameters) {
    * the last picket has been translated `numPickets` times
    * set to 30 in the code that calls the `makeFence()` function
 
-
-### Demo: Curved picket fence
-
-<iframe height="590" style="width: 100%;" scrolling="no" title="Curved picket fence" src="https://codepen.io/asterix77/embed/qBdrEpa?height=590&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/asterix77/pen/qBdrEpa'>Curved picket fence</a> by Michael Mandel
-  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
-
 ### Cloning
 
  * In the picket fence example, we used a new method `clone()`
  * The clone method is defined for all descendants of [`THREE.Object3D`](http://threejs.org/docs/#api/core/Object3D)
  * It is a convenient way to make another instance of something you've built.
+
+### Demo: chain picket fence
+
+<iframe height="598" style="width: 100%;" scrolling="no" title="Relative picket fence" src="https://codepen.io/asterix77/embed/LYVWGOR?height=598&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/LYVWGOR'>Relative picket fence</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+### Chain picket fence
+
+  * In this case, each picket is a child of its neighbor
+    * As opposed to all being "siblings" of a single `Object3D`
+  * "Absolute" positions are actually relative to this parent
+    * i.e., the neighbor
+  * Easier to work with and think about
+
+```javascript
+var picket = TW.createBarnSolidColor(0.1, 1, 0.01, "brown");
+var fence = picket;
+for (var i = 0; i < params.numPickets; i++) {
+  var newPicket = picket.clone();
+  newPicket.position.x = params.xOffset;
+  newPicket.rotation.y = params.yRotation;
+  picket.add(newPicket);
+  picket = newPicket;
+}
+scene.add(fence);
+```
+
 
 ## Scene Graphs
 
