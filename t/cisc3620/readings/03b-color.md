@@ -186,67 +186,10 @@ program. The first hexcone has a lightness value that goes from 0 (completely
 black) at the apex to 0.5. The second hexcode has a lightness value that goes
 from 0.5 to 1 (completely white) at the apex.
 
-Either click through to the [color cones
-demo](../demos/Color/colorcones.html) or use this small version
-here:
-
-<div class="demo" id="colorConeSceneDiv"></div>
-
-<script>
-function colorConeScene () {
-var scene = new THREE.Scene();
-
-// ====================================================================
-// globals for callbacks.
-
-var numWedges = 6;
-var bothCones = true;
-
-var cone0, cone1;
-
-function createCones(scene) {
-    cone0 = TW.createHSLPyramid(numWedges, 0);
-    scene.add(cone0);
-    cone1 = TW.createHSLPyramid(numWedges, 1);
-    scene.add(cone1);
-    cone1.visible = bothCones;
-}
-
-createCones(scene);
-
-// ================================================================
-var renderer = new THREE.WebGLRenderer();
-TW.mainInit(renderer,scene);
-
-TW.cameraSetup(renderer,
-               scene,
-               {minx: -1, maxx: 1,
-                miny: -1, maxy: 1,
-                minz: 0, maxz: 1});
-TW.viewFromFront();
-
-function removeCones(scene) {
-    scene.remove(cone0);
-    scene.remove(cone1);
-}
-
-TW.setKeyboardCallback('1',function () { cone1.visible = bothCones =false; TW.render()},'one cone');
-TW.setKeyboardCallback('2',function () { cone1.visible = bothCones = true; TW.render()},'two cones');
-TW.setKeyboardCallback('+',function () { removeCones(scene);
-                                         ++numWedges;
-                                         createCones(scene);
-                                         TW.render(); },
-                       'more wedges');
-TW.setKeyboardCallback('-',function () { removeCones(scene);
-                                         --numWedges;
-                                         createCones(scene);
-                                         TW.render(); },
-                       'fewer wedges');
-}
-
-colorConeScene();
-$(function () { moveCanvasTo('colorConeSceneDiv'); });
-</script>
+<iframe height="600" style="width: 100%;" scrolling="no" title="Color cones" src="https://codepen.io/asterix77/embed/YzXVpXr?height=600&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/YzXVpXr'>Color cones</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 
 Be sure to look at it from the side (+X direction) by using the "x" key or
@@ -401,7 +344,10 @@ The key elements are:
 
 Here's a demo that creates an RGB triangle:
 
-> [triangleInterpolation.shtml](../demos/Color/triangleInterpolation.shtml)
+<iframe height="600" style="width: 100%;" scrolling="no" title="Triangle interpolation" src="https://codepen.io/asterix77/embed/jOPmVbR?height=600&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/jOPmVbR'>Triangle interpolation</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 Please take the time to read that code. It's not too long.
 
@@ -412,13 +358,19 @@ function essentially says that vertex i has color i for all i.
 
 Here's an example with two triangles:
 
-> [triangleInterpolation2.shtml](../demos/Color/triangleInterpolation2.shtml)
+<iframe height="600" style="width: 100%;" scrolling="no" title="Triangle interpolation on a square" src="https://codepen.io/asterix77/embed/RwPVoaQ?height=600&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/RwPVoaQ'>Triangle interpolation on a square</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 But what about a slightly different example, where we have two adjoining
 triangles, both of which have color interpolation, but where the same vertex
 has a different color. Here's the demo:
 
-> [triangleInterpolation2b.shtml](../demos/Color/triangleInterpolation2b.shtml)
+<iframe height="600" style="width: 100%;" scrolling="no" title="Inconsistent triangle interpolation on a square" src="https://codepen.io/asterix77/embed/jOPmVro?height=600&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/asterix77/pen/jOPmVro'>Inconsistent triangle interpolation on a square</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 Notice that at the lower right we have:
 
