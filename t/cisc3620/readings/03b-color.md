@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Color, Part b
+title: Color and parametric equations of a triangle
 javascripts:
   - //code.jquery.com/jquery-3.0.0.min.js
   - ../libs/dat.gui.min.js
@@ -14,6 +14,7 @@ javascripts:
   - ../js/activities.js
 stylesheets:
   - ../css/3620.css
+  - /css/rouge.css
 ---
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -21,7 +22,7 @@ stylesheets:
     });
   </script>
 
-# Color, Part b
+# Color and parametric equations of a triangle
 
 This reading picks up where the previous reading left off, presenting some
 different color models and talking about the mathematics of interpolation
@@ -158,15 +159,16 @@ of the double hexcone, see below), and then we'll turn down the saturation.
 Here's some code:
 
     
-    
-    var red = new THREE.Color("red");
-    alert("red is " + red.getHexString());
-    var redHSL = red.getHSL();
-    alert("red is hue of " + redHSL.h + ", lightness of " + redHSL.l + ", and saturation of " + redHSL.s);
-    var less_red = new THREE.Color();
-    less_red.setHSL(redHSL.h, redHSL.l, 0.5*redHSL.s );
-    alert("less_red is " + less_red.getHexString());
-    
+```javascript
+var red = new THREE.Color("red");
+alert("red is " + red.getHexString());
+var redHSL = red.getHSL();
+alert("red is hue of " + redHSL.h + ", lightness of " + redHSL.l + ", and saturation of " + redHSL.s);
+var less_red = new THREE.Color();
+less_red.setHSL(redHSL.h, redHSL.l, 0.5*redHSL.s );
+alert("less_red is " + less_red.getHexString());
+```
+
 <p style="width: 100%; height: 3em; background-color: #bf3f3f">
 The background color of this paragraph is the half-saturated red, or #bf3f3f,
 that we just computed using Three.js's Color object.
