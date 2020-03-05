@@ -13,28 +13,25 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/03a-colo
 
 ## Plan: Parametric lines and triangles
 
+  * Parametric equation for a line
+  * Parametric line metaphors
+  * Exercises with parametric lines
+  * Parametric equation for a triangle
+  * Equation of a triangle from three points
+  * Color interpolation
+  * Exercises with color interpolation in Three.js
+
 
 
 ## Smooth and Flat Shading
 
 ![](http://www.ece.northwestern.edu/local-apps/matlabhelp/techdoc/visualize/chlighta.gif)
 
-  * There is special software for the graphics card for computing the color of a "fragment" (such as a triangle).
-    * This software is called the _shader_
-  * Modern OpenGL allows you to write code for the shader
-    * Fortunately, the Three.js software writes these shaders for us.
+  * There is special software for the graphics card for computing the color of a "fragment" (such as a triangle) called the _shader_
   * When shading a fragment where the vertices are different colors, the shader has two choices:
     * _flat_ shading: only one color is used, the color of one of the vertices. All the pixels get the same color. 
     * _smooth_ shading: interpolate the color between vertices.
 
-
-### Smooth and Flat Shading
-
-  * Note that only triangles are reliable for smooth shading
-  * quads (four-sided facets) can be broken into triangles in different ways
-    * leading to ambiguity in smooth shading
-    * which is another reason why Three.js uses triangles for all its geometry
-    
 
 ## Parametric Equation for a Line
 
@@ -42,20 +39,31 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/03a-colo
 understand how OpenGL represents lines.
   * It uses **parametric equations**.
   * Suppose we want to define a line from point A to point B.
-    * Points A and B could be in 2D or 3D; everything works the same.
+    * Points A and B could be in 2D or 3D, same math
   * The _vector_ from A to B we will call **v**.
-  * All the following are equivalent ways to generate a point on the line given t
+  * These are all equivalent ways to generate a point on the line from t:
 
- P(t) | = A + vt
 ---|---
+ P(t) | = A + vt
  P(t) | = A + (B-A)t  
  P(t) | = A(1-t) + B*t  
+
+
+### Parametric line plot
+
+  * These are all equivalent ways to generate a point on the line from t:
+
+---|---
+ P(t) | = A + vt
+ P(t) | = A + (B-A)t  
+ P(t) | = A(1-t) + B*t  
+
+{% include figure.html url="../readings/images/line.png" description="Figure 1: a line in a 2D coordinate system" classes="stretch" %}
 
 ### The parameter t
 
 >  P(t) = A + (B-A)t  
 
-  * All of these equations generate a point on the line given the value of t.
   * The parameter t can be any real number.
   * Any value of t generates a point on the line.
   * Thus, the 3D line is like the number line
@@ -80,7 +88,10 @@ understand how OpenGL represents lines.
 
 > Q(s) = B + (A-B)s
 
-  * What point is a s=0? s=1? s<0? s>1?
+  * What point is at s=0? s=1? s<0? s>1?
+
+### Same line, different parameter
+
   * It generates the same points as P(t), but the interpretation of the parameter is different.
   * In this case, the parameter goes in the opposite direction.
     * Someone driving on I-95 from NYC to Boston drives the same road
@@ -101,7 +112,7 @@ understand how OpenGL represents lines.
 
 ### Ant path
 
-{% include figure.html url="../readings/images/line.png" description="Figure 1: a line in a 2D coordinate system" classes="stretch" %}
+{% include figure.html url="../readings/images/line.png" description="" classes="stretch" %}
 
   * consider the picture in Figure 1. The coordinates of the points are:
     * A = (2,2), B = (4,3), C = (8,5)
@@ -114,7 +125,7 @@ understand how OpenGL represents lines.
 
 ### Beetle path
 
-{% include figure.html url="../readings/images/line.png" description="Figure 1: a line in a 2D coordinate system" classes="stretch" %}
+{% include figure.html url="../readings/images/line.png" description="" classes="stretch" %}
 
   * consider the picture in Figure 1. The coordinates of the points are:
     * A = (2,2), B = (4,3), C = (8,5)
@@ -138,7 +149,7 @@ understand how OpenGL represents lines.
 
 Before we answer that question, let's look at another situation, this with two lines:
 
-{% include figure.html url="../readings/images/lines.png" description="Figure 2: two lines in a 2D coordinate system" classes="stretch" %}
+{% include figure.html url="../readings/images/lines.png" description="" classes="stretch" %}
 
   * We now have two lines, the cyan one and the magenta one.
     * We can see that they intersect, but where? Do the bugs meet?
@@ -159,16 +170,17 @@ Before we answer that question, let's look at another situation, this with two l
   * We can think of parametric lines in another way
   * Namely as a _weighted average_ or as a _mixture_.
 
-{% include figure.html url="../readings/images/line.png" description="Figure 3: a line in a 2D coordinate system" classes="stretch" %}
-
   * Let's think about a line from A to C:
 
- P(t) | = A + (C-A)t
 ---|---
+ P(t) | = A + (C-A)t
  P(t) | = A + Ct - At  
  P(t) | = A(1-t) + Ct
 
   * Intuitively, the point B is 1/3rd of the way from A to C
+
+
+{% include figure.html url="../readings/images/line.png" description="Figure 3: a line in a 2D coordinate system" classes="stretch" %}
 
 
 ### Parameter of B
@@ -177,8 +189,8 @@ Before we answer that question, let's look at another situation, this with two l
     * B = (4,3) 
     * The parametric equation evaluated at 1/3 gives us B: 
 
- P(1/3) | = A(2/3) + C(1/3)
 ---|---
+ P(1/3) | = A(2/3) + C(1/3)
  P(1/3) | = (2,2)(2/3) + (8,5)(1/3)  
  P(1/3) | = (4/3,4/3) + (8/3,5/3)  
  P(1/3) | = (12/3,9/3)  
@@ -228,32 +240,36 @@ Before we answer that question, let's look at another situation, this with two l
 
   * Suppose we want a line from A through B, with:
 
- A | = (1,2,3)
 ---|---
+ A | = (1,2,3)
  B | = (2,5,1)
 
   * We can write down the following equations:
 
- P(t) | = A+(B-A)t
 ---|---
+ P(t) | = A+(B-A)t
  P(t) | = (1,2,3)+(1,3,-2)t  
  P(t) | = (1+t, 2+3t, 3-2t)  
 
   * By introducing a parameter (in this case, "t"), we write an equation that generates each coordinate independently.
     * The equations in this example are:
 
- x(t) | = 1+t
 ---|---
+ x(t) | = 1+t
  y(t) | = 2+3t  
  z(t) | = 3-2t  
 
-### Why are parametric equations so cool???
+### Why are parametric equations so cool?
 
-  * No special cases! Unlike "y=mx+b," which we all learned in high school, parametric equations work just fine for all lines. (Where does "y=mx+b" fail?) 
-  * They work in 3D! Each coordinate gets its own equation! 
-  * Lines and segments have **direction** , because vectors do. This is useful for rays of light, for example. 
-  * Special values of t: 0, 1, between 0 and 1. For example, if you know that the parameter of a point on line from A to B is t=0.3, you know that the point is _between_ A and B, and is closer to A. 
-  * We can think of this as a mixture (that is, as a _convex sum_ or a _weighted average_ ) of the endpoints. So, if one vertex is red and the other is yellow, all the points on the line segment connecting them are mixtures of red and yellow in different proportions. 
+  * No special cases! Unlike "y=mx+b," parametric equations work for all lines. (Where does "y=mx+b" fail?) 
+  * They work in 3D! Each coordinate gets its own equation
+  * Lines and segments have **direction**, because vectors do. This is useful for rays of light, for example. 
+  * Special values of t: 0, 1, between 0 and 1.
+    * For example, if you know that the parameter of a point on line from A to B is t=0.3
+    * you know that the point is _between_ A and B, and closer to A. 
+  * We can think of this as a mixture of the endpoints.
+    * So, if one vertex is red and the other is yellow,
+    * all the points on the line segment connecting them are mixtures of red and yellow
 
 ## Exercise: Finding a Point on a Parametric Line
 
@@ -270,8 +286,8 @@ Problem: Find the coordinates of a point 2/3 of the way from A=(2,3,4) to B=(5,9
 
   * Now, we can substitute into our equation and solve
 
-P(2/3)| = A+v(2/3)  
 ---|---  
+P(2/3)| = A+v(2/3)  
  | = (2,3,4) + (3,6,-3)(2/3)  
  | = (2,3,4) + (2,4,-2)  
  | = (4,7,2)  
@@ -282,8 +298,8 @@ P(2/3)| = A+v(2/3)
 
 We could also use the mixture formulation: two parts B to one part A:
 
-P(2/3)| = A(1/3)+B(2/3)  
 ---|---  
+P(2/3)| = A(1/3)+B(2/3)  
  | = (2,3,4)(1/3) + (5,9,1)(2/3)  
  | = (2/3,1,4/3) + (10/3,6,2/3)  
  | = (4,7,2)  
@@ -304,8 +320,8 @@ What is the color of the point that is 2/3 of the way from A to B?
 Solution: We can use the same mixture equation that we just used to find
 coordinates:
 
- P(2/3) | = A(1/3) + B(2/3)
 ---|---
+ P(2/3) | = A(1/3) + B(2/3)
  P(2/3) | = (1,0,0)(1/3) + (1,1,0)(2/3)  
  P(2/3) | = (1,2/3,0)  
 
@@ -329,8 +345,8 @@ How can we do this? Working with a partner, compute the coordinates of B.
 
 ### Solution
 
- B | = (4/5)R + (1/5)S
 ---|---
+ B | = (4/5)R + (1/5)S
  B | = (4/5)*(15,55,0) + (1/5)*(0,30,0)  
  B | = (12,44,0) + (0,6,0)  
  B | = (12,50,0)
@@ -434,8 +450,8 @@ How can we do this? Working with a partner, compute the coordinates of B.
 
 ### Parametric equation for a triangle
 
- Q(s,t) | = C + (P(t) -C)s
 ---|---
+ Q(s,t) | = C + (P(t) -C)s
  Q(s,t) | = C + (P(t)s - Cs)  
  Q(s,t) | = [A(1-t) + B(t)]s + C(1-s)  
  Q(s,t) | = A(1-t)s + Bts + C(1-s)  
@@ -459,8 +475,8 @@ Notice that we have several choices:
   * Meaning a triangle is all points in the _convex sum_ of the vertices.
   * A _convex sum_ is a weighted sum of N things, where the weights all add up to 1.0:
 
- S | =  w1 A + w2 B + w3 C
 ---|---
+ S | =  w1 A + w2 B + w3 C
  1 | = w1+w2+w3
 
 
@@ -480,29 +496,29 @@ Notice that we have several choices:
 
 Suppose we have a triangle ABC whose vertices are:
 
- A | = (1,2,3)
 ---|---
+ A | = (1,2,3)
  B | = (2,4,1)  
  C | = (3,1,5)
 
 We could write down the following equation for the triangle:
 
- Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
 ---|---
+ Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
  Q(s,t) | = (1,2,3)(1-t)s + (2,4,1)ts + (3,1,5)(1-s)  
 
 ### Example: Equation of a Triangle from Three Points
 
 We could write down the following equation for the triangle:
 
- Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
 ---|---
+ Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
  Q(s,t) | = (1,2,3)(1-t)s + (2,4,1)ts + (3,1,5)(1-s)  
 
 Each coordinate separately is:
 
- x(s,t) | = (1-t)s + 2ts + 3(1-s)
 ---|---
+ x(s,t) | = (1-t)s + 2ts + 3(1-s)
  y(s,t) | = 2(1-t)s + 4ts + (1-s)  
  z(s,t) | = 3(1-t)s + ts + 5(1-s)  
 
@@ -511,18 +527,18 @@ Each coordinate separately is:
 
 We can simplify this algebraically to
 
- x(s,t) | = (1-t)s + 2ts + 3(1-s)  
 ---|---  
+ x(s,t) | = (1-t)s + 2ts + 3(1-s)  
  | = s-ts+2ts+3-3s  
  | = ts-2s+3  
   
-  y(s,t) | = 2(1-t)s + 4ts + (1-s)  
 ---|---  
+  y(s,t) | = 2(1-t)s + 4ts + (1-s)  
  | = 2s -2ts + 4ts + 1-s  
  | = 2ts + s + 1  
   
- z(s,t) | = 3(1-t)s + ts + 5(1-s)  
 ---|---  
+ z(s,t) | = 3(1-t)s + ts + 5(1-s)  
  | = 3s -3ts + ts + 5 - 5s  
  | = -2ts -2s + 5  
   
@@ -534,8 +550,8 @@ We can simplify this algebraically to
   +  It means that the point is halfway between C and the midpoint of AB.
   + The coordinates are:
 
- x(0.5,0.5) | = (0.5)(0.5)-2(0.5)+3 = 2.25
 ---|---
+ x(0.5,0.5) | = (0.5)(0.5)-2(0.5)+3 = 2.25
  y(0.5,0.5) | = 2(1-0.5)0.5 + 4(0.5)(0.5) + (1-0.5) = 2  
  z(0.5,0.5) | = 3(1-0.5)0.5 + (0.5)(0.5) + 5(1-0.5) = 3.25  
 
@@ -545,8 +561,8 @@ We can simplify this algebraically to
 
   * We can also think of computing Q(s,t) as a weighted sum of the triangles' vertices:
 
- Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
 ---|---
+ Q(s,t) | = A(1-t)s + B(t)s + C(1-s)
  Q(0.5,0.5) | = A(1-0.5)(0.5) + B(0.5)(0.5) + C(1-0.5)  
  Q(0.5,0.5) | = A(0.25) + B(0.25) + C(0.5)  
 
@@ -560,8 +576,8 @@ We can simplify this algebraically to
   * Suppose A is red (1,0,0), B is magenta (1,0,1), and C is yellow (1,1,0).
   * We can compute the color of the middle point, Q(0.5,0.5), as:
 
- Q(0.5,0.5) | = A(0.25) + B(0.25) + C(0.5)
 ---|---
+ Q(0.5,0.5) | = A(0.25) + B(0.25) + C(0.5)
  Q(0.5,0.5) | = (1,0,0)(0.25) + (1,0,1)(0.25) + (1,1,0)(0.5)  
  Q(0.5,0.5) | = (1,0.5,0.75)  
 
@@ -614,7 +630,7 @@ We can simplify this algebraically to
 
   * Modify this code to create a star that uses _color interpolation_ of the triangular faces
   * and adds it to the scene.
-  * Your result might look like this: [stars1](03b-exercises/stars1.html)
+  * Your result might look like this: [stars1](https://codepen.io/asterix77/pen/xxGXavM?editors=1010)
 
 Some tips:
 
@@ -625,7 +641,7 @@ Some tips:
 
   * Add six additional stars to the scene that each have a uniform color
   * and which are placed around the central star
-  * Something like this: [stars](03b-exercises/stars.html).
+  * Something like this: [stars](https://codepen.io/asterix77/pen/OJVxBPb?editors=1010).
 
 Some tips for this part:
 
