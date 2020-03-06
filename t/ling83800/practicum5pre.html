@@ -1,0 +1,117 @@
+<html>
+
+<head>
+<title>[OpenGrm installation instructions]</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+<h1>OpenGrm installation instructions</h1>
+
+<p>This document covers installation of two libraries: 
+<a href="http://ngram.opengrm.org"><i>NGram</i></a>, a C++ library for building finite-state language models, and
+<a href="http://pynini.opengrm.org"><i>Pynini</i></a>, a Python library for finite-state grammar development.
+Both are part of the <a href="http://opengrm.org">OpenGrm</a> project and depend on <a href="http://www.openfst.org"><i>OpenFst</i></a>, another C++ library.
+
+<h2>The easy way</h2>
+
+<p>The easiest way to install these dependencies is via <a href="http://www.anaconda.com/download">Anaconda</a>. If you already have a working conda installation, you can just issue the following command:
+
+<pre><code>$ conda install ngram pynini -c conda-forge</code></pre>
+
+<p>to install all the libraries you'll need.
+
+<h2>The hard way</h2>
+
+<p>To begin installation, you will need:</p>
+
+<ol>
+<li>Python 3.6 or better:
+<li>A compiler that supports C++11, C99, and POSIX:
+    <ol>
+        <li>On Windows 10, install the <a href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">Windows Subsystem for Linux</a>.</li>
+        <li>On Mac OS X, in a terminal window, type <code>xcode-select --install</code> and follow the prompts.</li>
+        <li>On Linux, install the appropriate package from your distribution; for instance for Ubuntu, type <code>sudo apt install build-essential</code> and follow the prompts.</li>
+    </ol>
+</li>
+</ol>
+
+<h3>OpenFst</h3>
+
+<p>OpenFst is a C++ library which acts as a backend for both tools.</p>
+
+<ol>
+<li>Visit <a href="http://www.openfst.org">http://www.openfst.org</a>. Click on "Download", then click on the link for the current version (<code>openfst-1.7.5.tar.gz</code>) and save the file to your hard drive.</li>
+<li><p>In your terminal window, navigate to the directory containing the file you just downloaded and decompress it:</p>
+
+<pre><code>$ tar xvzf openfst-1.7.5.tar.gz
+</code></pre></li>
+<li><p>This will create a directory called <code>openfst-1.7.5</code>; enter it:</p>
+
+<pre><code>$ cd openfst-1.7.5
+</code></pre></li>
+<li><p>Issue the following commands to compile and install it:</p>
+
+<pre><code>$ ./configure --enable-grm &amp;&amp; make -j4 && sudo make -j4 install</code></pre></li>
+</ol>
+
+<h3>NGram</h3>
+
+<ol>
+<li>Visit <a href="http://ngram.opengrm.org">http://ngram.opengrm.org</a>. Click on "Download", then click on the link for the current version (<code>opengrm-ngram-1.3.8.tar.gz</code>) and save the file to your hard drive.</li>
+<li>In your terminal window, navigate to the directory containing the file you just downloaded and decompress it:</p>
+
+<pre><code>$ tar xvzf ngram-1.3.8.tar.gz
+</code></pre></li>
+<li><p>This will create a directory called <code>ngram-1.3.8</code>; enter it:</p>
+
+<pre><code>$ cd ngram-1.3.8
+</code></pre></li>
+<li><p>Issue the following commands to compile and install it:</p>
+
+<pre><code>$ ./configure &amp;&amp; make -j4 &amp;&amp; sudo make -j4 install
+</code></pre></li>
+</ol>
+
+<h3>Pynini</h3>
+
+<p>Pynini is a Python library for finite-state grammar compilation.</p>
+
+<ol>
+<li>Visit <a href="http://pynini.opengrm.org">http://pynini.opengrm.org</a>. Click on "Download", then click on the link for the current version (<code>pynini-2.0.9.post2.tar.gz</code>) and save the file to your hard drive.</li>
+<li><p>In your terminal window, navigate to the directory containing the file you just downloaded and decompress it:</p>
+
+<pre><code>$ tar xvzf pynini-2.0.9.post2.tar.gz
+</code></pre></li>
+<li><p>This will create a directory called <code>pynini-2.0.9.post2</code>; enter it:</p>
+
+<pre><code>$ cd pynini-2.0.9.post2
+</code></pre></li>
+<li><p>Issue the following commands to compile and install it:</p>
+
+<pre><code>$ python setup.py install
+</code></pre>
+
+If you are on Mac OS X and encounter an error here, try the following instead:</p>
+
+<pre><code>$ CFLAGS=-stdlib=libc++ python setup.py install
+</code></pre></ol>
+
+<h3>Testing</h3>
+
+<ul>
+<li>To test Pynini, open Python (or a Jupyter notebook) and execute <code>import pynini</code>.</li>
+<li>To test NGram, open a terminal window and execute <code>ngraminfo --helpshort</code>.</li>
+</ul>
+
+<h3>Notes</h3>
+
+<ul>
+<li>You can delete all the temporary files (both the <tt>.tar.gz</tt> files and the directories) once these steps are complete.</li>
+<li>If you plan to use Pynini in combination with <a href="http://jupyter.org/">Jupyter</a>, you may wish to install <a href="http://graphviz.org/">GraphViz</a>, which will allow you to visualize FSTs from within a notebook.</li>
+</ul>
+
+</body>
+
+</html>

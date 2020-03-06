@@ -1,0 +1,66 @@
+<head>
+<title>[OpenGrm-NGram model building]</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+<h1>OpenGrm-NGram model building</h1>
+
+<p></p>
+
+<h2>Token model</h2>
+
+<p><code>en.token</code> is a file which contains one sentence per line, with case-folded tokens separated by whitespace. Here, we use the built-in symbol table support.</p>
+
+<pre><code>$ head -1 en.token  # Just for demonstration.
+health care reform , energy , global warming , education , not to mention the economy .
+$ ngramsymbols en.token en.sym
+$ farcompilestrings \
+      --fst_type=compact \
+      --symbols=en.sym \
+      --keep_symbols \
+      en.token \
+      en.token.far
+$ farinfo en.token.far
+$ ngramcount \
+    --order=3 \
+    en.token.far \
+    en.token.cnt
+$ ngrammake --method=kneser_ney en.token.cnt en.token.lm
+$ fstinfo en.token.lm
+$ ngraminfo en.token.lm
+$ ngramperplexity en.token.lm en.token.far
+$ ngramshrink \
+       --method=relative_entropy \
+       --target_number_of_ngrams=100000 \
+       en.token.lm \
+       en.token.shrunk.lm
+$ ngramperplexity en.token.shrunk.lm en.token.far
+</code></pre>
+
+<h2>Character model</h2>
+
+<p><code>en.char</code> is a file which contains one sentence per line, with decimal codepoints (each representing a character) separated by whitespace. Here, we disable symbol tables and just use the conventional mapping from bytes to ASCII.</p>
+
+<pre><code>$ head -1 en.char  # Just for demonstration.
+72 101 97 108 116 104 32 99 97 114 101 32 114 101 102 111 114 109 44 32 101
+...
+$ farcompilestrings --fst_type=compact en.char en.char.far
+$ farinfo en.char.far
+$ ngramcount --require_symbols=false --order=6 en.char.far en.char.cnt
+$ ngrammake --method=witten_bell en.char.cnt en.char.lm
+$ fstinfo en.char.lm
+$ ngraminfo en.char.lm
+$ ngramperplexity en.char.lm en.char.far
+$ ngramshrink \
+      --method=relative_entropy \
+      --target_number_of_ngrams=100000 \
+      en.char.lm \
+      en.char.shrunk.lm
+$ ngramperplexity en.char.shrunk.lm en.char.far
+</code></pre>
+
+</body>
+
+</html>
