@@ -396,3 +396,93 @@ For the entire point, P: projection of P \\[
   (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
+
+## Exercises: Setting up a Camera
+
+  * Using this [town-view-before](https://codepen.io/asterix77/pen/RwPxzjp)
+  * Set up a camera to view the snowman from above and to the right.
+  * You might find it helpful to use the following [town-view-gui](https://codepen.io/asterix77/pen/ExjoBox?editors=1010). 
+  * Define a function to set up the camera the way you want. 
+  * Replace `TW.cameraSetup()` with your new camera. 
+  * Your result might look like [town-view](https://codepen.io/asterix77/pen/gOpoNvG?editors=1010)
+
+{% include figure.html url="img/snowman-scene.png" description="Target view" classes="stretch"%}
+
+## Exercise: Zooming vs. Dollying
+
+  * Is there any difference between
+    * _zooming in,_ keeping the eye point the same and reducing the FOV 
+    * _dollying in,_ keeping the FOV the same and moving the camera closer 
+  * Let's try to experience the effects of these changes to the camera setup.
+
+### Zooming vs Dollying
+
+  * Add a wireframe box to the scene that fits snuggly around the head of the snowman.
+  * Then try to set the camera parameters so that the scene appears like this:
+
+{% include figure.html url="img/snowman-init.png" description="Initial snowman view" classes="stretch"%}
+
+### Zooming vs Dollying hints
+
+  * **Hints:** the camera is positioned 5 units in front of the center of the snowman's head (at the same x and y coordinates as this center point)
+  * and is _looking at_ this center point.
+  * Set the `fov` to achieve the above appearance.
+
+### Zooming vs Dollying: Setting 1
+
+  * Try to set the camera parameters to reproduce each of the following views
+  * One requires dollying, the other zooming
+
+{% include figure.html url="img/snowman-up-close.png" description="Target view 1" classes="stretch"%}
+
+
+### Zooming vs Dollying: Setting 2
+
+  * Try to set the camera parameters to reproduce each of the following views
+  * One requires dollying, the other zooming
+
+{% include figure.html url="img/snowman-zoomed-in.png" description="Target view 2" classes="stretch"%}
+
+### Zooming vs Dollying solution
+
+  * _Which figure was created by zooming, and which by dollying?_
+  * Your solutions might be like [snowman-dolly](https://codepen.io/asterix77/pen/YzXYojZ?editors=1010) and [snowman-zoom](https://codepen.io/asterix77/pen/MWwrMBR?editors=1010).
+
+## Vup
+
+  * Most of the time, Vup is very simple: we have \\[ V_\mathrm{up} = (0, 1, 0)
+\\]
+
+  * If we want something different, though, Vup can be confusing.
+  * Try to imagine it this way:
+    * Visualize the Vup vector in 3D space, along with the image plane. 
+    * _Project_ the Vup vector onto the image plane 
+    * The frustum spins around the VPN (view plane normal) so that the Vup vector is _parallel to the left/right edges_. 
+    * When the top of the frustum is mapped onto the canvas, the Vup vector is parallel to the left/right edge of the canvas. 
+
+### Vup
+
+  * There are two important consequences of the way Vup works:
+    * The Vup vector can't project to a point, which means it can't be parallel or anti-parallel to the VPN. 
+    * Any change to the Vup vector that doesn't change the direction of its projection on the image plane _doesn't_ affect anything. The image is still oriented the same way. 
+
+### Exercise: Changing Vup
+
+  * Let's try to experiment with changing Vup
+  * Try to reproduce the below view
+    * Think about what Vup might be. 
+    * Set up the camera for each scene. 
+  * Your solutions might be like [snowman-close-angled](https://codepen.io/asterix77/pen/qBdpzQN?editors=1010)
+
+{% include figure.html url="img/snowman-up-close-angled.png" description="Target view 1" classes="stretch"%}
+
+
+### Exercise: Changing Vup 2
+
+  * Let's try to experiment with changing Vup
+  * Try to reproduce the below view
+    * Think about what Vup might be. 
+    * Set up the camera for each scene. 
+  * Your solutions might be like [snowman-close-overhead](https://codepen.io/asterix77/pen/KKpZjbE?editors=1010)
+
+{% include figure.html url="img/snowman-up-close-overhead.png" description="Target view 2" classes="stretch"%}
