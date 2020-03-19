@@ -25,6 +25,19 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/04-insta
 
 ## Plan
 
+  * The Instance Transform
+  * Built-in Three.js Objects, Polygonal Approximation
+  * Bounding Boxes, Reference Points: Scene
+  * Placing Instances: Barn instance transforms
+  * Demo: Positioning/Translation, Rotation, Scaling
+  * Absolute versus Relative
+  * Coordinate Systems
+  * Exercises: Building a Town, With tree, With snowman, 
+  * Exercise: Building Our Own Luxo Lamp
+
+
+## Overview
+
   * Three.js built-in objects are convenient, use them when possible
     * But use enough polygons to approximate smooth curves
   * Every object has a reference point: its origin
