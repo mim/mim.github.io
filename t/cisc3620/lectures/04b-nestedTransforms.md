@@ -13,11 +13,13 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/05-neste
 
 ## Plan: Nested Transforms
 
-Previously, we looked at the instance transformation: translate, rotate and
-scale, to place on object in the scene. The following discussion is about more
-complex sequences and nested transformations.
-
- * 
+ * Composite objects
+ * Snow-person example
+ * Ringing a cone as a bell
+ * Multiple segments, jointed leg
+ * Sequences of transformations, picket fence
+ * Scene graphs, teddybear example
+ * Exercises: Luxo family, composite tree
 
 ## Composite Objects
 

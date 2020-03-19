@@ -35,9 +35,11 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/06-camer
 
 ## Plan
 
-There are two aspects to the camera API: the placement of the camera, and the
-_shape_ of the camera. To understand the latter, we need to understand how
-cameras work.
+  * The pinhole camera and projections
+  * The synthetic camera
+  * Perspective matrices and perspective division
+  * Perspective cameras in three.js
+  * Exercises: projection math, setting up a camera
 
 ## The pinhole camera
 
