@@ -13,8 +13,6 @@ stylesheets:
 
 <p style="display:none">
 \(
-\newcommand{\vecIII}[3]{\left[\begin{array}{c} #1\\#2\\#3 \end{array}\right]}
-\newcommand{\vecIV}[4]{\left[\begin{array}{c} #1\\#2\\#3\\#4 \end{array}\right]}
 \newcommand{\Choose}[2]{ { { #1 }\choose{ #2 } } }
 \newcommand{\vecII}[2]{\left[\begin{array}{c} #1\\#2 \end{array}\right]}
 \newcommand{\vecIII}[3]{\left[\begin{array}{c} #1\\#2\\#3 \end{array}\right]}
@@ -36,7 +34,7 @@ stylesheets:
   * Midterm instructions
   * High-level overview of what we have covered so far
   * Example problems
-  * All of the demos we have discussed
+  * Less high-level overview of what we have covered so far
 
 
 ## Midterm instructions
@@ -119,7 +117,7 @@ p_1 = \vecIV{-4}{2}{4}{1} \\quad p_2 = \vecIV{-1}{2}{0}{1} \\quad p_3 = \vecIV{2
 
 ![One segment and the whole snake](img/snake.png)
 
-Consider a model of a snake made out of five line segments.  Each segment has length 1 and segments are connected at their ends to each other.  Each segment can rotate relative to its parent in the x-y plane (around the z-axis).  The root node of the hierarchy is A.
+Consider a model of a snake made out of four line segments.  Each segment has length 1 and segments are connected at their ends to each other.  Each segment can rotate relative to its parent in the x-y plane (around the z-axis).  The root node of the hierarchy is A.
 
   * Draw a tree representing this hierarchy where the nodes are the line segments  and the edges represent direct parental relationships between line segments.
 
@@ -137,7 +135,7 @@ Consider a model of a snake made out of five line segments.  Each segment has le
 ![One segment and the whole snake](img/snake.png)
 
   * If A and B are kept in the same configuration and C is rotated by 45 degrees relative to B, then what is the transformation matrix that should be applied to C’s vertices to draw them in global coordinates?
-  * If instead all segments except A are rotated by the transformation matrix R relative to their parent, then what is the transformation matrix in terms of T and R that should be applied to E’s vertices to draw them in global coordinates?
+  * If instead all segments except A are rotated by the rotation matrix R relative to their parent, then what is the transformation matrix in terms of T and R that should be applied to D’s vertices to draw them in global coordinates?
 
 
 ### Projection
