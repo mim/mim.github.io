@@ -11,10 +11,7 @@ stylesheets:
 
 <p style="display:none">
 \(
-\newcommand{\vecIII}[3]{\left[\begin{array}{c} #1\\#2\\#3 \end{array}\right]}
-\newcommand{\vecIV}[4]{\left[\begin{array}{c} #1\\#2\\#3\\#4 \end{array}\right]}
 \newcommand{\Choose}[2]{ { { #1 }\choose{ #2 } } }
-
 \newcommand{\vecII}[2]{\left[\begin{array}{c} #1\\#2 \end{array}\right]}
 \newcommand{\vecIII}[3]{\left[\begin{array}{c} #1\\#2\\#3 \end{array}\right]}
 \newcommand{\vecIV}[4]{\left[\begin{array}{c} #1\\#2\\#3\\#4 \end{array}\right]}
@@ -302,20 +299,20 @@ get to the Phong Model.
 
 First, we need some notational building blocks:
 
-  * **NV** : the normal vector for the surface. In this context, the normal vector is a vector that is _perpendicular_ (or _orthogonal_ ) to the surface. The normal vector is how we define the "orientation" of a surface -- the direction it's "facing." The normal vector is the same over a whole plane, but may change over each point on a curved surface. The normal vector is often _normalized_ to be a unit vector (length 1). 
-  * **LV** : the vector towards the light source; that is, a vector from the point on the surface to the light source (not used for ambient light). For distant lights, this vector doesn't change from point to point. 
+  * \\(\vec{n}\\) : the normal vector for the surface. In this context, the normal vector is a vector that is _perpendicular_ (or _orthogonal_ ) to the surface. The normal vector is how we define the "orientation" of a surface -- the direction it's "facing." The normal vector is the same over a whole plane, but may change over each point on a curved surface. The normal vector is often _normalized_ to be a unit vector (length 1). 
+  * \\(\vec{\ell}\\) : the vector towards the light source; that is, a vector from the point on the surface to the light source (not used for ambient light). For distant lights, this vector doesn't change from point to point. 
 
-In the model, we will have parameters captured in the vector **L** that
+In the model, we will have parameters captured in the vector \\(L\\) that
 represent the intensity of the incoming light. We saw this in the Three.js
 code above. Turn them up and the light gets brighter.
 
 We also have to worry about how much of the incoming light gets reflected. Let
-this be a number called **R**. This number is a fraction, so if **R** =0.8,
+this be a number called \\(R\\). This number is a fraction, so if \\(R =0.8\\),
 that means that 80 percent of the incoming light is reflected. (We actually
 have 9 such numbers, specifying the reflection fraction for specular red,
 ambient green, and so on, for all 9 combinations.)
 
-As we discussed earlier, in general, **R** can depend on:
+As we discussed earlier, in general, \\(R\\) can depend on:
 
   * material properties: cotton is different from leather 
   * orientation of the surface 
@@ -323,9 +320,9 @@ As we discussed earlier, in general, **R** can depend on:
   * distance to the light source 
 
 The light that gets reflected is the product of the incoming light intensity,
-**L** , and the fraction **R** :
+\\(L\\) , and the fraction \\(R\\) :
 
-> I = **L** **R**
+\\[I = L R\\]
 
 That is, the intensity of light that is reflected from a surface (and ends up
 on the image plane and the framebuffer) is the intensity of the incoming light
@@ -342,14 +339,14 @@ sometimes in practice: you have a decently lit scene, and you add another
 light, and then you have to turn down your original lights (and your ambient
 light) to get the balance right.
 
-Why does **R** depend on the light source? That is, why does the reflection
+Why does \\(R\\) depend on the light source? That is, why does the reflection
 fraction depend on which light we're talking about? Because the direction and
 distance change. But since all the light sources work the same way, we're not
 going to worry about which light source it is, and we'll just have our
 abstract Lambert Model:
 
-> I = **L** amb **R** amb \+ **L** diff **R** diff  
->  Abstract Lambert Model
+Abstract Lambert Model
+\\[ I = L_a R_a + L_d R_d \\]
 
 That is, the intensity of the color of an object is
 
@@ -357,20 +354,20 @@ That is, the intensity of the color of an object is
   * the diffuse light falling on it, multiplied by the reflection amount for diffuse light. 
 
 The above equation is our abstract Lambert Model. Now let's see how to compute
-the two **R** values.
+the two \\(R\\) values.
 
 ## Ambient
 
 Reflection of ambient light doesn't depend on direction or distance or
 orientation, so it's solely based on the material property: is the material
 dark or light? Note that it can be dark for blue and light for red and green.
-If white light falls on such a material, what does it look like? So, **R** amb
+If white light falls on such a material, what does it look like? So, \\(R_a\\)
 is a simple constant, which we will call kamb, just to remind ourselves that
 it's a constant:
 
-> **R** amb = kamb
+\\[R_a = k_a\\]
 
-Note that 0 &leq; kamb &leq; 1\. Why?
+Note that \\(0 \\le k_a \\le 1\\). Why?
 
 This constant is chosen by you the programmer as part of the material
 properties for an object, in the same way that you choose color. There are
@@ -385,22 +382,22 @@ directions. In lay person's vocabulary, such surfaces are often called
 However, the angle of the light does matter, because the energy (photons) is
 spread over a larger area. Consequently, we have
 
-> **R** diff = kdiff **LV** • **NV**
+\\[R_d = k_d \vec{\ell} \cdot \vec{n}\\]
 
-Recall that **LV** is the light vector, the direction to the light source, and
-**NV** is the normal vector, the orientation of the surface. The  • operator
+Recall that \\(\vec{\ell}\\) is the light vector, the direction to the light source, and
+\\(\vec{n}\\) is the normal vector, the orientation of the surface. The \\(\cdot\\) operator
 is the _dot product_ between the two vectors, described in the reading on
-[geometry](08-geometry.html). The dot product of two normalized vectors (unit
+[geometry](http://m.mr-pc.org/t/cisc3620/2020sp/lectureGeometry.pdf). The dot product of two normalized vectors (unit
 length) gives the cosine of the angle between them. Thus the meaning of this
 equation is that the amount of light reflected from a diffuse surface is the
 product of a constant, chosen by you the programmer, multiplied by the cosine
-of the angle between **LV** and **NV**. As before, there are actually 3 such
+of the angle between \\(\vec{\ell}\\) and \\(\vec{n}\\). As before, there are actually 3 such
 constants, one each for red, green, and blue.
 
 Now, we finally have our finished Lambert Model:
 
-> I = **L** amb kamb \+ **L** diff kdiff **LV** • **NV**  
->  Concrete Lambert Model
+\\[ I = L_a k_a + L_d k_d \vec{\ell} \cdot \vec{n}\\]  
+
 
 ## Lambertian Materials in Three.js
 
@@ -429,44 +426,42 @@ a mirror. The incoming light rays bounce off the material and head off at an
 angle equal to their incoming angle. To understand what this means, we first
 need some more notational building blocks:
 
-  * **EV** : the vector towards the eye; that is, the Center of Projection (COP). If **EV** says that the surface faces away from the viewer, the surface is invisible and OpenGL can skip the calculation. 
-  * **RV** : the reflection vector of the light. If the surface at that point were a shiny plane, like a mirror, **RV** is the direction that the light would bounce in. 
+  * \\(\vec{v}\\) : the vector towards the eye; that is, the Center of Projection (COP). If \\(\vec{v}\\) says that the surface faces away from the viewer, the surface is invisible and OpenGL can skip the calculation. 
+  * \\(\vec{r}\\) : the reflection vector of the light. If the surface at that point were a shiny plane, like a mirror, \\(\vec{r}\\) is the direction that the light would bounce in. 
 
 The following figure illustrates these vectors:
 
 {% include figure.html url="images/specular-reflection.png" description="The eye vector (purple) and the reflection vector (red)" classes=""%}
 
 The blue vector is
-the incoming light. The red vector is RV, the reflection vector. The purple
-vector is EV, the vector from the surface to the eye. If RV and EV are
+the incoming light. The red vector is \\(\vec{r}\\), the reflection vector. The purple
+vector is \\(\vec{v}\\), the vector from the surface to the eye. If \\(\vec{r}\\) and \\(\vec{v}\\) are
 "close," the specular highlight will be visible.
 
-If the direction of our view, **EV** , is "near" the reflection direction,
-**RV** , as in the above diagram, we should see a lot of that reflected light.
+If the direction of our view, \\(\vec{v}\\) , is "near" the reflection direction,
+\\(\vec{r}\\) , as in the above diagram, we should see a lot of that reflected light.
 This is called a "specular highlight".
 
-> Rspec = kspec ( **EV** • **RV** )e
+\\[R_s = k_s ( \vec{v} \cdot \vec{r} )^\alpha \\]
 
-The dot product is large when the two vectors are "lined up." The e exponent
+The dot product is large when the two vectors are "lined up." The \\(\alpha\\) exponent
 is a number that gives the "shininess." The higher the shininess, the smaller
 the spotlight, because the dot product (which is less than one), is raised to
-a higher power. OpenGL allows e to be between zero and 128. In addition to e,
-the OpenGL programmer gets to choose the specularity coefficient, kspec for
+a higher power. OpenGL allows  \\(\alpha\\) to be between zero and 128. In addition to \\(\alpha\\),
+the OpenGL programmer gets to choose the specularity coefficient, \\(k_s\\) for
 each of red, green, and blue. As usual, the specularity coefficient is between
 zero and one.
 
 ## The Complete Phong Model
 
-Adding this last part to the Lambert Model gives us the Phong Model:
+Adding this last part to the Lambert Model gives us the Abstract Phong Model:
 
-> I = **L** amb **R** amb \+ **L** diff **R** diff \+ **L** spec **R** spec  
->  Abstract Phong Model
+\\[I = L_a R_a + L_d R_d + L_s R_s\\]
 
-Filling in the details of the above mathematical models, we get:
+Filling in the details of the above mathematical models, we get the Concrete Phong Model:
 
-> I = **L** amb kamb \+ **L** diff kdiff **LV** • **NV** \+ **L** spec kspec(
-**EV** • **RV** )e  
->  Concrete Phong Model
+\\[I = L_a k_a + L_d k_d \vec{\ell} \cdot \vec{n} + L_s k_s (\vec{v} \cdot \vec{r} )^\alpha \\]
+
 
 ## Phong Materials in Three.js
 
@@ -476,7 +471,7 @@ Material](http://threejs.org/docs/#api/materials/MeshPhongMaterial) in
 Three.js:
 
     
-``javascript
+```javascript
     var mat = new THREE.MeshPhongMaterial(
         {color: THREE.ColorKeywords.cyan,
          specular: 0xCCCCCC,
