@@ -122,7 +122,7 @@ Consider a model of a snake made out of four line segments.  Each segment has le
   * Draw a tree representing this hierarchy where the nodes are the line segments  and the edges represent direct parental relationships between line segments.
 
 
-### Nestest transforms (continued)
+### Nested transforms (continued)
 
 ![One segment and the whole snake](img/snake.png)
 
@@ -130,7 +130,7 @@ Consider a model of a snake made out of four line segments.  Each segment has le
   * If B is rotated by 45 degrees relative to A, and A is in its original position, then what is the transformation matrix that should be applied to B's vertices to draw them in global coordinates? Note that \\(\\sin(45^\\circ) = \\cos(45^\\circ) = \frac{1}{\sqrt{2}} \approx 0.707\\)
 
 
-### Nestest transforms (continued again)
+### Nested transforms (continued again)
 
 ![One segment and the whole snake](img/snake.png)
 
