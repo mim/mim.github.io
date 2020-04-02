@@ -61,6 +61,11 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/09-light
   * How do surfaces reflect light?
   * How can we add lights to scenes?
 
+### Lights and materials
+
+<backgroundimage>img/loggingScene.jpg</backgroundimage>
+<backgroundimageopacity>1.0</backgroundimageopacity>
+
 
 ## Lighting models
 
@@ -112,6 +117,12 @@ Global lighting | Local lighting
 
 <backgroundimage>https://upload.wikimedia.org/wikipedia/commons/3/32/Recursive_raytrace_of_a_sphere.png</backgroundimage>
 <backgroundimageopacity>1.0</backgroundimageopacity>
+
+### Ray tracing
+
+<backgroundimage>https://upload.wikimedia.org/wikipedia/commons/e/ec/Glasses_800_edit.png</backgroundimage>
+<backgroundimageopacity>1.0</backgroundimageopacity>
+
 
 ### Radiosity 
 
@@ -182,6 +193,11 @@ To determine the color of a polygon, we need the following information:
 
 [Background image source](https://www.labsphere.com/site/assets/files/3005/cm6page.pdf)
 
+### Diffuse materials
+
+<backgroundimage>img/lambertDummy.jpg</backgroundimage>
+<backgroundimageopacity>1.0</backgroundimageopacity>
+
 ### Specular materials
 
 <backgroundimage>img/arcticVillageLake.jpg</backgroundimage>
@@ -195,6 +211,11 @@ To determine the color of a polygon, we need the following information:
   * Examples: plastic, metal, polished leather 
   * The lit bear's eyes are specular, look for the highlight
 
+### Specular materials
+
+<backgroundimage>img/arcticVillageLake.jpg</backgroundimage>
+<backgroundimageopacity>1.0</backgroundimageopacity>
+
 ### Translucent materials
 
 <backgroundimage>https://upload.wikimedia.org/wikipedia/commons/e/ec/Glasses_800_edit.png</backgroundimage>
@@ -205,6 +226,11 @@ To determine the color of a polygon, we need the following information:
   * Local lighting can do a kind of transparency
     * We won't talk about it for a while
   * Examples: water, glass, soap bubbles
+
+### Translucent materials
+
+<backgroundimage>https://upload.wikimedia.org/wikipedia/commons/e/ec/Glasses_800_edit.png</backgroundimage>
+<backgroundimageopacity>1.0</backgroundimageopacity>
 
 ### Diffuse and specular models
 
