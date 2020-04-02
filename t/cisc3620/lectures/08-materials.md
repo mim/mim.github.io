@@ -33,11 +33,22 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/09-light
 
 ## Plan
 
+  * Midterm info
   * Lighting models
   * Material types
   * Kinds of light and lights
   * Exercise: Pink ball
   * Exercise: Luxo lamp with bulb
+
+
+## Midterm info
+
+  * Max: 120
+  * Median: 96.7
+  * Mean: 91.2
+  * Min: 52.7
+
+{% include figure.html url="img/midtermHistogram.png" description="Midterm grade histogram" classes="stretch" %}
 
 
 ## Lights and materials
