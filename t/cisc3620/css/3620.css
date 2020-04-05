@@ -5,10 +5,16 @@
    height: 500px;
 }
 
-// For 2-column, put flex-col inside container
+/* For 2-column, put flex-col inside container */
 .container{
     display: flex !important;
 }
 .flex-col{
     flex: 1;
+}
+
+/* position dat.gui over canvas (if .gui element is inside canvasParent) */
+.datgui {
+    position: absolute;
+    right: 130px;
 }
