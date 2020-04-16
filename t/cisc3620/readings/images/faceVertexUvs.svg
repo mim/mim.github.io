@@ -1,0 +1,525 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5 -->
+<!-- CreationDate: Wed Oct 19 15:57:09 2016 -->
+<!-- Magnification: 1.000 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="7.6in" height="7.5in" viewBox="1167 1881 9131 9010">
+<g style="stroke-width:.025in; stroke:black; fill:none">
+<!-- Line -->
+<polyline points="7200,2400
+1200,7200
+" style="stroke:#000000;stroke-width:30;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="1200" y="2400" width="6000" height="4800" rx="0" 
+style="stroke:#000000;stroke-width:30;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="7425,10200
+7426,10199
+7429,10198
+7433,10195
+7441,10191
+7452,10185
+7466,10176
+7485,10166
+7509,10152
+7537,10136
+7570,10117
+7608,10095
+7650,10070
+7698,10042
+7750,10011
+7806,9978
+7866,9942
+7929,9904
+7995,9864
+8064,9823
+8135,9780
+8207,9735
+8280,9690
+8354,9643
+8428,9597
+8501,9550
+8574,9503
+8646,9455
+8717,9409
+8786,9362
+8854,9316
+8920,9270
+8984,9225
+9046,9181
+9105,9137
+9163,9094
+9218,9051
+9271,9009
+9322,8968
+9371,8927
+9418,8887
+9463,8847
+9506,8807
+9548,8768
+9587,8728
+9625,8689
+9661,8650
+9695,8611
+9728,8572
+9760,8532
+9790,8493
+9819,8453
+9847,8412
+9874,8371
+9900,8330
+9925,8288
+9950,8243
+9974,8198
+9997,8153
+10020,8106
+10041,8059
+10062,8011
+10082,7962
+10101,7913
+10119,7862
+10137,7810
+10153,7758
+10169,7705
+10183,7651
+10197,7596
+10210,7540
+10222,7484
+10233,7427
+10243,7369
+10252,7310
+10260,7251
+10267,7192
+10273,7132
+10278,7072
+10282,7011
+10284,6950
+10286,6889
+10286,6828
+10286,6768
+10284,6707
+10282,6646
+10278,6586
+10273,6526
+10267,6466
+10260,6407
+10252,6348
+10243,6290
+10233,6233
+10222,6176
+10210,6121
+10197,6065
+10183,6011
+10169,5958
+10153,5906
+10137,5854
+10119,5803
+10101,5754
+10082,5705
+10062,5657
+10041,5610
+10020,5564
+9997,5519
+9974,5474
+9950,5430
+9925,5388
+9899,5345
+9872,5304
+9844,5262
+9815,5222
+9785,5182
+9753,5142
+9720,5103
+9685,5064
+9649,5025
+9611,4987
+9571,4948
+9529,4910
+9486,4871
+9440,4832
+9393,4792
+9343,4753
+9291,4713
+9236,4672
+9179,4631
+9120,4589
+9059,4547
+8995,4504
+8929,4461
+8861,4417
+8791,4373
+8720,4328
+8646,4283
+8572,4238
+8496,4193
+8419,4148
+8343,4104
+8266,4060
+8191,4017
+8116,3975
+8043,3934
+7973,3895
+7905,3857
+7841,3822
+7780,3789
+7724,3759
+7673,3731
+7626,3706
+7585,3684
+7548,3665
+7517,3648
+7492,3635
+7471,3624
+7455,3615
+7442,3609
+7439,3607
+" style="stroke:#0000ff;stroke-width:7;
+stroke-linejoin:bevel; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7442 3609 - 7411 3592-->
+<polyline points="7545 3631
+7426 3600
+7516 3684
+" style="stroke:#0000ff;stroke-width:7;
+"/>
+<!-- Line -->
+<polyline points="6300,10125
+6301,10124
+6304,10122
+6309,10117
+6318,10110
+6329,10101
+6345,10087
+6366,10070
+6391,10050
+6420,10025
+6454,9996
+6492,9964
+6535,9928
+6581,9889
+6630,9847
+6682,9803
+6737,9756
+6793,9708
+6849,9659
+6907,9609
+6965,9559
+7022,9508
+7078,9458
+7134,9409
+7188,9360
+7241,9313
+7292,9266
+7341,9220
+7388,9176
+7434,9133
+7477,9091
+7519,9050
+7559,9010
+7597,8972
+7633,8934
+7668,8897
+7701,8860
+7733,8825
+7764,8790
+7793,8755
+7822,8721
+7849,8687
+7875,8653
+7901,8618
+7926,8584
+7950,8550
+7977,8510
+8004,8470
+8029,8430
+8055,8389
+8079,8348
+8103,8306
+8127,8263
+8150,8220
+8172,8176
+8194,8132
+8215,8087
+8236,8042
+8256,7996
+8275,7950
+8294,7904
+8312,7858
+8329,7811
+8345,7765
+8361,7719
+8375,7673
+8389,7627
+8402,7581
+8413,7537
+8424,7492
+8434,7449
+8443,7406
+8451,7364
+8458,7323
+8465,7283
+8470,7244
+8474,7206
+8478,7170
+8480,7134
+8482,7099
+8483,7066
+8483,7033
+8482,7001
+8480,6971
+8478,6941
+8475,6913
+8470,6878
+8464,6844
+8457,6811
+8448,6779
+8439,6748
+8428,6718
+8416,6689
+8403,6660
+8389,6633
+8374,6606
+8358,6580
+8340,6555
+8322,6531
+8303,6508
+8284,6487
+8263,6466
+8242,6447
+8221,6429
+8199,6412
+8178,6396
+8156,6382
+8134,6369
+8112,6357
+8090,6347
+8068,6337
+8047,6329
+8026,6322
+8005,6315
+7984,6310
+7964,6306
+7944,6303
+7925,6300
+7899,6298
+7874,6297
+7849,6298
+7824,6301
+7798,6305
+7772,6311
+7744,6320
+7715,6329
+7685,6341
+7654,6355
+7621,6370
+7587,6387
+7553,6406
+7519,6424
+7485,6443
+7454,6462
+7425,6478
+7401,6493
+7382,6505
+7363,6516
+" style="stroke:#0000ff;stroke-width:7;
+stroke-linejoin:bevel; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7382 6505 - 7337 6532-->
+<polyline points="7438 6435
+7351 6523
+7469 6486
+" style="stroke:#0000ff;stroke-width:7;
+"/>
+<!-- Line -->
+<polyline points="4125,10350
+4123,10350
+4120,10351
+4112,10351
+4101,10353
+4085,10354
+4063,10356
+4036,10359
+4002,10363
+3963,10366
+3917,10371
+3866,10376
+3810,10381
+3749,10386
+3684,10392
+3617,10397
+3547,10403
+3475,10408
+3402,10413
+3329,10418
+3257,10423
+3185,10427
+3115,10430
+3047,10433
+2980,10436
+2916,10438
+2854,10439
+2794,10439
+2737,10439
+2682,10438
+2629,10436
+2579,10433
+2531,10430
+2486,10426
+2442,10421
+2400,10415
+2359,10409
+2321,10401
+2283,10393
+2247,10383
+2212,10373
+2178,10362
+2145,10350
+2113,10338
+2079,10323
+2047,10308
+2015,10291
+1983,10274
+1953,10255
+1922,10236
+1893,10215
+1863,10193
+1835,10170
+1807,10146
+1779,10121
+1752,10094
+1726,10066
+1701,10038
+1676,10008
+1652,9977
+1629,9945
+1607,9912
+1586,9879
+1566,9844
+1547,9809
+1530,9773
+1513,9736
+1497,9699
+1483,9661
+1470,9623
+1458,9585
+1447,9546
+1438,9508
+1429,9469
+1423,9429
+1417,9390
+1412,9351
+1409,9312
+1407,9273
+1406,9234
+1406,9195
+1408,9156
+1410,9117
+1414,9078
+1419,9039
+1425,9000
+1431,8964
+1439,8928
+1447,8891
+1457,8854
+1468,8817
+1480,8778
+1494,8739
+1508,8699
+1525,8658
+1542,8616
+1561,8572
+1582,8527
+1605,8480
+1629,8432
+1654,8382
+1682,8330
+1711,8277
+1742,8222
+1774,8164
+1808,8105
+1844,8045
+1880,7983
+1919,7920
+1958,7855
+1998,7791
+2038,7726
+2079,7661
+2119,7597
+2159,7534
+2198,7474
+2235,7416
+2270,7361
+2304,7310
+2335,7262
+2362,7220
+2387,7182
+2409,7150
+2427,7122
+2442,7100
+2453,7082
+2462,7069
+2466,7063
+" style="stroke:#0000ff;stroke-width:7;
+stroke-linejoin:bevel; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 2462 7069 - 2483 7037-->
+<polyline points="2433 7167
+2474 7051
+2383 7134
+" style="stroke:#0000ff;stroke-width:7;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="1200" y="2100" stroke="#ff0000" fill="#ff0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">0: (-1,1,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="2100" y="2700" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(0,1)</text>
+<!-- Text -->
+<text xml:space="preserve" x="3000" y="4200" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="384" text-anchor="start">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="7500" stroke="#ff0000" fill="#ff0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">3: (1,-1,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="2400" stroke="#ff0000" fill="#ff0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">1: (1,1,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="1200" y="7500" stroke="#ff0000" fill="#ff0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">2: (-1,-1,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="1500" y="2700" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">a:0</text>
+<!-- Text -->
+<text xml:space="preserve" x="1500" y="6600" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">b:2</text>
+<!-- Text -->
+<text xml:space="preserve" x="2100" y="6900" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">a:2</text>
+<!-- Text -->
+<text xml:space="preserve" x="6000" y="3600" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">c:1</text>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="2700" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">c:1</text>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="6000" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="384" text-anchor="start">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="6000" y="6900" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">b:3</text>
+<!-- Text -->
+<text xml:space="preserve" x="6000" y="2700" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(1,1)</text>
+<!-- Text -->
+<text xml:space="preserve" x="1500" y="6000" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(0,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="2700" y="6900" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(0,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="6600" y="3600" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(1,1)</text>
+<!-- Text -->
+<text xml:space="preserve" x="6600" y="6900" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">(1,0)</text>
+<!-- Text -->
+<text xml:space="preserve" x="1800" y="8400" stroke="#ff0000" fill="#ff0000"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">.vertices = [ (-1,1,0), (1,1,0), (-1,-1,0), (1,-1,0) ]</text>
+<!-- Text -->
+<text xml:space="preserve" x="1800" y="9000" stroke="#008f00" fill="#008f00"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">.faces = [ face(0, 1, 2), face(2, 3, 1) ]</text>
+<!-- Text -->
+<text xml:space="preserve" x="1800" y="9600" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">.faceVertexUvs = [ [ </text>
+<!-- Text -->
+<text xml:space="preserve" x="4350" y="9975" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start"> [ v2(0,1), v2(0,0), v2(1,1) ],</text>
+<!-- Text -->
+<text xml:space="preserve" x="4350" y="10425" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">[ v2(0,0), v2(1,0), v2(1,1) ] </text>
+<!-- Text -->
+<text xml:space="preserve" x="4350" y="10800" stroke="#0000ff" fill="#0000ff"  font-family="Helvetica" font-style="normal" font-weight="bold" font-size="192" text-anchor="start">] ];</text>
+</g>
+</svg>
