@@ -6,3 +6,5 @@ serveFiles.py
 _site/
 .sass-cache/
 .jekyll-metadata
+\#*
+.\#*
