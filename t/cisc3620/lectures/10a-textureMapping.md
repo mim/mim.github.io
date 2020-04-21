@@ -245,11 +245,8 @@ image that you want is often only a portion of the whole array
 
 ### Exercise: Three planes
     
-    1. Use these two images for two of the panes: [flower1.jpg](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/flower1.jpg) [flower2.jpg](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/flower2.jpg)
-    1. Fork my [relaxing floral scene](https://codepen.io/asterix77/pen/LYpGJgx?editors=1010)
-    1. Modify it to load all three images of floral scenes and place them on the three different planes in the scene. 
-    1. Remember that the texture is part of the _material_ , so you'll need create three different materials, instead of just cloning the mesh.
-    1. Your solution might like like [this](https://codepen.io/asterix77/pen/yLYexGd?editors=1010)
-
-
-
+  1. Use these two images for two of the panes: [flower1.jpg](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/flower1.jpg) [flower2.jpg](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/flower2.jpg)
+  1. Fork my [relaxing floral scene](https://codepen.io/asterix77/pen/LYpGJgx?editors=1010)
+  1. Modify it to load all three images of floral scenes and place them on the three different planes in the scene. 
+  1. Remember that the texture is part of the _material_ , so you'll need create three different materials, instead of just cloning the mesh.
+  1. Your solution might like like [this](https://codepen.io/asterix77/pen/yLYexGd?editors=1010)
