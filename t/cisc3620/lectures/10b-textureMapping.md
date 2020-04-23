@@ -267,6 +267,7 @@ Here's what we learned
   * We can also _directly map an image texture_ onto one or more sides (faces) of the box.
   * Modify the definition of the `displayView()` function so that it maps the input texture directly onto the back wall of the box
 
+
 ### Hints for optional extension
 
   * `THREE.Mesh` objects have a `material` property.
@@ -276,3 +277,55 @@ property named `materials` that is an array of materials.
   * You need to _change one of the materials in this array_ to be a `THREE.MeshLambertMaterial` with appropriate values for the `color`, `side`, and `map` properties.
   * Your solution might look like [this pen](https://codepen.io/asterix77/pen/dyYpQZe?editors=1010)
   * _Why do you think the window appears with its hinge on the left side here, rather than_ _on the right side, as it appeared in the first solution?_
+
+
+## Exercise: Decorate a cake
+
+  * In Three.js, textures can be mapped onto curved objects (e.g. sphere, cone, cylinder, or torus) in the same way that they're mapped onto flat surfaces, by setting the `map` property for the material to a `THREE.Texture` object.
+  * The goal of this exercise is to create a decorated cake, something like this:
+
+{% include figure.html url="img/cakeDec.png" description="Target cake" classes="stretch" %}
+
+### Exercise: Decorate a cake
+
+  * Begin with with [codepen](https://codepen.io/asterix77/pen/eYpgLVE?editors=1010)
+  * The starting code creates a single cylinder mapped with a texture pattern consisting of a blue dot on a white background, repeated 15 times around the cylinder.
+  * The `makeTexture()` function has several inputs -- the first is an integer from 1 to 3 specifying which of three design patterns to use.
+
+{% include figure.html url="img/cakeText2.png" description="Cake textures" classes="stretch" %}
+
+### Exercise: Decorate a cake
+
+  * Modify the code to create three stacked cylinders, each with a different color, texture pattern, and repetition method. You'll need to:
+  * Create two cylinders, adjusting the radius, position, color, and texture, including different calls to `makeTexture()`
+  * add them each to the scene.
+  * Your solution might look like this [cake final](https://codepen.io/asterix77/pen/zYvNJJR?editors=1010)
+
+{% include figure.html url="img/cakeDec.png" description="Target cake" classes="stretch" %}
+
+### Exercise questions
+
+  * Observe the patterns displayed on the top and bottom surfaces of the cylinders.
+  * _How does Three.js map the texture onto these surfaces?_
+  * _How are locations on the surfaces of the cylinders related to the_ `(s,t)` _texture
+coordinates?_
+
+## Exercise: Build a globe
+
+  * In this exercise, you'll map an image of the world onto a sphere, to create a globe.
+  * Start from [this codepen](https://codepen.io/asterix77/pen/JjYEawa), and you will use [this image URL](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/world.jpg)
+  * Complete the `makeGlobe()` function to create a world globe.
+  * Your solution might look like this [globe final](https://codepen.io/asterix77/pen/dyYNqLr?editors=1010)
+
+
+### Build a globe 2
+
+  * Suppose we instead map the below image onto the sphere
+  * Note that the top and side lines of the grid are a lighter shade of gray.
+  * _How do you think the result would appear?_
+  * View this [result](https://codepen.io/asterix77/pen/JjYEmjw?editors=1010), rotating the sphere to see the top, bottom, and sides.
+  * _Where are the_ `(s,t)` _texture coordinates equal to 0?_
+
+{% include figure.html url="img/grid.jpg" description="Grid to map onto sphere" classes="stretch" %}
+
+
