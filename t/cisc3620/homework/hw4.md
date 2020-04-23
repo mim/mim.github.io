@@ -10,7 +10,7 @@ javascripts:
 stylesheets:
   - ../css/3620.css
 ---
-# Homework 3: Lit scene
+# Homework 4: Lit scene
 
 Please read the [standard instructions for all assignments](common.html).
 
