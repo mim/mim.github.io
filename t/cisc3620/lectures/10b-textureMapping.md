@@ -36,7 +36,9 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/10-textu
   * Setting texture coordinates
   * Modifying `faceVertexUvs`
   * Loading images
+  * Exercise: Globe
   * Exercise: Room with a view
+  * Exercise: Decorate a cake
 
 
 ## Setting Texture Coordinates
@@ -103,9 +105,7 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/10-textu
 
 ### Plane faceVertexUvs picture
 
-Here's a picture that might help:
-
-{% include figure.html url="../readings/images/faceVertexUvsBc.svg" description="Six sets of texture coordinates, three for each of two triangular faces, the green face and the magenta face." classes=""%}
+{% include figure.html url="../readings/images/faceVertexUvsBc.svg" description="Six sets of texture coordinates, three for each of two triangular faces, the green face and the magenta face." classes="stretch" %}
 
 
 ## Modifying the faceVertexUvs
@@ -180,7 +180,6 @@ This code won't work:
     var mat = new THREE.MeshBasicMaterial(
         {color: THREE.ColorKeywords.white,
          map: texture});
-        
     var mesh = new THREE.Mesh( planeGeom, mat );
     scene.add(mesh);
     TW.render();
@@ -202,9 +201,7 @@ This code won't work:
     // you can poke around
     var planeGeom, planeTex, planeMat, planeMesh;
     var imageLoaded = false;
-    
     var loader = new THREE.TextureLoader();
-    
     function loadPlane() {
         loader.load("../../../readings/images/bc.jpg",
                     function (texture) {
@@ -242,6 +239,25 @@ Here's what we learned
     * repeated 
     * mirrored 
   * When loading textures from an image, we need to consider that it takes a non-negligible amount of time for the image to load, and so we will need to write _callbacks_ for the _after load_ event. 
+
+
+## Exercise: Build a globe
+
+  * In this exercise, you'll map an image of the world onto a sphere, to create a globe.
+  * Start from [this codepen](https://codepen.io/asterix77/pen/JjYEawa), and you will use [this image URL](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/world.jpg)
+  * Complete the `makeGlobe()` function to create a world globe.
+  * Your solution might look like this [globe final](https://codepen.io/asterix77/pen/dyYNqLr?editors=1010)
+
+
+### Build a globe 2
+
+  * Suppose we instead map the below image onto the sphere
+  * Note that the top and side lines of the grid are a lighter shade of gray.
+  * _How do you think the result would appear?_
+  * View this [result](https://codepen.io/asterix77/pen/JjYEmjw?editors=1010), rotating the sphere to see the top, bottom, and sides.
+  * _Where are the_ `(s,t)` _texture coordinates equal to 0?_
+
+{% include figure.html url="img/grid.jpg" description="Grid to map onto sphere" classes="stretch" %}
 
 
 
@@ -309,23 +325,4 @@ property named `materials` that is an array of materials.
   * _How does Three.js map the texture onto these surfaces?_
   * _How are locations on the surfaces of the cylinders related to the_ `(s,t)` _texture
 coordinates?_
-
-## Exercise: Build a globe
-
-  * In this exercise, you'll map an image of the world onto a sphere, to create a globe.
-  * Start from [this codepen](https://codepen.io/asterix77/pen/JjYEawa), and you will use [this image URL](https://s3-us-west-2.amazonaws.com/s.cdpn.io/2999896/world.jpg)
-  * Complete the `makeGlobe()` function to create a world globe.
-  * Your solution might look like this [globe final](https://codepen.io/asterix77/pen/dyYNqLr?editors=1010)
-
-
-### Build a globe 2
-
-  * Suppose we instead map the below image onto the sphere
-  * Note that the top and side lines of the grid are a lighter shade of gray.
-  * _How do you think the result would appear?_
-  * View this [result](https://codepen.io/asterix77/pen/JjYEmjw?editors=1010), rotating the sphere to see the top, bottom, and sides.
-  * _Where are the_ `(s,t)` _texture coordinates equal to 0?_
-
-{% include figure.html url="img/grid.jpg" description="Grid to map onto sphere" classes="stretch" %}
-
 
