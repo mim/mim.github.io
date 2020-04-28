@@ -43,7 +43,11 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/10-textu
 
   * First, take a look at this demo by Kelsey Reiman
 
-[Mikey Cube](../demos/TextureMapping/mikeycube/threejsCube_multiTex.html)
+<iframe height="600" style="width: 100%;" scrolling="no" title="Mikey cube" src="https://codepen.io/asterix77/embed/BaoZqqN?height=600&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true" loading="lazy">
+  See the Pen <a href='https://codepen.io/asterix77/pen/BaoZqqN'>Mikey cube</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 
 ### Using Multiple Textures
 
@@ -51,9 +55,9 @@ Now, take a look at the source code that builds the cube:
     
 ```javascript
     TW.loadTextures(
-        [ 'mikeypics/mikey1.jpg', 'mikeypics/mikey2.jpg', 
-          'mikeypics/mikey3.jpg', 'mikeypics/mikey4.jpg',        
-          'mikeypics/mikey5.jpg', 'mikeypics/mikey6.jpg' ],
+        [ 'mikey1.jpg', 'mikey2.jpg', 
+          'mikey3.jpg', 'mikey4.jpg',        
+          'mikey5.jpg', 'mikey6.jpg' ],
         function (textures) {
             // create an array of materials from these textures
             var mats = [];
@@ -83,7 +87,7 @@ Now, take a look at the source code that builds the cube:
   * With `THREE.MeshFaceMaterial`, each face has a _materialIndex_
     * that indexes into the array of materials, and each material has its own texture.
   * Thus, if we wanted to have a 2x3 pattern of Mikey on the front side `(materialIndex == 4)` of the cube, we could use code from above.
-  * Press the 'p' key in the [Mikey Cube](../demos/TextureMapping/mikeycube/threejsCube_multiTex.html)
+  * Press the 'p' key in the [Mikey Cube](https://codepen.io/asterix77/pen/BaoZqqN)
 
 ## Lighting and Textures
 
@@ -91,8 +95,10 @@ Now, take a look at the source code that builds the cube:
   * In fact, the texture is _multiplied_ by the color of the surface (depending on the shader).
   * Consider the following demo:
 
-[ Buffy on a Colored
-Plane](../demos/TextureMapping/PlaneBuffyColored.html)
+<iframe height="400" style="width: 100%;" scrolling="no" title="ZEbyqVX" src="https://codepen.io/asterix77/embed/ZEbyqVX?height=400&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true" loading="lazy">
+  See the Pen <a href='https://codepen.io/asterix77/pen/ZEbyqVX'>ZEbyqVX</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### Lighting and textures
 
@@ -106,10 +112,10 @@ Plane](../demos/TextureMapping/PlaneBuffyColored.html)
 
 ### Texture with spotlight
 
-  * Consider one last demo:
-
-[ Buffy on a Spotlit
-Plane](../demos/TextureMapping/PlaneBuffySpotlit.html)
+<iframe height="400" style="width: 100%;" scrolling="no" title="MWaoPLE" src="https://codepen.io/asterix77/embed/MWaoPLE?height=400&theme-id=default&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true" loading="lazy">
+  See the Pen <a href='https://codepen.io/asterix77/pen/MWaoPLE'>MWaoPLE</a> by Michael Mandel
+  (<a href='https://codepen.io/asterix77'>@asterix77</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
   * The trick here is to create a Phong material and then to set the `.map` property:
 
@@ -130,19 +136,23 @@ Plane](../demos/TextureMapping/PlaneBuffySpotlit.html)
 
 ### Nearest and linear filters
 
-I found this [picture](http://what-when-how.com/opengl-programming-guide/filtering-texture-mapping-opengl-programming/) helpful as well.
+I find this [demo](https://threejsfundamentals.org/threejs/lessons/threejs-textures.html#filtering-and-mips) helpful.
+
+{% include figure.html url="img/filteringDemoFundamentals.png" description="Filtering options (Threejs fundamentals)" classes="stretch" %}
+
+
+### minFilter and magFilter
 
   * The `minFilter` property of a `THREE.Texture` object controls how the texture color is determined for the scenario on the left
     * and the `magFilter` property specifies what to do for the scenario on the right.
   * Two common options for both are `THREE.NearestFilter` (select the color of the nearest texel)
     * and `THREE.LinearFilter` (linearly interpolate between the colors of the four nearest texels).
 
-### Nearest and linear filters
+### Minification and magnification
 
-  * magnification: 1 texel &Rarr; many pixels; 1 pixel &Rarr; part of a texel. Should the pixels all be uniform (nearest) or gradually transition to the next texel (linear)
-  * minification: 1 pixel &Rarr; many texels. Should the pixel color be drawn from one texel (nearest) or smoothly interpolate (linear)
+  * magnification: 1 texel `->` many pixels; 1 pixel `->` part of a texel. Should the pixels all be uniform (nearest) or gradually transition to the next texel (linear)
+  * minification: 1 pixel `->` many texels. Should the pixel color be drawn from one texel (nearest) or smoothly interpolate (linear)
     * In practice, `minFilter` rarely matters.
-
 
 
 ## Exercise: A Room with a View
@@ -161,14 +171,14 @@ I found this [picture](http://what-when-how.com/opengl-programming-guide/filteri
 
   * Your solution might look like [this pen](https://codepen.io/asterix77/pen/GRpjwvw?editors=1010)
 
-### Optional extensions
+### Extensions
 
   * In the above solution, we cheated a bit, creating something like a poster that was placed at the location of the back wall.
   * We can also _directly map an image texture_ onto one or more sides (faces) of the box.
   * Modify the definition of the `displayView()` function so that it maps the input texture directly onto the back wall of the box
 
 
-### Hints for optional extension
+### Hints for extension
 
   * `THREE.Mesh` objects have a `material` property.
   * In the case of meshes with multiple materials, the value of this property is an object that itself has a
@@ -185,53 +195,53 @@ property named `materials` that is an array of materials.
   * Let's look at some texture demos from the Dirksen textbook
   * The sourcecode is available in [his repository](https://github.com/josdirksen/learning-threejs-third)
 
-### 01-basic-texture 
+### [01-basic-texture](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-01.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/01-basic-texture.html</backgroundiframe>
 
 
-### 02-basic-texture-dds
+### [02-basic-texture-dds](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-02.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/02-basic-texture-dds.html</backgroundiframe>
 
 
-### 08-bump-map 
+### [08-bump-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-08.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/08-bump-map.html</backgroundiframe>
 
 
-### 09-normal-map 
+### [09-normal-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-09.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/09-normal-map.html</backgroundiframe>
 
 
-### 10-displacement-map 
+### [10-displacement-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-10.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/10-displacement-map.html</backgroundiframe>
 
 
-### 14-alpha-map 
+### [14-alpha-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-14.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/14-alpha-map.html</backgroundiframe>
 
 
-### 15-emissive-map 
+### [15-emissive-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-15.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/15-emissive-map.html</backgroundiframe>
 
 
-### 16-specular-map 
+### [16-specular-map](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-16.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/16-specular-map.html</backgroundiframe>
 
 
-### 18-env-map-dynamic
+### [18-env-map-dynami](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-18.js)
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/18-env-map-dynamic.html</backgroundiframe>
 
 
 
-### 24-video-texture 
+### [24-video-texture](http://mr-pc.org/learning-threejs-third/src/chapter-10/js/10-24.js)
 
  [Link here so it doesn't autoplay](http://mr-pc.org/learning-threejs-third/src/chapter-10/24-video-texture.html)
 
