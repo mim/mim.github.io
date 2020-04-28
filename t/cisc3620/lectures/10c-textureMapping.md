@@ -36,7 +36,7 @@ Based on [this CS 307 reading](https://cs.wellesley.edu/~cs307/readings/10-textu
   * Using multiple textures
   * Texture, surface color, and lights 
   * Nearest & linear filters 
-  * Exercise: Decorate a cake 
+  * Exercise: A room with a view
   * Advanced techniques: bump, normal, and environment maps 
 
 ## Using Multiple Textures
@@ -157,7 +157,7 @@ I find this [demo](https://threejsfundamentals.org/threejs/lessons/threejs-textu
 
 ## Exercise: A Room with a View
 
-  * This exercise illustrates how you can use a `THREE.BoxGeometry` to _create a room_ , which will be helpful for [homework 4](../homework/hw4.html).
+  * This exercise illustrates how you can use a `THREE.BoxGeometry` to _create a room_ and texture it.
 
   1. Start from this [room start pen](https://codepen.io/asterix77/pen/jObMQwE?editors=1010)
   2. Change the basic materials for the cube faces to `THREE.MeshLambertMaterial`, and set the `side` property for the material to `THREE.BackSide` (this is all that's needed to convert the box to a room that can be viewed from the inside!) 
