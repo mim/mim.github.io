@@ -190,6 +190,11 @@ property named `materials` that is an array of materials.
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/01-basic-texture.html</backgroundiframe>
 
 
+### 02-basic-texture-dds
+
+ <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/02-basic-texture-dds.html</backgroundiframe>
+
+
 ### 08-bump-map 
 
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/08-bump-map.html</backgroundiframe>
@@ -220,9 +225,9 @@ property named `materials` that is an array of materials.
  <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/16-specular-map.html</backgroundiframe>
 
 
-### 17-env-map-static 
+### 18-env-map-dynamic
 
- <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/17-env-map-static.html</backgroundiframe>
+ <backgroundiframe>http://mr-pc.org/learning-threejs-third/src/chapter-10/18-env-map-dynamic.html</backgroundiframe>
 
 
 
