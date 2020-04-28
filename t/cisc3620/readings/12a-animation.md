@@ -27,8 +27,6 @@ stylesheets:
 \)        
 </p>
 
-# Notes on Animation
-
 With animation, we change the scene dynamically, so instead of a still scene
 (even if the user moves the camera), the scene changes over time.
 
