@@ -387,10 +387,10 @@ US/docs/Web/API/window.requestAnimationFrame)
   * How might you modify the code to create a more natural leg kick?
   * (This page on [JQuery easing functions](http://easings.net/) that can be integrated into JavaScript programs, may provide some hint.)
 
-### Optional extensions
+### Optional extensions 
 
-  * If you finish early, think about how you might improve the animation in other ways, for example:
+  * For 2% course extra credit, implement two of the following:
     * swing the leg back and forth 
     * when the leg reaches its final state, automatically return the leg to the initial state 
-    * currently, you can continue the animation after it reaches its final state, eventually sending it into bizarre contortions where the calf moves through the thigh, among other things. How might you prevent this? 
+    * currently, you can continue the animation after it reaches its final state, eventually sending it into bizarre contortions where the calf moves through the thigh, among other things. Implement a way to prevent this.
     * add a ball on the "ground" that the leg kicks away when the foot reaches the ball 
