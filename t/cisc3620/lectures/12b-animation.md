@@ -400,7 +400,7 @@ US/docs/Web/API/WindowTimers.setInterval)
 ### Time period solution
 
 ```javascript
-var cosArg = t * n / P
+var angle = time * π / P
 ```
 
 ### Task 2: Height
@@ -424,7 +424,6 @@ Here is the important part of the code that determines the ball's position:
         y = t*(maxy-miny)+miny;
         return y;
     };
-    
     // sets the position of the ball based on current time
     function setBallPosition (time) {
         // rescale the time dimension so that the period of bouncing maps to pi
@@ -440,7 +439,7 @@ Here is the important part of the code that determines the ball's position:
 
 ## Exercise: Moving Bouncing Ball
 
-  * Start with the [bouncing ball codepen]()
+  * Start with the [bouncing ball codepen](https://codepen.io/asterix77/pen/VwvzdLy?editors=0010)
   * We would like to make the ball move smoothly in x as it bounces
   * Modify the code to set `ball.position.x` to do this
   * Your solution might look like [moving bouncing ball](https://codepen.io/asterix77/pen/KKdZxEo?editors=0010)
