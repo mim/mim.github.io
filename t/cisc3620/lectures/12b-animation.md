@@ -448,8 +448,8 @@ Here is the important part of the code that determines the ball's position:
 
 ## Extra credit: Decaying Bouncing
 
-  * In the real world, balls don't bounce forever, they come to a stop. How?
-  * Typically, the height of each bounce is a bit smaller than the one before
+  * In the real world, balls don't bounce forever, they come to a stop.
+  * How: the height of each bounce is a bit smaller than the one before
     * but it's not _linear_ , the height of each bounce is some _fraction_ of the one before.
   * Suppose it's a really good ball and each bounce is 90 percent of the previous bounce
 
