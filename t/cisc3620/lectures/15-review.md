@@ -47,7 +47,19 @@ stylesheets:
 
 
 
-## Very high-level course overview 1
+## Very high-level course overview 2
+
+  * [Materials and lighting](08-materials.html)
+  * [The Phong shading model](08b-materials.html)
+  * [Texture mapping 1](10a-textureMapping.html)
+  * [Texture mapping 2](10b-textureMapping.html)
+  * [Texture mapping 3](10c-textureMapping.html)
+  * [Animation, derivative animation](12a-animation.html)
+  * [Positional animation](12b-animation.html)
+  * [Shadows and anti-aliasing](14-shadows.html)
+
+
+### Very high-level course overview 1
 
   * [JavaScript and canvas drawing](02a-canvas.html)
   * [WebGL Three.js and the Barn](02b-openGlBarn.html)
@@ -58,18 +70,6 @@ stylesheets:
   * [Geometry and transformations](http://m.mr-pc.org/t/cisc3620/2020sp/lectureGeometry.pdf)
   * [Parametric lines and triangle interpolation](05b-parametric.html)
   * [Cameras](06-camera.html)
-
-
-### Very high-level course overview 2
-
-  * [Materials and lighting](08-materials.html)
-  * [The Phong shading model](08b-materials.html)
-  * [Texture mapping 1](10a-textureMapping.html)
-  * [Texture mapping 2](10b-textureMapping.html)
-  * [Texture mapping 3](10c-textureMapping.html)
-  * [Animation, derivative animation](12a-animation.html)
-  * [Positional animation](12b-animation.html)
-  * [Shadows and anti-aliasing](14-shadows.html)
 
 
 ## Example problems
@@ -115,3 +115,20 @@ Which of these scenes shows global lighting and which shows local? Point out 4 c
 
 ![Image 1](img/globalIllumination.jpg) | ![Image 2](img/localIllumination.jpg)
 
+
+## Shadow maps
+
+Consider a scene with two cameras, four lights, and six objects where all objects and all lights cast shadows.
+
+  * How many shadow maps are rendered?
+  * How many objects are rendered in each shadow map?
+  * What would be the effect of setting `castShadow = false` on 3 of the objects?
+  * What would be the effect of setting `receiveShadow = false` on 3 of the objects?
+  * What would be the effect of setting `castShadow = false` on 2 of the lights?
+
+## Animation
+
+Is this animation positional or derivative? How do you know?
+
+  * [Boucing ball with controls](https://codepen.io/asterix77/pen/VwvzdLy)
+  * [Spinning cube with controls](https://codepen.io/asterix77/pen/oNjeybo)
