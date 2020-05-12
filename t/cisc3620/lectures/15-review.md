@@ -36,7 +36,7 @@ stylesheets:
   * Example problems
 
 
-## Midterm instructions
+## Final instructions
 
   * This is an open-book, open-note exam
   * You may not consult with any other person during the exam
@@ -80,7 +80,8 @@ stylesheets:
 
 ### Consider this Point
 
-  * Consider a point on the surface of a green object ( \\(k_s = k_d = k_a = [0, 0.5, 0]\\) )
+  * Consider a point at the origin
+  * on the surface of a green object ( \\(k_s = k_d = k_a = [0, 0.5, 0]\\) )
   * with shininess 4
   * illuminated with yellow light (\\(L_s = L_d = L_a = [1, 1, 0]\\) ).
   * The normal vector at this point is [1 1 0 0]
@@ -132,3 +133,34 @@ Is this animation positional or derivative? How do you know?
 
   * [Boucing ball with controls](https://codepen.io/asterix77/pen/VwvzdLy)
   * [Spinning cube with controls](https://codepen.io/asterix77/pen/oNjeybo)
+
+## What projection is this?
+
+How do you know?
+
+<backgroundimage>https://www.rockpapershotgun.com/images/15/mar/civilization3.jpg</backgroundimage>
+
+### What projection is this?
+
+How do you know?
+
+<backgroundimage>https://gamespot1.cbsistatic.com/uploads/original/1585/15855271/3668209-civilization%20vi%20-%20new%20frontier%20pass%20-%20maya%20%26%20gran%20colombia%20pack%20-%20apocalypse%20mode%20soothsayer%20unit.png</backgroundimage>
+
+### What projection is this?
+
+How do you know?
+
+<backgroundimage>img/lego.jpg</backgroundimage>
+
+### What projection is this?
+
+How do you know?
+
+<backgroundimage>img/dropboxLogo.jpg</backgroundimage>
+
+### What projection is this?
+
+How do you know?
+
+<backgroundimage>https://helloartsy.com/wp-content/uploads/2015/06/2pt.-perspective-drawing-cityscape.jpg</backgroundimage>
+
