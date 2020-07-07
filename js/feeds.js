@@ -94,9 +94,10 @@ function yqlRssJsonToList(json) {
 function lastfmJsonToList(json) {
     var entries = json.recenttracks.track;
     var newHtml = '<ul>';
+    var user = json.recenttracks["@attr"].user;
     for (var i=0, entry; i < 20 && i < entries.length; i++) {
         entry = entries[i];
-        newHtml += '<li><a href="http://www.last.fm/user/mimasterix#' + entry.date.uts + '">' + entry.artist['#text'] + ' – ' + entry.name + '</a> ' + prettyDate(parseInt(entry.date.uts)*1000) + '</li>';
+        newHtml += '<li><a href="http://www.last.fm/user/' + user + '#' + entry.date.uts + '">' + entry.artist['#text'] + ' – ' + entry.name + '</a> ' + prettyDate(parseInt(entry.date.uts)*1000) + '</li>';
     }
     newHtml += '</ul>';
     return newHtml;
