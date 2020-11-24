@@ -124,7 +124,7 @@ When listening in noisy and reverberant environments, human listeners are able t
 This dissertation introduces a system that separates more than two sound sources from reverberant, binaural mixtures based on the sources' locations. Each source is modelled probabilistically using information about its interaural time and level differences at every frequency, with parameters learned using an expectation maximization (EM) algorithm. The system is therefore called Model-based EM Source Separation and Localization (MESSL). This EM algorithm alternates between refining its estimates of the model parameters (location) for each source and refining its estimates of the regions of the spectrogram dominated by each source. In addition to successfully separating sources, the algorithm estimates model parameters from a mixture that have direct psychoacoustic relevance and can usually only be measured for isolated sources. One of the key features enabling this separation is a novel probabilistic localization model that can be evaluated at individual time-frequency points and over arbitrarily-shaped regions of the spectrogram.<p>
 The localization performance of the systems introduced here is comparable to that of humans in both anechoic and reverberant conditions, with a 40% lower mean absolute error than four comparable algorithms. When target and masker sources are mixed at similar levels, MESSL's separations have signal-to-distortion ratios 2.0 dB higher than four comparable separation algorithms and estimated speech quality 0.19 mean opinion score units higher. When target and masker sources are mixed anechoically at very different levels, MESSL's performance is comparable to humans', but in similar reverberant mixtures it only achieves 20–-25% of human performance. While MESSL successfully rejects enough of the direct-path portion of the masking source in reverberant mixtures to improve energy-based signal-to-noise ratio results, it has difficulty rejecting enough reverberation to improve automatic speech recognition results significantly. This problem is shared by other comparable separation systems.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 </table>
@@ -135,7 +135,27 @@ The localization performance of the systems introduced here is comparable to tha
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandelEtAl2019">1</a>]
+[<a name="TrinhAndMandel2020">1</a>]
+</td>
+<td class="bibtexitem">
+Vieh&nbsp;Anh Trinh and Michael&nbsp;I Mandel.
+ Directly comparing the listening strategies of humans and machines.
+ <em>IEEE Transactions on Audio, Speech, and Language Processing</em>,
+  2020.
+ To appear.
+[&nbsp;<a href="pubs_bib.html#TrinhAndMandel2020">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/TASLP.2020.3040545">DOI</a>&nbsp;]
+<blockquote><font size="-1">
+Automatic speech recognition (ASR) has reached hu-man performance on many clean speech corpora, but it remains worse  than  human  listeners  in  noisy  environments.  This  paper investigates whether this difference in performance might be due to  a  difference  in  the  time-frequency  regions  that  each  listener utilizes  in  making  their  decisions  and  how  these  "important" regions  change  for  ASRs  using  different  acoustic  models  (AMs) and  language  models  (LMs).  We  define  important  regions  as time-frequency  points  in  a  spectrogram  that  tend  to  be  audible when  the  listener  correctly  recognizes  that  utterance  in  noise. The  evidence  from  this  study  indicates  that  a  neural  network AM attends to regions that are more similar to those of humans (capturing certain high-energy regions) than those of a traditional Gaussian  mixture  model  (GMM)  AM.  Our  analysis  also  shows that the neural network AM has not yet captured all the cues that human listeners utilize, such as certain transitions between silence and high speech energy. We also find that differences in important time-frequency  regions  tend  to  track  differences  in  accuracy  on specific words in a test sentence, suggesting a connection. Because of this connection, adapting an ASR to attend to the same regions humans  use  might  improve  its  generalization  in  noise.
+</font></blockquote>
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="mandelEtAl2019">2</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Vikas Grover, Mengxuan Zhao, Jiyoung Choi, and Valerie
@@ -162,14 +182,14 @@ speech signal is important for native/first-language listeners compared to non-n
 listeners. Furthermore, the method can be used to examine whether L2 speech perception
 training is effective in bringing the listener's attention to the important cues.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16c">2</a>]
+[<a name="mandel16c">3</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
@@ -184,14 +204,14 @@ Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
 <blockquote><font size="-1">
 Listeners can reliably perceive speech in noisy conditions, but it is not well understood what specific features of speech they use to do this. This paper introduces a data-driven framework to identify the time-frequency locations of these features. Using the same speech utterance mixed with many different noise instances, the framework is able to compute the importance of each time-frequency point in the utterance to its intelligibility. The mixtures have approximately the same global signal-to-noise ratio at each frequency, but very different recognition rates. The difference between these intelligible vs unintelligible mixtures is the alignment between the speech and spectro-temporally modulated noise, providing different combinations of “glimpses” of speech in each mixture. The current results reveal the locations of these important noise-robust phonetic features in a restricted set of syllables. Classification models trained to predict whether individual mixtures are intelligible based on the location of these glimpses can generalize to new conditions, successfully predicting the intelligibility of novel mixtures. They are able to generalize to novel noise instances, novel productions of the same word by the same talker, novel utterances of the same word spoken by different talkers, and, to some extent, novel consonants.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="larochelle12">3</a>]
+[<a name="larochelle12">4</a>]
 </td>
 <td class="bibtexitem">
 Hugo Larochelle, Michael&nbsp;I Mandel, Razvan Pascanu, and Yoshua Bengio.
@@ -221,14 +241,14 @@ dimensional inputs. Finally, we describe how to adapt the ClassRBM to
 two special cases of classification problems, namely semi-supervised
 and multitask learning.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="weiss11">4</a>]
+[<a name="weiss11">5</a>]
 </td>
 <td class="bibtexitem">
 Ron Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -241,14 +261,14 @@ Ron Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We describe a system for separating multiple sources from a two-channel recording based on interaural cues and prior knowledge of the statistics of the underlying source signals. The proposed algorithm effectively combines information derived from low level perceptual cues, similar to those used by the human auditory system, with higher level information related to speaker identity. We combine a probabilistic model of the observed interaural level and phase differences with a prior model of the source statistics and derive an EM algorithm for finding the maximum likelihood parameters of the joint model. The system is able to separate more sound sources than there are observed channels in the presence of reverberation. In simulated mixtures of speech from two and three speakers the proposed algorithm gives a signal-to-noise ratio improvement of 1.7 dB over a baseline algorithm which uses only interaural cues. Further improvement is obtained by incorporating eigenvoice speaker adaptation to enable the source model to better match the sources present in the signal. This improves performance over the baseline by 2.7 dB when the speakers used for training and testing are matched. However, the improvement is minimal when the test data is very different from that used in training.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel11b">5</a>]
+[<a name="mandel11b">6</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Razvan Pascanu, Douglas Eck, Yoshua Bengio, Luca&nbsp;M. Aiello,
@@ -262,14 +282,14 @@ Michael&nbsp;I. Mandel, Razvan Pascanu, Douglas Eck, Yoshua Bengio, Luca&nbsp;M.
 <blockquote><font size="-1">
 This paper examines the use of two kinds of context to improve the results of content-based music taggers: the relationships between tags and between the clips of songs that are tagged.  We show that users agree more on tags applied to clips temporally "closer" to one another; that conditional restricted Boltzmann machine models of tags can more accurately predict related tags when they take context into account; and that when training data is "smoothed" using context, support vector machines can better rank these clips according to the original, unsmoothed tags and do this more accurately than three standard multi-label classifiers.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney12a">6</a>]
+[<a name="devaney12a">7</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Ichiro Fujinaga.
@@ -282,14 +302,14 @@ Johanna Devaney, Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Ichiro Fuj
 <blockquote><font size="-1">
 Recorded music offers a wealth of information for studying performance practice. This paper examines the challenges of automatically extracting performance information from audio recordings of the singing voice and discusses our technique for automatically extracting information such as note timings, intonation, vibrato rates, and dynamics. An experiment is also presented that focuses on the tuning of semitones in solo soprano performances of Schubert's &ldquo;Ave Maria&rdquo; by non-professional and professional singers. We found a small decrease in size of intervals with a leading tone function only in the non-professional group.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel10a">7</a>]
+[<a name="mandel10a">8</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Scott Bressler, Barbara Shinn-Cunningham, and Daniel P.&nbsp;W.
@@ -317,14 +337,14 @@ algorithms successfully reject the direct-path signal from the masking
 source, they reject less of its reverberation, explaining the
 disappointing ASR performance.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel09a">8</a>]
+[<a name="mandel09a">9</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Ron&nbsp;J. Weiss, and Daniel P.&nbsp;W. Ellis.
@@ -338,14 +358,14 @@ Michael&nbsp;I. Mandel, Ron&nbsp;J. Weiss, and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 This paper describes a system, referred to as model-based expectation-maximization source separation and localization (MESSL), for separating and localizing multiple sound sources from an underdetermined reverberant two-channel recording. By clustering individual spectrogram points based on their interaural phase and level differences, MESSL generates masks that can be used to isolate individual sound sources. We first describe a probabilistic model of interaural parameters that can be evaluated at individual spectrogram points. By creating a mixture of these models over sources and delays, the multi-source localization problem is reduced to a collection of single source problems. We derive an expectation-maximization algorithm for computing the maximum-likelihood parameters of this mixture model, and show that these parameters correspond well with interaural parameters measured in isolation. As a byproduct of fitting this mixture model, the algorithm creates probabilistic spectrogram masks that can be used for source separation. In simulated anechoic and reverberant environments, separations using MESSL produced on average a signal-to-distortion ratio 1.6 dB greater and perceptual evaluation of speech quality (PESQ) results 0.27 mean opinion score units greater than four comparable algorithms.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel08b">9</a>]
+[<a name="mandel08b">10</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -357,14 +377,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We have designed a web-based game, MajorMiner, that makes collecting descriptions of musical excerpts fun, easy, useful, and objective. Participants describe 10 second clips of songs and score points when their descriptions match those of other participants. The rules were designed to encourage players to be thorough and the clip length was chosen to make judgments objective and specific. To analyse the data, we measured the degree to which binary classifiers could be trained to spot popular tags. We also compared the performance of clip classifiers trained with MajorMiner's tag data to those trained with social tag data from a popular website. On the top 25 tags from each source, MajorMiner's tags were classified correctly 67.2% of the time, while the social tags were classified correctly 62.6% of the time.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="huang08">10</a>]
+[<a name="huang08">11</a>]
 </td>
 <td class="bibtexitem">
 Thomas&nbsp;S. Huang, Charlie&nbsp;K. Dagli, Shyamsundar Rajaram, Edward&nbsp;Y. Chang,
@@ -376,14 +396,14 @@ Thomas&nbsp;S. Huang, Charlie&nbsp;K. Dagli, Shyamsundar Rajaram, Edward&nbsp;Y.
 <blockquote><font size="-1">
 As the first decade of the 21st century comes to a close, growth in multimedia delivery infrastructure and public demand for applications built on this backbone are converging like never before. The push towards reaching truly interactive multimedia technologies becomes stronger as our media consumption paradigms continue to change. In this paper, we profile a technology leading the way in this revolution: active learning. Active learning is a strategy that helps alleviate challenges inherent in multimedia information retrieval through user interaction. We show how active learning is ideally suited for the multimedia information retrieval problem by giving an overview of the paradigm and component technologies used with special attention given to the application scenarios in which these technologies are useful. Finally, we give insight into the future of this growing field and how it fits into the larger context of multimedia information retrieval.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel06b">11</a>]
+[<a name="mandel06b">12</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Graham&nbsp;E. Poliner, and Daniel P.&nbsp;W. Ellis.
@@ -395,7 +415,7 @@ Michael&nbsp;I. Mandel, Graham&nbsp;E. Poliner, and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 Searching and organizing growing digital music collections requires a computational model of music similarity. This paper describes a system for performing flexible music similarity queries using SVM active learning. We evaluated the success of our system by classifying 1210 pop songs according to mood and style (from an online music guide) and by the performing artist. In comparing a number of representations for songs, we found the statistics of mel-frequency cepstral coefficients to perform best in precision-at-20 comparisons. We also show that by choosing training examples intelligently, active learning requires half as many labeled examples to achieve the same accuracy as a standard scheme.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 </table>
@@ -406,7 +426,23 @@ Searching and organizing growing digital music collections requires a computatio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="GhalyAndMandel2020">1</a>]
+[<a name="NiEtAl2020">1</a>]
+</td>
+<td class="bibtexitem">
+Zhaoheng Ni, Yong Xu, Meng Yu, Bo&nbsp;Wu, Shixiong Zhang, Dong Yu, and Michael&nbsp;I
+  Mandel.
+ WPD++: an improved neural beamformer for simultaneous speech
+  separation and dereverberation.
+ In <em>IEEE Workshop on Spoken Language Technologies</em>, 2020.
+[&nbsp;<a href="pubs_bib.html#NiEtAl2020">bib</a>&nbsp;]
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="GhalyAndMandel2020">2</a>]
 </td>
 <td class="bibtexitem">
 Hussein Ghaly and Michael&nbsp;I Mandel.
@@ -420,10 +456,10 @@ Hussein Ghaly and Michael&nbsp;I Mandel.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="CobanEtAl2020">2</a>]
+[<a name="CobanEtAl2020">3</a>]
 </td>
 <td class="bibtexitem">
-Enis&nbsp;Berk &Ccedil;oban, Dara Pir, Richard So, and Michael&nbsp;I Mandel.
+Enis&nbsp;Berk &#x00c7;oban, Dara Pir, Richard So, and Michael&nbsp;I Mandel.
  Transfer learning from youtube soundtracks to tag arctic ecoacoustic
   recordings.
  In <em>Proceedings of the IEEE International Conference on
@@ -435,14 +471,14 @@ Enis&nbsp;Berk &Ccedil;oban, Dara Pir, Richard So, and Michael&nbsp;I Mandel.
 Sound provides a valuable tool for long-term monitoring of sensitive animal habitats at a spatial scale larger than camera traps or field observations, while also providing more details than satellite imagery. Currently, the ability to collect such recordings outstrips the ability to analyze them manually, necessitating the development of automatic analysis methods.  While several datasets and models of large corpora of video soundtracks have recently been released, it is not clear to what extent these models will generalize to environmental recordings and the scientific questions of interest in analyzing them. This paper investigates this generalization in several ways and finds that models themselves display limited performance, however, their intermediate representations can be used to train successful models on small sets of labeled data. 
 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiAndMandel2019c">3</a>]
+[<a name="MaitiAndMandel2019c">4</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti and Michael&nbsp;I Mandel.
@@ -460,14 +496,14 @@ Soumi Maiti and Michael&nbsp;I Mandel.
 Traditional speech enhancement systems produce speech with compromised quality.  Here we propose to use the high quality speech generation capability of neural vocoders for better quality speech enhancement. We term this <em>parametric resynthesis</em> (PR). In previous work, we showed that PR systems generate high quality speech for a single speaker using two neural vocoders, WaveNet and WaveGlow. Both these vocoders are traditionally speaker dependent. Here we first show that when trained on data from enough speakers, these vocoders can generate speech from unseen speakers, both male and female, with similar quality as seen speakers in training. 
 Next using these two vocoders and a new vocoder LPCNet, we evaluate the noise reduction quality of PR on unseen speakers and show that objective signal and overall quality is higher than the state-of-the-art speech enhancement systems Wave-U-Net, Wavenet-denoise, and SEGAN.  Moreover, in subjective quality, multiple-speaker PR out-performs the oracle Wiener mask.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="NiAndMandel2019">4</a>]
+[<a name="NiAndMandel2019">5</a>]
 </td>
 <td class="bibtexitem">
 Zhaoheng Ni and Michael&nbsp;I Mandel.
@@ -480,14 +516,14 @@ Zhaoheng Ni and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Speaker separation refers to isolating speech of interest in a multi-talker environment. Most methods apply real-valued Time-Frequency (T-F) masks to the mixture Short-Time Fourier Transform (STFT) to reconstruct the clean speech. Hence there is an unavoidable mismatch between the phase of the reconstruction and the original phase of the clean speech. In this paper, we propose a simple yet effective phase estimation network that predicts the phase of the clean speech based on a T-F mask predicted by a chimera++ network. To overcome the label-permutation problem for both the T-F mask and the phase, we propose a mask-dependent permutation invariant training (PIT) criterion to select the phase signal based on the loss from the T-F mask prediction. We also propose an Inverse Mask Weighted Loss Function for phase prediction to focus the model on the T-F regions in which the phase is more difficult to predict. Results on the WSJ0-2mix dataset show that the phase estimation network achieves comparable performance to models that use iterative phase reconstruction or end-to-end time-domain loss functions, but in a more straightforward manner.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiAndMandel2019b">5</a>]
+[<a name="MaitiAndMandel2019b">6</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti and Michael&nbsp;I Mandel.
@@ -506,7 +542,7 @@ Soumi Maiti and Michael&nbsp;I Mandel.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiAndMandel2019">6</a>]
+[<a name="MaitiAndMandel2019">7</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti and Michael&nbsp;I Mandel.
@@ -521,14 +557,14 @@ Soumi Maiti and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 This work proposes the use of clean speech vocoder parameters as the target for a neural network performing speech enhancement. These parameters have been designed for text-to-speech synthesis so that they both produce high-quality resyntheses and also are straightforward to model with neural networks, but have not been utilized in speech enhancement until now.  In comparison to a matched text-to-speech system that is given the ground truth transcripts of the noisy speech, our model is able to produce more natural speech because it has access to the true prosody in the noisy speech. In comparison to two denoising systems, the oracle Wiener mask and a DNN-based mask predictor, our model equals the oracle Wiener mask in subjective quality and intelligibility and surpasses the realistic system.  A vocoder-based upper bound shows that there is still room for improvement with this approach beyond the oracle Wiener mask. We test speaker-dependence with two speakers and show that a single model can be used for multiple speakers.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="TrinhEtAl2018">7</a>]
+[<a name="TrinhEtAl2018">8</a>]
 </td>
 <td class="bibtexitem">
 Viet&nbsp;Anh Trinh, Brian McFee, and Michael&nbsp;I Mandel.
@@ -541,14 +577,14 @@ Viet&nbsp;Anh Trinh, Brian McFee, and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Predicting the intelligibility of noisy recordings is difficult and most current algorithms treat all speech energy as equally important to intelligibility. Our previous work on human perception used a listening test paradigm and correlational analysis to show that some energy is more important to intelligibility than other energy. In this paper, we propose a system called the Bubble Cooperative Network (BCN), which aims to predict important areas of individual utterances directly from clean speech. Given such a prediction, noise is added to the utterance in unimportant regions and then presented to a recognizer.  The  BCN is trained with a loss that encourages it to add as much noise as possible while preserving recognition performance, encouraging it to identify important regions precisely and place the noise everywhere else.  Empirical evaluation shows that the BCN can obscure 97.7% of the spectrogram with noise while maintaining recognition accuracy for a simple speech recognizer that compares a noisy test utterance with a clean reference utterance.  The masks predicted by a single BCN on several utterances show patterns that are similar to analyses derived from human listening tests that analyze each utterance separately, while exhibiting better generalization and less context-dependence than previous approaches.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="SyedEtAl2018">8</a>]
+[<a name="SyedEtAl2018">9</a>]
 </td>
 <td class="bibtexitem">
 Ali&nbsp;Raza Syed, Viet&nbsp;Anh Trinh, and Michael&nbsp;I. Mandel.
@@ -562,14 +598,14 @@ Ali&nbsp;Raza Syed, Viet&nbsp;Anh Trinh, and Michael&nbsp;I. Mandel.
 <blockquote><font size="-1">
 Noise reduction in speech signals remains an important area of research with potential for high impact in speech processing domains such as voice communication and hearing prostheses.  We extend and demonstrate significant improvements to our previous work in synthesis-based speech enhancement, which performs concatenative resynthesis of speech signals for the production of noiseless, high quality speech.  Concatenative resynthesis methods perform unit selection through learned non-linear similarity functions between short chunks of clean and noisy signals.  These mappings are learned using deep neural networks (DNN) trained to predict high similarity for the exact chunk of speech that is contained within a chunk of noisy speech, and low similarity for all other pairings.  We find here that more robust mappings can be learned with a more efficient use of the available data by selecting pairings that are not exact matches, but contain similar clean speech that matches the original in terms of acoustic, phonetic, and prosodic content.  The resulting output is evaluated on the small vocabulary CHiME2-GRID corpus and outperforms our original baseline system in terms of intelligibility by combining phonetic similarity with similarity of acoustic intensity, fundamental frequency, and periodicity.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiEtAl2018">9</a>]
+[<a name="MaitiEtAl2018">10</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti, Joey Ching, and Michael&nbsp;I. Mandel.
@@ -582,14 +618,14 @@ Soumi Maiti, Joey Ching, and Michael&nbsp;I. Mandel.
 <blockquote><font size="-1">
 Traditional speech enhancement systems reduce noise by modifying the noisy signal, which suffer from two problems: under-suppression of noise and over-suppression of speech. As an alternative, in this paper, we use the recently introduced concatenative resynthesis approach where we replace the noisy speech with its clean resynthesis. The output of such a system can produce speech that is both noise-free and high quality. This paper generalizes our previous small-vocabulary system to large vocabulary.  To do so, we employ efficient decoding techniques using fast approximate nearest neighbor (ANN) algorithms. Firstly, we  apply ANN techniques on the original small vocabulary task and get 5&#215; speedup.  We then apply the techniques to the construction of a large vocabulary concatenative resynthesis system and scale the system up to 12 &#215; larger dictionary. We perform listening tests with five participants to measure subjective quality and intelligibility of the output speech. 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="MaitiAndMandel2017">10</a>]
+[<a name="MaitiAndMandel2017">11</a>]
 </td>
 <td class="bibtexitem">
 Soumi Maiti and Michael&nbsp;I Mandel.
@@ -601,14 +637,14 @@ Soumi Maiti and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Traditional noise reduction systems modify a noisy signal to make it more like the original clean signal. For speech, these methods suffer from two main problems: under-suppression of noise and over-suppression of target speech. Instead, synthesizing clean speech based on the noisy signal could produce outputs that are both noise-free and high quality.  Our previous work introduced such a system using concatenative synthesis, but it required processing the clean speech at run time, which was slow and not scalable. In order to make such a system scalable, we propose here learning a similarity metric using two separate networks, one network processing the clean segments offline and another processing the noisy segments at run time. This system incorporates a ranking loss to optimize for the retrieval of appropriate clean speech segments. This model is compared against our original on the CHiME2-GRID corpus, measuring ranking performance and subjective listening tests of resyntheses.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="syed17">11</a>]
+[<a name="syed17">12</a>]
 </td>
 <td class="bibtexitem">
 Ali Syed, Andrew Rosenberg, and Michael&nbsp;I Mandel.
@@ -621,14 +657,14 @@ Ali Syed, Andrew Rosenberg, and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Active learning aims to reduce the time and cost of developing speech recognition systems by selecting for transcription highly informative subsets from large pools of audio data.  Previous evaluations at OpenKWS and IARPA BABEL have investigated data selection for low-resource languages in very constrained scenarios with 2-hour data selections given a 1-hour seed set.  We expand on this to investigate what happens with larger selections and fewer constraints on language modeling data.  Our results, on four languages from the final BABEL OP3 period, show that active learning is helpful at larger selections with consistent gains up to 14 hours. We also find that the impact of additional language model data is orthogonal to the impact of the active learning selection criteria.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney17">12</a>]
+[<a name="devaney17">13</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney and Michael&nbsp;I Mandel.
@@ -642,14 +678,14 @@ Johanna Devaney and Michael&nbsp;I Mandel.
 Robust extraction of performance data from polyphonic musical performances requires precise frame-level estimation of fundamental frequency (f0) and power. This paper evaluates a new score-guided approach to f0 and power estimation in polyphonic audio and compares the use of four different input features: the central bin frequencies of the spectrogram, the instantaneous frequency, and two variants of a high resolution spectral analysis. These four features were evaluated on four-part multi-track ensemble recordings, consisting of either four vocalists or bassoon, clarinet, saxophone, and violin (the Bach10 data set) created from polyphonic mixes of the monophonic tracks both with and without artificial reverberation. Score information was used to identify time-frequency regions of interest in the polyphonic mixes for each note in a corresponding aligned score, from which f0 and power estimates were made. The approach was able to recover ground truth f0 within 20 cents on average in reverberation and power within 5dB for anechoic mixtures, but only within 10dB for reverberant.
 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16b">13</a>]
+[<a name="mandel16b">14</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Jon&nbsp;P Barker.
@@ -663,14 +699,14 @@ Michael&nbsp;I Mandel and Jon&nbsp;P Barker.
 <blockquote><font size="-1">
 Recent automatic speech recognition (ASR) results are quite good when the training data is matched to the test data, but much worse when they differ in some important regard, like the number and arrangement of microphones or differences in reverberation and noise conditions.  This paper proposes an unsupervised spatial clustering approach to microphone array processing that can overcome such train-test mismatches.  This approach, known as Model-based EM Source Separation and Localization (MESSL), clusters spectrogram points based on the relative differences in phase and level between pairs of microphones.  Here it is used for the first time to drive minimum variance distortionless response (MVDR) beamforming in several ways.  We compare it to a standard delay-and-sum beamformer on the CHiME-3 noisy test set (real recordings), using each system as a pre-processor for the same recognizer trained on the AMI meeting corpus. We find that the spatial clustering front end reduces word error rates by between 9.9 and 17.1% relative to the baseline.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel16">14</a>]
+[<a name="mandel16">15</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel.
@@ -683,14 +719,14 @@ Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 In a given noisy environment, human listeners can more accurately identify spoken words than automatic speech recognizers.  It is not clear, however, what information the humans are able to utilize in doing so that the machines are not.  This paper uses a recently introduced technique to directly characterize the information used by humans and machines on the same task.  The task was a forced choice between eight sentences spoken by a single talker from the small-vocabulary GRID corpus that were selected to be maximally confusable with one another.  These sentences were mixed with &ldquo;bubble&rdquo; noise, which is designed to reveal randomly selected time-frequency glimpses of the sentence.  Responses to these noisy mixtures allowed the identification of time-frequency regions that were important for each listener to recognize each sentence, i.e., regions that were frequently audible when a sentence was correctly identified and inaudible when it was not.  In comparing these regions across human and machine listeners, we found that dips in noise allowed the humans to recognize words based on informative speech cues.  In contrast, the baseline CHiME-2-GRID recognizer correctly identified sentences only when the time-frequency profile of the noisy mixture matched that of the underlying speech.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="erdogan16">15</a>]
+[<a name="erdogan16">16</a>]
 </td>
 <td class="bibtexitem">
 Hakan Erdogan, John Hershey, Shinji Watanabe, Michael&nbsp;I Mandel, and Jonathan&nbsp;Le
@@ -722,14 +758,14 @@ minima-limited post-masking yields the best result in terms of
 signal-level quality measures and speech recognition word error
 rates in a mismatched training condition.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="xiao16">16</a>]
+[<a name="xiao16">17</a>]
 </td>
 <td class="bibtexitem">
 Xiong Xiao, Shinji Watanabe, Hakan Erdogan, Liang Lu, John Hershey, Michael&nbsp;L
@@ -743,7 +779,7 @@ Xiong Xiao, Shinji Watanabe, Hakan Erdogan, Liang Lu, John Hershey, Michael&nbsp
 <blockquote><font size="-1">
 Despite the significant progress in speech recognition enabled by deep neural networks, poor performance persists in some scenarios. In this work, we focus on far-field speech recognition which remains challenging due to high levels of noise and reverberation in the captured speech signals. We propose to represent the stages of acoustic processing including beamforming, feature extraction, and acoustic modeling, as three components of a single unified computational network. The parameters of a frequency-domain beamformer are first estimated by a network based on features derived from the microphone channels. These filter coefficients are then applied to the array signals to form an enhanced signal. Conventional features are then extracted from this signal and passed to a second network that performs acoustic modeling for classification. The parameters of both the beamforming and acoustic modeling networks are trained jointly using back-propagation with a common crossentropy objective function. In experiments on the AMI meeting corpus, we observed improvements by pre-training each sub-network with a network-specific objective function before joint training of both networks. The proposed method obtained a 3.2% absolute word error rate reduction compared to a conventional pipeline of independent processing stages.
 </font></blockquote>
-<p><blockquote><font size="-1">
+<blockquote><font size="-1">
 Keywords: AMI meeting corpus,Acoustics,Array signal processing,Feature extraction,Microphones,Neural networks,Speech,Speech recognition,absolute word error rate reduction,acoustic modeling network,array signal application,array signal processing,backpropagation,beamforming,common crossentropy objective function,deep beamforming network,deep neural network,deep neural networks,direction of arrival,entropy,feature extraction,filter coefficient,filter- and-sum beamforming,filtering theory,frequency-domain analysis,frequency-domain beamformer,learning (artificial intelligence),microphone arrays,microphone channels,multichannel far-field speech recognition,network-specific objective function,reverberation,signal classification,signal enhancement,signal representation,single unified computational network,speech recognition
 </font></blockquote>
 
@@ -753,7 +789,7 @@ Keywords: AMI meeting corpus,Acoustics,Array signal processing,Feature extractio
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bagchi15">17</a>]
+[<a name="bagchi15">18</a>]
 </td>
 <td class="bibtexitem">
 Deblin Bagchi, Michael&nbsp;I Mandel, Zhongqiu Wang, Yanzhang He, Andrew Plummer,
@@ -769,14 +805,14 @@ Deblin Bagchi, Michael&nbsp;I Mandel, Zhongqiu Wang, Yanzhang He, Andrew Plummer
 Automatic Speech Recognition systems suffer from severe performance degradation in the presence of myriad complicating factors such as noise, reverberation, multiple speech sources, multiple recording devices, etc.  Previous challenges have sparked much innovation when it comes to designing systems capable of handling these complications.  In this spirit, the CHiME-3 challenge presents system builders with the task of recognizing speech in a real-world noisy setting wherein speakers talk to an array of 6 microphones in a tablet.  In order to address these issues, we explore the effectiveness of first applying a model-based source separation mask  to the output of a beamformer that combines the source signals recorded by each microphone, followed by a DNN-based front end spectral mapper that predicts clean filterbank features.  The source separation algorithm MESSL (Model-based EM Source Separation and Localization) has been extended from two channels to multiple channels in order to meet the demands of the challenge.  We report on interactions between the two systems, cross-cut by the use of a robust beamforming algorithm called BeamformIt.   Evaluations of different system settings reveal that combining MESSL and the spectral mapper together on the baseline beamformer algorithm boosts the performance substantially.
 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="tirumala15">18</a>]
+[<a name="tirumala15">19</a>]
 </td>
 <td class="bibtexitem">
 Sreyas&nbsp;Srimath Tirumala and Michael&nbsp;I Mandel.
@@ -789,14 +825,14 @@ Sreyas&nbsp;Srimath Tirumala and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Spectral masking techniques are prevalent for noise suppression but they damage speech in regions of the spectrum where both noise and speech are present. This paper instead utilizes a recently introduced analysis-by-synthesis technique to estimate the spectral envelope of the speech at all frequencies, and adds to it a model of the speech excitation necessary to fully resynthesize a clean speech signal. Such a resynthesis should have little noise and high quality compared to mask-based approaches. We compare several different excitation signals on the Aurora4 corpus, including those derived from the high quefrency components of the noisy mixture and from the combination of a noise robust pitch tracker and a voiced/unvoiced classifier. Preliminary subjective evaluations suggest that the speech synthesized using our approach has higher voice quality and noise suppression than spectral masking.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15d">19</a>]
+[<a name="mandel15d">20</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
@@ -826,14 +862,14 @@ Michael&nbsp;I Mandel and Young&nbsp;Suk Cho.
   non-negative matrix factorization and trained on the same data
   produces no significant improvement.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15c">20</a>]
+[<a name="mandel15c">21</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Nicoleta Roman.
@@ -865,14 +901,14 @@ Localization-based multichannel source separation
                   signal-to-distortion ratios as well as a speech
                   intelligibility predictor.  
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14c">21</a>]
+[<a name="mandel14c">22</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Young-Suk Cho, and Yuxuan Wang.
@@ -898,14 +934,14 @@ This paper introduces a new approach to dictionary-based source
   systems trained on the same data, achieving noise suppression levels
   close to those of the original clean speech.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14b">22</a>]
+[<a name="mandel14b">23</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
@@ -918,14 +954,14 @@ Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
 <blockquote><font size="-1">
 Listeners can reliably identify speech in noisy conditions, although it is generally not known what specific features of speech are used to do this.  We utilize a recently introduced data-driven framework to identify these features.  By analyzing listening-test results involving the same speech utterance mixed with many different noise instances, the framework is able to compute the importance of each time-frequency point in the utterance to its intelligibility.  This paper shows that a trained model resulting from this framework can generalize to new conditions, successfully predicting the intelligibility of novel mixtures. First, it can generalize to novel noise instances after being trained on mixtures involving the same speech utterance but different noises. Second, it can generalize to novel talkers after being trained on mixtures involving the same syllables produced by different talkers in different noises. Finally, it can generalize to novel phonemes, after being trained on mixtures involving different consonants produced by the same or different talkers in different noises. Aligning the clean utterances in time and then propagating this alignment to the features used in the intelligibility prediction improves this generalization performance further.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14a">23</a>]
+[<a name="mandel14a">24</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Arun Narayanan.
@@ -939,14 +975,14 @@ Michael&nbsp;I Mandel and Arun Narayanan.
 <blockquote><font size="-1">
 Spectral masking is a promising method for noise suppression in which regions of the spectrogram that are dominated by noise are attenuated while regions dominated by speech are preserved. It is not clear, however, how best to combine spectral masking with the non-linear processing necessary to compute automatic speech recognition features. We propose an analysis-by-synthesis approach to automatic speech recognition, which, given a spectral mask, poses the estimation of mel frequency cepstral coefficients (MFCCs) of the clean speech as an optimization problem. MFCCs are found that minimize a combination of the distance from the resynthesized clean power spectrum to the regions of the noisy spectrum selected by the mask and the negative log likelihood under an unmodified large vocabulary continuous speech recognizer. In evaluations on the Aurora4 noisy speech recognition task with both ideal and estimated masks, analysis-by-synthesis decreases both word error rates and distances to clean speech as compared to traditional approaches.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="nandi14">24</a>]
+[<a name="nandi14">25</a>]
 </td>
 <td class="bibtexitem">
 Arnab Nandi, Lilong Jiang, and Michael&nbsp;I Mandel.
@@ -972,14 +1008,14 @@ our system is not only performant and capable of interactive laten-
 cies, but it is also more usable, faster to use and more intuitive than
 existing systems.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel13">25</a>]
+[<a name="mandel13">26</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel.
@@ -991,14 +1027,14 @@ Michael&nbsp;I. Mandel.
 <blockquote><font size="-1">
 Predicting the intelligibility of noisy recordings is difficult and most current algorithms only aim to be correct on average across many recordings.  This paper describes a listening test paradigm and associated analysis technique that can predict the intelligibility of a specific recording of a word in the presence of a specific noise instance.  The analysis learns a map of the importance of each point in the recording's spectrogram to the overall intelligibility of the word when glimpsed through &ldquo;bubbles&rdquo; in many noise instances.  By treating this as a classification problem, a linear classifier can be used to predict intelligibility and can be examined to determine the importance of spectral regions.  This approach was tested on recordings of vowels and consonants. The important regions identified by the model in these tests agreed with those identified by a standard, non-predictive statistical test of independence and with the acoustic phonetics literature.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="roman13">26</a>]
+[<a name="roman13">27</a>]
 </td>
 <td class="bibtexitem">
 Nicoleta Roman and Micheal Mandel.
@@ -1008,14 +1044,14 @@ Nicoleta Roman and Micheal Mandel.
 <blockquote><font size="-1">
 Reverberation has a detrimental effect on speech perception both in terms of quality as well as intelligibility, as late reflections smear temporal and spectral cues. The ideal binary mask, which is an established computational approach to sound separation, was recently extended to remove reverberation. Experiments with both normal hearing and hearing impaired listeners have shown significant intelligibility improvements for reverberant speech processed using such a priori binary masks. The dereverberation problem can thus be formulated as a classification problem, where the desired output is the ideal binary mask. The goal in this approach is to produce a mask that selects the time-frequency regions where the direct energy dominates the energy from the late reflections. In this study, a binaural dereverberation algorithm is proposed which utilizes the binaural cues of interaural time and level differences as features. The algorithm is tested in highly reverberant environments using both simulated and recorded room impulse responses. Evaluations show significant improvements over the unprocessed condition as measured by both a speech quality measure and a speech intelligibility predictor.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney12b">27</a>]
+[<a name="devaney12b">28</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -1028,14 +1064,14 @@ Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
 <blockquote><font size="-1">
 This paper introduces the Automatic Music Performance Analysis and Comparison Toolkit (AMPACT), is a MATLAB toolkit for accurately aligning monophonic audio to MIDI scores as well as extracting and analyzing timing-, pitch-, and dynamics-related performance data from the aligned recordings. This paper also presents the results of an analysis performed with AMPACT on an experiment studying intonation in three-part singing. The experiment examines the interval size and drift in four ensembles' performances of a short exercise by Benedetti, which was designed to highlight the conflict between Just Intonation tuning and pitch drift.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney11">28</a>]
+[<a name="devaney11">29</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
@@ -1048,14 +1084,14 @@ Johanna Devaney, Michael&nbsp;I. Mandel, and Ichiro Fujinaga.
 <blockquote><font size="-1">
 This paper evaluates the utility of the Discrete Cosine Transform (DCT) for characterizing singing voice fundamental frequency (F0) trajectories. Specifically, it focuses on the use of the 1 st and 2nd DCT coefficients as approximations of slope and curvature. It also considers the impact of vocal vibrato on the DCT calculations, including the influence of segmentation on the consistency of the reported DCT coefficient values. These characterizations are useful for describing similarities in the evolution of the fundamental frequency in different notes. Such descriptors can be applied in the areas of performance analysis and singing synthesis.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel10b">29</a>]
+[<a name="mandel10b">30</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Douglas Eck, and Yoshua Bengio.
@@ -1077,14 +1113,14 @@ This paper examines the relationship between human generated tags
   automatic tag classifiers (autotaggers) that
   outperform those trained on the original data.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="bergstra10">30</a>]
+[<a name="bergstra10">31</a>]
 </td>
 <td class="bibtexitem">
 James Bergstra, Michael&nbsp;I. Mandel, and Douglas Eck.
@@ -1096,14 +1132,14 @@ James Bergstra, Michael&nbsp;I. Mandel, and Douglas Eck.
 <blockquote><font size="-1">
 Cepstral analysis is effective in separating source from filter in vocal and monophonic [pitched] recordings, but is it a good general-purpose framework for working with music audio? We evaluate covariance in spectral features as an alternative to means and variances in cepstral features (particularly MFCCs) as summaries of frame-level features. We find that spectral covariance is more effective than mean, variance, and covariance statistics of MFCCs for genre and social tag prediction. Support for our model comes from strong and state-of-the-art performance on the GTZAN genre dataset, MajorMiner, and MagnaTagatune. Our classification strategy based on linear classifiers is easy to implement, exhibits very little sensitivity to hyper-parameters, trains quickly (even for web-scale datasets), is fast to apply, and offers competitive performance in genre and tag prediction.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel09b">31</a>]
+[<a name="mandel09b">32</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1118,14 +1154,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We introduce the Ideal Interaural Parameter Mask as an upper bound on the performance of mask-based source separation algorithms that are based on the differences between signals from two microphones or ears. With two additions to our Model-based EM Source Separation and Localization system, its performance approaches that of the IIPM upper bound to within 0.9 dB. These additions battle the effects of reverberation by absorbing reverberant energy and by forcing the ILD estimate to be larger than it might otherwise be. An oracle reliability measure was also added, in the hope that estimating parameters from more reliable regions of the spectrogram would improve separation, but it was not consistently useful.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="devaney09">32</a>]
+[<a name="devaney09">33</a>]
 </td>
 <td class="bibtexitem">
 Johanna Devaney, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -1138,14 +1174,14 @@ Johanna Devaney, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 This paper describes a technique to improve the accuracy of dynamic time warping-based MIDI-audio alignment. The technique implements a hidden Markov model that uses aperiodicity and power estimates from the signal as observations and the results of a dynamic time warping alignment as a prior. In addition to improving the overall alignment, this technique also identifies the transient and steady state sections of the note. This information is important for describing various aspects of a musical performance, including both pitch and rhythm.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="law09">33</a>]
+[<a name="law09">34</a>]
 </td>
 <td class="bibtexitem">
 Edith Law, Kris West, Michael&nbsp;I Mandel, Mert Bay, and J.&nbsp;Stephen Downie.
@@ -1157,14 +1193,14 @@ Edith Law, Kris West, Michael&nbsp;I Mandel, Mert Bay, and J.&nbsp;Stephen Downi
 <blockquote><font size="-1">
 Search by keyword is an extremely popular method for retrieving music. To support this, novel algorithms that automatically tag music are being developed. The conventional way to evaluate audio tagging algorithms is to compute measures of agreement between the output and the ground truth set. In this work, we introduce a new method for evaluating audio tagging algorithms on a large scale by collecting set-level judgments from players of a human computation game called TagATune. We present the design and preliminary results of an experiment comparing five algorithms using this new evaluation metric, and contrast the results with those obtained by applying several conventional agreement-based evaluation metrics.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="weiss08">34</a>]
+[<a name="weiss08">35</a>]
 </td>
 <td class="bibtexitem">
 Ron&nbsp;J. Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
@@ -1177,14 +1213,14 @@ Ron&nbsp;J. Weiss, Michael&nbsp;I. Mandel, and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We describe a system for separating multiple sources from a two-channel recording based on interaural cues and known characteristics of the source signals. We combine a probabilistic model of the observed interaural level and phase differences with a prior model of the source statistics and derive an EM algorithm for finding the maximum likelihood parameters of the joint model. The system is able to separate more sound sources than there are observed channels. In simulated reverberant mixtures of three speakers the proposed algorithm gives a signal-to-noise ratio improvement of 2.1 dB over a baseline algorithm using only interaural cues.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel08a">35</a>]
+[<a name="mandel08a">36</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1197,14 +1233,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 Multiple-instance learning algorithms train classifiers from lightly supervised data, i.e. labeled collections of items, rather than labeled items.  We compare the multiple-instance learners mi-SVM and MILES on the task of classifying 10-second song clips.  These classifiers are trained on tags at the track, album, and artist levels, or granularities, that have been derived from tags at the clip granularity, allowing us to test the effectiveness of the learners at recovering the clip labeling in the training set and predicting the clip labeling for a held-out test set.  We find that mi-SVM is better than a control at the recovery task on training clips, with an average classification accuracy as high as 87% over 43 tags; on test clips, it is comparable to the control with an average classification accuracy of up to 68%.  MILES performed adequately on the recovery task, but poorly on the test clips.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="ellis08">36</a>]
+[<a name="ellis08">37</a>]
 </td>
 <td class="bibtexitem">
 Daniel P.&nbsp;W. Ellis, Courtenay&nbsp;V. Cotton, and Michael&nbsp;I. Mandel.
@@ -1218,14 +1254,14 @@ Daniel P.&nbsp;W. Ellis, Courtenay&nbsp;V. Cotton, and Michael&nbsp;I. Mandel.
 <blockquote><font size="-1">
 Systems to predict human judgments of music similarity directly from the audio have generally been based on the global statistics of spectral feature vectors i.e. collapsing any large-scale temporal structure in the data. Based on our work in identifying alternative ("cover") versions of pieces, we investigate using direct correlation of beat-synchronous representations of music audio to find segments that are similar not only in feature statistics, but in the relative positioning of those features in tempo-normalized time. Given a large enough search database, good matches by this metric should have very high perceived similarity to query items. We evaluate our system through a listening test in which subjects rated system-generated matches as similar or not similar, and compared results to a more conventional timbral and rhythmic similarity baseline, and to random selections.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07c">37</a>]
+[<a name="mandel07c">38</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1240,14 +1276,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We describe a system for localizing and separating multiple sound sources from a reverberant two-channel recording. It consists of a probabilistic model of interaural level and phase differences and an EM algorithm for finding the maximum likelihood parameters of this model. By assigning points in the interaural spectrogram probabilistically to sources with the best-fitting parameters and then estimating the parameters of the sources from the points assigned to them, the system is able to separate and localize more sound sources than there are available channels. It is also able to estimate frequency-dependent level differences of sources in a mixture that correspond well to those measured in isolation. In experiments in simulated anechoic and reverberant environments, the proposed system improved the signal-to-noise ratio of target sources by 2.7 and 3.4dB more than two comparable algorithms on average.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07b">38</a>]
+[<a name="mandel07b">39</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1261,14 +1297,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 We have designed a web-based game to make collecting descriptions of musical excerpts fun, easy, useful, and objective.  Participants describe 10 second clips of songs and score points when their descriptions match those of other participants.  The rules were designed to encourage users to be thorough and the clip length was chosen to make judgments more objective and specific.  Analysis of preliminary data shows that we are able to collect objective and specific descriptions of clips and that players tend to agree with one another.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel07a">39</a>]
+[<a name="mandel07a">40</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Tony Jebara.
@@ -1283,14 +1319,14 @@ Michael&nbsp;I. Mandel, Daniel P.&nbsp;W. Ellis, and Tony Jebara.
 <blockquote><font size="-1">
 We present a method for localizing and separating sound sources in stereo recordings that is robust to reverberation and does not make any assumptions about the source statistics.  The method consists of a probabilistic model of binaural multi-source recordings and an expectation maximization algorithm for finding the maximum likelihood parameters of that model.  These parameters include distributions over delays and assignments of time-frequency regions to sources.  We evaluate this method against two comparable algorithms on simulations of simultaneous speech from two or three sources.  Our method outperforms the others in anechoic conditions and performs as well as the better of the two in the presence of reverberation.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel05">40</a>]
+[<a name="mandel05">41</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1305,14 +1341,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 Searching and organizing growing digital music collections requires automatic classification of music.  This paper describes a new system, tested on the task of artist identification, that uses support vector machines to classify songs based on features calculated over their entire lengths.  Since support vector machines are exemplar-based classifiers, training on and classifying entire songs instead of short-time features makes intuitive sense.  On a dataset of 1200 pop songs performed by 18 artists, we show that this classifier outperforms similar classifiers that use only SVMs or song-level features.  We also show that the KL divergence between single Gaussians and Mahalanobis distance between MFCC statistics vectors perform comparably when classifiers are trained and tested on separate albums, but KL divergence outperforms Mahalanobis distance when trained and tested on songs from the same albums.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="sudderth05">41</a>]
+[<a name="sudderth05">42</a>]
 </td>
 <td class="bibtexitem">
 Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan&nbsp;S. Willsky.
@@ -1327,7 +1363,7 @@ Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan
 <blockquote><font size="-1">
 We describe a three­dimensional geometric hand model suitable for visual tracking applications. The kinematic constraints implied by the model's joints have a probabilistic structure which is well described by a graphical model. Inference in this model is complicated by the hand's many degrees of freedom, as well as multimodal likelihoods caused by ambiguous image measurements. We use nonparametric belief propagation (NBP) to develop a tracking algorithm which exploits the graph's structure to control complexity, while avoiding costly discretization. While kinematic constraints naturally have a local structure, self­ occlusions created by the imaging process lead to complex interpendencies in color and edge­based likelihood functions. However, we show that local structure may be recovered by introducing binary hidden variables describing the occlusion state of each pixel. We augment the NBP algorithm to infer these occlusion variables in a distributed fashion, and then analytically marginalize over them to produce hand position estimates which properly account for occlusion events. We provide simulations showing that NBP may be used to refine inaccurate model initializations, as well as track hand motion through extended image sequences. 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 </table>
@@ -1338,7 +1374,26 @@ We describe a three­dimensional geometric hand model suitable for visual tracki
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="WatanabeEtAl2020">1</a>]
+[<a name="CaiEtAl2020">1</a>]
+</td>
+<td class="bibtexitem">
+Tian Cai, Michael&nbsp;I Mandel, and Di&nbsp;He.
+ Music autotagging as captioning.
+ In <em>First Workshop on NLP for Music and Audio</em>, 2020.
+[&nbsp;<a href="pubs_bib.html#CaiEtAl2020">bib</a>&nbsp;| 
+<a href="https://drive.google.com/file/d/1q1KUrYaP-ajGO9_I93oM7qHhz8XeAhOy/view?usp=sharing">Poster</a>&nbsp;| 
+<a href="https://drive.google.com/file/d/1kHxvQH0zwO9C4EJ0kiIPxfTdQukfr2O7/view?usp=sharing">http</a>&nbsp;]
+<blockquote><font size="-1">
+Music  autotagging  has  typically  been  formulated  as  a  multilabel  classification  problem. This  approach  assumes  that  tags  associatedwith a clip of music are an unordered set. With recent  success  of  image  and  video  captioning  as  well  as  environmental  audio  captioning,  we  we  propose  formulating  music  auto-tagging  as  a  captioning  task,  which  automatically associates tags with a clip of music inthe order a human would apply them.  Under the  formulation  of  captioning  as  a  sequence-to-sequence problem, previous music autotagging systems can be used as the encoder,  extracting a representation of the musical audio. An attention-based decoder is added to learn to predict a sequence of tags describing the given clip.  Experiments are conducted on data collected from the MajorMiner game,  which includes the order and timing that tags were applied to clips by individual users, and contains 3.95 captions per clip on average.
+</font></blockquote>
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="WatanabeEtAl2020">2</a>]
 </td>
 <td class="bibtexitem">
 Shinji Watanabe, Michael&nbsp;I Mandel, Jon Barker, and Emmanuel Vincent.
@@ -1363,14 +1418,14 @@ speech recognition scenario with a complete set of reproducible open source
 baselines providing speech enhancement, speaker diarization, and speech
 recognition modules.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandelEtAl2019b">2</a>]
+[<a name="mandelEtAl2019b">3</a>]
 </td>
 <td class="bibtexitem">
 Lauren Mandel, Michael&nbsp;I. Mandel, and Chris Streb.
@@ -1386,7 +1441,7 @@ Lauren Mandel, Michael&nbsp;I. Mandel, and Chris Streb.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="NiAndMandel2019b">3</a>]
+[<a name="NiAndMandel2019b">4</a>]
 </td>
 <td class="bibtexitem">
 Zhaoheng Ni and Michael&nbsp;I Mandel.
@@ -1398,14 +1453,14 @@ Zhaoheng Ni and Michael&nbsp;I Mandel.
 <blockquote><font size="-1">
 Speech separation is an essential task for multi-talker speech recognition. Recently many deep learning approaches are proposed and have been constantly refreshing the state-of-the-art performances. The lack of algorithm implementations limits researchers to use the same dataset for comparison. Building a generic platform can benefit researchers by easily implementing novel separation algorithms and comparing them with the existing ones on customized datasets. We introduce "<em>onssen</em>": an open-source speech separation and enhancement library. <em>onssen</em> is a library mainly for deep learning separation and enhancement algorithms. It uses LibRosa and NumPy libraries for the feature extraction and PyTorch as the back-end for model training. <em>onssen</em> supports most of the Time-Frequency mask-based separation algorithms (e.g. deep clustering, chimera net, chimera++, and so on) and also supports customized datasets. In this paper, we describe the functionality of modules in <em>onssen</em> and show the algorithms implemented by <em>onssen</em> achieve the same performances as reported in the original papers.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="GroverEtAl2018">4</a>]
+[<a name="GroverEtAl2018">5</a>]
 </td>
 <td class="bibtexitem">
 Vikas Grover, Michael&nbsp;I Mandel, Valerie Shafer, Yusra Syed, and Austin Twine.
@@ -1423,14 +1478,14 @@ Explain the importance of targeted training studies for difficult non-native con
 Keywords: Speech perception, Bubble Noise, Non-native speakers, Hindi, Acoustic cues
 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="GhalyEtA2017">5</a>]
+[<a name="GhalyEtA2017">6</a>]
 </td>
 <td class="bibtexitem">
 Hussein Ghaly and Michael&nbsp;I Mandel.
@@ -1447,7 +1502,7 @@ Hussein Ghaly and Michael&nbsp;I Mandel.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="choi17">6</a>]
+[<a name="choi17">7</a>]
 </td>
 <td class="bibtexitem">
 Jiyoung Choi and Michael&nbsp;I Mandel.
@@ -1462,7 +1517,7 @@ Jiyoung Choi and Michael&nbsp;I Mandel.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15b">7</a>]
+[<a name="mandel15b">8</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Nicoleta Roman.
@@ -1478,7 +1533,7 @@ Michael&nbsp;I Mandel and Nicoleta Roman.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel15a">8</a>]
+[<a name="mandel15a">9</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
@@ -1494,7 +1549,7 @@ Michael&nbsp;I Mandel, Sarah&nbsp;E Yoho, and Eric&nbsp;W Healy.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel14d">9</a>]
+[<a name="mandel14d">10</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I Mandel and Song&nbsp;Hui Chon.
@@ -1506,14 +1561,14 @@ Michael&nbsp;I Mandel and Song&nbsp;Hui Chon.
 Listeners can reliably identify speech in noisy conditions, but it is not well understood which specific features of speech they use to do this.  This talk presents a data-driven framework for identifying these features.  By analyzing listening-test results involving the same speech utterance mixed with many different "bubble" noise instances, the framework is able to compute the importance of each time-frequency point in the utterance to its intelligibility, which we call the time-frequency importance function.  We show that listeners are self-consistent in their ability to identify the word in individual mixtures and are also fairly consistent with other listeners, and that different listeners' time-frequency importance functions are similar for the same utterance.  In addition, a predictive model trained under this framework is able to generalize to new conditions, successfully predicting the intelligibility of mixtures involving novel noise instances, novel utterances of the same word from the same and different talkers, and even to some extent novel consonants.  If there is time, I will also discuss a preliminary experiment applying this framework to the determination of the time-frequency points in a musical note that are most important to listeners for recognizing its timbre.
 
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="nandi13">10</a>]
+[<a name="nandi13">11</a>]
 </td>
 <td class="bibtexitem">
 Arnab Nandi and Michael&nbsp;I Mandel.
@@ -1540,14 +1595,14 @@ Preliminary results show that using this approach allows
 for fast, efficient and interactive gesture-based querying
 over relational databases.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel11a">11</a>]
+[<a name="mandel11a">12</a>]
 </td>
 <td class="bibtexitem">
 Michael Mandel, Razvan Pascanu, Hugo Larochelle, and Yoshua Bengio.
@@ -1571,14 +1626,14 @@ this problem, the discriminative RBM was generalized to the multi-label setting
 and four different learning algorithms for it were evaluated, the first such
 in-depth analysis of which we are aware.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="mandel06a">12</a>]
+[<a name="mandel06a">13</a>]
 </td>
 <td class="bibtexitem">
 Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
@@ -1592,14 +1647,14 @@ Michael&nbsp;I. Mandel and Daniel P.&nbsp;W. Ellis.
 <blockquote><font size="-1">
 In this paper, we derive a probability model for interaural phase differences at individual spectrogram points. Such a model can combine observations across arbitrary time and frequency regions in a structured way and does not make any assumptions about the characteristics of the sound sources. In experiments with speech from twenty speakers in simulated reverberant environments, this probabilistic method predicted the correct interaural delay of a signal more accurately than generalized cross-correlation methods.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="sudderth04">13</a>]
+[<a name="sudderth04">14</a>]
 </td>
 <td class="bibtexitem">
 Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan&nbsp;S. Willsky.
@@ -1613,7 +1668,7 @@ Erik&nbsp;B. Sudderth, Michael&nbsp;I. Mandel, William&nbsp;T. Freeman, and Alan
 <blockquote><font size="-1">
 This paper develops probabilistic methods for visual tracking of a three-dimensional geometric hand model from monocular image sequences. We consider a redundant representation in which each model component is described by its position and orientation in the world coordinate frame. A prior model is then defined which enforces the kinematic constraints implied by the model's joints. We show that this prior has a local structure, and is in fact a pairwise Markov random field. Furthermore, our redundant representation allows color and edge-based likelihood measures, such as the Chamfer distance, to be similarly decomposed in cases where there is no self-occlusion. Given this graphical model of hand kinematics, we may track the hand's motion using the recently proposed nonparametric belief propagation (NBP) algorithm. Like particle filters, NBP approximates the posterior distribution over hand configurations as a collection of samples. However, NBP uses the graphical structure to greatly reduce the dimensionality of these distributions, providing improved robustness. Several methods are used to improve NBP's computational efficiency, including a novel KD-tree based method for fast Chamfer distance evaluation. We provide simulations showing that NBP may be used to refine inaccurate model initializations, as well as track hand motion through extended image sequences.
 </font></blockquote>
-<p>
+
 </td>
 </tr>
 </table>
