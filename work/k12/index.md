@@ -36,7 +36,7 @@ title: Computer Science
 <backgroundiframe>https://scratch.mit.edu/projects/208512067/embed/</backgroundiframe>
 
 
-## These slides are made in code
+## These slides are made from code
 
 ![Code](slidesCode.png)
 
