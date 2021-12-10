@@ -11,6 +11,8 @@ title: Computer Science
   * I sometimes teach computer science at Brooklyn College
   * I write computer programs that try to understand sound
     * And other signals
+  * I like coding because it lets me express myself
+    * And it's fun to create whatever I want
 
 
 ## I work at Meta (Reality Labs)
